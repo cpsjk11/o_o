@@ -21,9 +21,14 @@ public class UmemDAO {
 		return ss.insert("umem.joing", uvo);
 	}
 	
-	// 아이디가 있다면 로그인으로!
+	// 아이디가 있다면 로그인으로! AND 아이디 중복 확인
 	public String searchUser(String name) {
 		return ss.selectOne("umem.searchUser", name);
+	}
+	
+	// 이메일 중복 확인하는 기능
+	public String searchEmail(String email) {
+		return ss.selectOne("umem.searchEmail", email);
 	}
 	
 	// 회원 로그인
