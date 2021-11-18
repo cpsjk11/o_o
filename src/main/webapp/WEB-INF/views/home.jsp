@@ -23,7 +23,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="resources/ico/favicon-16x16.png">
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="msapplication-TileImage" content="/ms-icon-180x180.png">
 <meta name="theme-color" content="#ffffff">
 <style type="text/css">
 	@font-face {
