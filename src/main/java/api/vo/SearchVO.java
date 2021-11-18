@@ -53,7 +53,34 @@ public class SearchVO {
 					 sortCol,
 					 crseTracseSe,
 					 srchTraStDt,
-					 srchTraEndDt;
+					 srchTraEndDt,
+					 srchTraGbn,
+					 srchTraType,
+					 sort;			 					 
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getSrchTraGbn() {
+		return srchTraGbn;
+	}
+
+	public void setSrchTraGbn(String srchTraGbn) {
+		this.srchTraGbn = srchTraGbn;
+	}
+
+	public String getSrchTraType() {
+		return srchTraType;
+	}
+
+	public void setSrchTraType(String srchTraType) {
+		this.srchTraType = srchTraType;
+	}
 
 	public String getSrchKeco1() {
 		return srchKeco1;

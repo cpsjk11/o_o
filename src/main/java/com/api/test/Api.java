@@ -13,6 +13,7 @@ import org.jdom2.input.SAXBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.action.Paging;
@@ -313,6 +314,148 @@ public class Api { //
 			mv.setViewName("api");
 			return mv;
 	}
+	
+	@RequestMapping(value="/search", method = RequestMethod.POST)
+	public ModelAndView index(SearchVO svo, String search_bar, String end, String srchTraArea1, String srchTraArea2, String srchKeco1) throws Exception {
+		
+		//System.out.println(search_bar);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageNum=1&pageSize=100&srchTraStDt=20211116&srchTraEndDt=20220216&outType=1");
+		if(svo.getSort() != null)
+			sb.append("&sort="+svo.getSort());
+		else
+			sb.append("&sort=ASC");
+		
+		if(svo.getSortCol() != null)
+			sb.append("&sortCol="+svo.getSortCol());
+		else
+			sb.append("&sortCol=TR_STT_DT");
+		
+		svo.setSrchTraArea1(srchTraArea1);
+		svo.setSrchTraArea2(srchTraArea2);
+		svo.setSrchKeco1(srchKeco1);
+		
+		mv.addObject("search_bar", search_bar);
+		mv.addObject("srchTraArea1", srchTraArea1);
+		mv.addObject("srchTraArea2", srchTraArea2);
+		mv.addObject("srchKeco1", srchKeco1);
+		
+		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
+			svo.setSrchTraArea1(null);
+		if(svo.getSrchTraArea2() != null && svo.getSrchTraArea2().equals(","))
+			svo.setSrchTraArea2(null);
+		if(svo.getSrchKeco1() != null && svo.getSrchKeco1().equals(","))
+			svo.setSrchKeco1(null);
+		
+		if(svo.getSrchTraArea1() != null && !svo.getSrchTraArea1().trim().equals(""))
+			sb.append("&srchTraArea1="+svo.getSrchTraArea1());
+		if(svo.getSrchTraArea2() != null && !svo.getSrchTraArea2().trim().equals(""))
+			sb.append("&srchTraArea2="+svo.getSrchTraArea2());
+		if(svo.getSrchKeco1() != null && !svo.getSrchKeco1().trim().equals(""))
+			sb.append("&srchKeco1="+svo.getSrchKeco1());
+		if(svo.getCrseTracseSe() != null)
+			sb.append("&crseTracseSe="+svo.getCrseTracseSe());
+		if(svo.getSrchTraGbn() != null)
+			sb.append("&srchTraGbn="+svo.getSrchTraGbn());
+		if(svo.getSrchTraType() != null)
+			sb.append("&srchTraType="+svo.getSrchTraType());
+		
+		System.out.println("리퀘스트:"+sb.toString());
+		
+		
+		URL url = new URL(sb.toString());
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestProperty("Content-Type", "application/xml");
+		conn.connect();
+		
+		SAXBuilder builder = new SAXBuilder();
+		
+		Document document = builder.build(conn.getInputStream());
+		
+		Element root = document.getRootElement();
+		Element srchList = root.getChild("srchList");
+		List<Element> s_list = srchList.getChildren("scn_list");
+		String counts = root.getChildText("scn_cnt");
+		
+		int cnt=0;
+		
+		if(search_bar == null) {
+			search_bar = "";
+		}
+		
+		for(Element el : s_list) {
+			if(el.getChildText("title").contains(search_bar))
+				cnt++;
+		}
+		
+		if(cnt > 0) {
+			api_1[] ar = new api_1[cnt];
+			
+			int i=0;
+			for(Element el : s_list) {
+				if(el.getChildText("title").contains(search_bar)) {
+					String ADDRESS = el.getChildText("address");
+					String CONTENTS = el.getChildText("contents");
+					String COURSE_MAN = el.getChildText("courseMan");
+					String EI_EMPL_CNT3 = el.getChildText("eiEmplCnt3");
+					String EI_EMPL_CNT3_GT10 = el.getChildText("eiEmplCnt3Gt10");
+					String EI_EMPL_RATE3 = el.getChildText("eiEmplRate3");
+					String EI_EMPL_RATE6 = el.getChildText("eiEmplRate6");
+					String GRADE = el.getChildText("grade");
+					String IMG_GUBUN = el.getChildText("imgGubun");
+					String INST_CD = el.getChildText("instCd");
+					String NCS_CD = el.getChildText("ncsCd");
+					String REAL_MAN = el.getChildText("realMan");
+					String REG_COURSE_MAN = el.getChildText("regCourseMan");
+					String SUB_TITLE = el.getChildText("subTitle");
+					String SUB_TITLE_LINK = el.getChildText("subTitleLink");
+					String SUPER_VISER = el.getChildText("superViser");
+					String TEL_NO = el.getChildText("telNo");
+					String TITLE = el.getChildText("title");
+					String TITLE_ICON = el.getChildText("titleIcon");
+					String TITLE_LINK = el.getChildText("titleLink");
+					String TRA_END_DATE = el.getChildText("traEndDate");
+					String TRA_START_DATE = el.getChildText("traStartDate");
+					String TRAIN_TARGET = el.getChildText("trainTarget");
+					String TRAIN_TARGET_CD = el.getChildText("trainTargetCd");
+					String TRAINST_CST_ID = el.getChildText("trainstCstId");
+					String TRPR_DEGR = el.getChildText("trprDegr");
+					String TRPR_ID = el.getChildText("trprId");
+					String YARD_MAN = el.getChildText("yardMan");
+					api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN);			
+					ar[i++] = avo1;
+				}
+			}
+			
+			if(end == null && ar.length < 6) {
+				end = String.valueOf(ar.length);
+			}else if(end == null && ar.length >= 6) {
+				end = "6";
+			}
+			//System.out.println(search_bar);
+			//System.out.println(end);
+			mv.addObject("ar_size", ar.length);
+			
+			//System.out.println("리스폰스:"+sb.toString());
+			api_1[] vo = new api_1[Integer.parseInt(end)];
+			int j=0;
+			for(api_1 avo : vo) {
+				vo[j] = ar[j];
+				j++;
+			}
+			
+			
+			mv.addObject("end", end);
+			mv.addObject("list", vo);
+			mv.addObject("search_bar", search_bar);
+		}
+		mv.setViewName("search");
+		return mv;
+	}
+	
 	@RequestMapping("/join")
 	public String login() {
 		return "join";
