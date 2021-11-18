@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="umem">
+
+<insert id="joing" parameterType="api.u_member.vo.UmemVO">
+	INSERT INTO u_member (id,pw,name<if test="birth != null">,birth</if><if test="email != null">,email</if><if test="phone != null">,phone</if><if test="addr != null">,addr</if>,stat)
+	VALUES (#{id},#{pw},#{name}<if test="birth != null">,#{birth}</if><if test="email != null">,#{email}</if><if test="phone != null">,#{phone}</if><if test="addr != null">,#{addr}</if>,#{stat})
+</insert>
+
+<!-- 유저가 회원가입이 되 있는지 안 됬는지 확인 하는 문장 -->
+<select id="searchUser" parameterType="String" resultType="String">
+	SELECT * FROM u_member
+	WHERE id = #{no}
+</select>
+
+<!-- 로그인 기능!!! -->
+<select id="login" parameterType="Map" resultType="api.u_member.vo.UmemVO">
+	SELECT * FROM u_member
+	WHERE id = #{id} AND pw = #{pw}
+</select>
+</mapper>

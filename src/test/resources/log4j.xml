@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.increpas.hrd">
+	<logger name="com.api.test">
 		<level value="info" />
 	</logger>
 	
