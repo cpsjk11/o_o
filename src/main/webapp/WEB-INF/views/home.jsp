@@ -6,8 +6,8 @@
 	<title>hrd-center.국삐</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<<<<<<< HEAD
 <link rel="apple-touch-icon" sizes="57x57" href="resources/ico//apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="resources/ico//apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="resources/ico//apple-icon-72x72.png">
@@ -25,6 +25,10 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="/ms-icon-180x180.png">
 <meta name="theme-color" content="#ffffff">
+=======
+<link rel="shortcut icon" href="resources/ico/Frame.png">
+
+>>>>>>> branch 'master' of https://github.com/cpsjk11/o_o.git
 <style type="text/css">
 	@font-face {
 	    font-family: 'Cafe24Ssurround';
