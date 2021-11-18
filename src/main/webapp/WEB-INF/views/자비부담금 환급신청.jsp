@@ -5,8 +5,8 @@
 <html>
 <head>
 	<title></title>
-	<link href="resources/css/css.css" rel="stylesheet" type="text/css"/>
-	<link href="resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
 	<style>
 		.m-unit-body4 li:hover > a, .m-unit-body4 li.mul3 > a {
     	font-weight: 700;

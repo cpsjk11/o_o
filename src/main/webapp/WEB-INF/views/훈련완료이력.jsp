@@ -5,8 +5,8 @@
 <html>
 <head>
 	<title></title>
-	<link href="resources/css/css.css" rel="stylesheet" type="text/css"/>
-	<link href="resources/css/수강신청이력등록.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/수강신청이력등록.css" rel="stylesheet" type="text/css"/>
 	<style>
 		.m-unit-body3 li:hover > a, .m-unit-body3 li.mul3 > a {
     	font-weight: 700;
