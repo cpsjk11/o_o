@@ -4,33 +4,33 @@
 <div id="div_11" class="hidden">
 	<table>
 		<tbody class="hidden">
-			<tr> <button type="button" onclick="loc_sel11_1(this)">서울전체</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11680">강남구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11740">강동구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11305">강북구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11500">강서구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11620">관악구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11215">광진구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11530">구로구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11545">금천구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11350">노원구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11320">도봉구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11230">동대문구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11590">동작구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11440">마포구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11410">서대문구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11650">서초구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11200">성동구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11290">성북구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11710">송파구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11470">양천구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11560">영등포구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11170">용산구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11380">은평구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11110">종로구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11140">중구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)" id="11260">중랑구</button> </tr>
-			<tr> <button type="button" onclick="loc_sel11_1(this)">뒤로가기</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '전체')">서울전체</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '강남구')" id="11680">강남구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '강동구')" id="11740">강동구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '강북구')" id="11305">강북구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '강서구')" id="11500">강서구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '관악구')" id="11620">관악구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '광진구')" id="11215">광진구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '구로구')" id="11530">구로구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '금천구')" id="11545">금천구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '노원구')" id="11350">노원구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '도봉구')" id="11320">도봉구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '동대문구')" id="11230">동대문구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '동작구')" id="11590">동작구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '마포구')" id="11440">마포구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '서대문구')" id="11410">서대문구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '서초구')" id="11650">서초구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '성동구')" id="11200">성동구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '성북구')" id="11290">성북구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '송파구')" id="11710">송파구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '양천구')" id="11470">양천구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '영등포구')" id="11560">영등포구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '용산구')" id="11170">용산구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '은평구')" id="11380">은평구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '종로구')" id="11110">종로구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '중구')" id="11140">중구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '중랑구')" id="11260">중랑구</button> </tr>
+			<tr> <button type="button" onclick="loc_sel11_1(this, '')">뒤로가기</button> </tr>
 		</tbody>
 	</table>
 </div>

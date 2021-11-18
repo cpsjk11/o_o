@@ -315,14 +315,20 @@ public class Api { //
 			return mv;
 	}
 	
-	@RequestMapping(value="/search", method = RequestMethod.POST)
-	public ModelAndView index(SearchVO svo, String search_bar, String end, String srchTraArea1, String srchTraArea2, String srchKeco1) throws Exception {
-		
+	@RequestMapping(value="/search")
+	public ModelAndView index(SearchVO svo, String search_bar, String end, String srchTraArea1, String srchTraArea2, String srchKeco1, String srchTraStDt, String srchTraEndDt, String hei) throws Exception {
 		//System.out.println(search_bar);
+		//System.out.println(srchTraStDt);
 		
 		ModelAndView mv = new ModelAndView();
 		
-		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageNum=1&pageSize=100&srchTraStDt=20211116&srchTraEndDt=20220216&outType=1");
+		if(hei == null || (hei != null && hei.trim().equals("")))
+			hei = "1000";
+		
+		mv.addObject("hei", hei);
+		
+		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageNum=1&pageSize=100&outType=1");
+				
 		if(svo.getSort() != null)
 			sb.append("&sort="+svo.getSort());
 		else
@@ -336,11 +342,16 @@ public class Api { //
 		svo.setSrchTraArea1(srchTraArea1);
 		svo.setSrchTraArea2(srchTraArea2);
 		svo.setSrchKeco1(srchKeco1);
+		svo.setSrchTraStDt(srchTraStDt);
+		svo.setSrchTraEndDt(srchTraEndDt);;
 		
 		mv.addObject("search_bar", search_bar);
 		mv.addObject("srchTraArea1", srchTraArea1);
 		mv.addObject("srchTraArea2", srchTraArea2);
 		mv.addObject("srchKeco1", srchKeco1);
+		mv.addObject("srchTraStDt", srchTraStDt);
+		mv.addObject("srchTraEndDt", srchTraEndDt);
+		
 		
 		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
 			svo.setSrchTraArea1(null);
@@ -348,6 +359,15 @@ public class Api { //
 			svo.setSrchTraArea2(null);
 		if(svo.getSrchKeco1() != null && svo.getSrchKeco1().equals(","))
 			svo.setSrchKeco1(null);
+		if(svo.getSrchTraStDt() != null && (svo.getSrchTraStDt().equals(",") || svo.getSrchTraStDt().equals("")))
+			svo.setSrchTraStDt("20211118");
+		else if(svo.getSrchTraStDt() == null)
+			svo.setSrchTraStDt("20211118");
+		if(svo.getSrchTraEndDt() != null && (svo.getSrchTraEndDt().equals(",") || svo.getSrchTraEndDt().equals("")))
+			svo.setSrchTraEndDt("20220216");
+		else if(svo.getSrchTraEndDt() == null)
+			svo.setSrchTraEndDt("20220216");
+		
 		
 		if(svo.getSrchTraArea1() != null && !svo.getSrchTraArea1().trim().equals(""))
 			sb.append("&srchTraArea1="+svo.getSrchTraArea1());
@@ -355,6 +375,10 @@ public class Api { //
 			sb.append("&srchTraArea2="+svo.getSrchTraArea2());
 		if(svo.getSrchKeco1() != null && !svo.getSrchKeco1().trim().equals(""))
 			sb.append("&srchKeco1="+svo.getSrchKeco1());
+		if(svo.getSrchTraStDt() != null && !svo.getSrchTraStDt().trim().equals(""))
+			sb.append("&srchTraStDt="+svo.getSrchTraStDt());
+		if(svo.getSrchTraEndDt() != null && !svo.getSrchTraEndDt().trim().equals(""))
+			sb.append("&srchTraEndDt="+svo.getSrchTraEndDt());
 		if(svo.getCrseTracseSe() != null)
 			sb.append("&crseTracseSe="+svo.getCrseTracseSe());
 		if(svo.getSrchTraGbn() != null)

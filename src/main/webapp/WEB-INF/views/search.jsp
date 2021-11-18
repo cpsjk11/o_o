@@ -13,40 +13,36 @@
 	div#wrap {
 		position: absolute;
 		left: 50%;
-		margin-left: -500px;
+		margin-left: -750px;
 	}
 	div#header {
-		width: 1000px;
+		width: 1500px;
 		height: 200px;
-		border: 1px solid black;
 	}
 	div#body {
-		width: 1000px;
-		height: 1000px;
-		border: 1px solid black;
+		width: 1500px;
+		height: ${hei};
 		text-align: center;
 	}
 	div#footer {
-		width: 1000px;
+		width: 1500px;
 		height: 200px;
-		border: 1px solid black;
 	}
 	div#body #top1_div {
-		width: 1000px;
+		width: 1500px;
 		height: 10%;
 		text-align: center;
-		border: 1px solid black;
 	}
 	div#body #top2_div {
 		width: 1000px;
 		height: 5%;
 		text-align: right;
-		border: 1px solid black;
+		margin-left: 250px;
 	}
 	div#body #center_div {
 		width: 1000px;
 		height: 85%;
-		border: 1px solid black;
+		margin-left: 250px;
 	}
 	li.top2_li {
 		float: right;
@@ -75,6 +71,30 @@
 	div.hidden {
 		display: none;
 	}
+	#search_bar{
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+		width: 560px;
+		height: 70px;
+		border-radius: 20px;
+		border: 0.7px solid #efefef;
+		margin-top: 50px;
+		font-size: 16px;
+		font-weight: 300;
+		text-align: center;
+		font: #888888;
+	}
+	.btn{
+		width: 120px; 
+		height: 70px;
+		background: #EFEFEF;
+		border-radius: 6px;
+		text-align: center;
+		font-weight: 600;
+		font-size: 20px;
+		font: #3A2F2F;
+		line-height: 60px;
+	}
+
 </style>
 </head>
 <body>
@@ -83,27 +103,35 @@
 		<jsp:include page="header.jsp"/>
 	</div>
 	
-	<div id="body">
+	<div id="body" name="body">
 		<div id="top1_div">
 			<form action="search" method="post" name="search">
 				<input type="text" id="search_bar" name="search_bar"/>
-				<input type="button" id="search_btn" value="검색" onclick="search1()"/>
-				<input type="button" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
-				<label style="font-size: 20px">${search_bar}으로 검색된 결과입니다.</label>
+				<input type="button" class="btn" id="search_btn" value="검색" onclick="search1()"/>
+				<input type="button" class="btn" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
+				<label style="font-size: 20px">
+				<c:if test="${search_bar ne null and search_bar ne ''}">
+					${search_bar}으로 검색된 결과입니다.</label>
+				</c:if>
 			</form>
 		</div>
 		<div id="detail_div" class="hidden">
 			<form method="post" action="search" name="search_detail">
+				<button type="button" onclick="loc_sel()" id="loc_btn">지  역</button>
+				<input type="text" name="Area" id="Area"/><br/>
+				<button type="button" onclick="ncs_sel()" id="ncs_btn">분  야</button>
+				<input type="text" name="Ncs" id="Ncs"/><br/>
+				<label for="srchTraStDt">시작일</label>
+				<input type="text" name="srchTraStDt" id="srchTraStDt" onclick="start_sel()"/><br/>
+				
 				<input type="hidden" name="srchTraArea1" id="srchTraArea1"/>
 				<input type="hidden" name="srchTraArea2" id="srchTraArea2"/>
 				<input type="hidden" name="srchKeco1" id="srchKeco1"/>
-				<button type="button" onclick="loc_sel()">지역 선택</button>
-				<button type="button" onclick="ncs_sel()">분야 선택</button>
 				<div id="area_div" class="hidden">
 					<table>
 						<tbody class="hidden">
 							<tr> <button type="button" onclick="loc_sel1(this)">전체</button> </tr>
-							<tr> <button type="button" onclick="loc_sel11(this)" id="11">서울</button> </tr>
+							<tr> <button type="button" onclick="loc_sel11(this)" id="1">서울</button> </tr>
 							<tr> <button type="button" onclick="loc_sel26(this)" id="26">부산</button> </tr>
 							<tr> <button type="button" onclick="loc_sel27(this)" id="27">대구</button> </tr>
 							<tr> <button type="button" onclick="loc_sel28(this)" id="28">인천</button> </tr>
@@ -128,37 +156,38 @@
 				<div id="ncs_div" class="hidden">
 					<table>
 						<tbody>
-							<tr> <button type="button" onclick="ncs_sel1(this)">전체</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="01">사업관리</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="02">경영/회계/사무</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="03">금융/보험</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="04">교육/자연/사회과학</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="05">법률/경찰/소방/교도/국방</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="06">보건/의료</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="07">사회복지/종교</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="08">문화/예술/디자인/방송</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="09">운전/운송</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="10">영업판매</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="11">경비/청소</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="12">이용/숙박/여행/오락/스포츠</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="13">음식서비스</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="14">건설</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="15">기계</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="16">재료</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="17">화학</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="18">섬유/의복</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="19">전기/전자</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="20">정보통신</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="21">식품가공</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="22">인쇄/목재/가구/공예</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="23">환경/에너지/산업</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)" id="24">농림어업</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this)">뒤로가기</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '전체')">전체</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '사업관리')" id="01">사업관리</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '경영/회계/사무')" id="02">경영/회계/사무</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '금융/보험')" id="03">금융/보험</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '교육/자연/사회과학')" id="04">교육/자연/사회과학</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '법률/경찰/소방/교도/국방')" id="05">법률/경찰/소방/교도/국방</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '보건/의료')" id="06">보건/의료</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '사회복지/종교')" id="07">사회복지/종교</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '문화/예술/디자인/방송')" id="08">문화/예술/디자인/방송</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '운전/운송')" id="09">운전/운송</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '영업판매')" id="10">영업판매</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '경비/청소')" id="11">경비/청소</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '이용/숙박/여행/오락/스포츠')" id="12">이용/숙박/여행/오락/스포츠</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '음식서비스')" id="13">음식서비스</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '건설')" id="14">건설</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '기계')" id="15">기계</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '재료')" id="16">재료</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '화학')" id="17">화학</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '섬유/의복')" id="18">섬유/의복</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '전기/전자')" id="19">전기/전자</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '정보통신')" id="20">정보통신</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '식품가공')" id="21">식품가공</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '인쇄/목재/가구/공예')" id="22">인쇄/목재/가구/공예</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '환경/에너지/산업')" id="23">환경/에너지/산업</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '농립어업')" id="24">농림어업</button> </tr>
+							<tr> <button type="button" onclick="ncs_sel1(this, '')">뒤로가기</button> </tr>
 						</tbody>
 					</table>
 				</div>
 				<div id="btn">
-					<input type="text" id="search2_bar" name="search_bar"/>
+					<label for="search2_bar">제    목</label>
+					<input type="text" id="search2_bar" name="search_bar"/><br/><br/>
 					<input type="button" value="검색" id="search_btn" onclick="search2()"/>&nbsp;
 					<input type="button" value="취소" id="cancel_btn" onclick="cancel()"/>
 				</div>
@@ -209,6 +238,7 @@
 					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_more" name="srchTraArea1"/>
 					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_more" name="srchTraArea2"/>
 					<input type="hidden" value="${srchKeco1}" id="srchKeco1_more" name="srchKeco1"/>
+					<input type="hidden" value="${hei}" id="hei_more" name="hei"/>
 				</c:if>
 				</form>
 				<form action="search" method="post" name="less">
@@ -219,7 +249,7 @@
 					<input type="hidden" value="${search_bar}" id="search_bar_less" name="search_bar"/>
 					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_less" name="srchTraArea1"/>
 					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_less" name="srchTraArea2"/>
-					<input type="hidden" value="${srchKeco1}" id="srchKeco1_less" name="srchKeco1"/>
+					<input type="hidden" value="${hei}" id="hei_less" name="hei"/>
 				</c:if>
 				</form>
 			</ol>
@@ -254,8 +284,8 @@
 			end = parseInt($("#end_more").val())+end_size;
 		}
 		$("#end_more").val(end);
-		var height = $("div #body").height()+1000;
-		$("#body").css("height", "2000");
+		var hei = parseInt($("#hei").val())
+		$("#hei").val(hei+1000);
 		document.more.submit();
 	}
 	function less1() {
@@ -268,10 +298,15 @@
 			end = parseInt($("#end_less").val())-end_size;
 		}
 		$("#end_less").val(end);
+		var hei = parseInt($("#hei").val())
+		$("#hei").val(hei-1000);
 		document.less.submit();
 	}
 	function detail1() {
-		$("#detail_div").dialog();
+		$("#detail_div").dialog({
+			width : '500px',
+			height : 'auto'
+		});
 		$("#detail_div").css("display", "block");
 	}
 	function loc_sel() {
@@ -290,14 +325,17 @@
 	function loc_sel11(loc) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
-		$("#srchTraArea1").val(loc.id);
+		$("#srchTraArea1").val("11");
 		$("#div_11").dialog();
 		$("#div_11").css("display", "block");
+		$("#Area").val($("#1").text());
 	}
-	function loc_sel11_1(loc) {
+	function loc_sel11_1(loc, loc_text) {
 		$("#div_11").dialog("close");
 		$("#div_11").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_text);
 	}
 	function loc_sel26(loc) {
 		$("#area_div").dialog("close");
@@ -491,10 +529,23 @@
 		$("#div_50").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
 	}
-	function ncs_sel1(ncs) {
+	function ncs_sel1(ncs, ncs_text) {
 		$("#ncs_div").dialog("close");
 		$("#ncs_div").css("display", "none");
 		$("#srchKeco1").val(ncs.id);
+		$("#Ncs").val(ncs_text);
+		
+	}
+	function start_sel() {
+		$( "#srchTraStDt" ).datepicker({
+			dateFormat: 'yymmdd',
+			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			dayNamesMin: ['일','월','화','수','목','금','토'],
+			dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+			showMonthAfterYear:true,
+			showOtherMonths: true
+		});
 	}
 	function search2(){
 		document.search_detail.submit();
