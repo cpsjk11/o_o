@@ -8,7 +8,23 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
+<link rel="apple-touch-icon" sizes="57x57" href="resources/ico//apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="resources/ico//apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="resources/ico//apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="resources/ico//apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="resources/ico//apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="resources/ico//apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="resources/ico//apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="resources/ico//apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="resources/ico//apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="resources/ico//android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="resources/ico//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="resources/ico//favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/ico/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
 <style type="text/css">
 	@font-face {
 	    font-family: 'Cafe24Ssurround';
