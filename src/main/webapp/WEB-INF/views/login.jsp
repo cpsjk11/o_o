@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+	span, p, pre, input{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+	}
 	body{
 		margin: 0 auto;
 	}
@@ -61,6 +66,7 @@
 	#check{
 		display: inline-block;
 		width: 310px;
+		height : 30px;
 		font-size: 14px;
 		color: #3A2F2F;
 	}
@@ -100,6 +106,51 @@
 		color: #FFF;
 		text-decoration: none;
 	}
+	.el_login{
+		border: 0.7px solid #efefef;
+		border-radius: 10px;
+		/* vertical-align: middle; */
+		width:43%;
+		height: 100%;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+	}
+	
+	#k_login{
+		width: 150px;
+		height: 30px;
+	}
+	#text_area{
+		width: 317px;
+		height: 75px;
+	}
+	#text_area .el_login{
+		display: inline-block;
+		width: 155px;
+		height: 50px;
+		border: 0.7px solid #efefef;
+		
+	}
+	#eL_a {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 50px;
+    height: 100%;
+    text-align: center;
+	}
+	a {
+	    text-decoration: none;
+	    color: #3A2F2F;
+	}
+	user agent stylesheet
+	a:-webkit-any-link {
+	    color: -webkit-link;
+	    cursor: pointer;
+	}
+	#search_id,
+	#search_pw{
+		cursor: wait;
+	}
 </style>
 </head>
 <body>
@@ -120,10 +171,23 @@
 			</label>
 			<a href="https://kauth.kakao.com/oauth/authorize?client_id=0c76b8606442452175ac2545632942ae&redirect_uri=http://localhost:9090/test/login&response_type=code">
 				<div id="img">
-					<img src="resources/img/kakao.png"/>
+					<a onclick="idSearch()" id="search_id">ID찾기/</a>
+					<a onclick="idSearch()" id="search_pw">PW찾기</a>
 				</div>
 			</a>
 		</div><br/>
+		<div id="text_area">
+			<a id="eL_a" href="/ex">
+				<div id="k_login" class="el_login">
+					<div id="k_login_img"></div>
+					<span>카카오 로그인</span>
+				</div>
+				<div id="g_login" class="el_login">
+					<div id="k_login_img"></div>
+					<span>구글 로그인</span>
+				</div>
+			</a>
+		</div>
 		<div id="s">
 			<a href="/" class="text">
 				<div id="member" class="button">
@@ -147,6 +211,11 @@
 <script>
 	function handleOnInput(e)  {
 	  e.value = e.value.replace(/[^A-Za-z0-9]/ig , '');
+	}
+	
+	function idSearch(){
+		
+		window.open('/findId', '아이디 찾기','width=560px,height=650px;,resizable=no')
 	}
 
 	function login(){

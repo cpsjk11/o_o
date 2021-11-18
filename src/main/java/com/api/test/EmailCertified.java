@@ -3,18 +3,23 @@ package com.api.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import api.action.secure.SecureUtil;
+import api.dao.UmemDAO;
 import api.gmail.send.GoogleMail;
 
 @Controller
 public class EmailCertified {
 	
 	String random ;
+	
+	@Autowired
+	private UmemDAO u_dao;
 	
 	@RequestMapping(value="/check",method = RequestMethod.POST)
 	@ResponseBody
@@ -37,6 +42,17 @@ public class EmailCertified {
 		GoogleMail.gmailSend(userMail, "","인증코드 입니다.\r\n"+random);
 		
 		return map;
+	}
+	
+	// 아이디 찾을때 이메일로 아이디 보내주기
+	@RequestMapping("/findId")
+	public Map<String, String> findId(String mail){
+		Map<String, String> map = new HashMap<String, String>();
+		
+		
+		
+		return map;
+		
 	}
 	
 	
