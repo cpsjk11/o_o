@@ -89,12 +89,12 @@
 					<c:if test="${sessionScope.userName eq null }">
 						<a href="ex" id="login">로그인</a>
 						<a href="join">회원가입</a>
-						<a href="myPage">마이페이지</a>
+						<a href="myPage/mypage">마이페이지</a>
 					</c:if>
 					<c:if test="${sessionScope.userName ne null }">
 						<a href="login" id="login">${sessionScope.userName.name}님</a>
 						<a href="join">로그아웃</a>
-						<a href="myPage">마이페이지</a>
+						<a href="myPage/mypage">마이페이지</a>
 					</c:if>
 				</div>
 				<div id="left_m">

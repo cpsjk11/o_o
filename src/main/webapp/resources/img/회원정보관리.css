@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+p.title_src{ /* src 타이틀 밑 세부내용 */
+	font-size: 15px;
+	width: 750px;
+	font-weight: bold;
+	padding: 10px 0 40px 0;
+}
+.m_id{ /* 회원정보 */
+	font-size: 20px;
+	padding-bottom: 7px;
+	position: relative;
+	left: 700px;
+	top: 80px;
+	font-family: sans-serif;
+	
+}
+.fr-guide_txt{ /* 표시 필수입력사항란 */
+	font-size: 11px;
+	background: url(../img/bult.png) no-repeat 0 52px;
+	padding-left: 600px;
+	position: relative;
+	left: 480px;
+	top: 40px;
+}
+.table_type01{/* 테이블 */
+	 border-collapse: collapse;
+	 border: 1px solid #ddd;
+	 border-left: none;
+	 border-right: none;
+	 position: relative;
+	 left: 300px;
+	 top : 50px;
+}
+.guide_txt{
+	font-size: 13px;
+}
+
+.req{ /* 인적사항 앞 체크표시 */
+	display: inline-block;
+	width:12px;
+	height:8px;
+	background: url(../img/bult.png) no-repeat 0 0px;
+	text-indent: -9999px;
+}
+.table_type01 tbody tr:first-child{
+	/* 이름 표시줄 */
+
+	height: 70px;
+}
+.table_type01 tbody tr:last-child{
+	/* 관심기부대상 표시줄 */
+		
+	height: 70px;
+}
+
+.table_type01 th{
+	/* 인적사항 제목 표시줄 */
+	border: 1px solid #ddd;
+	border-left: none;
+	font-weight: bold;
+	padding: 10px 0 10px 10px;
+	background-color: #efefef;
+	text-align: left;
+	font-size: 12px;
+	
+}
+.table_type01 td{
+	/* 인적사항 내부 영역 표시줄 */
+	border: 1px solid #ddd;
+	border-right: none;
+	padding: 10px;
+}
+.table_type01 p{padding-bottom: 20px; /* 아이디, 비밀번호란 내부 */}
+
+#ok_btn{
+	margin: 5px;
+	color: #222;
+	
+}
+
+.table_type01 .join{
+	/* 입력 칸 영역 */
+	width: 110px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.hidden{
+	font-size: 0;
+}
+
+#ok_btn{
+	/* 중복확인 위치조정 */
+	margin: 5px;
+	cursor: pointer;
+}
+#b_ok{
+	position:relative;
+	left:700px;
+	top: 100px;
+	background-color: #0598e0;
+	color: #fff;
+	cursor: pointer;
+	font-size: 20px;
+}
+#b_cancle{
+	position:relative;
+	left:750px;
+	top: 100px;
+	background-color: #fff;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+button.btnType1, a.btnType1 {
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #cdcdd1;
+    color: #4e4f51;
+    font-size: 13px;
+    line-height: 50px;
+    height: 52px;
+    padding: 0 33px;
+    box-sizing: border-box;
+}
