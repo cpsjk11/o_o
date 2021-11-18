@@ -18,7 +18,7 @@ public class EmailCertified {
 	
 	@RequestMapping(value="/check",method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> checkMail(String value, String userMail, String val){
+	public Map<String, String> checkMail(String value){
 		Map<String, String> map = new HashMap<String, String>();
 		// 사용자가 입력한 인증코드를 비교하여 인증여부 조회하기 
 		if(value.equals(random)) {
@@ -38,5 +38,6 @@ public class EmailCertified {
 		
 		return map;
 	}
+	
 	
 }

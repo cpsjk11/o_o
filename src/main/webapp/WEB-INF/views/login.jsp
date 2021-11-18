@@ -111,8 +111,8 @@
 		<span id="head_2">국비지원 학원을 연결해주는 사이트 입니다!!</span>
 	</div>
 	<div id="center">
-		<input id="id" name="m_id" placeholder="아이디를 입력해주세요"/><br/>
-		<input id="pw" name="m_id" placeholder="비밀번호를 입력해주세요"/><br/>
+		<input id="id" name="id" placeholder="아이디를 입력해주세요"  oninput="handleOnInput(this)"/><br/>
+		<input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요"/><br/>
 		<div id="check">
 			<label for="save">
 				<input type="checkbox" id="save" name="save"/> 
@@ -131,7 +131,7 @@
 				</div>
 			</a>
 			<a href="/" class="text">
-				<div id="logins" class="button">		
+				<div id="logins" class="button" onclick="login()">		
 					로그인
 				</div>
 			</a>
@@ -142,5 +142,51 @@
 <div id="svg">
 </div>
 <jsp:include page="footer.jsp"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
+<script>
+	function handleOnInput(e)  {
+	  e.value = e.value.replace(/[^A-Za-z0-9]/ig , '');
+	}
+
+	function login(){
+		// 로그인 기능!! 아이디와 비밀번호 유효성 검사 후 로그인을 하자
+		var id = $("#id").val();
+		var pw = $("#pw").val();
+		
+		if(id.trim().length < 1){
+			alert("아이디를 입력해주세요");
+			$("#id").val("");
+			$("#id").focus();
+			return;
+		}
+		if(pw.trim().length < 1){
+			alert("아이디를 입력해주세요");
+			$("#pw").val("");
+			$("#pw").focus();
+			return;
+		}
+		
+		// 비동기식 통신 시작
+		$.ajax({
+			url:"login",
+			data:{"id":id,"pw":pw},
+			type:"post",
+			dataType:"json"
+		}).done(function(data){
+			if(data.value == 1){
+				alert(${sessionScope.userName.name}+"환영합니다")
+				location.href="/";
+			}
+				if(data.value == 2){
+				alert(data.fail);
+				$("#id").val(id);
+				$("#pw").val("");
+				
+			}
+		}).fail(function(err){
+			alert("문제발생!!!");
+		});
+	}
+</script>
 </html>
