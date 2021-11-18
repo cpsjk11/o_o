@@ -130,25 +130,25 @@
 				<div id="area_div" class="hidden">
 					<table>
 						<tbody class="hidden">
-							<tr> <button type="button" onclick="loc_sel1(this)">전체</button> </tr>
-							<tr> <button type="button" onclick="loc_sel11(this)" id="1">서울</button> </tr>
-							<tr> <button type="button" onclick="loc_sel26(this)" id="26">부산</button> </tr>
-							<tr> <button type="button" onclick="loc_sel27(this)" id="27">대구</button> </tr>
-							<tr> <button type="button" onclick="loc_sel28(this)" id="28">인천</button> </tr>
-							<tr> <button type="button" onclick="loc_sel29(this)" id="29">광주</button> </tr>
-							<tr> <button type="button" onclick="loc_sel30(this)" id="30">대전</button> </tr>
-							<tr> <button type="button" onclick="loc_sel31(this)" id="31">울산</button> </tr>
-							<tr> <button type="button" onclick="loc_sel36(this)" id="36">세종</button> </tr>
-							<tr> <button type="button" onclick="loc_sel41(this)" id="41">경기</button> </tr>
-							<tr> <button type="button" onclick="loc_sel42(this)" id="42">강원</button> </tr>
-							<tr> <button type="button" onclick="loc_sel43(this)" id="43">충북</button> </tr>
-							<tr> <button type="button" onclick="loc_sel44(this)" id="44">충남</button> </tr>
-							<tr> <button type="button" onclick="loc_sel45(this)" id="45">전북</button> </tr>
-							<tr> <button type="button" onclick="loc_sel46(this)" id="46">전남</button> </tr>
-							<tr> <button type="button" onclick="loc_sel47(this)" id="47">경북</button> </tr>
-							<tr> <button type="button" onclick="loc_sel48(this)" id="48">경남</button> </tr>
-							<tr> <button type="button" onclick="loc_sel50(this)" id="50">제주</button> </tr>
-							<tr> <button type="button" onclick="loc_sel1(this)">뒤로가기</button> </tr>
+							<tr> <input type="button" onclick="loc_sel1(this, this.value)" value="전체"/> </tr>
+							<tr> <input type="button" onclick="loc_sel11(this, this.value)" id="1" value="서울"/> </tr>
+							<tr> <input type="button" onclick="loc_sel26(this, this.value)" id="26" value="부산"/> </tr>
+							<tr> <input type="button" onclick="loc_sel27(this, this.value)" id="27" value="대구"/> </tr>
+							<tr> <input type="button" onclick="loc_sel28(this, this.value)" id="28" value="인천"/> </tr>
+							<tr> <input type="button" onclick="loc_sel29(this, this.value)" id="29" value="광주"/> </tr>
+							<tr> <input type="button" onclick="loc_sel30(this, this.value)" id="30" value="대전"/> </tr>
+							<tr> <input type="button" onclick="loc_sel31(this, this.value)" id="31" value="울산"/> </tr>
+							<tr> <input type="button" onclick="loc_sel36(this, this.value)" id="36" value="세종"/> </tr>
+							<tr> <input type="button" onclick="loc_sel41(this, this.value)" id="41" value="경기"/> </tr>
+							<tr> <input type="button" onclick="loc_sel42(this, this.value)" id="42" value="강원"/> </tr>
+							<tr> <input type="button" onclick="loc_sel43(this, this.value)" id="43" value="충북"/> </tr>
+							<tr> <input type="button" onclick="loc_sel44(this, this.value)" id="44" value="충남"/> </tr>
+							<tr> <input type="button" onclick="loc_sel45(this, this.value)" id="45" value="전북"/> </tr>
+							<tr> <input type="button" onclick="loc_sel46(this, this.value)" id="46" value="전남"/> </tr>
+							<tr> <input type="button" onclick="loc_sel47(this, this.value)" id="47" value="경북"/> </tr>
+							<tr> <input type="button" onclick="loc_sel48(this, this.value)" id="48" value="경남"/> </tr>
+							<tr> <input type="button" onclick="loc_sel50(this, this.value)" id="50" value="제주"/> </tr>
+							<tr> <input type="button" onclick="loc_sel1(this, '')" value="뒤로가기"> </tr>
 						</tbody>
 					</table>
 				</div>
@@ -206,15 +206,14 @@
 			<c:forEach var="vo" items="${list }" varStatus="st">
 				<li class="edu">
 					<div class="img_div">
-						<img src="resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png" class="edu_img"/>
+						<a href="view?title=${vo.TITLE}&addr=${vo.ADDRESS}&tel=${vo.TEL_NO}"><img src="resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png" class="edu_img"/></a>
 					</div>
 					<div class="over_section" onclick="">
 						<em class="title">
 						<c:if test="${vo.TITLE.length() > 10}">
-							${fn:substring(vo.TITLE, 0, 10)}
+							${fn:substring(vo.TITLE, 0, 20)}
 						</c:if>
 						</em>
-						<a href="view?title=${vo.TITLE}&addr=${vo.ADDRESS}&tel=${vo.TEL_NO}" title="a태그 제목">자세히보기</a>
 					</div>
 					<div class="edu_tab">
 						<label class="tab_label">교육기간</label>
@@ -322,212 +321,260 @@
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 	}
-	function loc_sel11(loc) {
+	function loc_sel11(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val("11");
 		$("#div_11").dialog();
 		$("#div_11").css("display", "block");
-		$("#Area").val($("#1").text());
+		$("#Area").val(loc_value);
 	}
-	function loc_sel11_1(loc, loc_text) {
+	function loc_sel11_1(loc, loc_value) {
 		$("#div_11").dialog("close");
 		$("#div_11").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
 		var Area = $("#Area").val();
-		$("#Area").val(Area+" "+loc_text);
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel26(loc) {
+	function loc_sel26(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_26").dialog();
 		$("#div_26").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel26_1(loc) {
+	function loc_sel26_1(loc, loc_value) {
 		$("#div_26").dialog("close");
 		$("#div_26").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel27(loc) {
+	function loc_sel27(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_27").dialog();
 		$("#div_27").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel27_1(loc) {
+	function loc_sel27_1(loc, loc_value) {
 		$("#div_27").dialog("close");
 		$("#div_27").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel28(loc) {
+	function loc_sel28(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_28").dialog();
 		$("#div_28").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel28_1(loc) {
+	function loc_sel28_1(loc, loc_value) {
 		$("#div_28").dialog("close");
 		$("#div_28").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel29(loc) {
+	function loc_sel29(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_29").dialog();
 		$("#div_29").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel29_1(loc) {
+	function loc_sel29_1(loc, loc_value) {
 		$("#div_29").dialog("close");
 		$("#div_29").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel30(loc) {
+	function loc_sel30(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_30").dialog();
 		$("#div_30").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel30_1(loc) {
+	function loc_sel30_1(loc, loc_value) {
 		$("#div_30").dialog("close");
 		$("#div_30").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel31(loc) {
+	function loc_sel31(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_31").dialog();
 		$("#div_31").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel31_1(loc) {
+	function loc_sel31_1(loc, loc_value) {
 		$("#div_31").dialog("close");
 		$("#div_31").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel36(loc) {
+	function loc_sel36(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_36").dialog();
 		$("#div_36").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel36_1(loc) {
+	function loc_sel36_1(loc, loc_value) {
 		$("#div_36").dialog("close");
 		$("#div_36").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel41(loc) {
+	function loc_sel41(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_41").dialog();
 		$("#div_41").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel41_1(loc) {
+	function loc_sel41_1(loc, loc_value) {
 		$("#div_41").dialog("close");
 		$("#div_41").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel42(loc) {
+	function loc_sel42(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_42").dialog();
 		$("#div_42").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel42_1(loc) {
+	function loc_sel42_1(loc, loc_value) {
 		$("#div_42").dialog("close");
 		$("#div_42").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel43(loc) {
+	function loc_sel43(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_43").dialog();
 		$("#div_43").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel43_1(loc) {
+	function loc_sel43_1(loc, loc_value) {
 		$("#div_43").dialog("close");
 		$("#div_43").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel44(loc) {
+	function loc_sel44(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_44").dialog();
 		$("#div_44").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel44_1(loc) {
+	function loc_sel44_1(loc, loc_value) {
 		$("#div_44").dialog("close");
 		$("#div_44").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel45(loc) {
+	function loc_sel45(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_45").dialog();
 		$("#div_45").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel45_1(loc) {
+	function loc_sel45_1(loc, loc_value) {
 		$("#div_45").dialog("close");
 		$("#div_45").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel46(loc) {
+	function loc_sel46(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_46").dialog();
 		$("#div_46").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel46_1(loc) {
+	function loc_sel46_1(loc, loc_value) {
 		$("#div_46").dialog("close");
 		$("#div_46").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel47(loc) {
+	function loc_sel47(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_47").dialog();
 		$("#div_47").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel47_1(loc) {
+	function loc_sel47_1(loc, loc_value) {
 		$("#div_47").dialog("close");
 		$("#div_47").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel48(loc) {
+	function loc_sel48(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_48").dialog();
 		$("#div_48").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel48_1(loc) {
+	function loc_sel48_1(loc, loc_value) {
 		$("#div_48").dialog("close");
 		$("#div_48").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
-	function loc_sel50(loc) {
+	function loc_sel50(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
 		$("#div_50").dialog();
 		$("#div_50").css("display", "block");
+		$("#Area").val(loc_value);
 	}
-	function loc_sel50_1(loc) {
+	function loc_sel50_1(loc, loc_value) {
 		$("#div_50").dialog("close");
 		$("#div_50").css("display", "none");
 		$("#srchTraArea2").val(loc.id);
+		var Area = $("#Area").val();
+		$("#Area").val(Area+" "+loc_value);
 	}
 	function ncs_sel1(ncs, ncs_text) {
 		$("#ncs_div").dialog("close");

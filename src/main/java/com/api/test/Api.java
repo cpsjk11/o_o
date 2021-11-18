@@ -480,6 +480,19 @@ public class Api { //
 		return mv;
 	}
 	
+	@RequestMapping(value="/view")
+	public ModelAndView view(String title, String addr, String tel) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("title", title);
+		mv.addObject("addr", addr);
+		mv.addObject("tel", tel);
+		
+		mv.setViewName("view");
+		
+		return mv;
+	}
+	
 	@RequestMapping("/join")
 	public String login() {
 		return "join";
