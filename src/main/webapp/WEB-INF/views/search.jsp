@@ -40,9 +40,9 @@
 		margin-left: 250px;
 	}
 	div#body #center_div {
-		width: 1000px;
+		width: 1200px;
 		height: 85%;
-		margin-left: 250px;
+		margin-left: 150px;
 	}
 	li.top2_li {
 		float: right;
@@ -51,13 +51,18 @@
 	}
 	li.edu {
 		display: inline-block;
+		width: 300px;
+		height: 300px;
 		margin: 5px 5px 20px 5px;
 		padding: 5px;
 	}
 	img.edu_img {
-		width: 200px;
+		width: 280px;
 		height: 200px;
 		border-radius: 20px;
+	}
+	img.edu_img:hover {
+		transform: translate(0, -3px);
 	}
 	label.tab_label {
 		color: black;
@@ -94,6 +99,16 @@
 		font: #3A2F2F;
 		line-height: 60px;
 	}
+	.btn2 {
+		width: 60px; 
+		height: 35px;
+		background: #EFEFEF;
+		border-radius: 6px;
+		text-align: center;
+		font-weight: 600;
+		font-size: 12px;
+		font: #3A2F2F;
+	}
 
 </style>
 </head>
@@ -117,12 +132,12 @@
 		</div>
 		<div id="detail_div" class="hidden">
 			<form method="post" action="search" name="search_detail">
-				<button type="button" onclick="loc_sel()" id="loc_btn">지  역</button>
-				<input type="text" name="Area" id="Area"/><br/>
-				<button type="button" onclick="ncs_sel()" id="ncs_btn">분  야</button>
-				<input type="text" name="Ncs" id="Ncs"/><br/>
+				<button type="button" onclick="loc_sel()" id="loc_btn">지역</button>
+				<input type="text" name="Area" id="Area"/><br/><br/>
+				<button type="button" onclick="ncs_sel()" id="ncs_btn">분야</button>
+				<input type="text" name="Ncs" id="Ncs"/><br/><br/>
 				<label for="srchTraStDt">시작일</label>
-				<input type="text" name="srchTraStDt" id="srchTraStDt" onclick="start_sel()"/><br/>
+				<input type="text" name="srchTraStDt" id="srchTraStDt" onclick="start_sel()"/><br/><br/>
 				
 				<input type="hidden" name="srchTraArea1" id="srchTraArea1"/>
 				<input type="hidden" name="srchTraArea2" id="srchTraArea2"/>
@@ -186,7 +201,7 @@
 					</table>
 				</div>
 				<div id="btn">
-					<label for="search2_bar">제    목</label>
+					<label for="search2_bar">제&nbsp;&nbsp;&nbsp;&nbsp;목</label>
 					<input type="text" id="search2_bar" name="search_bar"/><br/><br/>
 					<input type="button" value="검색" id="search_btn" onclick="search2()"/>&nbsp;
 					<input type="button" value="취소" id="cancel_btn" onclick="cancel()"/>
@@ -206,16 +221,19 @@
 			<c:forEach var="vo" items="${list }" varStatus="st">
 				<li class="edu">
 					<div class="img_div">
-						<a href="view?title=${vo.TITLE}&addr=${vo.ADDRESS}&tel=${vo.TEL_NO}"><img src="resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png" class="edu_img"/></a>
+						<a href="view?title=${vo.TITLE}&addr=${vo.ADDRESS}&tel=${vo.TEL_NO}">
+							<img src="resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png" class="edu_img"/>
+						</a>
 					</div>
 					<div class="over_section" onclick="">
+					
+					</div>
+					<div class="edu_tab">
 						<em class="title">
 						<c:if test="${vo.TITLE.length() > 10}">
 							${fn:substring(vo.TITLE, 0, 20)}
 						</c:if>
-						</em>
-					</div>
-					<div class="edu_tab">
+						</em><br/>
 						<label class="tab_label">교육기간</label>
 						<span class="tab_span">${vo.TRA_START_DATE} ~ ${vo.TRA_END_DATE}</span><br/>
 						<label class="tab_label">훈련비</label>
@@ -230,7 +248,7 @@
 			</c:if>
 				<form action="search" method="post" name="more">
 				<c:if test="${ar_size > 6 && end < ar_size}">
-					<button type="button" onclick="more1()" id="more_btn" name="more_btn">더보기</button>
+					<button type="button" class="btn2" onclick="more1()" id="more_btn" name="more_btn">더보기</button>
 					<input type="hidden" value="${end}" id="end_more" name="end"/>
 					<input type="hidden" value="${ar_size}" id="ar_size_more" name="ar_size"/>
 					<input type="hidden" value="${search_bar}" id="search_bar_more" name="search_bar"/>
@@ -242,7 +260,7 @@
 				</form>
 				<form action="search" method="post" name="less">
 				<c:if test="${end > 6}">
-					<button type="button" onclick="less1()" id="less_btn" name="less_btn">줄이기</button>
+					<button type="button" class="btn2" onclick="less1()" id="less_btn" name="less_btn">줄이기</button>
 					<input type="hidden" value="${end}" id="end_less" name="end"/>
 					<input type="hidden" value="${ar_size}" id="ar_size_less" name="ar_size"/>
 					<input type="hidden" value="${search_bar}" id="search_bar_less" name="search_bar"/>
@@ -265,8 +283,8 @@
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 	function search1(){
-		var result1 = $("#search_bar").val();
-		$("#search_bar").val(encodeURIComponent(result1));
+		//var result1 = $("#search_bar").val();
+		//$("#search_bar").val(encodeURIComponent(result1));
 		document.search.submit();
 	}
 	function cancel() {
@@ -303,6 +321,7 @@
 	}
 	function detail1() {
 		$("#detail_div").dialog({
+			title : "상세검색",
 			width : '500px',
 			height : 'auto'
 		});

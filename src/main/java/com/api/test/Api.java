@@ -320,6 +320,7 @@ public class Api { //
 		//System.out.println(search_bar);
 		//System.out.println(srchTraStDt);
 		
+		
 		ModelAndView mv = new ModelAndView();
 		
 		if(hei == null || (hei != null && hei.trim().equals("")))
@@ -327,7 +328,9 @@ public class Api { //
 		
 		mv.addObject("hei", hei);
 		
-		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageNum=1&pageSize=100&outType=1");
+		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageSize=100&outType=1");
+		for(int num=1; num<100; num++)
+			sb.append("&pageNum="+num);
 				
 		if(svo.getSort() != null)
 			sb.append("&sort="+svo.getSort());
@@ -411,7 +414,7 @@ public class Api { //
 		}
 		
 		for(Element el : s_list) {
-			if(el.getChildText("title").contains(search_bar))
+			if(el.getChildText("title").toUpperCase().contains(search_bar.toUpperCase()))
 				cnt++;
 		}
 		
@@ -420,7 +423,7 @@ public class Api { //
 			
 			int i=0;
 			for(Element el : s_list) {
-				if(el.getChildText("title").contains(search_bar)) {
+				if(el.getChildText("title").toUpperCase().contains(search_bar.toUpperCase())) {
 					String ADDRESS = el.getChildText("address");
 					String CONTENTS = el.getChildText("contents");
 					String COURSE_MAN = el.getChildText("courseMan");
