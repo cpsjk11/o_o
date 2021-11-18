@@ -15,9 +15,15 @@
 	WHERE id = #{no}
 </select>
 
+<select id="searchEmail" parameterType="String" resultType="String">
+	SELECT * FROM u_member
+	WHERE email = #{no}
+</select>
+
 <!-- 로그인 기능!!! -->
 <select id="login" parameterType="Map" resultType="api.u_member.vo.UmemVO">
 	SELECT * FROM u_member
 	WHERE id = #{id} AND pw = #{pw}
 </select>
+
 </mapper>
