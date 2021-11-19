@@ -13,7 +13,12 @@
 					</c:if>
 					<c:if test="${sessionScope.userName ne null }">
 						<a onclick="javascript:void(0)">${sessionScope.userName.name}님</a>
-						<a href="join">로그아웃</a>
+						<c:if test="${sessionScope.rank eq '2' }">
+							<a href="https://kauth.kakao.com/oauth/logout?client_id=0c76b8606442452175ac2545632942ae&logout_redirect_uri=http://localhost:9090/test/logout">로그아웃</a>
+						</c:if>
+						<c:if test="${sessionScope.rank eq '1' }">
+							<a href="logout">로그아웃</a>
+						</c:if>
 						<a href="myPage/mypage">마이페이지</a>
 					</c:if>
 				</div>

@@ -53,6 +53,7 @@ public class LoginController {
 		if(uvo != null) {
 			// 로그인 성공 했을때 이다.
 			session.setAttribute("userName", uvo);
+			session.setAttribute("rank", "1");
 			map.put("value", "1");
 		}else {
 			// 로그인 실패 했을때

@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
@@ -158,6 +159,7 @@ public class KakaoController {
 			if(uvos != null) {
 				// 로그인 성공시이다.
 				session.setAttribute("userName", uvo);
+				session.setAttribute("rank", "2");
 				mv.setViewName("redirect:/");
 			}else
 				mv.setViewName("redirect:/ex");
@@ -166,4 +168,47 @@ public class KakaoController {
 			
 		return mv;
 	}
+	
+	// 카카오계정과 함께 로그아웃 기능
+	@RequestMapping("/test/logout")
+	public String kakao_logout() throws Exception {
+		/*
+		 * String logoutUrl = "https://kauth.kakao.com/oauth/logout";
+		 * 
+		 * URL url = new URL(logoutUrl); HttpURLConnection conn = (HttpURLConnection)
+		 * url.openConnection();
+		 * 
+		 * conn.setRequestMethod("GET"); conn.setDoOutput(true);
+		 * 
+		 * BufferedWriter bw = new BufferedWriter(new
+		 * OutputStreamWriter(conn.getOutputStream()));
+		 * 
+		 * 
+		 * StringBuffer sb = new StringBuffer();
+		 * sb.append("?client_id=0c76b8606442452175ac2545632942ae");
+		 * sb.append("&logout_redirect_uri=http://localhost:9090/test/logout");
+		 * 
+		 * bw.write(sb.toString()); bw.flush();
+		 */
+		
+		session.removeAttribute("userName");
+		
+		return "redirect:/";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
