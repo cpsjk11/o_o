@@ -13,7 +13,7 @@
 	#wrap{
 		position: absolute;
 		width: 1920px;
-		height: 100px;
+		height: 100%;
 		left: 0px;
 		top: 0px;
 		background: #FFFFFF;
@@ -26,14 +26,14 @@
 		padding: 150px 300px;
 		margin: 0 auto;
 		width: 1000px;
-		height: 720px;
+		height: 2550px;
 		text-align: center;
 	}
-	#main_content span{
+	#main_content #search_area span{
 		margin: 0 auto;
 		width: 600px;
 		height: 47px;
-		font-family: Roboto;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-style: normal;
 		font-weight: bold;
 		font-size: 40px;
@@ -47,10 +47,11 @@
 		border-radius: 20px;
 		border: 0.7px solid #efefef;
 		margin-top: 50px;
-		font-size: 16px;
+		font-size: 20px;
 		font-weight: 300;
 		text-align: center;
-		font: #888888;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		color: #3A2F2F;
 	}
 	#search_area{
 		width: 100%;

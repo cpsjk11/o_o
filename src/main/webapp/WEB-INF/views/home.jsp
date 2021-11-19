@@ -28,6 +28,7 @@
 			<div id="search_area">
 				<span>나에게 맞는 훈련을 찾아보세요! </span>
 				<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 "/>
+				<img src="resources/img/px.png">
 			</div>
 		</div>
 		<%--상단 검색 영역입니당! --%>
@@ -207,10 +208,10 @@
 	</div>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="text/javascript">
-
-AOS.init();
-
 $(function(){
+	
+	AOS.init();
+	
     $('#pop_area').slick({
         slide: 'a',        //슬라이드 되어야 할 태그 ex) div, li 
         infinite : true,     //무한 반복 옵션     

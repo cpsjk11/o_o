@@ -87,6 +87,7 @@
 		width: 100%;
 		height: 100px;
 		border: 1px solid red;
+		margin-top: 15px;
 	}
 	input[type="submit"]{
 		margin: 0 auto;
@@ -155,6 +156,24 @@
 	#phone{
 		width: 50%;
 	}
+	.chk_area{
+		margin: 15px 0 30px;
+	}
+	#all_chk{
+		width: 100%;
+		height: 100%;
+		border-bottom: 1px solid #efefef;
+		padding: 15px 15px 0;
+	}
+	#all_chk span{
+		vertical-align: middle;
+		float: left;
+		font-size: 15px;
+		font-weight: 600;
+	}
+	#all_chk input[type="checkbox"]{
+		float: right;
+	}
 </style>
 </head>
 <body>
@@ -205,10 +224,17 @@
 								</div>
 							</a>
 						</div>
-						<span  class="info">간단인증</span>
-						<div id="email_box"></div>
-						<span  class="info">약관동의</span>
-						<div id="consent_box"></div>
+						<div class="chk_area">
+							<span  class="info">약관동의</span>
+							<div id="consent_box" class="el_login">
+								<div id="all_chk">
+									<span>전체동의</span>
+									<!-- <div id="chkImg" style="background: url('resources/img/3.png') no-repeat; width: 100%;"></div> -->
+									<input type="checkbox">
+								</div>
+							</div>
+						</div>
+						
 						<div id="btn_area">
 							<input type="button" id="join_btn" name="join_btn" value="회원가입" onclick="userAdd()">
 						</div>
