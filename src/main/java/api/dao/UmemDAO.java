@@ -39,4 +39,9 @@ public class UmemDAO {
 		return ss.selectOne("umem.login", map);
 	}
 	
+	// 사용자 아이디 찾아주는 기능
+	public String findID(String email) {
+		return ss.selectOne("umem.findID", email);
+	}
+	
 }

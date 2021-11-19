@@ -26,4 +26,10 @@
 	WHERE id = #{id} AND pw = #{pw}
 </select>
 
+<!-- 사용자 아이디 찾아주기 기능 -->
+<select id="findID" parameterType="String" resultType="String">
+	SELECT id FROM u_member
+	WHERE email = #{no}
+</select>
+
 </mapper>

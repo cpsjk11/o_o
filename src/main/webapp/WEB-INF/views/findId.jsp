@@ -198,14 +198,14 @@
 							<input type="text" name="id" id="id" placeholder="이름을 입력해주세요." maxlength="20"  oninput="handleOnInput(this)">
 							<span class="infoTo">이메일</span>
 							<div id="se">
-								<input type="email" name="name" id="mail" placeholder="이메일을 입력해주세요." maxlength="10"/>
+								<input type="email" name="name" id="mail" placeholder="이메일을 입력해주세요."/>
 							</div>
 							<div id="imgbox">
 								<img src="/resources/img/mail1.png" id="img" onclick="sendEmail()"/>
 							</div><br/>
 							<span class="infoTo">인증번호</span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
-							<input type="button" name="email_chk" id="find" value="인증확인" onclick="sends()"/>
+							<input type="button" name="email_chk" id="find" value="인증확인" onclick="check()"/>
 						</form>
 					</div>
 					
@@ -217,8 +217,45 @@
 <script>
 
 	function sendEmail(){
+		var mail = $("#mail").val();
+		if(mail.trim().length < 1){
+			alert("메일을 입력해주세요");
+			$("#mail").val("");
+			$("#mail").focus();
+			return;
+		}
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
-		
+		$.ajax({
+			url:"findID",
+			data:{"mail":mail},
+			type:"post",
+			dataType:"json"
+		}).done(function(data){
+			if(data.value == 2){
+				alert("등록된 메일이 아닙니다.");
+			}
+		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
+	}
+	
+	function check(){
+		var mail = $("#mail").val();
+		if(mail.trim().length < 1){
+			alert("메일을 입력해주세요");
+			$("#mail").val("");
+			$("#mail").focus();
+			return;
+		}
+		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
+		$.ajax({
+			url:"findID",
+			data:{"mail":mail},
+			type:"post",
+			dataType:"json"
+		}).done(function(data){
+			if(data.value == 1){
+				alert("아이디를 이메일로 전송하였습니다");
+			}
+		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}
 
 </script>

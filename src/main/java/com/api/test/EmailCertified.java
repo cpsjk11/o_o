@@ -45,10 +45,23 @@ public class EmailCertified {
 	}
 	
 	// 아이디 찾을때 이메일로 아이디 보내주기
-	@RequestMapping("/findId")
+	@RequestMapping("/findID")
+	@ResponseBody
 	public Map<String, String> findId(String mail){
 		Map<String, String> map = new HashMap<String, String>();
+		  
+		// 먼저 사용자가 입력한 이메일이 있는 이메일인지 아닌지를 구분한다.
+		String id = u_dao.findID(mail);
 		
+		if(id == null) {
+			// 사용자가 입력한 아이디가 없을경우
+			map.put("value", "2");
+			return map;
+		}else {
+			// 사용자의 아이디가 있을 경우 해당 메일로 아이디를 전송하자
+			GoogleMail.gmailSend(mail, "아이디", "아이디입니다. 아이디 : "+id);
+			map.put("value", "1");
+		}
 		
 		
 		return map;

@@ -2,6 +2,8 @@ package api.u_member.vo;
 
 public class UmemVO {
 	private String 	id,pw,name,birth,email,phone,addr,stat;
+	
+	public UmemVO() {}
 
 	public UmemVO(String id, String pw, String name, String birth, String email, String phone, String addr, String stat) {
 		super();

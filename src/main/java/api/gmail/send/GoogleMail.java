@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class GoogleMail { 
 	
-	public static void gmailSend(String userMail, String name, String content) { 
+	public static void gmailSend(String userMail, String title, String content) { 
 	final String user = "cpsjk5109@gmail.com"; // gmail 계정 
 	final String password = "vwfwifurotahxzwj"; // gmail 앱 패스워드 
 	// SMTP 서버 정보를 설정한다. 
@@ -36,7 +36,7 @@ public class GoogleMail {
 				
 				message.setContent(content,"text/html;charset=utf-8"); // text/html;charset=utf-8 지정해주면 html태그 형식도 보여준다
 				// Subject 
-				message.setSubject(name+"국삐 입니다"); //메일 제목을 입력 
+				message.setSubject(title+"국삐 입니다"); //메일 제목을 입력 
 				// Text 
 				//message.setText(test); //메일 내용을 입력 
 				// send the message 
