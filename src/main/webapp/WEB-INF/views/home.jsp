@@ -9,7 +9,16 @@
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="shortcut icon" href="resources/ico/Frame.png">
 
+<%-- css링크구역!! --%>
+<link rel="stylesheet" href="resources/css/header.css">
+
+
+
+
 <style type="text/css">
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
 	@font-face {
 	    font-family: 'Cafe24Ssurround';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
@@ -45,7 +54,7 @@
 		height: 33px;
 		left: 253px;
 		top: 30px;
-		font-family: 'Cafe24Ssurround';
+		font-family: 'Cafe24Ssurround' !importent;
 		font-style: normal;
 		font-weight: bold;
 		font-size: 28px;
@@ -54,6 +63,7 @@
 		/* identical to box height */
 	}
 	#title a{
+		font-family: 'Cafe24Ssurround' !importent;
 		text-decoration: none;
 		color: #3A2F2F;
 	}
