@@ -15,4 +15,11 @@
 	SELECT fat FROM inbody
 	WHERE protine = #{no}
 </select>
+
+<!-- 사용자의 비밀번호 변경 및 재 발급시 fat 업데이트 문 -->
+<update id="fatUpdate" parameterType="Map">
+	UPDATE inbody
+	SET fat = #{fat}
+	WHERE protine = #{protine}
+</update>
 </mapper>

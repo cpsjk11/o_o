@@ -10,4 +10,8 @@ public class FindController {
 	public String findId() {
 		return "findId";
 	}
+	@RequestMapping("/findPw")
+	public String findPw() {
+		return "findPw";
+	}
 }

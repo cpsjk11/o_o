@@ -31,4 +31,11 @@ public class InDAO {
 		return ss.selectOne("in.searchFat", fat);
 	}
 	
+	// 사용자의 fat protine 수정 기능
+	public int updateFat(String protine, String fat) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("protine", protine);
+		map.put("fat", fat);
+		return ss.update("in.fatUpdate", map);
+	}
 }

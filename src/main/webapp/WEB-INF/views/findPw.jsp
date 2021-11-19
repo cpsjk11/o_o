@@ -192,12 +192,12 @@
 			<div id="join_panel">
 				<div id="join_form">
 					<div id="join_text_box">
-						<span>아이디 찾기</span><br/><br/><br/>
+						<span>비밀번호 찾기</span><br/><br/><br/>
 					</div>
 					<div id="text_area">
 						<form action="userAdd"method="POST">
-							<span class="infoTo">이름</span>
-							<input type="text" name="id" id="id" placeholder="이름을 입력해주세요." maxlength="20"  oninput="handleOnInput(this)">
+							<span class="infoTo">아이디</span><span id="id_checkBox"></span>
+							<input type="text" name="id" id="id" placeholder="아이디를 입력해주세요." maxlength="20"  oninput="handleOnInput(this)">
 							<span class="infoTo">이메일</span>
 							<div id="se">
 								<input type="email" name="name" id="mail" placeholder="이메일을 입력해주세요."/>
@@ -208,6 +208,7 @@
 							<span class="infoTo">인증번호</span><span id="test"></span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
 							<input type="button" name="email_chk" id="find" value="인증확인" onclick="check()"/>
+							<input type="hidden" id="chkID"/>
 						</form>
 					</div>
 					
@@ -219,12 +220,43 @@
 <script>
 	
 	$(function(){
+		$("#id").bind("keyup", function(){
+			// 사용자의 아이디를 중복확인!!!
+			var id = $("#id").val();
+			console.log(id);
+			// 이제 여기서 2글자 이상 누를시 서버로 비동기식 통신시작 아이디 값 비교
+			if(id.trim().length > 1){
+				$.ajax({
+					url:"checkId",
+					data:"id="+encodeURIComponent(id),
+					type:"post",
+					dataType:"json",
+				}).done(function(data){
+					if(data.overlap == 1){
+						$("#id_checkBox").html("아이디가 존재하지 않습니다").css("color","#12b886");
+						$("#chkID").val("1");
+					}
+					else{
+						$("#id_checkBox").html("");
+						$("#chkID").val("");
+					}
+				}).fail(function(err){
+					
+				});
+			}else if(id.trim().length < 1){
+				// 사용자가 입력한 id값의 길이가 1자 미만이면 아이디가
+				// box인 요소의 내용을 없앤다.
+				$("#id_checkBox").html("");
+			}
+		});
+		
+		
 		 $("#email").bind("input",function(){
 			var email = $("#email").val(); 
 			// 사용자가 인증번호의 값이 바뀔때 마다 서버와 통신하여 인증코드가 올바른지 아닌지를 구분한다.
 			$("#email").bind("input",function(){
 			 // 메일 인증번호 확인 기능
-		 	var value = $("#email_chkOk").val();
+		 	var value = $("#email").val();
 				$.ajax({
 					url:"check",
 					data:{"value":value},
@@ -237,7 +269,6 @@
 						$("#email").val("");
 						return;
 					}
-					
 					if(data.result == 1){
 						// 인증 성공했을때.
 						$("#test").text("");
@@ -280,21 +311,28 @@
 	
 	function check(){
 		var mail = $("#mail").val();
+		var id = $("#id").val();
 		if(mail.trim().length < 1){
 			alert("메일을 입력해주세요");
 			$("#mail").val("");
 			$("#mail").focus();
 			return;
 		}
+		if(id.trim().length < 1){
+			alert("아이디를 입력해주세요");
+			$("#id").val("");
+			$("#id").focus();
+			return;
+		}
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
 		$.ajax({
-			url:"findID",
-			data:{"mail":mail},
+			url:"findPW",
+			data:{"mail":mail,"id":id},
 			type:"post",
 			dataType:"json"
 		}).done(function(data){
 			if(data.value == 1){
-				alert("아이디를 이메일로 전송하였습니다");
+				alert("임시 비밀번호를 이메일로 전송하였습니다");
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}

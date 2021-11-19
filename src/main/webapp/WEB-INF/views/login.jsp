@@ -149,7 +149,7 @@
 	}
 	#search_id,
 	#search_pw{
-		cursor: wait;
+		cursor: pointer;
 	}
 </style>
 </head>
@@ -172,7 +172,7 @@
 			<a href="https://kauth.kakao.com/oauth/authorize?client_id=0c76b8606442452175ac2545632942ae&redirect_uri=http://localhost:9090/test/login&response_type=code">
 				<div id="img">
 					<a onclick="idSearch()" id="search_id">ID찾기/</a>
-					<a onclick="idSearch()" id="search_pw">PW찾기</a>
+					<a onclick="pwSearch()" id="search_pw">PW찾기</a>
 				</div>
 			</a>
 		</div><br/>
@@ -214,8 +214,11 @@
 	}
 	
 	function idSearch(){
-		
-		window.open('/findId', '아이디 찾기','width=560px,height=650px;,resizable=no')
+		window.open('/findId', '아이디 찾기','width=560px,height=650px;,resizable=no');
+	}
+	
+	function pwSearch(){
+		window.open('/findPw', '비밀번호 찾기','width=560px,height=650px;,resizable=no');
 	}
 
 	function login(){

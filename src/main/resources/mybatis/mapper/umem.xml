@@ -32,4 +32,11 @@
 	WHERE email = #{no}
 </select>
 
+<!-- 사용자 비밀번호 재 발급시 업데이트 기능 -->
+<update id="pwUpdate" parameterType="Map"> 
+	UPDATE u_member
+	SET pw = #{pw}
+	WHERE id = #{id}
+</update>
+
 </mapper>
