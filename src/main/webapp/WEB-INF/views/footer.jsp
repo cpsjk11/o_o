@@ -2,37 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
-	#footer{
-		position: absolute;
-		width: 1920px;
-		height: 110px;
-		left: 0px;
-		border-top: 0.7px solid #efefef;
-		display: block;
-		padding: 20px;
-	}
-	#foot_menu ol{
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-evenly;
-		align-items: flex-start;
-		border-bottom: 1px solid #efefef;
-		width: 60%;
-		height: 70px;
-	}
-	#foot_menu ol li{
-		list-style: none;
-		font-size: 12px;
-		color: #777;
-	}
-	#f_text_box{
-		margin: 0 auto;
-		text-align: center;
-		width: 600px;
-		font-size: 12px;
-		color: #999999;
-	}
-	</style>
+
+</style>
 		<div id="footer">
 			<div id="foot_menu">
 				<ol>
