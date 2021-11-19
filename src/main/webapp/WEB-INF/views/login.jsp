@@ -94,7 +94,8 @@
 	}
 	#logins{
 		background-color: #3BB873;
-		float: right;
+		width: 100%;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 	}
 	#s{
 		width: 310px;
@@ -132,9 +133,9 @@
 	}
 	#eL_a {
     margin-top: 15px;
-    display: flex;
+   /*  display: flex;
     justify-content: space-around;
-    line-height: 50px;
+    line-height: 50px; */
     height: 100%;
     text-align: center;
 	}
@@ -150,6 +151,30 @@
 	#search_id,
 	#search_pw{
 		cursor: pointer;
+	}
+	el_a a{
+		display: inline-block;
+	}
+	#test{
+		width: 350px;
+		height: 70px;
+	}
+	#test a .lo_type{
+		justify-content: space-between;
+		text-align: center;
+		width: 100px;
+		height: 47px;
+		display: inline-block;
+		border: 1px solid;
+		font-size: 14px;
+		font-weight: 600;
+		color: black;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
+		border: none;
+	}
+	#test a .lo_type span{
+		line-height: 47px;
 	}
 </style>
 </head>
@@ -176,25 +201,48 @@
 				</div>
 			</a>
 		</div><br/>
-		<div id="text_area">
-			<a id="eL_a" href="/ex">
+		<!-- <div id="text_area">
+			<div id="eL_a" href="/ex">
+			<a href="/" class="text">
 				<div id="k_login" class="el_login">
 					<div id="k_login_img"></div>
 					<span>카카오 로그인</span>
 				</div>
+			</a>
+			<a href="/" class="text">
 				<div id="g_login" class="el_login">
 					<div id="k_login_img"></div>
 					<span>구글 로그인</span>
 				</div>
 			</a>
-		</div>
-		<div id="s">
 			<a href="/" class="text">
-				<div id="member" class="button">
-				회원가입
+				<div id="Member" class="el_login">
+					<div id="k_login_img"></div>
+					<span>회원가입</span>
 				</div>
 			</a>
-			<a href="/" class="text">
+			</div>
+		</div> -->
+		<div id="test">
+			<a href="/join">
+				<div class="lo_type">
+					<span>회원가입</span>
+				</div>
+			</a>
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=0c76b8606442452175ac2545632942ae&redirect_uri=http://localhost:9090/test/login&response_type=code">
+				<div class="lo_type">
+					<span>카카오로그인</span>
+				</div>
+			</a>
+			<a href="/">
+				<div class="lo_type">
+					<span>네이버로그인</span>
+				</div>
+			</a>
+		</div>
+	
+		<div id="s">
+			<a href="/ex" class="text">
 				<div id="logins" class="button" onclick="login()">		
 					로그인
 				</div>
