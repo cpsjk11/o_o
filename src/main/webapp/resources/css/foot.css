@@ -1,10 +1,9 @@
 @charset "UTF-8";
 	#footer{
-			position: absolute;
 			width: 1920px;
 			height: 110px;
 			left: 0px;
-			top: 2871px;
+			bottom: 0;
 			border-top: 0.7px solid #efefef;
 			display: block;
 			padding: 20px;

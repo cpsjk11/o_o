@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <%-- css링크구역!! --%>
 <link rel="stylesheet" href="resources/css/header.css">
-<link rel="stylesheet" href="resources/css/footer.css">
+<link rel="stylesheet" href="resources/css/foot.css">
 <link rel="stylesheet" href="resources/css/join.css">
 <link rel="shortcut icon" href="resources/ico/Frame.png">
 
@@ -41,14 +41,19 @@
 					</div>
 					<div id="notice">
 						<div id="u_mem_notice">
-							<div class="notice_title">개인회원</div>
-							<div id="u_mem_notice_area" class="notice_area">마이서비스 권한 : 훈련(구직자, 근로자)훈련, 수강평등록, 동영상 시청, 훈련문의, 생애이력, 카드신청
-								행정서비스 권한 : 부정행위 / 신고포상 신청, 청년취업 아카데미, 근로자카드 신청 및 조회</div>
+							<span class="notice_title">개인회원</span>
+							<div id="u_mem_notice_area" class="notice_area">
+								<span>마이서비스 권한 : 훈련(구직자, 근로자)훈련, 수강평등록, 동영상 시청, 훈련문의, 생애이력, 카드신청</span><br/>
+								<span>행정서비스 권한 : 부정행위 / 신고포상 신청, 청년취업 아카데미, 근로자카드 신청 및 조회</span>
+							</div>
 						</div>
-						<div id="c_mem_notice"></div>
-							<div class="notice_title">기업회원</div>
-							<div id="c_mem_notice_area" class="notice_area">마이서비스 권한 : 대리인 현황, 사업주 훈련 이력, 신청결과 통지내역 등 업무 지원
-								행정서비스 권한 : 행정업무 지원 , 훈련비 카드결제, 일 학습병행제, 등 행정 업무지원</div>
+						<div id="c_mem_notice">
+							<span class="notice_title">기업회원</span>
+							<div id="c_mem_notice_area" class="notice_area">
+								<span>마이서비스 권한 : 대리인 현황, 사업주 훈련 이력, 신청결과 통지내역 등 업무 지원</span><br/>
+								<span>행정서비스 권한 : 행정업무 지원 , 훈련비 카드결제, 일 학습병행제, 등 행정 업무지원</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
