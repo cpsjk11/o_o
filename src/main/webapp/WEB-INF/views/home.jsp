@@ -27,8 +27,10 @@
 		<div id="main_content">
 			<div id="search_area">
 				<span>나에게 맞는 훈련을 찾아보세요! </span>
-				<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 "/>
-				<img src="resources/img/px.png">
+				<div id="input_area">
+					<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 "/>
+					<img src="resources/img/px.png">
+				</div>
 			</div>
 		</div>
 		<%--상단 검색 영역입니당! --%>
