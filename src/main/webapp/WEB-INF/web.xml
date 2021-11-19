@@ -23,11 +23,8 @@
   <filter>
     <display-name>Filter</display-name>
     <filter-name>Filter</filter-name>
-<<<<<<< HEAD
     <filter-class>spring.util.Filter</filter-class>
-=======
-    <filter-class>spring.filter.Filter</filter-class>
->>>>>>> branch 'master' of https://github.com/cpsjk11/o_o.git
+    
     <init-param>
       <description></description>
       <param-name>Encoding</param-name>

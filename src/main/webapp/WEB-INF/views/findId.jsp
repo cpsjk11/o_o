@@ -224,7 +224,7 @@
 			// 사용자가 인증번호의 값이 바뀔때 마다 서버와 통신하여 인증코드가 올바른지 아닌지를 구분한다.
 			$("#email").bind("input",function(){
 			 // 메일 인증번호 확인 기능
-		 	var value = $("#email_chkOk").val();
+		 	var value = $("#email").val();
 				$.ajax({
 					url:"check",
 					data:{"value":value},
