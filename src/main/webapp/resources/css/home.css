@@ -41,6 +41,7 @@
 		color: #3A2F2F;
 		}
 	#main_content #search{
+		padding-left: 10px;
 		margin: 50px 0 0;
 		width: 560px;
 		height: 60px;
