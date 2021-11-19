@@ -169,6 +169,7 @@
 		position: absolute;
 		left: 498px;	
 		padding-top: 2px;
+		cursor: wait;
 	}
 	#mail{
 		width: 520px;
@@ -182,6 +183,7 @@
 		margin-bottom: 30px;
 		
 	}
+	
 </style>
 </head>
 <body>
@@ -203,7 +205,7 @@
 							<div id="imgbox">
 								<img src="/resources/img/mail1.png" id="img" onclick="sendEmail()"/>
 							</div><br/>
-							<span class="infoTo">인증번호</span>
+							<span class="infoTo">인증번호</span><span id="test"></span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
 							<input type="button" name="email_chk" id="find" value="인증확인" onclick="check()"/>
 						</form>
@@ -215,7 +217,43 @@
 		<%-- 푸터에용~ --%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
+	
+	$(function(){
+		 $("#email").bind("input",function(){
+			var email = $("#email").val(); 
+			// 사용자가 인증번호의 값이 바뀔때 마다 서버와 통신하여 인증코드가 올바른지 아닌지를 구분한다.
+			$("#email").bind("input",function(){
+			 // 메일 인증번호 확인 기능
+		 	var value = $("#email_chkOk").val();
+				$.ajax({
+					url:"check",
+					data:{"value":value},
+					type:"post",
+					dataType:"json",
+				}).done(function(data){
+					if(data.result == 0){
+						// 인증을 먼저 실행하지 않았을때
+						alert("이메일 인증을 먼저 해주세요");
+						$("#email").val("");
+						return;
+					}
+					
+					if(data.result == 1){
+						// 인증 성공했을때.
+						$("#test").text("");
+						$("#test").text("인증성공");
+					}
+					else if(data.result == 2){
+						$("#test").text("");
+						$("#test").text("인증실패");
+					}
+				}).fail(function(err){
+					
+				});
+			});
+		});
+	});
+	
 	function sendEmail(){
 		var mail = $("#mail").val();
 		if(mail.trim().length < 1){
@@ -226,13 +264,16 @@
 		}
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
 		$.ajax({
-			url:"findID",
-			data:{"mail":mail},
+			url:"email",
+			data:{"userMail":mail},
 			type:"post",
 			dataType:"json"
 		}).done(function(data){
 			if(data.value == 2){
 				alert("등록된 메일이 아닙니다.");
+			}
+			if(data.value == 1){
+				alert("인증코드를 메일로 보냈습니다");
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}
