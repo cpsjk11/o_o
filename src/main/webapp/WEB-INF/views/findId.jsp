@@ -198,7 +198,7 @@
 						<form action="userAdd"method="POST">
 							<span class="infoTo">이름</span>
 							<input type="text" name="id" id="id" placeholder="이름을 입력해주세요." maxlength="20"  oninput="handleOnInput(this)">
-							<span class="infoTo">이메일</span>
+							<span class="infoTo">이메일</span></span><span id="email_checkBox"></span>
 							<div id="se">
 								<input type="email" name="name" id="mail" placeholder="이메일을 입력해주세요."/>
 							</div>
@@ -207,7 +207,8 @@
 							</div><br/>
 							<span class="infoTo">인증번호</span><span id="test"></span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
-							<input type="button" name="email_chk" id="find" value="인증확인" onclick="check()"/>
+							<input type="button" name="email_chk" id="find" value="확인" onclick="check()"/>
+							<input type="hidden" id="chkEMAIL1"/>
 						</form>
 					</div>
 					
@@ -219,12 +220,38 @@
 <script>
 	
 	$(function(){
-		 $("#email").bind("input",function(){
-			var email = $("#email").val(); 
+		
+		$("#mail").bind("input",function(){
+			// 입력한 이메일 존재여부 확인
+			var email = $("#mail").val(); 
+			if(email.trim().length > 1){
+				$.ajax({
+					url:"checkEmail",
+					data:"email="+encodeURIComponent(email),
+					type:"post",
+					dataType:"json",
+				}).done(function(data){
+					if(data.overlap == 1){
+						$("#email_checkBox").html("이메일이 존재하지 않습니다.").css("color","#12b886");
+						$("#chkEMAIL1").val("1");
+					}
+					else{
+						$("#email_checkBox").html("");
+						$("#chkEMAIL1").val("");
+					}
+				}).fail(function(err){
+					
+				});
+		
+			}else if(email.trim().length < 1){
+				$("#email_checkBox").html("");
+			}
+		});
+		
 			// 사용자가 인증번호의 값이 바뀔때 마다 서버와 통신하여 인증코드가 올바른지 아닌지를 구분한다.
 			$("#email").bind("input",function(){
 			 // 메일 인증번호 확인 기능
-		 	var value = $("#email_chkOk").val();
+		 	var value = $("#email").val();
 				$.ajax({
 					url:"check",
 					data:{"value":value},
@@ -251,7 +278,7 @@
 					
 				});
 			});
-		});
+		
 	});
 	
 	function sendEmail(){
@@ -270,7 +297,7 @@
 			dataType:"json"
 		}).done(function(data){
 			if(data.value == 2){
-				alert("등록된 메일이 아닙니다.");
+				alert("메일이 존재하지 않습니다");
 			}
 			if(data.value == 1){
 				alert("인증코드를 메일로 보냈습니다");

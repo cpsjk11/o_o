@@ -30,12 +30,10 @@ public class EmailCertified {
 	public Map<String, String> checkMail(String value){
 		Map<String, String> map = new HashMap<String, String>();
 		
-		// 예외처리
-		if(value == null) {
+		if(value == null || random == null) {
 			map.put("result", "0");
 			return map;
 		}
-			
 		
 		// 사용자가 입력한 인증코드를 비교하여 인증여부 조회하기 
 		if(value.equals(random)) {

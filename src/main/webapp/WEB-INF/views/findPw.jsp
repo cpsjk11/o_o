@@ -198,7 +198,7 @@
 						<form action="userAdd"method="POST">
 							<span class="infoTo">아이디</span><span id="id_checkBox"></span>
 							<input type="text" name="id" id="id" placeholder="아이디를 입력해주세요." maxlength="20"  oninput="handleOnInput(this)">
-							<span class="infoTo">이메일</span>
+							<span class="infoTo">이메일</span><span id="email_checkBox"></span>
 							<div id="se">
 								<input type="email" name="name" id="mail" placeholder="이메일을 입력해주세요."/>
 							</div>
@@ -207,8 +207,9 @@
 							</div><br/>
 							<span class="infoTo">인증번호</span><span id="test"></span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
-							<input type="button" name="email_chk" id="find" value="인증확인" onclick="check()"/>
+							<input type="button" name="email_chk" id="find" value="확인" onclick="check()"/>
 							<input type="hidden" id="chkID"/>
+							<input type="hidden" id="chkEMAIL1"/>
 						</form>
 					</div>
 					
@@ -249,7 +250,32 @@
 				$("#id_checkBox").html("");
 			}
 		});
+		$("#email").bind("input",function(){
+			// 입력한 이메일 존재여부 확인
+			var email = $("#email").val(); 
+			if(email.trim().length > 1){
+				$.ajax({
+					url:"checkEmail",
+					data:"email="+encodeURIComponent(email),
+					type:"post",
+					dataType:"json",
+				}).done(function(data){
+					if(data.overlap == 1){
+						$("#email_checkBox").html("이메일이 존재하지 않습니다.").css("color","#12b886");
+						$("#chkEMAIL1").val("1");
+					}
+					else{
+						$("#email_checkBox").html("");
+						$("#chkEMAIL1").val("");
+					}
+				}).fail(function(err){
+					
+				});
 		
+			}else if(email.trim().length < 1){
+				$("#email_checkBox").html("");
+			}
+		});
 		
 		 $("#email").bind("input",function(){
 			var email = $("#email").val(); 
@@ -293,6 +319,13 @@
 			$("#mail").focus();
 			return;
 		}
+		/* var chk = $("#chkEMAIL1").val();
+		if($("#chkEMAIL1").val() == 1){
+			alert("메일이 존재하지 않습니다");
+			$("#mail").val("");
+			$("#mail").focus();
+			return;
+		} */
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
 		$.ajax({
 			url:"email",
@@ -301,7 +334,7 @@
 			dataType:"json"
 		}).done(function(data){
 			if(data.value == 2){
-				alert("등록된 메일이 아닙니다.");
+				alert("메일이 존재하지 않습니다");
 			}
 			if(data.value == 1){
 				alert("인증코드를 메일로 보냈습니다");
