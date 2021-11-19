@@ -59,6 +59,7 @@
 		text-decoration: none;
 		margin-right: 20px;
 	}
+
 	#left_m{
 		position: absolute;
 		display: flex;
@@ -91,7 +92,7 @@
 						<a href="join">회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.userName ne null }">
-						<a href="login" id="login">${sessionScope.userName.name}님</a>
+						<a onclick="javascript:void(0)">${sessionScope.userName.name}님</a>
 						<a href="join">로그아웃</a>
 						<a href="myPage/mypage">마이페이지</a>
 					</c:if>

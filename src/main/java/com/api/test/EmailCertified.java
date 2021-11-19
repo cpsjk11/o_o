@@ -30,7 +30,9 @@ public class EmailCertified {
 	public Map<String, String> checkMail(String value){
 		Map<String, String> map = new HashMap<String, String>();
 		
+
 		if(value == null || random == null) {
+		// 예외처리
 			map.put("result", "0");
 			return map;
 		}
@@ -50,13 +52,13 @@ public class EmailCertified {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		// 먼저 사용자가 입력한 이메일이 있는 이메일인지 아닌지를 구분한다.
-		String id = u_dao.findID(userMail);
+		//String id = u_dao.findID(userMail);
 		
-		if(id == null) {
+		//if(id == null) {
 			// 사용자가 입력한 아이디가 없을경우
-			map.put("value", "2");
-			return map;
-		}
+		//	map.put("value", "2");
+	//		return map;
+	//	}
 		// 먼저 해당 이메일로 인증코드 보내기!
 		random = SecureUtil.generateSalt();
 		GoogleMail.gmailSend(userMail, "","인증코드 입니다.\r\n"+random);

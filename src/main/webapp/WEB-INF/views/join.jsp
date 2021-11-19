@@ -72,7 +72,17 @@
 		font-size: 26px;
 		color: #3A2F2F;
 	}
-	
+	#notice{
+		margin-top: 100px;
+		margin: 70 auto;
+		width: 740px;
+		height: 140px;
+		border: 1px solid;	
+	}
+	#notice{
+		display: flex;
+		
+	}
 </style>
 </head>
 <body>
@@ -96,6 +106,17 @@
 								<span>기업회원</span>
 							</div>
 						</a>
+					</div>
+					<div id="notice">
+						<div id="u_mem_notice">
+							<div class="notice_title">개인회원</div>
+							<div id="u_mem_notice_area" class="notice_area">마이서비스 권한 : 훈련(구직자, 근로자)훈련, 수강평등록, 동영상 시청, 훈련문의, 생애이력, 카드신청
+								행정서비스 권한 : 부정행위 / 신고포상 신청, 청년취업 아카데미, 근로자카드 신청 및 조회</div>
+						</div>
+						<div id="c_mem_notice"></div>
+							<div class="notice_title">기업회원</div>
+							<div id="c_mem_notice_area" class="notice_area">마이서비스 권한 : 대리인 현황, 사업주 훈련 이력, 신청결과 통지내역 등 업무 지원
+								행정서비스 권한 : 행정업무 지원 , 훈련비 카드결제, 일 학습병행제, 등 행정 업무지원</div>
 					</div>
 				</div>
 			</div>
