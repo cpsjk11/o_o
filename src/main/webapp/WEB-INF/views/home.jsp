@@ -28,8 +28,8 @@
 			<div id="search_area">
 				<span>나에게 맞는 훈련을 찾아보세요! </span>
 				<div id="input_area">
-					<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 "/>
-					<img src="resources/img/px.png">
+					<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 " onkeyup="enterkey()" on/>
+					<img src="resources/img/px.png" style="cursor: pointer;">
 				</div>
 			</div>
 		</div>
@@ -210,9 +210,18 @@
 	</div>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="text/javascript">
+function enterkey() {
+	if (window.event.keyCode == 13) {
+		// 엔터키가 눌렸을 때
+    	var value = $("#search").val();
+		alert(value)
+		location.href="goSearch";
+	}
+} 
 $(function(){
 	
 	AOS.init();
+	
 	
     $('#pop_area').slick({
         slide: 'a',        //슬라이드 되어야 할 태그 ex) div, li 
@@ -289,6 +298,7 @@ $(function(){
 
     });
   })
+  
 
 </script>
 </body>
