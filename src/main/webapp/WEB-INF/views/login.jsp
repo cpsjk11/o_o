@@ -234,7 +234,7 @@
 					<span>카카오로그인</span>
 				</div>
 			</a>
-			<a href="/">
+			<a href="naverLogin.inc">
 				<div class="lo_type">
 					<span>네이버로그인</span>
 				</div>

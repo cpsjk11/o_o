@@ -19,6 +19,9 @@
 						<c:if test="${sessionScope.rank eq '1' }">
 							<a href="logout">로그아웃</a>
 						</c:if>
+						<c:if test="${sessionScope.rank eq '3' }">
+							<a href="naverlogout">로그아웃</a>
+						</c:if>
 						<a href="myPage/mypage">마이페이지</a>
 					</c:if>
 				</div>
@@ -29,3 +32,6 @@
 				</div> 
 			</div>
 		</header>
+		
+		
+		
