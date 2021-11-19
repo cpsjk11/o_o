@@ -121,7 +121,7 @@
 	<div id="body" name="body">
 		<div id="top1_div">
 			<form action="search" method="post" name="search">
-				<input type="text" id="search_bar" name="search_bar"/>
+				<input type="text" id="search_bar" name="search_bar" value="${requestScope.value }"/>
 				<input type="button" class="btn" id="search_btn" value="검색" onclick="search1()"/>
 				<input type="button" class="btn" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
 				<label style="font-size: 20px">
@@ -244,7 +244,7 @@
 				</li>
 			</c:forEach>
 			<c:if test="${ar_size eq null}">
-				<h1> 검색된 결과가 없습니다. </h1>
+				<h1>'${requestScope.value }'검색된 결과가 없습니다. </h1>
 			</c:if>
 				<form action="search" method="post" name="more">
 				<c:if test="${ar_size > 6 && end < ar_size}">

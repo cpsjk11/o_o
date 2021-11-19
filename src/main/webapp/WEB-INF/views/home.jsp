@@ -215,7 +215,7 @@ function enterkey() {
 		// 엔터키가 눌렸을 때
     	var value = $("#search").val();
 		alert(value)
-		location.href="goSearch";
+		location.href="goSearch?value="+value;
 	}
 } 
 $(function(){
