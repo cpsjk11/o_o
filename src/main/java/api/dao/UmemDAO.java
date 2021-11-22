@@ -44,6 +44,7 @@ public class UmemDAO {
 		return ss.selectOne("umem.findID", email);
 	}
 	
+	
 	// 사용자 비밀번호 변경 및 재발급 기능
 	public int findPW(String id, String pw) {
 		Map<String, String> map = new HashMap<String, String>();

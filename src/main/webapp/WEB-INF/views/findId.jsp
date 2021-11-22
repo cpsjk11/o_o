@@ -218,7 +218,7 @@
 		<%-- 푸터에용~ --%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	
+	var hi = "%*$&#&@*@^#@$%@#)!@#&*!@^$";
 	$(function(){
 		
 		$("#mail").bind("input",function(){
@@ -301,6 +301,7 @@
 			}
 			if(data.value == 1){
 				alert("인증코드를 메일로 보냈습니다");
+				hi = data.as;
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}
@@ -312,6 +313,10 @@
 			$("#mail").val("");
 			$("#mail").focus();
 			return;
+		}
+		if($("#chkCertified").val() == 1){
+			alert("인증번호를 확인해주세요");
+		ㄴㄴ	return;
 		}
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
 		$.ajax({

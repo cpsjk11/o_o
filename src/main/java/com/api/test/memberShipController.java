@@ -56,7 +56,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 			
 		// 사용자의 아이디를 받아서 사용 가능하다면 1 을 중복이라면 2의 값을 반환하자!!
 		String chk = u_dao.searchEmail(email);
-		
+		System.out.println(chk);
 		if(chk == null) {
 			// 아이디가 사용가능할때!!
 			map.put("overlap", "1");

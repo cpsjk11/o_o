@@ -205,7 +205,7 @@
 							<div id="imgbox">
 								<img src="/resources/img/mail1.png" id="img" onclick="sendEmail()"/>
 							</div><br/>
-							<span class="infoTo">인증번호</span><span id="test"></span>
+							<span class="infoTo">인증번호</span><span id="test"></span><span id="chkCertified"></span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
 							<input type="button" name="email_chk" id="find" value="확인" onclick="check()"/>
 							<input type="hidden" id="chkID"/>
@@ -220,7 +220,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	
+	var hi = "%*$&#&@*@^#@$%@#)!@#&*!@^$";
 	$(function(){
+		
 		$("#id").bind("keyup", function(){
 			// 사용자의 아이디를 중복확인!!!
 			var id = $("#id").val();
@@ -250,9 +252,9 @@
 				$("#id_checkBox").html("");
 			}
 		});
-		$("#email").bind("input",function(){
+		$("#mail").bind("input",function(){
 			// 입력한 이메일 존재여부 확인
-			var email = $("#email").val(); 
+			var email = $("#mail").val(); 
 			if(email.trim().length > 1){
 				$.ajax({
 					url:"checkEmail",
@@ -264,7 +266,7 @@
 						$("#email_checkBox").html("이메일이 존재하지 않습니다.").css("color","#12b886");
 						$("#chkEMAIL1").val("1");
 					}
-					else{
+					else if(data.overlap == 2){
 						$("#email_checkBox").html("");
 						$("#chkEMAIL1").val("");
 					}
@@ -285,24 +287,28 @@
 		 	var value = $("#email").val();
 				$.ajax({
 					url:"check",
-					data:{"value":value},
+					data:{"value":value, "str":hi},
 					type:"post",
 					dataType:"json",
 				}).done(function(data){
+					
 					if(data.result == 0){
 						// 인증을 먼저 실행하지 않았을때
 						alert("이메일 인증을 먼저 해주세요");
 						$("#email").val("");
+						
 						return;
 					}
 					if(data.result == 1){
 						// 인증 성공했을때.
 						$("#test").text("");
 						$("#test").text("인증성공");
+						$("#chkCertified").val("");
 					}
 					else if(data.result == 2){
 						$("#test").text("");
 						$("#test").text("인증실패");
+						$("#chkCertified").val("1");
 					}
 				}).fail(function(err){
 					
@@ -338,6 +344,7 @@
 			}
 			if(data.value == 1){
 				alert("인증코드를 메일로 보냈습니다");
+				hi = data.as;
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}
@@ -355,6 +362,10 @@
 			alert("아이디를 입력해주세요");
 			$("#id").val("");
 			$("#id").focus();
+			return;
+		}
+		if($("#chkCertified").val() == 1){
+			alert("인증번호를 확인해주세요");
 			return;
 		}
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.

@@ -17,7 +17,7 @@
 
 <select id="searchEmail" parameterType="String" resultType="String">
 	SELECT * FROM u_member
-	WHERE email = #{no}
+	WHERE email = #{no} AND member = 'user'
 </select>
 
 <!-- 로그인 기능!!! -->
@@ -29,7 +29,7 @@
 <!-- 사용자 아이디 찾아주기 기능 -->
 <select id="findID" parameterType="String" resultType="String">
 	SELECT id FROM u_member
-	WHERE email = #{no}
+	WHERE email = #{no} AND member = 'user'
 </select>
 
 <!-- 사용자 비밀번호 재 발급시 업데이트 기능 -->

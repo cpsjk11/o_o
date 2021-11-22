@@ -1,11 +1,11 @@
 package api.u_member.vo;
 
 public class UmemVO {
-	private String 	id,pw,name,birth,email,phone,addr,stat;
+	private String 	id,pw,name,birth,email,phone,addr,stat,member;
 	
 	public UmemVO() {}
 
-	public UmemVO(String id, String pw, String name, String birth, String email, String phone, String addr, String stat) {
+	public UmemVO(String id, String pw, String name, String birth, String email, String phone, String addr, String stat, String member) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -15,6 +15,7 @@ public class UmemVO {
 		this.phone = phone;
 		this.addr = addr;
 		this.stat = stat;
+		this.member = member;
 	}
 
 	public String getId() {
@@ -80,6 +81,14 @@ public class UmemVO {
 
 	public void setStat(String stat) {
 		this.stat = stat;
+	}
+
+	public String getMember() {
+		return member;
+	}
+
+	public void setMember(String member) {
+		this.member = member;
 	}
 	
 	
