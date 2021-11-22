@@ -125,7 +125,7 @@ public class KakaoController {
 					String b_day = (String) kakao_acc.get("birthday");
 					String phone = (String) kakao_acc.get("phone_number");
 					
-					uvo = new UmemVO(id,id,nickNames, b_year+b_day, eamil, phone, null, "0","kakao");
+					uvo = new UmemVO(id,id,nickNames, b_year+b_day, eamil, phone, null,"kakao");
 				}
 				
 				

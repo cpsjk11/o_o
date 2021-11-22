@@ -90,148 +90,52 @@ public class Api { //
 	@RequestMapping("/")
 	public ModelAndView test() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Search2[] se = a_dao.getFamous();
 		String ip = req.getRemoteAddr();
+		Search2[] se = a_dao.getFamous();
 		Search2[] rd = r_dao.getFamous();
+		System.out.println(se.length);
+		System.out.println(rd.length);
 		
 		
-		for(int i=0; i<se.length; i++) {
-			StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/hrdp/api/apipo/APIPO0102T.do?");	
-			sb.append("authKey=UzKsh6RpTEHTTwIPUzd8OrcRauHZI14b");
-			sb.append("&srchTrprId="+se[i].getSrchTrprId());
-			sb.append("&returnType=XML");
-			sb.append("&srchTorgId="+se[i].getSrchTorgId());
-			sb.append("&srchTrprDegr="+se[i].getSrchTrprDegr());
-			sb.append("&outType=2");
-			sb.append("&srchTraPattern=N1");
-			sb.append("&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp");
-			sb.append("&apiRequstIp="+ip);
+		for(int i=0;  i< se.length; i++) {
+			System.out.println("hi"+i);
+			String srchTrprId = se[i].getSrchTrprId();
+			String srchTrprDegr = se[i].getSrchTrprDegr();
+			String srchTraProcessNm = se[i].getSrchTraProcessNm();
+			String addr = se[i].getAddr();
+			String subject = se[i].getSubject();
+			String title = se[i].getTitle();
 			
-			URL url = new URL(sb.toString());
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
 			
-			conn.connect();
+			se[i] = svo; 
 			
-			SAXBuilder builder = new SAXBuilder();
-			Document doc = builder.build(conn.getInputStream());
-			Element root = doc.getRootElement();
-			List<Element> s_list = root.getChildren("inst_base_info");
-			api_2_1[] vo1 = new api_2_1[s_list.size()];
-			api_2_2[] vo2 = new api_2_2[s_list.size()];
-			api_2_3[] vo3 = new api_2_3[s_list.size()];
-			api_2_4[] vo4 = new api_2_4[s_list.size()];
-			
-			int j=0;
-			for(Element el : s_list) {
-				String ADDR1 = el.getChildText("addr1");
-				String ADDR2 = el.getChildText("addr2");
-				String FILE_PATH = el.getChildText("filePath");
-				String HP_ADDR = el.getChildText("hpAddr");
-				String INO_NM = el.getChildText("inoNm");
-				String INST_INO = el.getChildText("instIno");
-				String INST_PER_TRCO = el.getChildText("instPerTrco");
-				String NCS_CD = el.getChildText("ncsCd");
-				String NCS_NM = el.getChildText("ncsNm");
-				String NCS_YN = el.getChildText("ncsYn");
-				String NON_NCS_COURSE_PRCTTQ_TIME = el.getChildText("nonNcsCoursePrcttqTime");
-				String NON_NCS_COURSE_THEORY_TIME = el.getChildText("nonNcsCourseTheoryTime");
-				String P_FILE_NAME = el.getChildText("pFileName");
-				String PER_TRCO = el.getChildText("perTrco");
-				String TORG_PAR_GRAD = el.getChildText("torgParGrad");
-				String TR_DCNT = el.getChildText("trDcnt");
-				String TRAING_MTH_CD = el.getChildText("traingMthCd");
-				String TRPR_CHAP = el.getChildText("trprChap");
-				String TRPR_CHAP_EMAIL = el.getChildText("trprChapEmail");
-				String TRPR_CHAP_TEL = el.getChildText("TRPR_CHAP_TEL");
-				String TRPR_DEGR = el.getChildText("trprChapTel");
-				String TRPR_GBN = el.getChildText("trprGbn");
-				String TRPR_ID = el.getChildText("trprId");
-				String TRPR_NM = el.getChildText("trprNm");
-				String TRPR_TARGET = el.getChildText("trprTarget");
-				String TRPR_TARGET_NM = el.getChildText("trprTargetNm");
-				String TRTM = el.getChildText("TRTM");
-				String ZIP_CD = el.getChildText("ZIP_CD");
-				
-				api_2_1 avo = new api_2_1(ADDR1, ADDR2, FILE_PATH, HP_ADDR, INO_NM, INST_INO, INST_PER_TRCO, NCS_CD, NCS_NM, NCS_YN, NON_NCS_COURSE_PRCTTQ_TIME, NON_NCS_COURSE_THEORY_TIME, P_FILE_NAME, PER_TRCO, TORG_PAR_GRAD, TR_DCNT, TRAING_MTH_CD, TRPR_CHAP, TRPR_CHAP_EMAIL, TRPR_CHAP_TEL, TRPR_DEGR, TRPR_GBN, TRPR_ID, TRPR_NM, TRPR_TARGET, TRPR_TARGET_NM, TRTM, ZIP_CD);
-				
-				vo1[j++] = avo;
-			}// for end
-			mv.addObject("avo"+i, vo1);
 		}// for end
+		mv.addObject("avo", se);
 		
-		for(int i=0; i<rd.length; i++) {
-			StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/hrdp/api/apipo/APIPO0102T.do?");	
-			sb.append("authKey=UzKsh6RpTEHTTwIPUzd8OrcRauHZI14b");
-			sb.append("&srchTrprId="+rd[i].getSrchTrprId());
-			sb.append("&returnType=XML");
-			sb.append("&srchTorgId="+rd[i].getSrchTorgId());
-			sb.append("&srchTrprDegr="+rd[i].getSrchTrprDegr());
-			sb.append("&outType=2");
-			sb.append("&srchTraPattern=N1");
-			sb.append("&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp");
-			sb.append("&apiRequstIp="+ip);
+		for(int j=0; j<rd.length; j++) {
+					
+			String srchTrprId = rd[j].getSrchTrprId();
+			String srchTrprDegr = rd[j].getSrchTrprDegr();
+			String srchTraProcessNm = rd[j].getSrchTraProcessNm();
+			String addr = rd[j].getAddr();
+			String subject = rd[j].getSubject();
+			String title = rd[j].getTitle();
 			
-			URL url = new URL(sb.toString());
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
 			
-			conn.connect();
+			rd[j] = svo; 
 			
-			SAXBuilder builder = new SAXBuilder();
-			Document doc = builder.build(conn.getInputStream());
-			Element root = doc.getRootElement();
-			List<Element> s_list = root.getChildren("inst_base_info");
-			api_2_1[] vo1 = new api_2_1[s_list.size()];
-			api_2_2[] vo2 = new api_2_2[s_list.size()];
-			api_2_3[] vo3 = new api_2_3[s_list.size()];
-			api_2_4[] vo4 = new api_2_4[s_list.size()];
-			
-			int j=0;
-			for(Element el : s_list) {
-				String ADDR1 = el.getChildText("addr1");
-				String ADDR2 = el.getChildText("addr2");
-				String FILE_PATH = el.getChildText("filePath");
-				String HP_ADDR = el.getChildText("hpAddr");
-				String INO_NM = el.getChildText("inoNm");
-				String INST_INO = el.getChildText("instIno");
-				String INST_PER_TRCO = el.getChildText("instPerTrco");
-				String NCS_CD = el.getChildText("ncsCd");
-				String NCS_NM = el.getChildText("ncsNm");
-				String NCS_YN = el.getChildText("ncsYn");
-				String NON_NCS_COURSE_PRCTTQ_TIME = el.getChildText("nonNcsCoursePrcttqTime");
-				String NON_NCS_COURSE_THEORY_TIME = el.getChildText("nonNcsCourseTheoryTime");
-				String P_FILE_NAME = el.getChildText("pFileName");
-				String PER_TRCO = el.getChildText("perTrco");
-				String TORG_PAR_GRAD = el.getChildText("torgParGrad");
-				String TR_DCNT = el.getChildText("trDcnt");
-				String TRAING_MTH_CD = el.getChildText("traingMthCd");
-				String TRPR_CHAP = el.getChildText("trprChap");
-				String TRPR_CHAP_EMAIL = el.getChildText("trprChapEmail");
-				String TRPR_CHAP_TEL = el.getChildText("TRPR_CHAP_TEL");
-				String TRPR_DEGR = el.getChildText("trprChapTel");
-				String TRPR_GBN = el.getChildText("trprGbn");
-				String TRPR_ID = el.getChildText("trprId");
-				String TRPR_NM = el.getChildText("trprNm");
-				String TRPR_TARGET = el.getChildText("trprTarget");
-				String TRPR_TARGET_NM = el.getChildText("trprTargetNm");
-				String TRTM = el.getChildText("TRTM");
-				String ZIP_CD = el.getChildText("ZIP_CD");
-				
-				api_2_1 avo = new api_2_1(ADDR1, ADDR2, FILE_PATH, HP_ADDR, INO_NM, INST_INO, INST_PER_TRCO, NCS_CD, NCS_NM, NCS_YN, NON_NCS_COURSE_PRCTTQ_TIME, NON_NCS_COURSE_THEORY_TIME, P_FILE_NAME, PER_TRCO, TORG_PAR_GRAD, TR_DCNT, TRAING_MTH_CD, TRPR_CHAP, TRPR_CHAP_EMAIL, TRPR_CHAP_TEL, TRPR_DEGR, TRPR_GBN, TRPR_ID, TRPR_NM, TRPR_TARGET, TRPR_TARGET_NM, TRTM, ZIP_CD);
-				
-				vo1[j++] = avo;
-			}// for end
-			mv.addObject("avos"+i, vo1);
-		}
+		}// for end
+		mv.addObject("avos", rd);
 		
 		mv.addObject("length", se.length);
 		mv.addObject("lengths", rd.length);
 		mv.setViewName("home");
 		
-		
-		
 		return mv;
-		
-	}
+				
+}
 	
 	
 	@RequestMapping("/api")

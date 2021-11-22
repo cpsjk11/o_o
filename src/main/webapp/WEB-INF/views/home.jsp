@@ -44,22 +44,22 @@
 					<div id="pop_text">
 						<span>실시간 인기 훈련과정</span>
 					</div>
-					<c:forEach begin="0" end="${length }" varStatus="s">
-         			<c:set var="a" value="avo${s.index}"></c:set>
-           			<c:forEach var="vo" items="${requestScope[a]}" varStatus="st">				
+				
+         		
+           			<c:forEach var="vo" items="${avo}" varStatus="st">				
 					<a class="tr" href="/">
 						<div style="width: 100%; height: 80%;" id="tr_img_box">
 							<img alt="" src="resources/img/1.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<div>
-								<span class="tr_addr">${vo.ADDR1}s</span>
-								<span class="tr_name">${vo.INO_NM}${vo.TRPR_NM}</span>
+								<span class="tr_addr">${vo.addr}</span>
+								<span class="tr_name">${vo.subject}${vo.title}</span>
 							</div>
 						</div>
 					</a> 
 					</c:forEach>
-					</c:forEach>
+				
 				</div>
 			</div>
 			<%--실시간 인기 훈련과정영역입니당! --%>
@@ -71,22 +71,22 @@
 					<div id="pop_text">
 						<span>추천 훈련 과정</span>
 					</div>		
-				<c:forEach begin="0" end="${lengths }" varStatus="s">
-      			<c:set var="a" value="avos${s.index}"></c:set>
-      			<c:forEach var="vo" items="${requestScope[a]}" varStatus="st">				
+				
+      			
+      			<c:forEach var="vo" items="${avos}" varStatus="st">				
 					<a class="tr" href="/">
 						<div style="width: 100%; height: 80%;" id="tr_img_box">
 							<img alt="" src="resources/img/1.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<div>
-								<span class="tr_addr">${vo.ADDR1}</span>
-								<span class="tr_name">${vo.INO_NM}${vo.TRPR_NM}</span>
+								<span class="tr_addr">${vo.addr}</span>
+								<span class="tr_name">${vo.title}${vo.subject}</span>
 							</div>
 						</div>
 					</a>
 			</c:forEach>
-			</c:forEach>
+			
 				</div>
 			</div>
 		<%--추천훈련과정영역입니당! --%>
