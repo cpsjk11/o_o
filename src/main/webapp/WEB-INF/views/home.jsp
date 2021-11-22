@@ -68,117 +68,23 @@
 				<div id="pop_area" class="pop_area">
 					<div id="pop_text">
 						<span>추천 훈련 과정</span>
-					</div>				
+					</div>		
+				<c:forEach begin="0" end="${lengths }" varStatus="s">
+      			<c:set var="a" value="avos${s.index}"></c:set>
+      			<c:forEach var="vo" items="${requestScope[a]}" varStatus="st">				
 					<a class="tr" href="/">
 						<div style="width: 100%; height: 80%;" id="tr_img_box">
 							<img alt="" src="resources/img/1.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<div>
-								<span class="tr_addr">인크레파스</span>
-								<span class="tr_name">자바 전문 웹과정</span>
+								<span class="tr_addr">${vo.ADDR1}</span>
+								<span class="tr_name">${vo.INO_NM}${vo.TRPR_NM}</span>
 							</div>
 						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/2.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">윙크레파스</span>
-								<span class="tr_name">파이썬 전문과정</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/3.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">제빵학원</span>
-								<span class="tr_name">제과 제빵전문과정</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/4.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/5.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/6.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/7.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/1.svg" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/1.svg" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
-					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/1.svg" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div>
-								<span class="tr_addr">테스트입니당</span>
-								<span class="tr_name">ABCDEFGAAAA</span>
-							</div>
-						</div>
-					</a> 
+					</a>
+			</c:forEach>
+			</c:forEach>
 				</div>
 			</div>
 		<%--추천훈련과정영역입니당! --%>
