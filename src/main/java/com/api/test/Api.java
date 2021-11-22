@@ -93,12 +93,9 @@ public class Api { //
 		String ip = req.getRemoteAddr();
 		Search2[] se = a_dao.getFamous();
 		Search2[] rd = r_dao.getFamous();
-		System.out.println(se.length);
-		System.out.println(rd.length);
 		
 		
 		for(int i=0;  i< se.length; i++) {
-			System.out.println("hi"+i);
 			String srchTrprId = se[i].getSrchTrprId();
 			String srchTrprDegr = se[i].getSrchTrprDegr();
 			String srchTraProcessNm = se[i].getSrchTraProcessNm();

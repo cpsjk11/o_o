@@ -13,6 +13,7 @@
 					</c:if>
 					<c:if test="${sessionScope.userName ne null }">
 						<a onclick="javascript:void(0)">${sessionScope.userName.name}님</a>
+						
 						<c:if test="${sessionScope.rank eq '2' }">
 							<a href="https://kauth.kakao.com/oauth/logout?client_id=0c76b8606442452175ac2545632942ae&logout_redirect_uri=http://localhost:9090/test/logout">로그아웃</a>
 						</c:if>
@@ -27,7 +28,7 @@
 				</div>
 				<div id="left_m">
 					<a href="login">훈련과정</a>
-					<a href="join">지원제도</a>
+					<a href="jk">지원제도</a>
 					<a href="myPage">고객센터</a>
 				</div> 
 			</div>

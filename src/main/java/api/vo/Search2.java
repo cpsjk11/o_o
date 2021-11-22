@@ -1,11 +1,11 @@
 package api.vo;
 
 public class Search2 {
- private String srchTrprId,srchTrprDegr,subject,srchTraProcessNm,addr,title;
+ private String srchTrprId,srchTrprDegr,subject,srchTraProcessNm,addr,title,r_rank;
  
  
  
- 
+ public Search2() {}
 
 public Search2(String srchTrprId, String srchTrprDegr, String subject, String srchTraProcessNm, String addr,
 		String title) {
@@ -16,6 +16,17 @@ public Search2(String srchTrprId, String srchTrprDegr, String subject, String sr
 	this.addr = addr;
 	this.title = title;
 }
+
+
+public String getR_rank() {
+	return r_rank;
+}
+
+
+public void setR_rank(String r_rank) {
+	this.r_rank = r_rank;
+}
+
 
 public String getSrchTrprId() {
 	return srchTrprId;

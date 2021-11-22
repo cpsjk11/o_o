@@ -26,4 +26,9 @@ public class RdDAO {
 		}
 		return vo;
 	}
+	
+	// 관리자 페이지에서 추천학원 쉽게 넣는 기능
+	public int addAppend(Search2 s2) {
+		return ss.insert("rd.appendRd", s2);
+	}
 }

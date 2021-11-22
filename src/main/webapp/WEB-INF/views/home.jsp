@@ -49,17 +49,12 @@
            			<c:forEach var="vo" items="${avo}" varStatus="st">				
 					<a class="tr" href="/">
 						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/${s.index+1 }.jfif" style="width: 100%; height: 100%;">
+							<img alt="" src="resources/img/1.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<div>
-<<<<<<< HEAD
 								<span class="tr_addr">${vo.addr}</span>
 								<span class="tr_name">${vo.subject}${vo.title}</span>
-=======
-								<span class="tr_addr">${vo.ADDR1}</span>
-								<span class="tr_name">${vo.INO_NM}${vo.TRPR_NM}</span>
->>>>>>> branch 'master' of https://github.com/cpsjk11/o_o.git
 							</div>
 						</div>
 					</a> 
@@ -81,7 +76,7 @@
       			<c:forEach var="vo" items="${avos}" varStatus="st">				
 					<a class="tr" href="/">
 						<div style="width: 100%; height: 80%;" id="tr_img_box">
-							<img alt="" src="resources/img/img${s.index+1 }.png" style="width: 100%; height: 100%;">
+							<img alt="" src="resources/img/1.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<div>
