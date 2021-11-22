@@ -6,7 +6,7 @@
 
 <!-- 인기 많은 학원을 반환하는 기능 -->
 <select id="famous" resultType="api.vo.Search2">
-	SELECT SRCHTRPRID,SRCHTRPRDEGR,
+	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,
 	RANK() OVER (ORDER BY hit DESC) AS rank
 	FROM AT_TR
 </select>
