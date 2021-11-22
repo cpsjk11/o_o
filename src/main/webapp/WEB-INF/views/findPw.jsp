@@ -253,12 +253,24 @@
 			}
 		});
 		$("#mail").bind("input",function(){
-			// 입력한 이메일 존재여부 확인
 			var email = $("#mail").val(); 
+			var id = $("#id").val();
+			// 유효성 검사
+			if(id.trim().length < 1){
+				alert("아이디를 입력해주세요");
+				return;
+			}	
+			if($("#chkID").val() == 1){
+				alert("아이디가 유효하지 않습니다.");
+				$("#mail").val("");
+				return;
+			}
+			
+			// 입력한 이메일 존재여부 확인
 			if(email.trim().length > 1){
 				$.ajax({
-					url:"checkEmail",
-					data:"email="+encodeURIComponent(email),
+					url:"checkPwEmail",
+					data:{"email":email,"id":id},
 					type:"post",
 					dataType:"json",
 				}).done(function(data){

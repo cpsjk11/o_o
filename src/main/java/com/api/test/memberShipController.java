@@ -47,26 +47,6 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 		return map;
 	}
 	
-	// 비동기식 으로 사용자의 이메일이 중복인지 아닌지 판단하는 기능
-	@RequestMapping("/checkEmail")
-	@ResponseBody
-	public Map<String, String> checkEmail(String email){
-		
-		Map<String, String> map = new HashMap<String, String>();
-			
-		// 사용자의 아이디를 받아서 사용 가능하다면 1 을 중복이라면 2의 값을 반환하자!!
-		String chk = u_dao.searchEmail(email);
-		System.out.println(chk);
-		if(chk == null) {
-			// 아이디가 사용가능할때!!
-			map.put("overlap", "1");
-		}else {
-			// 아이디가 붕복일때 !!
-			map.put("overlap", "2");
-		}
-		
-		return map;
-	}
 	
 	// 비동식 통신을 이용하여 사용자의 비밀번호가 길이 특수문자를 제대로 입력했는지 안 했는지 비교하는 기능!!
 	@RequestMapping(value = "/checkPw", method = RequestMethod.POST)
