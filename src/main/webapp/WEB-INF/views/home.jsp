@@ -6,6 +6,8 @@
 	<title>hrd-center.국삐</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="shortcut icon" href="resources/ico/Frame.png">
 
@@ -28,8 +30,8 @@
 			<div id="search_area">
 				<span>나에게 맞는 훈련을 찾아보세요! </span>
 				<div id="input_area">
-					<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 " onkeyup="enterkey()" on/>
-					<img src="resources/img/px.png" style="cursor: pointer;">
+					<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 " onkeyup="enterkey()"/>
+					<img src="resources/img/px.png" style="cursor: pointer;" onclick="imgclick()">
 				</div>
 			</div>
 		</div>
@@ -51,7 +53,7 @@
 						</div>
 						<div id="tr_text_box">
 							<div>
-								<span class="tr_addr">${vo.ADDR1}</span>
+								<span class="tr_addr">${vo.ADDR1}s</span>
 								<span class="tr_name">${vo.INO_NM}${vo.TRPR_NM}</span>
 							</div>
 						</div>
@@ -187,17 +189,17 @@
 					<span>인기 카테고리</span>
 				</div>
 				<div id="ct_top_category" style="padding: 60px 45px;">
-					<ol>
-						<li>정보통신</li>
-						<li>건설</li>
-						<li>식품가공</li>
-						<li>디자인</li>
+					<ol onclick="search_pa()" id="search_ol">
+						<li value="2001" id="1">정보통신</li>
+						<li value="2002" id="2">통신기술</li>
+						<li value="2003" id="3">방송기술</li>
+						<li value="20" id="4">디자인</li>
 					</ol>
 					<ol>
-						<li>금융</li>
-						<li>전기전자</li>
-						<li>재료</li>
-						<li>보건의료</li>
+						<li value="20" id="a">금융</li>
+						<li value="20" id="a">전기전자</li>
+						<li value="20" id="a">재료</li>
+						<li value="20" id="a">보건의료</li>
 					</ol>
 				</div>
 			</div>
@@ -210,15 +212,37 @@
 	</div>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="text/javascript">
+
+// 상단 검색창
 function enterkey() {
 	if (window.event.keyCode == 13) {
 		// 엔터키가 눌렸을 때
-    	var value = $("#search").val();
-		alert(value)
-		location.href="goSearch?value="+value;
+		var value = $("#search").val();
+		if(value.trim().length < 1){
+			alert("검색어를 입력해주세요!");
+			return;
+		}
+		location.href="api?srchTraProcessNm="+value;
 	}
 } 
+function imgclick() {
+		// 엔터키가 눌렸을 때
+		var value = $()
+		if(value.trim().length < 1){
+			alert("검색어를 입력해주세요!");
+			return;
+		}
+		location.href="api?srchTraProcessNm="+value;
+} 
+
+
 $(function(){
+	//아래 인기카테고리!
+	$("#ct_top_category ol li").bind("click",function(){
+		var value = $(this).val();
+		alert(value)
+		location.href="api?srchKeco2="+value;
+	})
 	
 	AOS.init();
 	
