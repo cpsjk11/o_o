@@ -98,11 +98,11 @@ public class NaverLoginAction implements Naver_Login {
 	      String id = (String)response.get("id");
 	      String gen = (String)response.get("gender");
 	      String gender = null;
-	      if (gen.equalsIgnoreCase("M")) {
+	     /* if (gen.equalsIgnoreCase("M")) {
 	        gender = "1";
 	      } else {
 	        gender = "2";
-	      }
+	      }*/
 	      String age = (String)response.get("age");
 	      String birthday = (String)response.get("birthday");
 	      

@@ -205,7 +205,7 @@
 							<div id="imgbox">
 								<img src="/resources/img/mail1.png" id="img" onclick="sendEmail()"/>
 							</div><br/>
-							<span class="infoTo">인증번호</span><span id="test"></span>
+							<span class="infoTo">인증번호</span><span id="test"></span></span><span id="chkCertified"></span>
 							<input type="text" name="email" id="email" placeholder="인증코드를 입력해주세요." maxlength="40">
 							<input type="button" name="email_chk" id="find" value="확인" onclick="check()"/>
 							<input type="hidden" id="chkEMAIL1"/>
@@ -316,7 +316,7 @@
 		}
 		if($("#chkCertified").val() == 1){
 			alert("인증번호를 확인해주세요");
-		ㄴㄴ	return;
+			return;
 		}
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
 		$.ajax({

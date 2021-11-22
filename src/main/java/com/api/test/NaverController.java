@@ -1,6 +1,8 @@
 package com.api.test;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -10,6 +12,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,16 +84,16 @@ public class NaverController {
 	@RequestMapping("/naverRequestUserInfo.inc")
 	public String naverRequestUserInfo() {
 		HashMap<String, String> result = naver.naverRequestUserInfo(token_type, access_token);
-		
 		String id = (String)result.get("id");
 		String email = (String)result.get("email");
 		String name  = (String)result.get("nickname");
 		String phone = (String)result.get("phone");
 		String b_day = (String)result.get("birthday");
+		
 		String user = u_dao.searchUser(id);
-		if(name == null)
-			name = "장민우";
+		
 		UmemVO uvo = new UmemVO(id, id, name, b_day, email, phone, null, "0","naver");
+		
 		if(user == null) {
 			// 사용자 비밀번호 암호화
 			String fat = SecureUtil.generateSalt();
@@ -117,25 +121,46 @@ public class NaverController {
 	
 	@RequestMapping("/naverlogout")
 	public String naverLogin() throws Exception {
-		session.removeAttribute("userName");
-		String outUrl = "https://nid.naver.com/oauth2.0/token";
+		String outUrl = "https://nid.naver.com/oauth2.0/token?";
 		
-		/*URL url = new URL(outUrl);
+		URL url = new URL(outUrl);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setDoOutput(true);
 		
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));*/
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 		StringBuffer sb = new StringBuffer();
-		sb.append("?grant_type=delete");
+		sb.append("grant_type=delete");
 		sb.append("&client_id="+naverClientId);
 		sb.append("&client_secret="+naverClientSecret);
 		sb.append("&access_token="+access_token);
+		sb.append("&service_provider=NAVER");
 		
-		//bw.write(sb.toString());
-		//bw.flush();
+		bw.write(sb.toString());
+		bw.flush();
 		
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		StringBuffer result = new StringBuffer();
+		String str = null;
 		
+		while((str = br.readLine()) != null) 
+			result.append(str);
+
+		JSONParser pa = new JSONParser();
+		Object obj = pa.parse(result.toString());
+		JSONObject sob = (JSONObject) obj;
+
+		String success = (String) sob.get("result");
+		
+		String state = "success";
+		
+		if(state.equals(success)) {
+			session.removeAttribute("userName");
+			return "redirect:/";
+		}else {
+			// 네이버 토큰을 삭제하지 못 했을 경우이다.
+			// 로그아웃을 못 할때 404? 보낼까유?
+		}
 		
 		return sb.toString();
 	}
