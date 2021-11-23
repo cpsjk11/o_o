@@ -1,17 +1,12 @@
 @charset "UTF-8";
 
-p.title_src{ /* src 타이틀 밑 세부내용 */
-	font-size: 15px;
-	width: 750px;
-	font-weight: bold;
-	padding: 10px 0 40px 0;
-}
+
 .m_id{ /* 회원정보 */
 	font-size: 20px;
 	padding-bottom: 7px;
 	position: relative;
 	left: 700px;
-	top: 80px;
+	top: 300px;
 	font-family: sans-serif;
 	
 }
@@ -21,7 +16,7 @@ p.title_src{ /* src 타이틀 밑 세부내용 */
 	padding-left: 600px;
 	position: relative;
 	left: 480px;
-	top: 40px;
+	top: 300px;
 }
 .table_type01{/* 테이블 */
 	 border-collapse: collapse;
@@ -30,7 +25,7 @@ p.title_src{ /* src 타이틀 밑 세부내용 */
 	 border-right: none;
 	 position: relative;
 	 left: 300px;
-	 top : 50px;
+	 top : 300px;
 }
 .guide_txt{
 	font-size: 13px;
@@ -73,10 +68,14 @@ p.title_src{ /* src 타이틀 밑 세부내용 */
 }
 .table_type01 p{padding-bottom: 20px; /* 아이디, 비밀번호란 내부 */}
 
-#ok_btn{
-	margin: 5px;
-	color: #222;
-	
+
+#addr1{
+	width: 390px;
+	margin-top: 10px;
+}
+#addr2{
+	width: 390px;
+	margin-top: 10px;
 }
 
 .table_type01 .join{
@@ -91,25 +90,12 @@ p.title_src{ /* src 타이틀 밑 세부내용 */
 	font-size: 0;
 }
 
-#ok_btn{
-	/* 중복확인 위치조정 */
-	margin: 5px;
-	cursor: pointer;
-}
 #b_ok{
 	position:relative;
-	left:700px;
-	top: 100px;
+	left:750px;
+	top: 350px;
 	background-color: #0598e0;
 	color: #fff;
-	cursor: pointer;
-	font-size: 20px;
-}
-#b_cancle{
-	position:relative;
-	left:750px;
-	top: 100px;
-	background-color: #fff;
 	cursor: pointer;
 	font-size: 20px;
 }
@@ -125,4 +111,26 @@ button.btnType1, a.btnType1 {
     height: 52px;
     padding: 0 33px;
     box-sizing: border-box;
+}
+button.btnType, a.btnType {
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #cdcdd1;
+    color: #4e4f51;
+    font-size: 10px;
+    line-height: 30px;
+    height: 30px;
+    padding: 0 33px;
+    box-sizing: border-box;
+}
+
+#search_addr{
+	position:relative;
+	left: 145px;
+	top: 0;
+	background-color: #0598e0;
+	color: #fff;
+	cursor: pointer;
+	font-size: 10px;
 }

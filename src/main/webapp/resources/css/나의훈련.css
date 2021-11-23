@@ -15,6 +15,7 @@
     position: relative;
     left: 3px;
     top: 10px;
+    
 }
 
 .commentBox .content-ex{
@@ -47,11 +48,6 @@ ol, ul {
 }
 
 
-.tableArea03 > ul > li .titleSection {
-    position: relative;
-    cursor: pointer;
-}
-
 .tableArea03 > ul > li .titleSection > .titleBox {
     padding: 14px 30px;
 }
@@ -75,9 +71,6 @@ ol, ul {
     box-sizing: border-box;
 }
 
-.divTable{display: none;}
-
-
 .divTableArea06.ty2 {
     padding: 30px;
     background: #fbfbfb;
@@ -85,10 +78,12 @@ ol, ul {
 .divTableArea06.ty2 .divTable {
     border-top: 1px #e2e2e4 solid;
     background: #fff;
+    
 }
 
 .divTableArea06 .divTable > li {
     border-bottom: 1px #e2e2e4 solid;
+    
 }
 
 .divTableArea06 .divTable .tit {
@@ -99,69 +94,6 @@ ol, ul {
     color: #222;
     background: #f0f0f2;
     padding: 20px 0 20px 30px;
-}
-.divTableArea06 .divTable .txt {
-	position: relative;
-	left: 400px;
-	top: -30px;
+    
 }
 
-.divTableArea06 .divTable > li {
-    border-bottom: 1px #e2e2e4 solid;
-	height: 60px;
-}
-
-
-input[type=checkbox] {
-
--ms-transform: scale(2); /* IE */
-
--moz-transform: scale(2); /* FF */
-
--webkit-transform: scale(2); /* Safari and Chrome */
-
--o-transform: scale(2); /* Opera */
-
-padding: 10px;
-
-}
-
-#del_btn{
-	position: relative;
-	top: 20px;
-	left: 600px;
-	background-color: #0598e0;
-	color: #fff;
-	cursor: pointer;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #cdcdd1;
-    color: #4e4f51;
-    font-size: 13px;
-    line-height: 50px;
-    height: 52px;
-    padding: 0 33px;
-    box-sizing: border-box;
-}
-
-.btnType1 {
-    display: inline-block;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #cdcdd1;
-    color: #4e4f51;
-    font-size: 13px;
-    line-height: 50px;
-    height: 52px;
-    padding: 0 33px;
-    box-sizing: border-box;
-}
-
-#b_btn{
-	position: relative;
-	top: -50px;
-	left: 550px;
-	background-color: #0598e0;
-	color: #fff;
-	cursor: pointer;
-}

@@ -3,7 +3,7 @@
 .content-title {
    position: relative;
    left: 700px;
-   top: 100px;
+   top: 400px;
    font-family: sans-serif;
 }
 
@@ -15,7 +15,7 @@
     text-align: left;
     position: relative;
     left: 420px;
-    top: 100px;
+    top: 400px;
     background: url(../img/xxx.png) no-repeat;
     background-size: 100px;
     background-position: 310px 40px;
@@ -27,7 +27,7 @@
 	font-family: sans-serif;
 	font-size: 13px;
 	position: relative;
-	top: 160px;
+	top: 150px;
 	left: -110px;
 }
 button.btnType1, a.btnType1 {
@@ -44,19 +44,19 @@ button.btnType1, a.btnType1 {
 }
 #anysignLink4{
 	position: relative;
-	top: 120px;
+	top: 420px;
 	left: 420px;
 	cursor: pointer;
 }
 #anysignLink5{
 	position: relative;
-	top: 120px;
+	top: 420px;
 	left: 435px;
 	cursor: pointer;
 }
 #anysignLink6{
 	position: relative;
-	top: 120px;
+	top: 420px;
 	left: 445px;
 	background-color: #0598e0;
 	color: #fff;
@@ -64,7 +64,8 @@ button.btnType1, a.btnType1 {
 }
 #anysignLink7{
 	position: relative;
-	top: 120px;
+	top: 420px;
 	left: 455px;
 	cursor: pointer;
 }
+
