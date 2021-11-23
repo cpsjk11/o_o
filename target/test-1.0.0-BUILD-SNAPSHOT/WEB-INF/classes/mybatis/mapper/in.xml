@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="in">
+<insert id="add" parameterType="Map">
+	<trim prefixOverrides=",">
+	INSERT INTO inbody(<if test="kg != null">kg,</if><if test="cm != null">cm,</if><if test="protine != null">protine,</if>fat)
+	VALUES (<if test="kg != null">#{kg},</if><if test="cm != null">#{cm},</if><if test="protine != null">#{protine},</if>#{fat})
+	</trim>
+</insert>
+
+<!--  사용자의 암호화 가져오기 -->
+<select id="searchFat" parameterType="String" resultType="String">
+	SELECT fat FROM inbody
+	WHERE protine = #{no}
+</select>
+
+<!-- 사용자의 비밀번호 변경 및 재 발급시 fat 업데이트 문 -->
+<update id="fatUpdate" parameterType="Map">
+	UPDATE inbody
+	SET fat = #{fat}
+	WHERE protine = #{protine}
+</update>
+</mapper>

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+	@font-face {
+	    font-family: 'Cafe24Ssurround';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	a{
+	text-decoration: none;
+	color: #3A2F2F;
+	}
+	header{
+		position: fixed;
+		width: 100%;
+		height: 100px;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: #FFF5FF;
+		border-bottom: 0.5px solid #efefef;
+		z-index: 1;
+	}
+	#title{
+		position: absolute;
+		width: 54px;
+		height: 33px;
+		left: 253px;
+		top: 30px;
+		font-family: 'Cafe24Ssurround';
+		font-style: normal;
+		font-weight: bold;
+		font-size: 28px;
+		line-height: 33px;
+		
+		/* identical to box height */
+	}
+	#title a{
+		text-decoration: none;
+		color: #3A2F2F;
+	}
+	#right_m{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		position: absolute;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		height: 23px;
+		left: 1388px;
+		top: 48px;
+	}
+	#right_m a{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		flex-basis: auto;
+		color: #3A2F2F;
+		font-weight: bold;
+		font-size: 16px;
+		text-decoration: none;
+		margin-right: 20px;
+	}
+
+	#left_m{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		position: absolute;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 327px;	
+		height: 26px;
+		left: 386px;
+		top: 59px;
+	}
+	#left_m a{
+		flex-basis: auto;
+		color: #3A2F2F;
+		font-weight: bold;
+		font-size: 20px;
+		text-decoration: none;
+		margin-right: 20px;
+	}
+	#right_m a:hover,
+	#left_m a:hover {color: #47AAD7;}
+	

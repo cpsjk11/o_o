@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ar">
+
+<!-- 인기 많은 학원을 반환하는 기능 -->
+<select id="famous" resultType="api.vo.Search2">
+	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,
+	RANK() OVER (ORDER BY hit DESC) AS rank
+	FROM AT_TR
+</select>
+</mapper>
