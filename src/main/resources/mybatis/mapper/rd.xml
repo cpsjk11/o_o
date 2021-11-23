@@ -10,9 +10,21 @@
 	FROM rd
 </select>
 
+<!-- 추천 학원을 저장하는 기능! -->
 <insert id="appendRd" parameterType="api.vo.Search2">
 	INSERT INTO rd (r_rank,srchtrprid,srchtrprdegr,addr,title,subject)
 	VALUES (#{r_rank},#{srchTrprId},#{srchTrprDegr},#{addr},#{title},#{subject})
 </insert>
+
+<!-- 추천 학원의 정보를 변경하는 기능! -->
+<update id="updateCompany" parameterType="api.vo.Search2">
+	UPDATE rd
+	SET <if test="r_rank != null">r_rank = #{r_rank}</if>
+		<if test="srchTrprId != ''">,srchtrprid = #{srchTrprId}</if>
+		<if test="srchTrprDegr != ''">,srchtrprdegr = #{srchTrprDegr}</if>
+		<if test="addr != ''">,addr = #{addr}</if>
+		<if test="title != null">,title = #{title}</if>
+	WHERE subject = #{subject}
+</update>
 
 </mapper>

@@ -31,4 +31,9 @@ public class RdDAO {
 	public int addAppend(Search2 s2) {
 		return ss.insert("rd.appendRd", s2);
 	}
+	
+	// 관리자 페이지에서 회사 정보 변경 기능
+	public int updateCompany(Search2 s2) {
+		return ss.update("rd.updateCompany", s2);
+	}
 }

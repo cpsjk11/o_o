@@ -30,6 +30,19 @@ public class AddController {
 		return mv;
 	}
 	
+	// 회사의 정보들의 순위 이름등을 변경하는 기능!
+	@RequestMapping("/updateCompany")
+	public String update(Search2 s2) {
+		
+		int cnt = r_dao.updateCompany(s2);
+		
+		if(cnt > 0)
+			return "ap";
+		else
+			return "redirect:/ap";
+		
+	}
+	
 	@RequestMapping("/jk")
 	public String st() {
 		System.out.println("hi");
