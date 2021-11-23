@@ -111,7 +111,130 @@
 		font-size: 12px;
 		font: #3A2F2F;
 	}
-
+	.loc_btn {
+		width: 60px;
+		height: 30px;
+		background: #fdfdfd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 1px;
+		border: 0.1px solid #f2f2f2;
+	}
+	.loc_btn2 {
+		width: 120px;
+		height: 30px;
+		background: #fdfdfd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 1px;
+		border: 0.1px solid #f2f2f2;
+	}
+	.loc_btn:hover {
+		background: #ccccff;
+	}
+	.loc_btn2:hover {
+		background: #ccccff;
+	}
+	.loc2_btn {
+		width: 80px;
+		height: 30px;
+		background: #fdfdfd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 1px;
+		border: 0.1px solid #f2f2f2;
+	}
+	.loc2_btn:hover {
+		background: #ccccff;
+	}	
+	.ncs_btn {
+		width: 230px;
+		height: 45px;
+		background: #fdfdfd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 1px;
+		border: 0.1px solid #f2f2f2;
+		line-height: 45px;
+	}
+	.ncs_btn:hover {
+		background: #ccccff;
+	}
+	.loc2_btn2 {
+		width: 160px;
+		height: 30px;
+		background: #fdfdfd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 1px;
+		border: 0.1px solid #f2f2f2;
+	}
+	.loc2_btn2:hover {
+		background: #ccccff;
+	}
+	.detail_btn2 {
+		width: 60px;
+		height: 30px;
+		background: #dddddd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 1px;
+		border: none;
+		border-radius: 6px;
+	}
+	.detail_btn2:hover {
+		background: #ccccff;
+	}
+	.btn3 {
+		width: 70px;
+		height: 30px;
+		background: #dddddd;
+		text-align: center;
+		font-weight: 600;
+		font-size: 10px;
+		font: #3A2F2F;
+		cursor: pointer;
+		margin-right: 2px;
+		border: none;
+		float: right;
+		border-radius: 6px;
+	}
+	.btn3:hover {
+		background: #ccccff;
+	}
+	.detail_btn3 {
+		width: 60px;
+		height: 30px;
+		background: #ffffff;
+		text-align: center;
+		font-weight: 600;
+		font: #3A2F2F;
+		margin-right: 1px;
+		border: none;
+		border-radius: 6px;
+	}
+	.ui-dialog-titlebar {
+		background-color: #ffffff;
+		border: none;
+	}
 </style>
 </head>
 <body>
@@ -134,12 +257,12 @@
 		</div>
 		<div id="detail_div" class="hidden">
 			<form method="post" action="search" name="search_detail">
-				<button type="button" onclick="loc_sel()" id="loc_btn">지역</button>
+				<button type="button" onclick="loc_sel()" class="detail_btn2" id="loc_btn">지역</button>
 				<input type="text" name="Area" id="Area" readonly="readonly"/><br/><br/>
-				<button type="button" onclick="ncs_sel()" id="ncs_btn">분야</button>
+				<button type="button" onclick="ncs_sel()" class="detail_btn2" id="ncs_btn">분야</button>
 				<input type="text" name="Ncs" id="Ncs" readonly="readonly"/><br/><br/>
-				<label for="srchTraStDt">시작일</label>
-				<input type="text" name="srchTraStDt" id="srchTraStDt" onclick="start_sel()"/><br/><br/>
+				<button type="button" class="detail_btn3" id="start_btn">시작일</button>
+				<input type="text" name="srchTraStDt" id="srchTraStDt"/><br/><br/>
 				
 				<input type="hidden" name="srchTraArea1" id="srchTraArea1"/>
 				<input type="hidden" name="srchTraArea2" id="srchTraArea2"/>
@@ -147,25 +270,25 @@
 				<div id="area_div" class="hidden">
 					<table>
 						<tbody class="hidden">
-							<tr> <input type="button" onclick="loc_sel1(this, this.value)" value="전체"/> </tr>
-							<tr> <input type="button" onclick="loc_sel11(this, this.value)" id="1" value="서울"/> </tr>
-							<tr> <input type="button" onclick="loc_sel26(this, this.value)" id="26" value="부산"/> </tr>
-							<tr> <input type="button" onclick="loc_sel27(this, this.value)" id="27" value="대구"/> </tr>
-							<tr> <input type="button" onclick="loc_sel28(this, this.value)" id="28" value="인천"/> </tr>
-							<tr> <input type="button" onclick="loc_sel29(this, this.value)" id="29" value="광주"/> </tr>
-							<tr> <input type="button" onclick="loc_sel30(this, this.value)" id="30" value="대전"/> </tr>
-							<tr> <input type="button" onclick="loc_sel31(this, this.value)" id="31" value="울산"/> </tr>
-							<tr> <input type="button" onclick="loc_sel36(this, this.value)" id="36" value="세종"/> </tr>
-							<tr> <input type="button" onclick="loc_sel41(this, this.value)" id="41" value="경기"/> </tr>
-							<tr> <input type="button" onclick="loc_sel42(this, this.value)" id="42" value="강원"/> </tr>
-							<tr> <input type="button" onclick="loc_sel43(this, this.value)" id="43" value="충북"/> </tr>
-							<tr> <input type="button" onclick="loc_sel44(this, this.value)" id="44" value="충남"/> </tr>
-							<tr> <input type="button" onclick="loc_sel45(this, this.value)" id="45" value="전북"/> </tr>
-							<tr> <input type="button" onclick="loc_sel46(this, this.value)" id="46" value="전남"/> </tr>
-							<tr> <input type="button" onclick="loc_sel47(this, this.value)" id="47" value="경북"/> </tr>
-							<tr> <input type="button" onclick="loc_sel48(this, this.value)" id="48" value="경남"/> </tr>
-							<tr> <input type="button" onclick="loc_sel50(this, this.value)" id="50" value="제주"/> </tr>
-							<tr> <input type="button" onclick="loc_sel1(this, '')" value="뒤로가기"> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel1(this, this.value)" value="전체"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel11(this, this.value)" id="1" value="서울"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel26(this, this.value)" id="26" value="부산"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel27(this, this.value)" id="27" value="대구"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel28(this, this.value)" id="28" value="인천"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel29(this, this.value)" id="29" value="광주"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel30(this, this.value)" id="30" value="대전"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel31(this, this.value)" id="31" value="울산"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel36(this, this.value)" id="36" value="세종"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel41(this, this.value)" id="41" value="경기"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel42(this, this.value)" id="42" value="강원"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel43(this, this.value)" id="43" value="충북"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel44(this, this.value)" id="44" value="충남"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel45(this, this.value)" id="45" value="전북"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel46(this, this.value)" id="46" value="전남"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel47(this, this.value)" id="47" value="경북"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel48(this, this.value)" id="48" value="경남"/> </tr>
+							<tr> <input type="button" class="loc_btn" onclick="loc_sel50(this, this.value)" id="50" value="제주"/> </tr>
+							<tr> <input type="button" class="loc_btn2" onclick="loc_sel1(this, '')" value="뒤로가기"> </tr>
 						</tbody>
 					</table>
 				</div>
@@ -173,40 +296,41 @@
 				<div id="ncs_div" class="hidden">
 					<table>
 						<tbody>
-							<tr> <button type="button" onclick="ncs_sel1(this, '전체')">전체</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '사업관리')" id="01">사업관리</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '경영/회계/사무')" id="02">경영/회계/사무</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '금융/보험')" id="03">금융/보험</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '교육/자연/사회과학')" id="04">교육/자연/사회과학</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '법률/경찰/소방/교도/국방')" id="05">법률/경찰/소방/교도/국방</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '보건/의료')" id="06">보건/의료</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '사회복지/종교')" id="07">사회복지/종교</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '문화/예술/디자인/방송')" id="08">문화/예술/디자인/방송</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '운전/운송')" id="09">운전/운송</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '영업판매')" id="10">영업판매</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '경비/청소')" id="11">경비/청소</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '이용/숙박/여행/오락/스포츠')" id="12">이용/숙박/여행/오락/스포츠</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '음식서비스')" id="13">음식서비스</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '건설')" id="14">건설</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '기계')" id="15">기계</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '재료')" id="16">재료</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '화학')" id="17">화학</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '섬유/의복')" id="18">섬유/의복</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '전기/전자')" id="19">전기/전자</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '정보통신')" id="20">정보통신</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '식품가공')" id="21">식품가공</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '인쇄/목재/가구/공예')" id="22">인쇄/목재/가구/공예</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '환경/에너지/산업')" id="23">환경/에너지/산업</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '농립어업')" id="24">농림어업</button> </tr>
-							<tr> <button type="button" onclick="ncs_sel1(this, '')">뒤로가기</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '전체')">전체</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '사업관리')" id="01">사업관리</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '경영/회계/사무')" id="02">경영/회계/사무</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '금융/보험')" id="03">금융/보험</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '교육/자연/사회과학')" id="04">교육/자연/사회과학</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '법률/경찰/소방/교도/국방')" id="05">법률/경찰/소방/교도/국방</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '보건/의료')" id="06">보건/의료</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '사회복지/종교')" id="07">사회복지/종교</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '문화/예술/디자인/방송')" id="08">문화/예술/디자인/방송</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '운전/운송')" id="09">운전/운송</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '영업판매')" id="10">영업판매</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '경비/청소')" id="11">경비/청소</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '이용/숙박/여행/오락/스포츠')" id="12">이용/숙박/여행/오락/스포츠</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '음식서비스')" id="13">음식서비스</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '건설')" id="14">건설</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '기계')" id="15">기계</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '재료')" id="16">재료</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '화학')" id="17">화학</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '섬유/의복')" id="18">섬유/의복</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '전기/전자')" id="19">전기/전자</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '정보통신')" id="20">정보통신</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '식품가공')" id="21">식품가공</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '인쇄/목재/가구/공예')" id="22">인쇄/목재/가구/공예</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '환경/에너지/산업')" id="23">환경/에너지/산업</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '농립어업')" id="24">농림어업</button> </tr>
+							<tr> <button type="button" class="ncs_btn" onclick="ncs_sel1(this, '')">뒤로가기</button> </tr>
 						</tbody>
 					</table>
 				</div>
 				<div id="btn">
-					<label for="search2_bar">제&nbsp;&nbsp;&nbsp;&nbsp;목</label>
+					<button type="button" id="label_btn" class="detail_btn3">제목</button>
+					<%-- <label for="search2_bar" class="search_label">제&nbsp;&nbsp;&nbsp;&nbsp;목</label> --%>
 					<input type="text" id="search2_bar" name="search_bar"/><br/><br/>
-					<input type="button" value="검색" id="search_btn" onclick="search2()"/>&nbsp;
-					<input type="button" value="취소" id="cancel_btn" onclick="cancel()"/>
+					<input type="button" value="취소" id="cancel_btn" class="btn3" onclick="cancel()"/>
+					<input type="button" value="검색" id="search_btn" class="btn3" onclick="search2()"/>&nbsp;
 				</div>
 			</form>
 		</div>
@@ -322,29 +446,51 @@
 	function detail1() {
 		$("#detail_div").dialog({
 			title : "상세검색",
-			width : '500px',
+			width : '350px',
 			height : 'auto'
+		});
+		$( "#srchTraStDt" ).datepicker({
+			dateFormat: 'yymmdd',
+			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			dayNamesMin: ['일','월','화','수','목','금','토'],
+			dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+			showMonthAfterYear:true,
+			showOtherMonths: true,
+			showOn : "button"
 		});
 		$("#detail_div").css("display", "block");
 	}
 	function loc_sel() {
-		$("#area_div").dialog();
+		$("#area_div").dialog({
+			title : "지역선택"
+		});
 		$("#area_div").css("display", "block");
 	}
 	function ncs_sel() {
-		$("#ncs_div").dialog();
+		$("#ncs_div").dialog({
+			title : "분야선택",
+			width : '500px',
+			height : 'auto'
+		});
 		$("#ncs_div").css("display", "block");
 	}
-	function loc_sel1(loc) {
+	function loc_sel1(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
+		$("#srchTraArea2").val(loc.id);
+		$("#Area").val(loc_value);
 	}
 	function loc_sel11(loc, loc_value) {
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val("11");
-		$("#div_11").dialog();
+		$("#div_11").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_11").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -359,7 +505,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_26").dialog();
+		$("#div_26").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_26").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -374,7 +524,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_27").dialog();
+		$("#div_27").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_27").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -389,7 +543,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_28").dialog();
+		$("#div_28").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_28").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -404,7 +562,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_29").dialog();
+		$("#div_29").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_29").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -419,7 +581,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_30").dialog();
+		$("#div_30").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_30").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -434,7 +600,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_31").dialog();
+		$("#div_31").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_31").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -449,7 +619,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_36").dialog();
+		$("#div_36").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_36").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -464,7 +638,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_41").dialog();
+		$("#div_41").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_41").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -479,7 +657,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_42").dialog();
+		$("#div_42").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_42").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -494,7 +676,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_43").dialog();
+		$("#div_43").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_43").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -509,7 +695,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_44").dialog();
+		$("#div_44").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_44").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -524,7 +714,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_45").dialog();
+		$("#div_45").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_45").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -539,7 +733,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_46").dialog();
+		$("#div_46").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_46").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -554,7 +752,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_47").dialog();
+		$("#div_47").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_47").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -569,7 +771,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_48").dialog();
+		$("#div_48").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_48").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -584,7 +790,11 @@
 		$("#area_div").dialog("close");
 		$("#area_div").css("display", "none");
 		$("#srchTraArea1").val(loc.id);
-		$("#div_50").dialog();
+		$("#div_50").dialog({
+			title : loc_value,
+			width : '400px',
+			height : 'auto'
+		});
 		$("#div_50").css("display", "block");
 		$("#Area").val(loc_value);
 	}
@@ -601,17 +811,6 @@
 		$("#srchKeco1").val(ncs.id);
 		$("#Ncs").val(ncs_text);
 		
-	}
-	function start_sel() {
-		$( "#srchTraStDt" ).datepicker({
-			dateFormat: 'yymmdd',
-			monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-			dayNamesMin: ['일','월','화','수','목','금','토'],
-			dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
-			showMonthAfterYear:true,
-			showOtherMonths: true
-		});
 	}
 	function search2(){
 		document.search_detail.submit();
