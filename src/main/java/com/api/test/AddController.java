@@ -37,16 +37,20 @@ public class AddController {
 		int cnt = r_dao.updateCompany(s2);
 		
 		if(cnt > 0)
-			return "ap";
+			return "/";
 		else
 			return "redirect:/ap";
 		
 	}
 	
-	@RequestMapping("/jk")
+	@RequestMapping("/a_login")
 	public String st() {
 		System.out.println("hi");
-		return "ap";
+		return "admin/a_login";
+	}
+	@RequestMapping("/a_index")
+	public String goIndex() {
+		return "admin/a_index";
 	}
 	
 }
