@@ -9,9 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<%-- css링크구역!! --%>
 <link rel="stylesheet" href="resources/css/header.css">
-<link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/foot.css">
 <style>
 	div#wrap {
@@ -125,7 +123,7 @@
 	<div id="body" name="body">
 		<div id="top1_div">
 			<form action="search" method="post" name="search">
-				<input type="text" id="search_bar" name="search_bar" value="${requestScope.value }"/>
+				<input type="text" id="search_bar" name="search_bar"/>
 				<input type="button" class="btn" id="search_btn" value="검색" onclick="search1()"/>
 				<input type="button" class="btn" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
 				<label style="font-size: 20px">
@@ -137,9 +135,9 @@
 		<div id="detail_div" class="hidden">
 			<form method="post" action="search" name="search_detail">
 				<button type="button" onclick="loc_sel()" id="loc_btn">지역</button>
-				<input type="text" name="Area" id="Area"/><br/><br/>
+				<input type="text" name="Area" id="Area" readonly="readonly"/><br/><br/>
 				<button type="button" onclick="ncs_sel()" id="ncs_btn">분야</button>
-				<input type="text" name="Ncs" id="Ncs"/><br/><br/>
+				<input type="text" name="Ncs" id="Ncs" readonly="readonly"/><br/><br/>
 				<label for="srchTraStDt">시작일</label>
 				<input type="text" name="srchTraStDt" id="srchTraStDt" onclick="start_sel()"/><br/><br/>
 				
@@ -214,18 +212,16 @@
 		</div>
 		<div id="top2_div">
 			<select title="정렬" id="pageOrder" name="pageOrder">
-				<option value="Order1">인기순↓</option>
-				<option value="Order2">인기순↑</option>
-				<option value="Order3">시작일↑</option>
-				<option value="Order4">시작일↑</option>
+				<option value="Order1">인기순</option>
+				<option value="Order2">취업율순</option>
 			</select>
 		</div>
 		<div id="center_div">
 			<ol id="edu_list">
-			<c:forEach var="vo" items="${list }" varStatus="st">
+			<c:forEach var="vo" items="${list}" varStatus="st">
 				<li class="edu">
 					<div class="img_div">
-						<a href="view?title=${vo.TITLE}&addr=${vo.ADDRESS}&tel=${vo.TEL_NO}">
+						<a href="view?TRAINST_CST_ID=${vo.TRAINST_CST_ID}&TRPR_DEGR=${vo.TRPR_DEGR}&TRPR_ID=${vo.TRPR_ID}">
 							<img src="resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png" class="edu_img"/>
 						</a>
 					</div>
@@ -241,15 +237,26 @@
 						<label class="tab_label">교육기간</label>
 						<span class="tab_span">${vo.TRA_START_DATE} ~ ${vo.TRA_END_DATE}</span><br/>
 						<label class="tab_label">훈련비</label>
-						<span class="tab_span">${vo.REAL_MAN}원</span><br/>
+						<span class="tab_span">${vo.real_price}원(${vo.REAL_MAN}원)</span><br/>
 						<label class="tab_label">모집인원</label>
 						<span class="tab_span">${vo.REG_COURSE_MAN}명</span><br/>
 					</div>
 				</li>
 			</c:forEach>
 			<c:if test="${ar_size eq null}">
-				<h1>'${requestScope.value }'검색된 결과가 없습니다. </h1>
+				<h1> 검색된 결과가 없습니다. </h1>
 			</c:if>
+				<form action="search" method="post" name="less">
+				<c:if test="${end > 6}">
+					<button type="button" class="btn2" onclick="less1()" id="less_btn" name="less_btn">줄이기</button>
+					<input type="hidden" value="${end}" id="end_less" name="end"/>
+					<input type="hidden" value="${ar_size}" id="ar_size_less" name="ar_size"/>
+					<input type="hidden" value="${search_bar}" id="search_bar_less" name="search_bar"/>
+					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_less" name="srchTraArea1"/>
+					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_less" name="srchTraArea2"/>
+					<input type="hidden" value="${hei}" id="hei_less" name="hei"/>
+				</c:if>
+				</form>			
 				<form action="search" method="post" name="more">
 				<c:if test="${ar_size > 6 && end < ar_size}">
 					<button type="button" class="btn2" onclick="more1()" id="more_btn" name="more_btn">더보기</button>
@@ -260,17 +267,6 @@
 					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_more" name="srchTraArea2"/>
 					<input type="hidden" value="${srchKeco1}" id="srchKeco1_more" name="srchKeco1"/>
 					<input type="hidden" value="${hei}" id="hei_more" name="hei"/>
-				</c:if>
-				</form>
-				<form action="search" method="post" name="less">
-				<c:if test="${end > 6}">
-					<button type="button" class="btn2" onclick="less1()" id="less_btn" name="less_btn">줄이기</button>
-					<input type="hidden" value="${end}" id="end_less" name="end"/>
-					<input type="hidden" value="${ar_size}" id="ar_size_less" name="ar_size"/>
-					<input type="hidden" value="${search_bar}" id="search_bar_less" name="search_bar"/>
-					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_less" name="srchTraArea1"/>
-					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_less" name="srchTraArea2"/>
-					<input type="hidden" value="${hei}" id="hei_less" name="hei"/>
 				</c:if>
 				</form>
 			</ol>

@@ -3,6 +3,7 @@ package com.api.test;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ import api.vo.api_2_1;
 import api.vo.api_2_2;
 import api.vo.api_2_3;
 import api.vo.api_2_4;
+import api.vo.api_3;
 
 
 @Controller
@@ -336,9 +338,9 @@ public class Api { //
 		if(svo.getSrchKeco1() != null && svo.getSrchKeco1().equals(","))
 			svo.setSrchKeco1(null);
 		if(svo.getSrchTraStDt() != null && (svo.getSrchTraStDt().equals(",") || svo.getSrchTraStDt().equals("")))
-			svo.setSrchTraStDt("20211118");
+			svo.setSrchTraStDt("20211122");
 		else if(svo.getSrchTraStDt() == null)
-			svo.setSrchTraStDt("20211118");
+			svo.setSrchTraStDt("20211122");
 		if(svo.getSrchTraEndDt() != null && (svo.getSrchTraEndDt().equals(",") || svo.getSrchTraEndDt().equals("")))
 			svo.setSrchTraEndDt("20220216");
 		else if(svo.getSrchTraEndDt() == null)
@@ -391,6 +393,8 @@ public class Api { //
 				cnt++;
 		}
 		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
 		if(cnt > 0) {
 			api_1[] ar = new api_1[cnt];
 			
@@ -414,7 +418,7 @@ public class Api { //
 					String SUB_TITLE_LINK = el.getChildText("subTitleLink");
 					String SUPER_VISER = el.getChildText("superViser");
 					String TEL_NO = el.getChildText("telNo");
-					String TITLE = el.getChildText("title");
+					String TITLE = el.getChildText("title").replace("[", "(").replace("]", ")").replace("&", ",");
 					String TITLE_ICON = el.getChildText("titleIcon");
 					String TITLE_LINK = el.getChildText("titleLink");
 					String TRA_END_DATE = el.getChildText("traEndDate");
@@ -425,7 +429,21 @@ public class Api { //
 					String TRPR_DEGR = el.getChildText("trprDegr");
 					String TRPR_ID = el.getChildText("trprId");
 					String YARD_MAN = el.getChildText("yardMan");
-					api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN);			
+					String real_price = "0";
+					if(COURSE_MAN != null && REAL_MAN != null) {
+						if(COURSE_MAN.equals(""))
+							COURSE_MAN = "0";
+						if(REAL_MAN.equals("") || REAL_MAN.equals("0"))
+							REAL_MAN = COURSE_MAN;
+						real_price = String.valueOf((Integer.parseInt(REAL_MAN) - Integer.parseInt(COURSE_MAN)));
+						if(Integer.parseInt(real_price) < 0)
+							real_price = "0";
+						COURSE_MAN = formatter.format(Integer.parseInt(COURSE_MAN));
+						REAL_MAN = formatter.format(Integer.parseInt(REAL_MAN));
+						real_price = formatter.format(Integer.parseInt(real_price));
+					}
+					
+					api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN, real_price);			
 					ar[i++] = avo1;
 				}
 			}
@@ -457,12 +475,118 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/view")
-	public ModelAndView view(String title, String addr, String tel) throws Exception {
+	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("title", title);
-		mv.addObject("addr", addr);
-		mv.addObject("tel", tel);
+		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&returnType=XML&outType=2");
+		sb.append("&srchTorgId="+TRAINST_CST_ID);
+		sb.append("&srchTrprDegr="+TRPR_DEGR);
+		sb.append("&srchTrprId="+TRPR_ID);
+		
+		System.out.println("리퀘스트:"+sb.toString());
+		
+		URL url = new URL(sb.toString());
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestProperty("Content-Type", "application/xml");
+		conn.connect();
+		
+		SAXBuilder builder = new SAXBuilder();
+		
+		Document document = builder.build(conn.getInputStream());
+		
+		Element root = document.getRootElement();
+		Element base_info = root.getChild("inst_base_info");
+		Element detail_info = root.getChild("inst_detail_info");
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
+		String ADDR1 = base_info.getChildText("addr1");
+		String ADDR2 = base_info.getChildText("addr2");
+		String FILE_PATH = base_info.getChildText("filePath");
+		String HP_ADDR = base_info.getChildText("hpAddr");
+		String INO_NM = base_info.getChildText("inoNm");
+		String INST_INO = base_info.getChildText("instIno");
+		String INST_PER_TRCO = base_info.getChildText("instPerTrco");
+		String NCS_CD = base_info.getChildText("ncsCd");
+		String NCS_NM = base_info.getChildText("ncsNm");
+		String NCS_YN = base_info.getChildText("ncsYn");
+		String NON_NCS_COURSE_PRCTTQ_TIME = base_info.getChildText("nonNcsCoursePrcttqTime");
+		String NON_NCS_COURSE_THEORY_TIME = base_info.getChildText("nonNcsCourseTheoryTime");
+		String P_FILE_NAME = base_info.getChildText("pFileName");
+		String PER_TRCO = base_info.getChildText("perTrco");
+		String TORG_PAR_GRAD = base_info.getChildText("torgParGrad");
+		String TR_DCNT = base_info.getChildText("trDcnt");
+		String TRAING_MTH_CD = base_info.getChildText("traingMthCd");
+		String TRPR_CHAP = base_info.getChildText("trprChap");
+		String TRPR_CHAP_EMAIL = base_info.getChildText("trprChapEmail");
+		String TRPR_CHAP_TEL = base_info.getChildText("trprChapTel");
+		String TRPR_CHAP_Tbase_info = base_info.getChildText("TRPR_CHAP_Tbase_info");
+		String TRPR_GBN = base_info.getChildText("trprGbn");
+		String TRPR_NM = base_info.getChildText("trprNm");
+		String TRPR_TARGET = base_info.getChildText("trprTarget");
+		String TRPR_TARGET_NM = base_info.getChildText("trprTargetNm");
+		String TRTM = base_info.getChildText("TRTM");
+		String ZIP_CD = base_info.getChildText("zipCd");
+		String real_price = "0";
+		
+		if(INST_PER_TRCO != null && PER_TRCO != null) {
+			real_price = String.valueOf((Integer.parseInt(INST_PER_TRCO) - Integer.parseInt(PER_TRCO)));
+			if(Integer.parseInt(real_price) < 0)
+				real_price = "0";
+			INST_PER_TRCO = formatter.format(Integer.parseInt(INST_PER_TRCO));
+			PER_TRCO = formatter.format(Integer.parseInt(PER_TRCO));
+			real_price = formatter.format(Integer.parseInt(real_price));
+		}
+		
+		api_2_1 avo = new api_2_1(ADDR1, ADDR2, FILE_PATH, HP_ADDR, INO_NM, INST_INO, INST_PER_TRCO, NCS_CD, NCS_NM, NCS_YN, NON_NCS_COURSE_PRCTTQ_TIME, NON_NCS_COURSE_THEORY_TIME, P_FILE_NAME, PER_TRCO, TORG_PAR_GRAD, TR_DCNT, TRAING_MTH_CD, TRPR_CHAP, TRPR_CHAP_EMAIL, TRPR_CHAP_TEL, TRPR_DEGR, TRPR_GBN, TRPR_ID, TRPR_NM, TRPR_TARGET, TRPR_TARGET_NM, TRTM, ZIP_CD, real_price);
+		
+		String GOV_BUSI_NM = detail_info.getChildText("govBusiNm");
+		String TORG_GBN_CD = detail_info.getChildText("torgGbnCd");
+		String TOT_TRAING_DYCT = detail_info.getChildText("totTraingDyct");
+		String TOT_TRAING_TIME = detail_info.getChildText("totTraingTime");
+		String TOTAL_CRS_AT = detail_info.getChildText("totalCrsAt");
+		if(TOTAL_CRS_AT != null)
+			TOTAL_CRS_AT = formatter.format(Integer.parseInt(TOTAL_CRS_AT));
+		
+		api_2_2 avo2 = new api_2_2(GOV_BUSI_NM, TORG_GBN_CD, TOT_TRAING_DYCT, TOT_TRAING_TIME, TOTAL_CRS_AT, TRPR_DEGR, TRPR_ID, TRPR_NM);
+		
+		sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_3.jsp?authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&returnType=XML&outType=2");
+		sb.append("&srchTorgId="+TRAINST_CST_ID);
+		sb.append("&srchTrprDegr="+TRPR_DEGR);
+		sb.append("&srchTrprId="+TRPR_ID);
+		
+		System.out.println("리퀘스트:"+sb.toString());
+		
+		url = new URL(sb.toString());
+		conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestProperty("Content-Type", "application/xml");
+		conn.connect();
+		
+		builder = new SAXBuilder();
+		
+		document = builder.build(conn.getInputStream());
+		
+		root = document.getRootElement();
+		Element scn_list = root.getChild("scn_list");
+		
+		String EI_EMPL_RATE_3 = scn_list.getChildText("eiEmplRate3");
+		String EI_EMPL_CNT_3 = scn_list.getChildText("eiEmplRate6");
+		String EI_EMPL_RATE_6 = scn_list.getChildText("hrdEmplCnt6");
+		String EI_EMPL_CNT_6 = scn_list.getChildText("hrdEmplRate6");
+		String HRD_EMPL_RATE_6 = scn_list.getChildText("instIno");
+		String TOT_FXNUM = scn_list.getChildText("totFxnum");
+		String TOT_PAR_MKS = scn_list.getChildText("totFxnum");
+		String TOT_TRCO = scn_list.getChildText("totParMks");
+		String TR_END_DT = scn_list.getChildText("trEndDt");
+		String TR_STA_DT = scn_list.getChildText("trStaDt");
+		
+		api_3 avo3 = new api_3(EI_EMPL_RATE_3, EI_EMPL_CNT_3, EI_EMPL_RATE_6, EI_EMPL_CNT_6, HRD_EMPL_RATE_6, EI_EMPL_CNT_6, INST_INO, TOT_FXNUM, TOT_PAR_MKS, TOT_TRCO, TR_END_DT, TR_STA_DT, TRPR_DEGR);
+		
+		mv.addObject("vo", avo);
+		mv.addObject("vo2", avo2);
+		mv.addObject("vo3", avo3);
 		
 		mv.setViewName("view");
 		
