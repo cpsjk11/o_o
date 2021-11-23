@@ -63,4 +63,9 @@ public class UmemDAO {
 		return ss.update("umem.pwUpdate", map);
 	}
 	
+	// 사용자의 수를 반환하는 기능
+	public int finduser() {
+		return ss.selectOne("umem.findUser");
+	}
+	
 }

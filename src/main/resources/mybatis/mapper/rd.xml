@@ -12,8 +12,8 @@
 
 <!-- 추천 학원을 저장하는 기능! -->
 <insert id="appendRd" parameterType="api.vo.Search2">
-	INSERT INTO rd (r_rank,srchtrprid,srchtrprdegr,addr,title,subject)
-	VALUES (#{r_rank},#{srchTrprId},#{srchTrprDegr},#{addr},#{title},#{subject})
+	INSERT INTO rd (r_rank,srchtrprid,srchtrprdegr,addr,title,subject,state)
+	VALUES (#{r_rank},#{srchTrprId},#{srchTrprDegr},#{addr},#{title},#{subject},1)
 </insert>
 
 <!-- 추천 학원의 정보를 변경하는 기능! -->

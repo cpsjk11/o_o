@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import api.action.RecommendedSchool;
 import api.dao.RdDAO;
+import api.dao.UmemDAO;
 import api.vo.Search2;
 
 @Controller
@@ -19,6 +20,9 @@ public class AddController {
 	@Autowired 
 	private RdDAO r_dao;
 	
+	@Autowired
+	private UmemDAO u_dao;
+	
 	// 추천학원기능을 저장하는 기능
 	@RequestMapping("/admin")
 	public ModelAndView add(Search2 s2) {
@@ -26,12 +30,7 @@ public class AddController {
 		
 		int cnt = r_dao.addAppend(s2);
 		
-		if(cnt > 0) {
-			mv.addObject("result", "성공");
-		}else {
-			mv.addObject("result", "fail");
-		}
-		mv.setViewName("ap");
+		mv.setViewName("redirect:/a_index");
 		return mv;
 	}
 	
@@ -57,14 +56,18 @@ public class AddController {
 		System.out.println("hi");
 		return "admin/a_login";
 	}
+	
 	@RequestMapping("/a_index")
 	public ModelAndView goIndex() {
 		ModelAndView mv = new ModelAndView();
 		
 		Search2[] rd = r_dao.getFamous(); 
 		
+		int usernum = u_dao.finduser();
+		
 		rd = RecommendedSchool.getSchool(rd);
 		
+		mv.addObject("userNum", usernum);
 		mv.addObject("company", rd);
 		mv.setViewName("admin/a_index");
 		return mv;
@@ -72,19 +75,18 @@ public class AddController {
 	
 	// 삭제 버튼을 눌렀을때 삭제!
 	@RequestMapping("/a_del")
-	public ModelAndView delCompany(String id){
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public Map<String, String> delCompany(String id){
+		Map<String, String> map = new HashMap<String, String>();
 		
-		Search2[] rd = r_dao.getFamous(); 
+		int cnt = r_dao.delCompany(id);
 		
-		rd = RecommendedSchool.getSchool(rd);
+		if(cnt > 0) {
+			map.put("value", "1");
+		}else
+			map.put("value", "2");
 		
-		r_dao.delCompany(id);
-		
-		mv.addObject("company", rd);
-		mv.setViewName("redirect:/a_index");
-		
-		return mv;
+		return map;
 	}
 	
 	

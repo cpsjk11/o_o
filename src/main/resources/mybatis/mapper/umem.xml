@@ -39,4 +39,10 @@
 	WHERE id = #{id}
 </update>
 
+<!-- 총 회원의 수를 반환하는 기능! -->
+<select id="findUser" resultType="Integer">
+	SELECT COUNT(*) FROM u_member
+	WHERE stat = 0
+</select>
+
 </mapper>

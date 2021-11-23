@@ -22,7 +22,11 @@
 
     <!-- Custom styles for this template-->
     <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
-
+	<style >
+		.str{
+			margin: 10px auto;
+		}
+	</style>
 </head>
 
 <body id="page-top">
@@ -386,7 +390,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 총 회원수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">560명</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${userNum}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -499,14 +503,30 @@
 
                         <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
-                            
-                        </div>
-                    </div>
+	                        <div
+	                          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+	                         <h6 class="m-0 font-weight-bold text-primary">추천학원 저장</h6>
+	                        </div>
+	                        <div class="card-body" style="background-color: #fff">
+	                        	<h5 class="m-0 font-weight-bold" style="color: #4f4f4f; text-align: center; margin-bottom: 5px;">추천학원 저장</h5>
+	                        	<form action="admin" method="post" name="addform">
+		                        	<input type="text" class="form-control form-control-user str" id="rank" name="r_rank" style="width: 260px;" placeholder="등급">
+									<input type="text" class="form-control form-control-user str" id="Id" name="srchTrprId" style="width: 260px;" placeholder="과정 아이디">
+									<input type="text" class="form-control form-control-user str" id="Degr" name="srchTrprDegr" style="width: 260px;" placeholder="과정 회차">
+									<input type="text" class="form-control form-control-user str" id="addr" name="addr" style="width: 260px;" placeholder="주소">
+									<input type="text" class="form-control form-control-user str" id="title" name="title" style="width: 260px;" placeholder="제목">
+									<input type="text" class="form-control form-control-user str" id="sub" name="subject" style="width: 260px;" placeholder="회사명">
+								</form>
+								<a href="javascript:insertSend()" class="btn btn-primary btn-user btn-block str" style="width: 260px;">
+                                   저장
+                                </a>
+	                        </div>
+                   		</div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="container-fluid">
 
-                       <div class="card shadow mb-4"  style="width: 100%;">
+                       <div class="card-header py-3" style="width: 100%;">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -515,7 +535,7 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body" style="margin: auto;">
-                                    <table>
+                                    <table style="width: 100%;">
                                     	<thead>                             
                                     		<tr>
                                     			<th>회사명</th>
@@ -526,21 +546,21 @@
                                     	</thead>
                                     	<tbody id="ta">
                                     		<c:forEach var="vo" items="${company}" varStatus="st">
-	                                    		<tr class="hand" onclick="viewdata('${vo.srchTrprId}')">
-	                                    			<td>${vo.subject}</td>
-	                                    			<td>${vo.addr}</td>
-	                                    			<td>${vo.title}</td>
+	                                    		<tr>
+	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.subject}</td>
+	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.addr}</td>
+	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.title}</td>
 	                                    			<td>
-	                                    				<form action="a_del" name="">
-	                                    					<input type="button" value="삭제" onclick="del(this.form)"/>
-	                                    					<input type="hidden" name="id" value="${vo.srchTrprId}"/>
-	                                    				</form>
+	                                    					<input type="hidden" id="id${vo.srchTrprId}" value="${vo.srchTrprId}"/>
+	                                    					<a href="javascript:delSend('${vo.srchTrprId}')" class="btn btn-danger btn-circle">
+                                        						<i class="fas fa-trash"></i>
+                                    						</a>
 	                                    			</td>
 	                                    		<tr/>
 	                                    		<tr>
 	                                    			<td style="display: none;" id="${vo.srchTrprId}" colspan="4">
 	                                    				<h6>수정하기</h6>
-	                                    				<form action="updateCompany" method="post">
+	                                    				<form action="updateCompany" method="post" name="updateform">
 															<select id="r_rank${vo.srchTrprId}" name="r_rank">
 																<option value="1">1등급</option>
 																<option value="2">2등급</option>
@@ -555,7 +575,7 @@
 															</select>
 															<input name="addr" id="addr${vo.srchTrprId}" placeholder="주소"/>
 															<input type="hidden" id="srchTrprId${vo.srchTrprId}" name="srchTrprId" value="${vo.srchTrprId}" />
-															<input type="text" id="srchTrprDegr${vo.srchTrprId}" name="srchTrprDegr" placeholder="과정횟차">
+															<input type="text" id="srchTrprDegr${vo.srchTrprId}" name="srchTrprDegr" placeholder="과정회차">
 															<input type="text" id="subject${vo.srchTrprId}" name="subject" placeholder="회사이름">
 															<button type="button" onclick="updateSend('${vo.srchTrprId}')">수정하기</button>
 														</form>
@@ -633,22 +653,82 @@
     <script src="../resources/js/chart-area-demo.js"></script>
     <script src="../resources/js/chart-pie-demo.js"></script>
 	<script>
-		function del(frm){
-			frm.submit();
+		function insertSend(){
+
+			if($("#rank").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#rank").val("");
+				$("#rank").focus();
+				return;
+			}
+			if($("#Id").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#Id").val("");
+				$("#Id").focus();
+				return;
+			}
+			if($("#Degr").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#Degr").val("");
+				$("#Degr").focus();
+				return;
+			}
+			if($("#addr").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#addr").val("");
+				$("#addr").focus();
+				return;
+			}
+			if($("#title").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#title").val("");
+				$("#title").focus();
+				return;
+			}
+			if($("#sub").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#sub").val("");
+				$("#sub").focus();
+				return;
+			}
+			
+			document.addform.submit();
+		}
+		function delSend(ss){
+			
+			var id = $("#id"+ss).val();
+			var param = "id="+encodeURIComponent(id);
+						
+			$.ajax({
+				url:"a_del",
+				data: param,
+				type:"post",
+				dataType:"json",
+			}).done(function(data){
+				if(data.value == 1){
+					//수정의 성공했을때!!
+					alert("삭제완료");
+					location.href="a_index";
+				}else
+					alert("삭제실패");
+			}).fail(function(err){
+				alert("오류 이한영씨가 고쳐주셈");
+			});
 		}
 		function viewdata(id){
 			$("#"+id).slideToggle(400);
 		}
-		function updateSend(st){
-			var r_rank = $("r_rank"+st).val();
-			var addr = $("addr"+st).val();
-			var srchTrprId = $("srchTrprId"+st).val();
-			var srchTrprDegr = $("srchTrprDegr"+st).val();
-			var subject = $("subject"+st).val();
+		function updateSend(ids){
+			
+			
+			var r_rank = $("#r_rank"+ids).val();
+			var addr = $("#addr"+ids).val();
+			var srchTrprId = $("#srchTrprId"+ids).val();
+			var srchTrprDegr = $("#srchTrprDegr"+ids).val();
+			var subject = $("#subject"+ids).val();
 			
 			var param = "r_rank="+encodeURIComponent(r_rank)+"&addr="+encodeURIComponent(addr)+"&srchTrprId="+encodeURIComponent(srchTrprId)+
-			"&srchTrprDegr="+encodeURIComponent(srchTrprDegr)+"&subject="+encodeURIComponent(subject);
-			
+						"&srchTrprDegr="+encodeURIComponent(srchTrprDegr)+"&subject="+encodeURIComponent(subject);
 			$.ajax({
 				url:"updateCompany",
 				data: param,
@@ -662,10 +742,9 @@
 				}else
 					alert("수정실패");
 			}).fail(function(err){
-				
+				alert("오류 이한영씨가 고쳐주셈");
 			});
 			
-			//frm.submit();
 		}
 	</script>
 </body>
