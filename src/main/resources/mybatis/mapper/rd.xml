@@ -7,7 +7,7 @@
 <select id="rd" resultType="api.vo.Search2">
 	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,
 	RANK() OVER (ORDER BY r_rank ASC) AS rank
-	FROM rd
+	FROM rd WHERE state = 1
 </select>
 
 <!-- 추천 학원을 저장하는 기능! -->
@@ -20,11 +20,18 @@
 <update id="updateCompany" parameterType="api.vo.Search2">
 	UPDATE rd
 	SET <if test="r_rank != null">r_rank = #{r_rank}</if>
-		<if test="srchTrprId != ''">,srchtrprid = #{srchTrprId}</if>
+		<if test="subject != ''">,subject = #{subject}</if>
 		<if test="srchTrprDegr != ''">,srchtrprdegr = #{srchTrprDegr}</if>
 		<if test="addr != ''">,addr = #{addr}</if>
 		<if test="title != null">,title = #{title}</if>
-	WHERE subject = #{subject}
+	WHERE srchtrprid = #{srchTrprId}
+</update>
+
+<!-- 삭제 버튼을 눌렀을때 회사 정보를 숨기는 기능!! -->
+<update id="delCompany" parameterType="String">
+	UPDATE rd
+	SET state = 0
+	WHERE srchtrprid = #{no}
 </update>
 
 </mapper>

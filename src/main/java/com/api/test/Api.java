@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.action.Paging;
+import api.action.RecommendedSchool;
 import api.dao.ArDAO;
 import api.dao.RdDAO;
 import api.vo.Api00;
@@ -112,20 +113,8 @@ public class Api { //
 		}// for end
 		mv.addObject("avo", se);
 		
-		for(int j=0; j<rd.length; j++) {
-					
-			String srchTrprId = rd[j].getSrchTrprId();
-			String srchTrprDegr = rd[j].getSrchTrprDegr();
-			String srchTraProcessNm = rd[j].getSrchTraProcessNm();
-			String addr = rd[j].getAddr();
-			String subject = rd[j].getSubject();
-			String title = rd[j].getTitle();
-			
-			Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
-			
-			rd[j] = svo; 
-			
-		}// for end
+		rd = RecommendedSchool.getSchool(rd);
+		
 		mv.addObject("avos", rd);
 		
 		mv.addObject("length", se.length);

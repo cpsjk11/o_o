@@ -36,4 +36,9 @@ public class RdDAO {
 	public int updateCompany(Search2 s2) {
 		return ss.update("rd.updateCompany", s2);
 	}
+	
+	// 관리자 페이지에서 추천학원 목록에서 회사를 삭제하는 기능
+	public int delCompany(String id) {
+		return ss.update("rd.delCompany", id);
+	}
 }
