@@ -97,19 +97,15 @@
 		border-radius: 10px;
 		
 	}
-	.tr{
+	#pop_area .tr{
 		width: 218.32px;
 		height: 305.64px;
-		/* left: 333.68px;
-		top: 271.38px; */
-		text-decoration: none;
-	}
-	#pop_area a{
 		text-decoration: none;
 		color: #3A2F2F;
 		margin: 40px;
 		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
 		border-radius: 10px;
+		border: 1px solid red;
 	}
 	.tr span{
 		padding: 5px;
@@ -170,4 +166,7 @@
 		  margin-top: 12px;
 		  z-index: 1;
 		  color: #4f5b66;
+	}
+	#tr_text_box{
+		border: 1px solid red;
 	}

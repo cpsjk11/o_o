@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rd">
+<!-- 추천 학원을 반환하는 기능 -->
+<select id="rd" resultType="api.vo.Search2">
+	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,
+	RANK() OVER (ORDER BY r_rank ASC) AS rank
+	FROM rd
+</select>
+
+<insert id="appendRd" parameterType="api.vo.Search2">
+	INSERT INTO rd (r_rank,srchtrprid,srchtrprdegr,addr,title,subject)
+	VALUES (#{r_rank},#{srchTrprId},#{srchTrprDegr},#{addr},#{title},#{subject})
+</insert>
+
+</mapper>
