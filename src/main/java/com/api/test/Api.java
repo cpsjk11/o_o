@@ -1,16 +1,23 @@
 package com.api.test;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -576,6 +583,57 @@ public class Api { //
 		mv.addObject("vo", avo);
 		mv.addObject("vo2", avo2);
 		mv.addObject("vo3", avo3);
+		
+		System.out.println(ADDR1);
+		
+		String address = URLEncoder.encode(ADDR1,"utf-8");
+		String api = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+address;
+		sb = new StringBuffer();
+		
+		url = new URL(api);
+		conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "4txv35ahqp");
+		conn.setRequestProperty("X-NCP-APIGW-API-KEY", "zk7J9vSGJehMsQjEocpsQdhv7Rd7r4NlQkPhYDcd");
+		conn.setRequestMethod("GET");
+		
+		conn.connect();
+		
+		InputStreamReader in = new InputStreamReader(conn.getInputStream(), "utf-8");
+		BufferedReader br = new BufferedReader(in);
+		String line;
+		while((line = br.readLine()) != null) {
+			sb.append(line).append("\n");
+		}
+		
+		System.out.println(sb);
+		
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject;
+		JSONObject jsonObject2;
+		JSONArray jsonArray;
+		String x = "";
+		String y = "";
+		
+		jsonObject = (JSONObject) parser.parse(sb.toString());
+		jsonArray = (JSONArray) jsonObject.get("addresses");
+		
+		for(int i=0; i<jsonArray.size(); i++) {
+			jsonObject2 = (JSONObject) jsonArray.get(i);
+			if(jsonObject2.get("x") != null) {
+				x = jsonObject2.get("x").toString();
+			}
+			if(jsonObject2.get("y") != null) {
+				y = jsonObject2.get("y").toString();
+			}
+		}
+		
+		mv.addObject("x", x);
+		mv.addObject("y", y);
+		
+		br.close();
+		in.close();
 		
 		mv.setViewName("view");
 		

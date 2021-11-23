@@ -35,7 +35,7 @@
 	}
 	div#top2_div {
 		width: 1200px;
-		height: 250px;
+		height: 150px;
 	}
 	div#center_div {
 		width: 1200px;
@@ -72,11 +72,15 @@
 		line-height: 40px;
 	}
 	table {
+		width: 100%;
 		border-top: 1px solid #ddd;
 	}
 	th, td{
-		padding: 15px 0 !important;
+		padding: 15px 0;
 	    border-bottom: 1px solid #ddd;
+	}
+	.hidden {
+		display: none;
 	}
 	
 </style>
@@ -97,7 +101,7 @@
 			</div>
 			<div style="width: 700px; height: 50px; float:right;">
 				<button type="button" class="btn2" id="register_btn" onclick="">수강신청</button>&nbsp;&nbsp;
-				<button type="button" class="btn" id="like_btn" onclick="like()">관심</button>
+				<button type="button" class="btn" id="like_btn" onclick="like(this)">&#x1f49b;관심</button>
 				<input type="hidden" id="like" name="like" value="false"/>
 				<button type="button" class="btn" id="list_btn" onclick="list()" style="float:right;">목록</button>
 			</div>
@@ -109,7 +113,7 @@
 					<col width="10%"/>
 					<col width="30%"/>
 					<col width="10%"/>
-					<col width="*"/>
+					<col width="50%"/>
 				</colgroup>
 				<tbody>
 					<tr>
@@ -122,13 +126,15 @@
 						<th>기관명</th>
 						<th>${vo.INO_NM} (tel:${vo.TRPR_CHAP_TEL})</th>
 						<th>주소</th>
-						<th><a href="">${vo.ADDR1}
+						<th><a href="map?addr=${vo.ADDR1}">${vo.ADDR1}
 						<c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if>
 						</a></th>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		
+		<div id="map" style="width:100%;height:400px;"></div>
 		
 		<div id="center_div">
 			<h1>훈련과정 개요(훈련목표)</h1>
@@ -152,11 +158,31 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4txv35ahqp"></script>
 <script>
+	
+	$(function() {
+		var map = new naver.maps.Map('map', {
+		    center: new naver.maps.LatLng(${y}, ${x}),
+		    zoom: 11,
+		    mapTypeControl: true,
+		    zoomControlOptions: {
+		    	style: naver.maps.ZoomControlStyle.SMALL,
+		    	position: naver.maps.Position.TOP_RIGHT
+		    },
+		    zoomControl: true
+		});
+
+		var marker = new naver.maps.Marker({
+		    position: new naver.maps.LatLng(${y}, ${x}),
+		    map: map
+		});
+	});
+	
 	function list() {
 		location.href="search";
 	}
-	function like() {
+	function like(bt) {
 		var like = $("#like").val();
 		if(like == "true") {
 			$("#like_btn").css("background", "#EFEFEF");
