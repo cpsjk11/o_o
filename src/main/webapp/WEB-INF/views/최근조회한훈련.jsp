@@ -19,7 +19,7 @@
 	<!-- 상단영역끝 -->
 <body>
 	<!-- 왼쪽 메뉴 영역 -->
-		<!--<!--<jsp:include page="menubar.jsp"></jsp:include>-->-->
+		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
 	<!-- 오른쪽 영역 -->
 	<div id="bbb_right">
