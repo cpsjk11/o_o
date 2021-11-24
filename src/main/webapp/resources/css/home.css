@@ -170,3 +170,6 @@
 	#tr_text_box{
 		border: 1px solid red;
 	}
+	#ct_top_category ol li{
+		cursor: pointer;
+	}

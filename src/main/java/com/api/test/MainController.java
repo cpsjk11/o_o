@@ -7,10 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController  {
 
-	@RequestMapping("goSearch")
+	@RequestMapping("/goSearch")
 	public ModelAndView goSearch(String value) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(value);
 		
 		mv.addObject("value", value);
 		mv.setViewName("/search");

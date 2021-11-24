@@ -116,21 +116,22 @@ function enterkey() {
 	if (window.event.keyCode == 13) {
 		// 엔터키가 눌렸을 때
 		var value = $("#search").val();
+			alert(value);
 		if(value.trim().length < 1){
 			alert("검색어를 입력해주세요!");
 			return;
 		}
-		location.href="api?srchTraProcessNm="+value;
+		location.href="goSearch?value="+value;
 	}
 } 
 function imgclick() {
-		// 엔터키가 눌렸을 때
-		var value = $()
+		// 돋보기 눌렀을 때가 눌렸을 때
+		var value = $("#search").val();
 		if(value.trim().length < 1){
 			alert("검색어를 입력해주세요!");
 			return;
 		}
-		location.href="api?srchTraProcessNm="+value;
+		location.href="goSearch?value="+value;
 } 
 
 
@@ -139,7 +140,7 @@ $(function(){
 	$("#ct_top_category ol li").bind("click",function(){
 		var value = $(this).val();
 		alert(value)
-		location.href="api?srchKeco2="+value;
+		location.href="goSearch?srchKeco2="+value;
 	})
 	
 	AOS.init();
