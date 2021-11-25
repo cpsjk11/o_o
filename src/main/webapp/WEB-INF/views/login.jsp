@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%-- css링크구역!! --%>
+<link rel="shortcut icon" href="resources/ico/Frame.png">
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/foot.css">

@@ -8,6 +8,7 @@
 	<title></title>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/회원정보관리.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 		.m-unit-body1 li:hover > a, .m-unit-body1 li.mul1 > a {
     	font-weight: 700;

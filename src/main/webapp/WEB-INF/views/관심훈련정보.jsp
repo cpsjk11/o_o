@@ -7,6 +7,7 @@
 	<title></title>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/관심훈련.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 		.m-unit-body2 li:hover > a, .m-unit-body2 li.mul1 > a {
     	font-weight: 700;

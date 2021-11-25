@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
 <%-- css링크구역!! --%>
+<link rel="shortcut icon" href="resources/ico/Frame.png">
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/foot.css">
