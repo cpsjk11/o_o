@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>관리자 페이지 메뉴</title>
+    <title>관리자 이슈</title>
 	<link rel="shortcut icon" href="../resources/ico/Frame.png">
     <!-- Custom fonts for this template-->
     <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
@@ -126,34 +125,12 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span></span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="../resources/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
 
         </ul>
@@ -375,13 +352,11 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">관리자 페이지</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> 다른 관리자 호출</a>
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
+ <%-- --------------------------------게시물 목록-------------------------------- --%>
 
+                    <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -465,177 +440,31 @@
                             </div>
                         </div>
                     </div>
+<%-- --------------------------------게시물 목록-------------------------------- --%>
 
                     <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">회원가입수 현황</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-	                        <div
-	                          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-	                         <h6 class="m-0 font-weight-bold text-primary">추천학원 저장</h6>
-	                        </div>
-	                        <div class="card-body" style="background-color: #fff">
-	                        	<h5 class="m-0 font-weight-bold" style="color: #4f4f4f; text-align: center; margin-bottom: 5px;">추천학원 저장</h5>
-	                        	<form action="admin" method="post" name="addform">
-		                        	<input type="text" class="form-control form-control-user str" id="rank" name="r_rank" style="width: 260px;" placeholder="등급">
-									<input type="text" class="form-control form-control-user str" id="Id" name="srchTrprId" style="width: 260px;" placeholder="과정 아이디">
-									<input type="text" class="form-control form-control-user str" id="Degr" name="srchTrprDegr" style="width: 260px;" placeholder="과정 회차">
-									<input type="text" class="form-control form-control-user str" id="addr" name="addr" style="width: 260px;" placeholder="주소">
-									<input type="text" class="form-control form-control-user str" id="title" name="title" style="width: 260px;" placeholder="제목">
-									<input type="text" class="form-control form-control-user str" id="sub" name="subject" style="width: 260px;" placeholder="회사명">
-								</form>
-								<a href="javascript:insertSend()" class="btn btn-primary btn-user btn-block str" style="width: 260px;">
-                                   저장
-                                </a>
-	                        </div>
-                   		</div>
-
-                    <!-- Content Row -->
-                    <div class="container-fluid">
-
-                       <div class="card-header py-3" style="width: 100%;">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">추천학원 목록</h6>
-                                    
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body" style="margin: auto;">
-                                    <table style="width: 100%;">
-                                    	<thead>                             
-                                    		<tr>
-                                    			<th>회사명</th>
-                                    			<th>주소</th>
-                                    			<th>제목</th>
-                                    			<th>버튼</th>
-                                    		</tr>
-                                    	</thead>
-                                    	<tbody id="ta">
-                                    		<c:forEach var="vo" items="${company}" varStatus="st">
-	                                    		<tr>
-	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.subject}</td>
-	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.addr}</td>
-	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.title}</td>
-	                                    			<td>
-	                                    					<input type="hidden" id="id${vo.srchTrprId}" value="${vo.srchTrprId}"/>
-	                                    					<a href="javascript:delSend('${vo.srchTrprId}')" class="btn btn-danger btn-circle">
-                                        						<i class="fas fa-trash"></i>
-                                    						</a>
-	                                    			</td>
-	                                    		<tr/>
-	                                    		<tr>
-	                                    			<td style="display: none;" id="${vo.srchTrprId}" colspan="4">
-	                                    				<h6>수정하기</h6>
-	                                    				<form action="updateCompany" method="post" name="updateform">
-															<select id="r_rank${vo.srchTrprId}" name="r_rank">
-																<option value="1">1등급</option>
-																<option value="2">2등급</option>
-																<option value="3">3등급</option>
-																<option value="4">4등급</option>
-																<option value="5">5등급</option>
-																<option value="6">6등급</option>
-																<option value="7">7등급</option>
-																<option value="8">8등급</option>
-																<option value="9">9등급</option>
-																<option value="10">10등급</option>
-															</select>
-															<input name="addr" id="addr${vo.srchTrprId}" placeholder="주소"/>
-															<input type="hidden" id="srchTrprId${vo.srchTrprId}" name="srchTrprId" value="${vo.srchTrprId}" />
-															<input type="text" id="srchTrprDegr${vo.srchTrprId}" name="srchTrprDegr" placeholder="과정회차">
-															<input type="text" id="subject${vo.srchTrprId}" name="subject" placeholder="회사이름">
-															<button type="button" onclick="updateSend('${vo.srchTrprId}')">수정하기</button>
-														</form>
-	                                    				
-	                                    			</td>
-	                                    		</tr>
-                                    		</c:forEach>
-                                    	</tbody>
-                                    </table>
-                                </div>
-                            </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
         <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">로그아웃 하시겠습니까?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="login.html">로그아웃</a>
                 </div>
             </div>
         </div>
     </div>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../resources/js/jquery.min.js"></script>
     <script src="../resources/js/bootstrap.bundle.min.js"></script>
@@ -645,107 +474,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../resources/js/sb-admin-2.min.js"></script>
-
     <!-- Page level plugins -->
     <script src="../resources/js/Chart.min.js"></script>
-
     <!-- Page level custom scripts -->
-    <script src="../resources/js/chart-area-demo.js"></script>
-    <script src="../resources/js/chart-pie-demo.js"></script>
 	<script>
-		function insertSend(){
-
-			if($("#rank").val().trim().length < 1){
-				alert("안쓰면 안되죠 그쵸?? 잘해요..");
-				$("#rank").val("");
-				$("#rank").focus();
-				return;
-			}
-			if($("#Id").val().trim().length < 1){
-				alert("안쓰면 안되죠 그쵸?? 잘해요..");
-				$("#Id").val("");
-				$("#Id").focus();
-				return;
-			}
-			if($("#Degr").val().trim().length < 1){
-				alert("안쓰면 안되죠 그쵸?? 잘해요..");
-				$("#Degr").val("");
-				$("#Degr").focus();
-				return;
-			}
-			if($("#addr").val().trim().length < 1){
-				alert("안쓰면 안되죠 그쵸?? 잘해요..");
-				$("#addr").val("");
-				$("#addr").focus();
-				return;
-			}
-			if($("#title").val().trim().length < 1){
-				alert("안쓰면 안되죠 그쵸?? 잘해요..");
-				$("#title").val("");
-				$("#title").focus();
-				return;
-			}
-			if($("#sub").val().trim().length < 1){
-				alert("안쓰면 안되죠 그쵸?? 잘해요..");
-				$("#sub").val("");
-				$("#sub").focus();
-				return;
-			}
-			
-			document.addform.submit();
-		}
-		function delSend(ss){
-			
-			var id = $("#id"+ss).val();
-			var param = "id="+encodeURIComponent(id);
-						
-			$.ajax({
-				url:"a_del",
-				data: param,
-				type:"post",
-				dataType:"json",
-			}).done(function(data){
-				if(data.value == 1){
-					//수정의 성공했을때!!
-					alert("삭제완료");
-					location.href="a_index";
-				}else
-					alert("삭제실패");
-			}).fail(function(err){
-				alert("오류 이한영씨가 고쳐주셈");
-			});
-		}
-		function viewdata(id){
-			$("#"+id).slideToggle(400);
-		}
-		function updateSend(ids){
-			
-			
-			var r_rank = $("#r_rank"+ids).val();
-			var addr = $("#addr"+ids).val();
-			var srchTrprId = $("#srchTrprId"+ids).val();
-			var srchTrprDegr = $("#srchTrprDegr"+ids).val();
-			var subject = $("#subject"+ids).val();
-			
-			var param = "r_rank="+encodeURIComponent(r_rank)+"&addr="+encodeURIComponent(addr)+"&srchTrprId="+encodeURIComponent(srchTrprId)+
-						"&srchTrprDegr="+encodeURIComponent(srchTrprDegr)+"&subject="+encodeURIComponent(subject);
-			$.ajax({
-				url:"updateCompany",
-				data: param,
-				type:"post",
-				dataType:"json",
-			}).done(function(data){
-				if(data.value == 1){
-					//수정의 성공했을때!!
-					alert("수정완료");
-					location.href="a_index";
-				}else
-					alert("수정실패");
-			}).fail(function(err){
-				alert("오류 이한영씨가 고쳐주셈");
-			});
-			
-		}
+		
 	</script>
 </body>
 
