@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.sun.xml.internal.ws.wsdl.writer.document.OpenAtts;
 
 import api.action.Paging;
 import api.action.RecommendedSchool;
@@ -326,6 +329,11 @@ public class Api { //
 		mv.addObject("srchTraStDt", srchTraStDt);
 		mv.addObject("srchTraEndDt", srchTraEndDt);
 		
+		Calendar cal = Calendar.getInstance();
+		StringBuffer now_date = new StringBuffer();
+		now_date.append(cal.get(Calendar.YEAR));
+		now_date.append(cal.get(Calendar.MONTH)+1);
+		now_date.append(cal.get(Calendar.DAY_OF_MONTH));
 		
 		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
 			svo.setSrchTraArea1(null);
@@ -334,9 +342,9 @@ public class Api { //
 		if(svo.getSrchKeco1() != null && svo.getSrchKeco1().equals(","))
 			svo.setSrchKeco1(null);
 		if(svo.getSrchTraStDt() != null && (svo.getSrchTraStDt().equals(",") || svo.getSrchTraStDt().equals("")))
-			svo.setSrchTraStDt("20211122");
+			svo.setSrchTraStDt(now_date.toString());
 		else if(svo.getSrchTraStDt() == null)
-			svo.setSrchTraStDt("20211122");
+			svo.setSrchTraStDt(now_date.toString());
 		if(svo.getSrchTraEndDt() != null && (svo.getSrchTraEndDt().equals(",") || svo.getSrchTraEndDt().equals("")))
 			svo.setSrchTraEndDt("20220216");
 		else if(svo.getSrchTraEndDt() == null)
