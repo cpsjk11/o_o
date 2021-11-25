@@ -246,7 +246,7 @@ $(function () {
 	     	 
 	     	 var result = confirm("변경하시겠습니까?");
 			 if (result) {
-	    	      alert("변경이 완료되었습니다.");
+	    	      alert("변경이 완료되었습니다!");
 	    	      location.href="http://localhost:9090/";
 	  	    } else {
 	  	        

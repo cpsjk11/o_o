@@ -31,7 +31,7 @@
 					<h3 class="content-ex1">관심 훈련</h3>
 				</div>
 				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
-				<!-- 
+				
 					  <div id="dele1" class="del">
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
@@ -90,7 +90,7 @@
 					</div>
 					</div>
 					<button type="button" class="divTable" id="del_btn">삭제</button>
-					-->
+					
 				 
 				</li>
 			</ul>
@@ -141,7 +141,6 @@ $(function () {
 
 
 //DB연결 후 수정할꺼에요!!
-// 만든이 : 김성주 축구 ㄱ?
 	$(function () {
 		
 		if($("#num").prop("checked", false)){
