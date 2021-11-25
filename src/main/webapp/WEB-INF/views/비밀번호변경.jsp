@@ -88,9 +88,9 @@
 					   다시한번 입력해 주세요.
 					  </p>
 					  <p>
-					   <label for="s_pw2" class="hidden">비밀번호확인</label>
+					   <label for="s_pw2" class="hidden" id="pw">비밀번호확인</label>
 					   <input type="password" name="s_pw2" id="s_pw2"
-					    class="join"/>					    
+					    class="join"/>			    
 					  </p>
 					</td>
 				</tr>
@@ -132,33 +132,62 @@ $(function() {
 	})
 })
 
+
 $(function () {
 	$("#b_ok").click(function() {
 		var s_pw = $("#s_pw").val();
 		var new_pw = $("#new_pw").val();
 		var s_pw2 = $("#s_pw2").val();
+		var num = new_pw.search(/[0-9]/g);
+		var eng = new_pw.search(/[a-z]/ig);
+		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi);
 		
-		if(!s_pw){
+		if(!s_pw.trim()){
 			alert("비밀번호를 입력하세요");
 			$("#s_pw").focus();
 			return
 		}
-		if(!new_pw){
+		
+		if(!new_pw.trim()){
 			alert("새로운 비밀번호를 입력하세요");
 			$("#new_pw").focus();
 			return
 		}
-		if(!s_pw2){
+		
+		
+		if(new_pw.length < 10 || new_pw.length > 20){
+			alert("10자리 ~ 20자리 이내로 입력해주세요.");
+			return 
+		}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0)){
+			alert("영문, 숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+			return
+		}
+		
+		
+		if(!s_pw2.trim()){
 			alert("비밀번호 확인을 입력하세요");
 			$("#s_pw2").focus();
 			return
 		}
 		
 		var result = confirm("변경하시겠습니까?");
-		 if (result) {
-   	      
- 	    } else {
- 	        
+		 
+		if (result) {
+   	      	
+			if(new_pw == s_pw2){
+   	      		alert("변경이 완료되었습니다.");
+   	      	}else{
+   	      		
+   	      		alert("비밀번호가 일치하지 않습니다.");
+   	      		
+   	      		$("#s_pw2").val("");
+   	      		$("#s_pw2").focus();
+   	      		
+   	      		return
+   	      	}
+			
+			location.href="http://localhost:9090/";
+			 
  	    }
     	return
 	})

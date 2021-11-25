@@ -78,6 +78,20 @@ $(function() {
 	})
 })
 
+$(function () {
+	$("#anysignLink4").click(function () {
+		
+	 var result = confirm("탈퇴하시겠습니까?");
+	 if (result) {
+	      alert("탈퇴가 완료되었습니다.");
+	      location.href="http://localhost:9090/ex";
+	    } else {
+	        
+	    }
+	 return
+	})
+})
+
 </script>
 </body>
 </html>
