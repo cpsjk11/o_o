@@ -223,21 +223,21 @@ $(function () {
 		 var addr2 = $("#addr2").val();
 		 var email = $("#e-mail").val();
 		
-	     	if (!addr && !addr1) {
+	     	if (!addr.trim()) {
 	          alert("주소를 입력하십시오");
 	          
 	        $("#addr").focus();  
 	     	return
 	        }
 	     
-	     	if(!addr2){
+	     	if(!addr2.trim()){
 	     		alert("상세주소를 입력하십시오");	
 	     	
 	     	$("#addr2").focus();  
 	     	return
 	     	}
 	     
-	     	if(!email){
+	     	if(!email.trim()){
 	     		alert("이메일을 입력하십시오");	
 	     		
 	     	$("#e-mail").focus();  	
@@ -246,7 +246,8 @@ $(function () {
 	     	 
 	     	 var result = confirm("변경하시겠습니까?");
 			 if (result) {
-	    	      
+	    	      alert("변경이 완료되었습니다!");
+	    	      location.href="http://localhost:9090/";
 	  	    } else {
 	  	        
 	  	    }
