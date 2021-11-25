@@ -13,7 +13,7 @@
     <meta name="author" content="">
 
     <title>관리자 페이지 메뉴</title>
-
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
     <!-- Custom fonts for this template-->
     <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
     <link
