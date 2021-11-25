@@ -46,7 +46,7 @@
 					</div>
            			<c:forEach var="vo" items="${avo}" varStatus="st">				
 					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
+						<div class="tr_img_box">
 							<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
@@ -69,7 +69,7 @@
 					</div>		
 	      			<c:forEach var="vo" items="${avos}" varStatus="st">				
 					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
+						<div class="tr_img_box">
 							<img alt="" src="resources/img/img${st.index}.png" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
