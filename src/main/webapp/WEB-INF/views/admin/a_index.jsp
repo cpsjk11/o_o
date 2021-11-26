@@ -13,7 +13,7 @@
     <meta name="author" content="">
 
     <title>관리자 페이지 메뉴</title>
-	<link rel="shortcut icon" href="../resources/ico/Frame.png">
+
     <!-- Custom fonts for this template-->
     <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -111,13 +111,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>관리 메뉴</span>
+                    <span>QNA</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">관리자 메뉴</h6>
+                        <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="issue">이슈</a>
+                        <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
@@ -566,7 +566,7 @@
 	                                    			<td style="display: none;" id="${vo.srchTrprId}" colspan="4">
 	                                    				<h6>수정하기</h6>
 	                                    				<form action="updateCompany" method="post" name="updateform">
-															<select id="r_rank${vo.srchTrprId}" name="r_rank">
+															<%-- <select id="r_rank${vo.srchTrprId}" name="r_rank">
 																<option value="1">1등급</option>
 																<option value="2">2등급</option>
 																<option value="3">3등급</option>
@@ -577,12 +577,30 @@
 																<option value="8">8등급</option>
 																<option value="9">9등급</option>
 																<option value="10">10등급</option>
-															</select>
-															<input name="addr" id="addr${vo.srchTrprId}" placeholder="주소"/>
-															<input type="hidden" id="srchTrprId${vo.srchTrprId}" name="srchTrprId" value="${vo.srchTrprId}" />
-															<input type="text" id="srchTrprDegr${vo.srchTrprId}" name="srchTrprDegr" placeholder="과정회차">
-															<input type="text" id="subject${vo.srchTrprId}" name="subject" placeholder="회사이름">
-															<button type="button" onclick="updateSend('${vo.srchTrprId}')">수정하기</button>
+															</select> --%>
+															<input type="hidden" id="r_rank${vo.srchTrprId}" name="r_rank">
+															<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					                                            <span id="Class">등급</span>
+					                                        </button>
+															<div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton" style="">
+					                                            <a class="dropdown-item" href="javascript:push('1')">1등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('2')">2등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('3')">3등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('4')">4등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('5')">5등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('6')">6등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('7')">7등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('8')">8등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('9')">9등급</a>
+					                                            <a class="dropdown-item" href="javascript:push('10')">10등급</a>
+					                                         </div>
+															<div style="display: inline;">
+																<input type="text" name="addr" class="form-control form-control-user str" id="addrs${vo.srchTrprId}"style="width: 260px;display: inline-block; mar" placeholder="주소"/>
+																<input type="hidden" class="form-control form-control-user str" id="srchTrprId${vo.srchTrprId}" style="width: 260px;display: inline-block;" name="srchTrprId" value="${vo.srchTrprId}" />
+																<input type="text" class="form-control form-control-user str" id="srchTrprDegr${vo.srchTrprId}" style="width: 260px;display: inline-block;" name="srchTrprDegr" placeholder="과정회차">
+																<input type="text" class="form-control form-control-user str" id="subject${vo.srchTrprId}" style="width: 260px;display: inline-block;" name="subject" placeholder="회사이름">
+																<a class="btn btn-success btn-icon-split" style="width: 7%; height: 38px; line-height: 38px; margin-left: 50px;" href="javascript:updateSend('${vo.srchTrprId}')">수정하기</a>
+															</div>
 														</form>
 	                                    				
 	                                    			</td>
@@ -658,6 +676,9 @@
     <script src="../resources/js/chart-area-demo.js"></script>
     <script src="../resources/js/chart-pie-demo.js"></script>
 	<script>
+	
+		var r_rank = null;
+	
 		function insertSend(){
 
 			if($("#rank").val().trim().length < 1){
@@ -723,14 +744,22 @@
 		function viewdata(id){
 			$("#"+id).slideToggle(400);
 		}
+		
+		function push(s){
+			r_rank = s;
+			$("#Class").text(s+"등급");
+		}
+		
 		function updateSend(ids){
-			
-			
-			var r_rank = $("#r_rank"+ids).val();
-			var addr = $("#addr"+ids).val();
+			var addr = $("#addrs"+ids).val();
 			var srchTrprId = $("#srchTrprId"+ids).val();
 			var srchTrprDegr = $("#srchTrprDegr"+ids).val();
 			var subject = $("#subject"+ids).val();
+			
+			if(addr.trim().length < 1 && addr.trim().length < 1 && addr.trim().length < 1 && addr.trim().length < 1){
+				alert("하나라도 입력해줘야즁 ㅡ,,ㅡ");
+				return;
+			}
 			
 			var param = "r_rank="+encodeURIComponent(r_rank)+"&addr="+encodeURIComponent(addr)+"&srchTrprId="+encodeURIComponent(srchTrprId)+
 						"&srchTrprDegr="+encodeURIComponent(srchTrprDegr)+"&subject="+encodeURIComponent(subject);
@@ -785,7 +814,7 @@
 			  data: { // x축
 			    labels:${ychart},
 			    datasets: [{
-			      label: "회원가입수", 
+			      label: "일반회원", 
 			      lineTension: 0.3,
 			      backgroundColor: "rgba(78, 115, 223, 0.05)",
 			      borderColor: "rgba(78, 115, 223, 1)",
@@ -797,9 +826,24 @@
 			      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
 			      pointHitRadius: 10,
 			      pointBorderWidth: 2,
-			      data:${x},
-			    }],
-			  },
+			      data:${ux},
+			    },{
+				      label: "기업회원", 
+				      lineTension: 0.3,
+				      backgroundColor: "rgba(199, 72, 223, 0.05)",
+				      borderColor: "rgba(199, 72, 223, 1)",
+				      pointRadius: 3,
+				      pointBackgroundColor: "rgba(199, 72, 223, 1)",
+				      pointBorderColor: "rgba(199, 72, 223, 1)",
+				      pointHoverRadius: 3,
+				      pointHoverBackgroundColor: "rgba(199, 72, 223, 1)",
+				      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+				      pointHitRadius: 10,
+				      pointBorderWidth: 2,
+				      data:${cx},
+			    }]
+			    },
+				
 			  options: {
 			    maintainAspectRatio: false,
 			    layout: {

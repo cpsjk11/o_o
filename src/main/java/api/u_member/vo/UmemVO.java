@@ -1,7 +1,7 @@
 package api.u_member.vo;
 
 public class UmemVO {
-	private String 	id,pw,name,birth,email,phone,addr,member,u_date;
+	private String 	id,pw,name,birth,email,phone,addr,member,u_date,stat;
 	
 	public UmemVO() {}
 
@@ -88,6 +88,14 @@ public class UmemVO {
 
 	public void setU_date(String u_date) {
 		this.u_date = u_date;
+	}
+
+	public String getStat() {
+		return stat;
+	}
+
+	public void setStat(String stat) {
+		this.stat = stat;
 	}
 	
 	

@@ -76,11 +76,12 @@ public class UmemDAO {
 	}
 	
 	// 사용자의 날짜별 가입인원을 반환하는 기능
-	public List<Map<String, String>> searchDate(String yearMonth, String year) {
+	public List<Map<String, String>> searchDate(String yearMonth, String year, String stat) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("yearMonth", yearMonth);
 		map.put("year", year);
+		map.put("stat", stat);
 		map.put("hi", "CONNECT BY LEVEL <= (TO_DATE('"+yearMonth+"','YY-MM-DD+') - TO_DATE('"+year+"','YY-MM-DD') + 1)");
 		
 		List<Map<String, String>> list = ss.selectList("umem.searchDate", map);

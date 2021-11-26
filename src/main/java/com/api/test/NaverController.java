@@ -32,8 +32,8 @@ public class NaverController {
 	private String access_token;
 	private String refresh_token;
 	private String token_type;
-	private final String naverClientId = "QPSHVJyqYWFZ_XHywouJ";
-	private final String naverClientSecret = "GR9PUpwAEs";
+	private final String naverClientId = "O90hjbCEB9bYyHxi83Zz";
+	private final String naverClientSecret = "JbxqRCid_x";
 	private String returnUrl;
 	
 	@Autowired

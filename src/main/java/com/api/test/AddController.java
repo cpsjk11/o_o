@@ -66,7 +66,6 @@ public class AddController {
 	
 	@RequestMapping("/a_login")
 	public String st() {
-		System.out.println("hi");
 		return "admin/a_login";
 	}
 	
@@ -74,9 +73,17 @@ public class AddController {
 	public ModelAndView goIndex() {
 		ModelAndView mv = new ModelAndView();
 		
-		Search2[] rd = r_dao.getFamous(); 
+		List<Map<String, String>> list = null;
 		
+		Search2[] rd = r_dao.getFamous(); 
 		int usernum = u_dao.finduser();
+		String result[] = null;
+		String count[] = null;
+		
+		
+		String userX = "";
+		String Y = "";
+		String companyX = "";
 		
 		rd = RecommendedSchool.getSchool(rd);
 		
@@ -89,46 +96,63 @@ public class AddController {
 		int s = to_date.indexOf("0");
 		int n = to_date.indexOf("-");
 		int k = to_date.lastIndexOf("-");
+		int user = 0;
+		int com = 0;
 		
 		String yearMonth = to_date.substring(s+1);
 		String year = ((to_date.substring(s+1,n))+"-01-01");
-		System.out.println(year);
-		List<Map<String, String>> list = u_dao.searchDate(yearMonth,year);
-		Map<String, String> map = new HashMap<String, String>();
-		LinkedHashSet<String> set = new LinkedHashSet<String>();
-		String res[] = new String[list.size()];
-		String result[] = new String[list.size()];
-		String date[] = new String[list.size()];
-		String count[] = new String[list.size()];
-		
-		for(int i=0; i<list.size(); i++) {
-			map = list.get(i);
-			res[i] = map.toString();
-			System.out.println(res[i]);
-			
-			int id = res[i].indexOf(",");
-			int idx = res[i].indexOf("=");
-			int idxs = res[i].lastIndexOf("}");
-			int idxss = res[i].indexOf("-");
-			
-			count[i] = res[i].substring(idxss+1,idxs)+"월";
-			result[i] = res[i].substring(idx+1, id);
-			
-		}
-		
-		
-		for(int i=0; i<date.length; i++) {
-		//System.out.println(date[i]);
-		System.out.println(result[i]); // x축
-		System.out.println(count[i]); // y축
-		}
-		
 		CheckChart chk = new CheckChart();
-		String resultX = chk.getChart(result);
-		String resultY = chk.getChart(count);
-		System.out.println(resultX+"/"+resultY);
-		mv.addObject("x", resultX);
-		mv.addObject("ychart", resultY);
+		for(int a=0; a<2; a++) {
+			list = u_dao.searchDate(yearMonth,year,String.valueOf(a));
+			Map<String, String> map = new HashMap<String, String>();
+			LinkedHashSet<String> set = new LinkedHashSet<String>();
+		
+			String res[] = new String[list.size()];
+			result = new String[list.size()];
+			String date[] = new String[list.size()];
+			count = new String[list.size()];
+			
+			for(int i=0; i<list.size(); i++) {
+				map = list.get(i);
+				res[i] = map.toString();
+				
+				int id = res[i].indexOf(",");
+				int idx = res[i].indexOf("=");
+				int idxs = res[i].lastIndexOf("}");
+				int idxss = res[i].indexOf("-");
+				
+				count[i] = res[i].substring(idxss+1,idxs)+"월";
+				result[i] = res[i].substring(idx+1, id);
+				
+			}
+			System.out.println(a);
+			if(a == 0) {
+				System.out.println("h1");
+				// 유저 회원가입 정보
+				userX = chk.getChart(result);
+				Y = chk.getChart(count);
+				System.out.println(userX);
+				System.out.println(result);
+			}
+				
+			else if(a == 1) {
+				System.out.println("h2");
+				companyX = chk.getChart(result);
+				System.out.println(companyX);
+				System.out.println(result);
+			}
+				
+		}
+			
+		
+		
+		/*String resultX = chk.getChart(result);
+		String resultY = chk.getChart(count);*/
+		System.out.println(userX+"/"+Y+"/"+companyX);
+		
+		mv.addObject("ux", userX);
+		mv.addObject("ychart", Y);
+		mv.addObject("cx", companyX);
 		mv.addObject("userNum", usernum);
 		mv.addObject("company", rd);
 		mv.setViewName("admin/a_index");
