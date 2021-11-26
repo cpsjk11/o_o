@@ -46,7 +46,7 @@
 					</div>
            			<c:forEach var="vo" items="${avo}" varStatus="st">				
 					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
+						<div class="tr_img_box">
 							<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
@@ -69,7 +69,7 @@
 					</div>		
 	      			<c:forEach var="vo" items="${avos}" varStatus="st">				
 					<a class="tr" href="/">
-						<div style="width: 100%; height: 80%;" id="tr_img_box">
+						<div class="tr_img_box">
 							<img alt="" src="resources/img/img${st.index}.png" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
@@ -116,21 +116,22 @@ function enterkey() {
 	if (window.event.keyCode == 13) {
 		// 엔터키가 눌렸을 때
 		var value = $("#search").val();
+			alert(value);
 		if(value.trim().length < 1){
 			alert("검색어를 입력해주세요!");
 			return;
 		}
-		location.href="api?srchTraProcessNm="+value;
+		location.href="goSearch?value="+value;
 	}
 } 
 function imgclick() {
-		// 엔터키가 눌렸을 때
-		var value = $()
+		// 돋보기 눌렀을 때가 눌렸을 때
+		var value = $("#search").val();
 		if(value.trim().length < 1){
 			alert("검색어를 입력해주세요!");
 			return;
 		}
-		location.href="api?srchTraProcessNm="+value;
+		location.href="goSearch?value="+value;
 } 
 
 
@@ -139,7 +140,7 @@ $(function(){
 	$("#ct_top_category ol li").bind("click",function(){
 		var value = $(this).val();
 		alert(value)
-		location.href="api?srchKeco2="+value;
+		location.href="goSearch?srchKeco2="+value;
 	})
 	
 	AOS.init();

@@ -93,8 +93,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		background: #FFFFFF;
-		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-		border-radius: 10px;
+		border: 1px solid #efefef;
 		
 	}
 	#pop_area .tr{
@@ -102,10 +101,8 @@
 		height: 305.64px;
 		text-decoration: none;
 		color: #3A2F2F;
-		margin: 40px;
-		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-		border-radius: 10px;
-		border: 1px solid red;
+		margin: 40px 20px;
+		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
 	}
 	.tr span{
 		padding: 5px;
@@ -113,10 +110,18 @@
 		font-size: 11px;
 		color: #3A2F2F;
 		font-weight: 800;
+		height: 6.4%;
 	}	
-	.tr_name{float: left;}
-	.tr_addr{float: right;color: #3A2F2F;}
-	
+	.tr_name{
+		float: left;
+	}
+	.tr_addr{
+		line-height: 2.7;
+	}
+	.tr_img_box{
+		width: 100%;
+		height: 70%;
+	}
 	#pop_text{
 		padding: 30px 40px 0px;
 	}
@@ -168,5 +173,14 @@
 		  color: #4f5b66;
 	}
 	#tr_text_box{
-		border: 1px solid red;
+		width: 100%;
+		height: 30%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+ 		-webkit-line-clamp: 2;
+  		-webkit-box-orient: vertical;
+	}
+	#ct_top_category ol li{
+		cursor: pointer;
 	}

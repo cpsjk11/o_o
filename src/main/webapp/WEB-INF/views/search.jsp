@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="shortcut icon" href="resources/ico/Frame.png">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/foot.css">
@@ -251,7 +252,10 @@
 				<input type="button" class="btn" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
 				<label style="font-size: 20px">
 				<c:if test="${search_bar ne null and search_bar ne ''}">
-					${search_bar}으로 검색된 결과입니다.</label>
+					'${search_bar}'로 검색된 결과입니다.</label>
+				</c:if>
+				<c:if test="${value ne null }">
+					'${value }'로 검색된 결과입니다.
 				</c:if>
 			</form>
 		</div>
@@ -368,7 +372,7 @@
 				</li>
 			</c:forEach>
 			<c:if test="${ar_size eq null}">
-				<h1> 검색된 결과가 없습니다. </h1>
+				<h1>'${search_bar}' 검색된 결과가 없습니다. </h1>
 			</c:if>
 				<form action="search" method="post" name="less">
 				<c:if test="${end > 6}">

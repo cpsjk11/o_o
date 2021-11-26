@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%-- css링크구역!! --%>
+<link rel="shortcut icon" href="resources/ico/Frame.png">
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/foot.css">
@@ -300,7 +301,7 @@
 			dataType:"json"
 		}).done(function(data){
 			if(data.value == 1){
-				alert(${sessionScope.userName.name}+"환영합니다")
+				alert(data.name+"님 환영합니다!! ")
 				location.href="/";
 			}
 				if(data.value == 2){

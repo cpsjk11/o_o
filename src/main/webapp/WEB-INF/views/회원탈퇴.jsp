@@ -7,6 +7,7 @@
 	<title></title>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/회원탈퇴.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 		.m-unit-body1 li:hover > a, .m-unit-body1 li.mul4 > a {
     	font-weight: 700;
@@ -19,7 +20,7 @@
 	<!-- 상단영역끝 -->
 <body>
 	<!-- 왼쪽 메뉴 영역 -->
-		<!--<jsp:include page="menubar.jsp"></jsp:include>-->
+		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
 	<!-- 오른쪽 영역 -->
 	
@@ -75,6 +76,20 @@ $(function() {
 $(function() {
 	$("#u_btn4").click(function() {
 		$('.m-unit-body4').toggle(); 
+	})
+})
+
+$(function () {
+	$("#anysignLink4").click(function () {
+		
+	 var result = confirm("탈퇴하시겠습니까?");
+	 if (result) {
+	      alert("탈퇴가 완료되었습니다!");
+	      location.href="http://localhost:9090/ex";
+	    } else {
+	        
+	    }
+	 return
 	})
 })
 

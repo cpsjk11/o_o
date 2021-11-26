@@ -7,176 +7,14 @@
 <title>Insert title here</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
 <%-- css링크구역!! --%>
+<link rel="shortcut icon" href="resources/ico/Frame.png">
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/foot.css">
+<link rel="stylesheet" href="resources/css/ujoin.css">
 
 <style type="text/css">
-	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-	span, p, pre, input{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-	}
-	body{
-		margin: 0 auto;
-		padding: 0 auto;
-	}	
-    #join_panel{
-    	margin: 0 auto;
-    	width: 960px;
-    	border: 1px solid red;
-    }
-    #join_form{
-		margin-top: 190px;
-		width: 100%;
-    	height: 1800px;
-		border: 1px solid black;
-    }
-    
-    #join_text_box{
-	    margin: 46px 503px 70px 200px;
-    }
-    #join_text_box span{
-    	color: #3A2F2F;
-    }
-    #join_text_box span:nth-child(1) {
-		font-weight: bold;
-		font-size: 40px;
-	}
-    #join_text_box span:nth-last-child(1) {
-		font-weight: 500;
-		font-size: 20px;
-	}
-	#text_area{
-		margin: 0 auto;
-		width: 500px;
-		left: 230px;
-		top: 208px;
-		border: 1px solid red;
-	}
-	#text_area .info{
-		font-size: 22px;
-		font-weight: 600;
-		color: #3A2F2F;
-		margin-bottom: 21px;
-	}
-	#text_area form{
-		margin-top: 30px;
-	}
-	#text_area input[type="text"],
-	#text_area input[type="password"],
-	#text_area input[type="email"]{
-		margin-bottom: 30px;
-		width: 100%;
-		height: 45px;
-		border: 0.7px solid #ccc;
-		border-radius: 10px;
-		font-size: 15px;
-	}
-	#text_area input[type="number"]{
-		margin-bottom: 30px;
-		width: 100%;
-		height: 45px;
-		border: 0.7px solid #ccc;
-		border-radius: 10px;
-		font-size: 15px;
-	}
-	#email_box{
-		width: 100%;
-		height: 100px;
-		border: 1px solid red;
-	}
-	#consent_box{
-		width: 100%;
-		height: 100px;
-		border: 1px solid red;
-		margin-top: 15px;
-	}
-	input[type="submit"]{
-		margin: 0 auto;
-		margin-top: 59px;
-		width: 30%;
-		height: 60px;
-		background: #3BB873;
-		box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.25);
-		border: 0.5px solid #efefef;
-		border-radius: 15px;
-		font-size: 17px;
-		font-weight: 600;
-		color: white;
-	}
-	input[type="button"]{
-		display: inline-block;
-		width: 100%;
-		height: 45px;
-		border: 0.7px solid #ccc;
-		border-radius: 10px;
-		font-size: 15px;
-			
-	}
-	#btn_area{
-		margin: 0 auto;
-		width: 100%;
-		text-align: center;
-	}
-	input[type="submit"]:hover {
-		background: #34AA69;
-		box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.25);
-	}
-	#elogin_box{
-		width: 100%;
-	}
-	#eL_a{
-		margin-top: 15px;
-		display: flex;
-		justify-content: space-around;
-		line-height: 50px;
-		height: 100%;
-		text-align: center;
-	}
-	.el_login{
-		border: 0.7px solid #efefef;
-		border-radius: 10px;
-		/* vertical-align: middle; */
-		width:43%;
-		height: 100%;
-		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
-	}
-	#eL_a span{
-		font-weight: bold;
-		font-size: 14px;
-		line-height: 16px;
-	}
-	.infoTo{
-		font-size: 19px;
-		font-weight: 500;
-		color: #3A2F2F;
-		line-height: 2;
-	}
-	#email{
-		display: inline-block;
-	}
-	#phone{
-		width: 50%;
-	}
-	.chk_area{
-		margin: 15px 0 30px;
-	}
-	#all_chk{
-		width: 100%;
-		height: 100%;
-		border-bottom: 1px solid #efefef;
-		padding: 15px 15px 0;
-	}
-	#all_chk span{
-		vertical-align: middle;
-		float: left;
-		font-size: 15px;
-		font-weight: 600;
-	}
-	#all_chk input[type="checkbox"]{
-		float: right;
-	}
+	
 </style>
 </head>
 <body>
@@ -192,13 +30,13 @@
 					<div id="text_area">
 						<span class="info">개인정보</span>
 						<form action="userAdd"method="POST">
-							<input type="text" name="id" id="id" placeholder="아이디를 입력해주세요." maxlength="20"  oninput="handleOnInput(this)"><span id="id_checkBox" class="checkBox"></span>
-							<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요." maxlength="20"><span id="pw_checkBox" class="checkBox"></span>
-							<input type="password" name="rPw" id="rPw" placeholder="비밀번호 재확인" maxlength="20"><span id="repw_checkBox" class="checkBox"></span>
+							<input type="text" name="id" id="id" placeholder="아이디를 입력해주세요." maxlength="20"  oninput="handleOnInput(this)"><div class="checkBox"><span id="id_checkBox" class="checkBox"></span></div>
+							<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요." maxlength="20"><div class="checkBox"><span id="pw_checkBox" class="checkBox"></span></div>
+							<input type="password" name="rPw" id="rPw" placeholder="비밀번호 재확인" maxlength="20"><div class="checkBox"><span id="repw_checkBox" class="checkBox"></span></div>
 							<span class="infoTo">이름</span>
 							<input type="text" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="10">
 							<span class="infoTo">이메일</span>
-							<input type="email" name="email" id="email" placeholder="이메일을 입력해주세요." maxlength="40"><span id="email_checkBox" class="checkBox"></span>
+							<input type="email" name="email" id="email" placeholder="이메일을 입력해주세요." maxlength="40"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
 							<input type="button" name="email_chk" id="email_chk" value="인증코드 보내기" onclick="sends()"/>
 							<input type="text" name="email_chkOk" id="email_chkOk" style="display: none;" placeholder="인증코드를 입력해주세요.">
 							<span id="test"></span>
@@ -227,16 +65,16 @@
 								</div>
 							</a>
 						</div>
-						<div class="chk_area">
+						<!-- <div class="chk_area">
 							<span  class="info">약관동의</span>
 							<div id="consent_box" class="el_login">
 								<div id="all_chk">
 									<span>전체동의</span>
-									<!-- <div id="chkImg" style="background: url('resources/img/3.png') no-repeat; width: 100%;"></div> -->
+									<div id="chkImg" style="background: url('resources/img/3.png') no-repeat; width: 100%;"></div>
 									<input type="checkbox">
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 						<div id="btn_area">
 							<input type="button" id="join_btn" name="join_btn" value="회원가입" onclick="userAdd()">

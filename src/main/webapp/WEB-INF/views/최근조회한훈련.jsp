@@ -7,6 +7,7 @@
 	<title></title>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/관심훈련.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 		.m-unit-body2 li:hover > a, .m-unit-body2 li.mul2 > a {
     	font-weight: 700;
@@ -19,7 +20,7 @@
 	<!-- 상단영역끝 -->
 <body>
 	<!-- 왼쪽 메뉴 영역 -->
-		<!--<!--<jsp:include page="menubar.jsp"></jsp:include>-->-->
+		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
 	<!-- 오른쪽 영역 -->
 	<div id="bbb_right">
@@ -30,6 +31,7 @@
 					<h3 class="content-ex">최근 조회 훈련</h3>
 				</div>
 				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
+				 
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<input type="checkbox" class="divTable">
@@ -78,9 +80,10 @@
 							</ul>
 						</div>
 					</div>
+					<button type="button" class="divTable" id="del_btn">삭제</button>
+					
 				</li>
 			</ul>
-			<button type="button" class="divTable" id="del_btn">삭제</button>
 		</div>
 	</div>	
 

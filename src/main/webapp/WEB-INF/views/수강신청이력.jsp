@@ -7,6 +7,7 @@
 	<title></title>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/나의훈련.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 		.m-unit-body3 li:hover > a, .m-unit-body3 li.mul2 > a {
     	font-weight: 700;
@@ -19,7 +20,7 @@
 	<!-- 상단영역끝 -->
 <body>
 	<!-- 왼쪽 메뉴 영역 -->
-		<!--<jsp:include page="menubar.jsp"></jsp:include>-->
+	<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 오른쪽 영역 -->
 	<div id="bbb_right">
 		<div class="tableArea03 ty3 myCardArea">

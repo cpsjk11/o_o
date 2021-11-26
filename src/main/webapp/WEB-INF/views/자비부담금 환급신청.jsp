@@ -7,6 +7,7 @@
 	<title></title>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 		.m-unit-body4 li:hover > a, .m-unit-body4 li.mul3 > a {
     	font-weight: 700;
@@ -19,7 +20,7 @@
 	<!-- 상단영역끝 -->
 <body>
 	<!-- 왼쪽 메뉴 영역 -->
-		<!--<jsp:include page="menubar.jsp"></jsp:include>-->
+		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
 	
 	<!-- 오른쪽 영역 -->

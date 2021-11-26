@@ -68,6 +68,9 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 		public String addUser(UmemVO uvo, Model md) {
 			
 			String fat = SecureUtil.generateSalt();
+			if(uvo.getMember() == null) {
+				uvo.setMember("user");
+			}
 			
 			// Inbody에 저장
 			i_dao.addInbody(uvo.getId(), fat);
