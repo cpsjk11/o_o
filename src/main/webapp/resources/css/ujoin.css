@@ -4,6 +4,10 @@
 	span, p, pre, input{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 	}
+	input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
 	body{
 		margin: 0 auto;
 		padding: 0 auto;
@@ -63,6 +67,14 @@
 		padding-left: 15px;
 	}
 	#text_area input[type="number"]{
+		margin-bottom: 30px;
+		width: 92%;
+		height: 45px;
+		border: 0.7px solid #ccc;
+		border-radius: 10px;
+		font-size: 15px;
+	}
+	#text_area input[type="tel"]{
 		margin-bottom: 30px;
 		width: 92%;
 		height: 45px;
