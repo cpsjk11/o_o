@@ -301,7 +301,7 @@
 			dataType:"json"
 		}).done(function(data){
 			if(data.value == 1){
-				alert(${sessionScope.userName.name}+"환영합니다")
+				alert(data.name+"님 환영합니다!! ")
 				location.href="/";
 			}
 				if(data.value == 2){
