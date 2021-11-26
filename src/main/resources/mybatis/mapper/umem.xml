@@ -45,4 +45,24 @@
 	WHERE stat = 0
 </select>
 
+<!-- 사용자의 가입날짜에 따라 숫자를 반환하는 기능 -->
+<select id="searchDate" parameterType="Map" resultType="Map">
+		SELECT TO_CHAR(b.dt, 'YY-MM') AS u_date
+     , NVL(SUM(a.cnt), 0) cnt
+  FROM ( SELECT TO_CHAR(u_date, 'YY-MM-DD') AS u_date
+              , COUNT(*) cnt
+           FROM u_member
+          WHERE u_date BETWEEN TO_DATE('${year}', 'YY-MM-DD')
+                             AND TO_DATE('${yearMonth}', 'YY-MM-DD') 
+          GROUP BY u_date
+        ) a
+      , ( SELECT TO_DATE('${year}','YY-MM-DD') + LEVEL - 1 AS dt
+            FROM dual 
+         ${hi}
+        ) b
+  WHERE b.dt = a.u_date(+)
+  GROUP BY TO_CHAR(b.dt, 'YY-MM')
+  ORDER BY TO_CHAR(b.dt, 'YY-MM')
+
+</select>
 </mapper>

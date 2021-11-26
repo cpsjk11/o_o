@@ -1,7 +1,7 @@
 package api.u_member.vo;
 
 public class UmemVO {
-	private String 	id,pw,name,birth,email,phone,addr,member;
+	private String 	id,pw,name,birth,email,phone,addr,member,u_date;
 	
 	public UmemVO() {}
 
@@ -80,6 +80,14 @@ public class UmemVO {
 
 	public void setMember(String member) {
 		this.member = member;
+	}
+
+	public String getU_date() {
+		return u_date;
+	}
+
+	public void setU_date(String u_date) {
+		this.u_date = u_date;
 	}
 	
 	

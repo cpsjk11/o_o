@@ -1,6 +1,12 @@
 package api.dao;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import api.action.CheckChart;
 import api.u_member.vo.UmemVO;
 
 @Repository
@@ -66,6 +73,19 @@ public class UmemDAO {
 	// 사용자의 수를 반환하는 기능
 	public int finduser() {
 		return ss.selectOne("umem.findUser");
+	}
+	
+	// 사용자의 날짜별 가입인원을 반환하는 기능
+	public List<Map<String, String>> searchDate(String yearMonth, String year) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("yearMonth", yearMonth);
+		map.put("year", year);
+		map.put("hi", "CONNECT BY LEVEL <= (TO_DATE('"+yearMonth+"','YY-MM-DD+') - TO_DATE('"+year+"','YY-MM-DD') + 1)");
+		
+		List<Map<String, String>> list = ss.selectList("umem.searchDate", map);
+		
+		return list;
 	}
 	
 }

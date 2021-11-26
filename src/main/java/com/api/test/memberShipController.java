@@ -74,6 +74,8 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 			
 			uvo.setPw(SecureUtil.getEncrypt(uvo.getPw(), fat));
 			
+			uvo.setMember("user");
+			
 			// 사용자 정보 DB에 저장!!
 			int cnt = u_dao.jogin(uvo);
 			
