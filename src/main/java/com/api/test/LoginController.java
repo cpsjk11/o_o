@@ -38,7 +38,6 @@ public class LoginController {
 		// 입력한 값을 가지고 로그인을 시키자!
 		String fat = i_dao.searchFat(id);
 		
-		System.out.println("hello fat : "+ fat);
 		if(fat == null) {
 			// 당신은 우리 고객이 아니다 회원가입하라고 알려주기
 			map.put("value", "2");
@@ -48,12 +47,10 @@ public class LoginController {
 		String chkpw = SecureUtil.getEncrypt(pw, fat);
 		
 		UmemVO uvo = u_dao.login(id, chkpw);
-		System.out.println(uvo.getStat()+"//");
-		System.out.println("uvo:"+uvo+" /uvo.name:"+uvo.getName());
 		if(uvo != null) {
 			// 로그인 성공 했을때 이다.
 			session.setAttribute("userName", uvo);
-			session.setAttribute("name", uvo.getName());
+			session.setAttribute("stat", uvo.getStat());
 			session.setAttribute("rank", "1");
 			map.put("name", uvo.getName());
 			map.put("value", "1");
@@ -61,7 +58,6 @@ public class LoginController {
 			// 로그인 실패 했을때
 			map.put("value", "2");
 		}
-		System.out.println("64 행 / uvo:"+uvo+" /uvo.name:"+uvo.getName());
 		return map;
 	}
 	

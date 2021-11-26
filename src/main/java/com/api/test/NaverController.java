@@ -32,8 +32,8 @@ public class NaverController {
 	private String access_token;
 	private String refresh_token;
 	private String token_type;
-	private final String naverClientId = "O90hjbCEB9bYyHxi83Zz";
-	private final String naverClientSecret = "JbxqRCid_x";
+	private final String naverClientId = "QPSHVJyqYWFZ_XHywouJ";
+	private final String naverClientSecret = "GR9PUpwAEs";
 	private String returnUrl;
 	
 	@Autowired
@@ -104,8 +104,8 @@ public class NaverController {
 			// 이제 멤버 저장!
 			u_dao.jogin(uvo);
 			i_dao.addInbody(id, fat);
-			
 			session.setAttribute("userName", uvo);
+			session.setAttribute("stat", uvo.getStat());
 		}
 		else {
 			String res = i_dao.searchFat(id);
