@@ -70,9 +70,14 @@ public class UmemDAO {
 		return ss.update("umem.pwUpdate", map);
 	}
 	
-	// 사용자의 수를 반환하는 기능
+	// 회원 사용자의 수를 반환하는 기능
 	public int finduser() {
 		return ss.selectOne("umem.findUser");
+	}
+	
+	// 기업 사용자의 수를 반환하는 기능
+	public int findCompany() {
+		return ss.selectOne("umem.findCompany");
 	}
 	
 	// 사용자의 날짜별 가입인원을 반환하는 기능
