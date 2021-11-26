@@ -65,16 +65,16 @@
 								</div>
 							</a>
 						</div>
-						<div class="chk_area">
+						<!-- <div class="chk_area">
 							<span  class="info">약관동의</span>
 							<div id="consent_box" class="el_login">
 								<div id="all_chk">
 									<span>전체동의</span>
-									<!-- <div id="chkImg" style="background: url('resources/img/3.png') no-repeat; width: 100%;"></div> -->
+									<div id="chkImg" style="background: url('resources/img/3.png') no-repeat; width: 100%;"></div>
 									<input type="checkbox">
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 						<div id="btn_area">
 							<input type="button" id="join_btn" name="join_btn" value="회원가입" onclick="userAdd()">

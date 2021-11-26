@@ -11,13 +11,11 @@
     #join_panel{
     	margin: 0 auto;
     	width: 960px;
-    	border: 1px solid red;
     }
     #join_form{
 		margin-top: 190px;
 		width: 100%;
-    	height: 1800px;
-		border: 1px solid black;
+    	height: 1300px;
     }
     
     #join_text_box{
@@ -39,7 +37,6 @@
 		width: 500px;
 		left: 230px;
 		top: 208px;
-		border: 1px solid red;
 	}
 	#text_area .info{
 		font-size: 22px;
@@ -53,7 +50,7 @@
 	#text_area input[type="text"],
 	#text_area input[type="password"],
 	#text_area input[type="email"]{
-		width: 100%;
+		width: 92%;
 		height: 45px;
 		border: 0.7px solid #ccc;
 		border-radius: 10px;
@@ -62,9 +59,12 @@
 	.checkBox{
 		margin-bottom: 30px;
 	}
+	input{
+		padding-left: 15px;
+	}
 	#text_area input[type="number"]{
 		margin-bottom: 30px;
-		width: 100%;
+		width: 92%;
 		height: 45px;
 		border: 0.7px solid #ccc;
 		border-radius: 10px;
@@ -73,12 +73,10 @@
 	#email_box{
 		width: 100%;
 		height: 100px;
-		border: 1px solid red;
 	}
 	#consent_box{
 		width: 100%;
 		height: 100px;
-		border: 1px solid red;
 		margin-top: 15px;
 	}
 	input[type="submit"]{
@@ -96,7 +94,7 @@
 	}
 	input[type="button"]{
 		display: inline-block;
-		width: 100%;
+		width: 96%;
 		height: 45px;
 		border: 0.7px solid #ccc;
 		border-radius: 10px;
@@ -104,7 +102,7 @@
 			
 	}
 	#btn_area{
-		margin: 0 auto;
+		margin-top: 35px;
 		width: 100%;
 		text-align: center;
 	}
