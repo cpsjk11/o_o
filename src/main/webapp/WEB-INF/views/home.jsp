@@ -70,7 +70,7 @@
 	      			<c:forEach var="vo" items="${avos}" varStatus="st">				
 					<a class="tr" href="/">
 						<div class="tr_img_box">
-							<img alt="" src="resources/img/img${st.index}.png" style="width: 100%; height: 100%;">
+							<img alt="" src="resources/img/img${st.index+1}.png" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<span class="tr_addr">${vo.addr}</span>
