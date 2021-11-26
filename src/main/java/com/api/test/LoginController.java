@@ -61,4 +61,19 @@ public class LoginController {
 		return map;
 	}
 	
+	
+	
+	@RequestMapping("/join")
+	public String login() {
+		return "join";
+	}
+	@RequestMapping("u_mem_join")
+	public String go_Ujoin() {
+		return "uJoin";
+	}
+	@RequestMapping("c_mem_join")
+	public String go_Cjoin() {
+		return "cJoin";
+	}
+	
 }

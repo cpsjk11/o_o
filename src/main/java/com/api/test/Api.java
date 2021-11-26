@@ -648,12 +648,4 @@ public class Api { //
 		return mv;
 	}
 	
-	@RequestMapping("/join")
-	public String login() {
-		return "join";
-	}
-	@RequestMapping("u_mem_join")
-	public String gou_join() {
-		return "uJoin";
-	}
 }
