@@ -167,20 +167,8 @@
 		});
 		 
 		$("#email").bind("keyup", function(){
-			
 			var email = $("#email").val();
-			
-			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		    if (mailformat.test(email)) {
-		    	console.log("good");
-		        return true;
-		    }else{
-		    	$("#email_checkBox").html("이메일형식이 올바르지 않습니다.").css("color","red");
-				
-		        return false;
-		    }
-			// 사용자의 이메일 중복확인!!!
-			
+			var reg = /^((\w|[\-\.])+)@((\w|[\-\.])+)\.([A-Za-z]+)$/;			
 			// 이제 여기서 2글자 이상 누를시 서버로 비동기식 통신시작 이메일 값 비교
 			if(email.trim().length > 1){
 				$.ajax({
@@ -189,11 +177,14 @@
 					type:"post",
 					dataType:"json",
 				}).done(function(data){
-					if(data.overlap == 1){
+					if(reg.test(email) == false){
+						$("#email_checkBox").text("올바른 이메일 형식이 아닙니다.").css("color","red");
+					}
+					if(data.overlap == 1 && reg.test(email)){
 						$("#email_checkBox").html("사용가능").css("color","#12b886");
 						$("#chkEMAIL1").val("");
 					}
-					else{
+					else if(data.overlap == 2){
 						$("#email_checkBox").html("중복").css("color","red");
 						$("#chkEMAIL1").val("1");
 					}
