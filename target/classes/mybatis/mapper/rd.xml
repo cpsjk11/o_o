@@ -19,11 +19,14 @@
 <!-- 추천 학원의 정보를 변경하는 기능! -->
 <update id="updateCompany" parameterType="api.vo.Search2">
 	UPDATE rd
-	SET <if test="r_rank != null">r_rank = #{r_rank}</if>
+	SET 
+	<trim prefixOverrides=",">
+		<if test="r_rank != 'null'">r_rank = #{r_rank}</if>
 		<if test="subject != ''">,subject = #{subject}</if>
 		<if test="srchTrprDegr != ''">,srchtrprdegr = #{srchTrprDegr}</if>
 		<if test="addr != ''">,addr = #{addr}</if>
 		<if test="title != null">,title = #{title}</if>
+	</trim>
 	WHERE srchtrprid = #{srchTrprId}
 </update>
 

@@ -70,7 +70,7 @@
 	      			<c:forEach var="vo" items="${avos}" varStatus="st">				
 					<a class="tr" href="/">
 						<div class="tr_img_box">
-							<img alt="" src="resources/img/img${st.index}.png" style="width: 100%; height: 100%;">
+							<img alt="" src="resources/img/img${st.index+1}.png" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
 							<span class="tr_addr">${vo.addr}</span>
@@ -88,16 +88,16 @@
 				</div>
 				<div id="ct_top_category" style="padding: 60px 45px;">
 					<ol onclick="search_pa()" id="search_ol">
-						<li value="2001" id="1">정보통신</li>
-						<li value="2002" id="2">통신기술</li>
-						<li value="2003" id="3">방송기술</li>
-						<li value="20" id="4">디자인</li>
+						<li value="20" id="1">정보통신</li>
+						<li value="02" id="2">경영/회계</li>
+						<li value="08" id="3">디자인/방송</li>
+						<li value="13" id="4">음식서비스</li>
 					</ol>
 					<ol>
-						<li value="20" id="a">금융</li>
-						<li value="20" id="a">전기전자</li>
-						<li value="20" id="a">재료</li>
-						<li value="20" id="a">보건의료</li>
+						<li value="03" id="a">금융/보험</li>
+						<li value="19" id="a">전기전자</li>
+						<li value="16" id="a">재료</li>
+						<li value="06" id="a">보건의료</li>
 					</ol>
 				</div>
 			</div>
@@ -140,7 +140,7 @@ $(function(){
 	$("#ct_top_category ol li").bind("click",function(){
 		var value = $(this).val();
 		alert(value)
-		location.href="goSearch?srchKeco2="+value;
+		location.href="goSearch?srchKeco1="+value;
 	})
 	
 	AOS.init();

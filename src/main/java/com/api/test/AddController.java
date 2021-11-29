@@ -89,6 +89,7 @@ public class AddController {
 		
 		Search2[] rd = r_dao.getFamous(); 
 		int usernum = u_dao.finduser();
+		int companyNum = u_dao.findCompany();
 		String result[] = null;
 		String count[] = null;
 		
@@ -167,6 +168,7 @@ public class AddController {
 		mv.addObject("cx", companyX);
 		mv.addObject("userNum", usernum);
 		mv.addObject("company", rd);
+		mv.addObject("companyNum", companyNum);
 		mv.setViewName("admin/a_index");
 		return mv;
 	}

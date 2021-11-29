@@ -37,6 +37,10 @@ public class UmemDAO {
 	public String searchEmail(String email) {
 		return ss.selectOne("umem.searchEmail", email);
 	}
+	// 사업자번호 중복 확인하는 기능
+	public String searchCnum(String c_num) {
+		return ss.selectOne("umem.searchCnum", c_num);
+	}
 	
 	// 비밀번호 찾기 시 아이디와 이메일을 받아 해당하는 정보가 있는지 없는지 확인하는 기능
 	public String searchPwEmail(String id , String email) {
@@ -70,9 +74,14 @@ public class UmemDAO {
 		return ss.update("umem.pwUpdate", map);
 	}
 	
-	// 사용자의 수를 반환하는 기능
+	// 회원 사용자의 수를 반환하는 기능
 	public int finduser() {
 		return ss.selectOne("umem.findUser");
+	}
+	
+	// 기업 사용자의 수를 반환하는 기능
+	public int findCompany() {
+		return ss.selectOne("umem.findCompany");
 	}
 	
 	// 사용자의 날짜별 가입인원을 반환하는 기능

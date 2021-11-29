@@ -46,6 +46,25 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 		
 		return map;
 	}
+	//사용자 사업자등록번호체크
+	@RequestMapping("checkCnum")
+	@ResponseBody
+	public Map<String, String> searchCnum(String c_num){
+		Map<String, String> map = new HashMap<String, String>();
+		
+		// 사용자의 아이디를 받아서 사용 가능하다면 1 을 중복이라면 2의 값을 반환하자!!
+		String chk = u_dao.searchCnum(c_num);
+		
+		if(chk == null) {
+			//사용가능
+			map.put("overlap", "1");
+		}else {
+			//사용불가
+			map.put("overlap", "2");
+		}
+		
+		return map;
+	}
 	
 	
 	// 비동식 통신을 이용하여 사용자의 비밀번호가 길이 특수문자를 제대로 입력했는지 안 했는지 비교하는 기능!!
@@ -71,14 +90,12 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 			if(uvo.getMember() == null) {
 				uvo.setMember("user");
 			}
+			uvo.setC_num(uvo.getC_num().replace("-", ""));
 			
 			// Inbody에 저장
 			i_dao.addInbody(uvo.getId(), fat);
 			
 			uvo.setPw(SecureUtil.getEncrypt(uvo.getPw(), fat));
-			
-			uvo.setMember("user");
-			uvo.setStat("0");
 			
 			// 사용자 정보 DB에 저장!!
 			int cnt = u_dao.jogin(uvo);
@@ -88,7 +105,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 				md.addAttribute("value", "회원가입 완료");
 				// 가입축하 이메일 보내기
 				GoogleMail.gmailSend(uvo.getEmail(), uvo.getName(), "국삐 회원가입을 환영합니다");
-				return "home";
+				return "/home";
 			}
 			// 회원가입 실패시
 			md.addAttribute("value", "다시 시도해 주세요");

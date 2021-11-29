@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,6 +61,21 @@ public class LoginController {
 			map.put("value", "2");
 		}
 		return map;
+	}
+	
+	
+	
+	@RequestMapping("/join")
+	public String login() {
+		return "join";
+	}
+	@RequestMapping("u_mem_join")
+	public String go_Ujoin() {
+		return "uJoin";
+	}
+	@RequestMapping("c_mem_join")
+	public String go_Cjoin() {
+		return "cJoin";
 	}
 	
 }

@@ -126,21 +126,7 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span></span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -150,11 +136,6 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="../resources/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -408,7 +389,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 기업 회원수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">60</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${companyNum }</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -558,7 +539,7 @@
 											<button onclick="javascript:poiExcel('1')">일반회원정보 다운</button>
 											<button onclick="javascript:poiExcel('3')">기업회원 정보 다운</button>
                                     		<c:forEach var="vo" items="${company}" varStatus="st">
-	                                    		<tr>
+	                                    		<tr style="cursor: pointer; ">
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.subject}</td>
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.addr}</td>
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.title}</td>

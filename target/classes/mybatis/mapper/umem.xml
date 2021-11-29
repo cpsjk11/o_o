@@ -5,8 +5,8 @@
 <mapper namespace="umem">
 
 <insert id="joing" parameterType="api.u_member.vo.UmemVO">
-	INSERT INTO u_member (id,pw,name<if test="birth != null">,birth</if><if test="email != null">,email</if><if test="phone != null">,phone</if><if test="addr != null">,addr</if>,member)
-	VALUES (#{id},#{pw},#{name}<if test="birth != null">,#{birth}</if><if test="email != null">,#{email}</if><if test="phone != null">,#{phone}</if><if test="addr != null">,#{addr}</if>,#{member})
+	INSERT INTO u_member (id,pw,name<if test="birth != null">,birth</if><if test="email != null">,email</if><if test="phone != null">,phone</if><if test="addr != null">,addr</if>,member,u_date,stat,c_num)
+	VALUES (#{id},#{pw},#{name}<if test="birth != null">,#{birth}</if><if test="email != null">,#{email}</if><if test="phone != null">,#{phone}</if><if test="addr != null">,#{addr}</if>,#{member},sysdate,#{stat},${c_num})
 </insert>
 
 <!-- 유저가 회원가입이 되 있는지 안 됬는지 확인 하는 문장 -->
@@ -18,6 +18,11 @@
 <select id="searchEmail" parameterType="String" resultType="String">
 	SELECT * FROM u_member
 	WHERE email = #{no} AND member = 'user'
+</select>
+<!-- 사업자 등록번호 중복체크 -->
+<select id="searchCnum" parameterType="String" resultType="String">
+	SELECT * FROM u_member
+	WHERE c_num = #{c_num} AND stat = '1'
 </select>
 
 <!-- 로그인 기능!!! -->
@@ -39,4 +44,36 @@
 	WHERE id = #{id}
 </update>
 
+<!-- 총 회원의 수를 반환하는 기능! -->
+<select id="findUser" resultType="Integer">
+	SELECT COUNT(*) FROM u_member
+	WHERE stat = 0
+</select>
+<!-- 총 기업회원의 수를 반환하는 기능! -->
+<select id="findCompany" resultType="Integer">
+	SELECT COUNT(*) FROM u_member
+	WHERE stat = 1
+</select>
+
+<!-- 사용자의 가입날짜에 따라 숫자를 반환하는 기능 -->
+<select id="searchDate" parameterType="Map" resultType="Map">
+		SELECT TO_CHAR(b.dt, 'YY-MM') AS u_date
+     , NVL(SUM(a.cnt), 0) cnt
+  FROM ( SELECT TO_CHAR(u_date, 'YY-MM-DD') AS u_date
+              , COUNT(*) cnt
+           FROM u_member
+          WHERE u_date BETWEEN TO_DATE('${year}', 'YY-MM-DD')
+                             AND TO_DATE('${yearMonth}', 'YY-MM-DD') 
+                             AND stat = '${stat}'
+          GROUP BY u_date
+        ) a
+      , ( SELECT TO_DATE('${year}','YY-MM-DD') + LEVEL - 1 AS dt
+            FROM dual 
+         ${hi}
+        ) b
+  WHERE b.dt = a.u_date(+)
+  GROUP BY TO_CHAR(b.dt, 'YY-MM')
+  ORDER BY TO_CHAR(b.dt, 'YY-MM')
+
+</select>
 </mapper>
