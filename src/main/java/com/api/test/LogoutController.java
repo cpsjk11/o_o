@@ -12,7 +12,7 @@ public class LogoutController {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("/logout")
+	@RequestMapping(value={"/logout","/mypage/logout"})
 	public String logout() {
 		session.removeAttribute("userName");
 		return "redirect:/";
