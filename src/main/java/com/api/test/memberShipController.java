@@ -90,6 +90,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 			if(uvo.getMember() == null) {
 				uvo.setMember("user");
 			}
+			uvo.setC_num(uvo.getC_num().replace("-", ""));
 			
 			// Inbody에 저장
 			i_dao.addInbody(uvo.getId(), fat);
@@ -104,7 +105,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 				md.addAttribute("value", "회원가입 완료");
 				// 가입축하 이메일 보내기
 				GoogleMail.gmailSend(uvo.getEmail(), uvo.getName(), "국삐 회원가입을 환영합니다");
-				return "home";
+				return "/home";
 			}
 			// 회원가입 실패시
 			md.addAttribute("value", "다시 시도해 주세요");

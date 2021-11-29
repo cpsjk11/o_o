@@ -330,6 +330,7 @@
 			alert("사업자등록번호가 올바르지 않습니다.");
 			return;
 		}
+		
 		document.forms[0].submit();
 	}
 
