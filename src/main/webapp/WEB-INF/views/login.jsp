@@ -194,7 +194,7 @@
 	</div>
 	<div id="center">
 		<input id="id" name="id" placeholder="아이디를 입력해주세요"  oninput="handleOnInput(this)"/><br/>
-		<input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요"/><br/>
+		<input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요" onkeydown="enter()"/><br/>
 		<div id="check">
 			<label for="save">
 				<input type="checkbox" id="save" name="save"/> 
@@ -248,7 +248,7 @@
 		</div>
 	
 		<div id="s">
-			<a href="/ex" class="text">
+			<a href="/" class="text">
 				<div id="logins" class="button" onclick="login()">		
 					로그인
 				</div>
@@ -263,6 +263,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 <script>
+	function enter(){
+		if (window.event.keyCode == 13) {
+			login();
+	    }
+	}
 	function handleOnInput(e)  {
 	  e.value = e.value.replace(/[^A-Za-z0-9]/ig , '');
 	}
@@ -312,6 +317,7 @@
 			}
 		}).fail(function(err){
 			alert("문제발생!!!");
+			location.href="/";
 		});
 	}
 </script>
