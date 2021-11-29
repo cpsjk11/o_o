@@ -36,7 +36,7 @@
 							<span class="infoTo">사업자등록번호</span>
 							<input type="number" name="name" id="name" placeholder="사업자 등록번호를 입력해주세요." maxlength="12">
 							<span class="infoTo">이메일</span>
-							<input type="email" name="email" id="email" placeholder="이메일을 입력해주세요." maxlength="40" oninput="ValidateEmail(this)"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
+							<input type="email" name="email" id="email" placeholder="이메일을 입력해주세요." maxlength="40"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
 							<input type="button" name="email_chk" id="email_chk" value="인증코드 보내기" onclick="sends()"/>
 							<input type="text" name="email_chkOk" id="email_chkOk" style="display: none;" placeholder="인증코드를 입력해주세요.">
 							<span id="test"></span>
