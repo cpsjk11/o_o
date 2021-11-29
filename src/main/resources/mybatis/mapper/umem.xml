@@ -66,4 +66,9 @@
   ORDER BY TO_CHAR(b.dt, 'YY-MM')
 
 </select>
+<!-- 사용자의 정보를 전부 다 보여주는 기능 -->
+<select id="all" resultType="api.u_member.vo.UmemVO">
+	SELECT * FROM u_member
+</select>
+
 </mapper>

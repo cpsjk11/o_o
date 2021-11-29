@@ -550,6 +550,13 @@
                                     		</tr>
                                     	</thead>
                                     	<tbody id="ta">
+                                    	    <form id="ExcelForm" name="ExcelForm">
+												<!-- 엑셀파일로 다운로드 받을 날짜를 입력받았다고 가정해보자 ! -->
+												<input type="hidden" name="Excel" id="resultType" value="2" /> 
+											</form>
+											<button onclick="javascript:poiExcel('2')">추천학원 다운</button>
+											<button onclick="javascript:poiExcel('1')">일반회원정보 다운</button>
+											<button onclick="javascript:poiExcel('3')">기업회원 정보 다운</button>
                                     		<c:forEach var="vo" items="${company}" varStatus="st">
 	                                    		<tr>
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.subject}</td>
@@ -580,7 +587,7 @@
 															</select> --%>
 															<input type="hidden" id="r_rank${vo.srchTrprId}" name="r_rank">
 															<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					                                            <span id="Class">등급</span>
+					                                            <span class="Class">등급</span>
 					                                        </button>
 															<div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton" style="">
 					                                            <a class="dropdown-item" href="javascript:push('1')">1등급</a>
@@ -601,6 +608,7 @@
 																<input type="text" class="form-control form-control-user str" id="subject${vo.srchTrprId}" style="width: 260px;display: inline-block;" name="subject" placeholder="회사이름">
 																<a class="btn btn-success btn-icon-split" style="width: 7%; height: 38px; line-height: 38px; margin-left: 50px;" href="javascript:updateSend('${vo.srchTrprId}')">수정하기</a>
 															</div>
+															
 														</form>
 	                                    				
 	                                    			</td>
@@ -658,6 +666,7 @@
             </div>
         </div>
     </div>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../resources/js/jquery.min.js"></script>
@@ -676,6 +685,20 @@
     <script src="../resources/js/chart-area-demo.js"></script>
     <script src="../resources/js/chart-pie-demo.js"></script>
 	<script>
+	
+	function poiExcel(num) {
+		
+		if(num == 1)
+			$("#resultType").val(num);
+		if(num == 3)
+			$("#resultType").val(num);
+		
+		var formObj = $('#ExcelForm');
+		formObj.attr('action', '/poiExcel');
+		formObj.attr('method', 'post');
+		formObj.submit();
+		
+	}
 	
 		var r_rank = null;
 	
@@ -747,7 +770,7 @@
 		
 		function push(s){
 			r_rank = s;
-			$("#Class").text(s+"등급");
+			$(".Class").text(s+"등급");
 		}
 		
 		function updateSend(ids){
@@ -756,7 +779,7 @@
 			var srchTrprDegr = $("#srchTrprDegr"+ids).val();
 			var subject = $("#subject"+ids).val();
 			
-			if(addr.trim().length < 1 && addr.trim().length < 1 && addr.trim().length < 1 && addr.trim().length < 1){
+			if(r_rank.trim().length < 1 && addr.trim().length < 1 && srchTrprId.trim().length < 1 && srchTrprDegr.trim().length < 1){
 				alert("하나라도 입력해줘야즁 ㅡ,,ㅡ");
 				return;
 			}

@@ -88,5 +88,15 @@ public class UmemDAO {
 		
 		return list;
 	}
+	// 모든 사용자의 정보를 반환하는 기능
+	public UmemVO[] getList() {
+		UmemVO[] uvo = null;
+		List<UmemVO> list =  ss.selectList("umem.all");
+		if(list != null && !list.isEmpty()) {
+			uvo = new UmemVO[list.size()];
+			list.toArray(uvo);
+		}
+		return uvo;
+	}
 	
 }

@@ -1,5 +1,8 @@
 package com.api.test;
 
+import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +12,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +44,9 @@ public class AddController {
 	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private HttpServletRequest request;
 	
 	// 추천학원기능을 저장하는 기능
 	@RequestMapping("/admin")
@@ -70,7 +82,7 @@ public class AddController {
 	}
 	
 	@RequestMapping("/a_index")
-	public ModelAndView goIndex() {
+	public ModelAndView goIndex() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		List<Map<String, String>> list = null;
@@ -79,7 +91,6 @@ public class AddController {
 		int usernum = u_dao.finduser();
 		String result[] = null;
 		String count[] = null;
-		
 		
 		String userX = "";
 		String Y = "";
@@ -134,6 +145,7 @@ public class AddController {
 				System.out.println(userX);
 				System.out.println(result);
 			}
+			
 				
 			else if(a == 1) {
 				System.out.println("h2");
