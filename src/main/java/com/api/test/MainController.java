@@ -8,11 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController  {
 
 	@RequestMapping("/goSearch")
-	public ModelAndView goSearch(String value) {
+	public ModelAndView goSearch(String value, String srchKeco1) {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("value", value);
-		mv.setViewName("/search");
+		mv.addObject("search_bar", value);
+		mv.addObject("srchKeco1", srchKeco1);
+		mv.setViewName("redirect:/search");
 		return mv;
 	}
 	

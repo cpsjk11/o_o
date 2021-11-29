@@ -23,7 +23,7 @@
 	}
 	div#body {
 		width: 1200px;
-		height: 2000px;
+		height: 3000px;
 		margin-left: 150px;
 	}
 	div#footer {
@@ -47,6 +47,10 @@
 		height: 500px;
 	}
 	div#bottom_div {
+		width: 1200px;
+		height: 500px;
+	}
+	div#bottom2_div {
 		width: 1200px;
 		height: 500px;
 	}
@@ -76,13 +80,19 @@
 		width: 100%;
 		border-top: 1px solid #ddd;
 	}
-	th, td{
+	table#tra_table th, td{
 		padding: 15px 0;
 	    border-bottom: 1px solid #ddd;
 	}
 	.hidden {
 		display: none;
 	}
+	table#after_table th, td{
+		padding: 15px 0;
+		border-bottom: 1px solid #ddd;
+		text-align: left;
+	}
+	
 	
 </style>
 </head>
@@ -109,7 +119,7 @@
 		</div>
 		
 		<div id="top2_div">
-			<table>
+			<table id="tra_table">
 				<colgroup>
 					<col width="10%"/>
 					<col width="30%"/>
@@ -149,7 +159,21 @@
 		<div id="bottom_div">
 			<h1>훈련문의</h1>
 		</div>
-	</div>
+		
+		<div id="bottom2_div">
+			<h2>수강후기</h2>
+			<table id="after_table">
+				<tbody>
+					<tr>
+						<th>&#187; 너무 재미없어요</th>
+					</tr>
+					<tr>
+						<th>&#187; 수업이 졸려요</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>		
 	
 	<div id="footer">
 		<jsp:include page="footer.jsp"/>

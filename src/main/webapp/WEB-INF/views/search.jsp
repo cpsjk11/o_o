@@ -252,10 +252,10 @@
 				<input type="button" class="btn" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
 				<label style="font-size: 20px">
 				<c:if test="${search_bar ne null and search_bar ne ''}">
-					'${search_bar}'로 검색된 결과입니다.</label>
+					'${search_bar}'의 검색 결과입니다.</label>
 				</c:if>
 				<c:if test="${value ne null }">
-					'${value }'로 검색된 결과입니다.
+					'${value }'의 검색 결과입니다.
 				</c:if>
 			</form>
 		</div>
