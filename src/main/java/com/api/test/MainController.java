@@ -11,6 +11,10 @@ public class MainController  {
 	public ModelAndView goSearch(String value, String srchKeco1) {
 		ModelAndView mv = new ModelAndView();
 		
+		if(srchKeco1.length() != 2) {
+			srchKeco1 = 0+srchKeco1;
+		}
+		
 		mv.addObject("search_bar", value);
 		mv.addObject("srchKeco1", srchKeco1);
 		mv.setViewName("redirect:/search");
