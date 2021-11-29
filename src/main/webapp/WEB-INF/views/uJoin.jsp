@@ -244,12 +244,6 @@
 			$("#email").focus();
 			return;
 		}
-
-		if(!email_check(email)){
-			alert("이메일 형식이 다릅니다.");
-			return false;
-		}
-
 		if($("#chkEMAIL1").val() == 1){
 			alert("이메일이 중복되었습니다");
 			return;
