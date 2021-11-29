@@ -11,7 +11,7 @@ public class MainController  {
 	public ModelAndView goSearch(String value, String srchKeco1) {
 		ModelAndView mv = new ModelAndView();
 		
-		if(srchKeco1.length() != 2) {
+		if(srchKeco1 != null && srchKeco1.length() != 2) {
 			srchKeco1 = 0+srchKeco1;
 		}
 		
