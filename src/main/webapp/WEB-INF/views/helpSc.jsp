@@ -28,7 +28,6 @@
 		margin: 0 auto;
 		width: 60%;
 		height: 2000px;
-		border: 1px solid red;
 	}
 	#category_area{
 		margin-top: 100px;
@@ -55,7 +54,6 @@
 	}
 	#category_area ul a:hover{color: #3A2F2F;}
 	#bbs_b_area{
-		border: 1px solid blue;
 		margin: 0 auto;
 		padding: 2%;
 		width: 90%;
@@ -117,7 +115,6 @@
 	#menu_area{
 		width: 100%;
 		height: 3%;
-		border: 1px solid orange;
 		padding: 0.2em;
 	}
 	#menu_panel{
