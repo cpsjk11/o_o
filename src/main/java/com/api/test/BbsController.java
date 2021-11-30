@@ -21,5 +21,9 @@ public class BbsController {
 		System.out.println(bname);
 		return "/helpWrite";
 	}
+	@RequestMapping("test")
+	public String test() {
+		return "/testPage";
+	}
 	
 }
