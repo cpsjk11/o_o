@@ -20,5 +20,9 @@ public class MainController  {
 		mv.setViewName("redirect:/search");
 		return mv;
 	}
+	@RequestMapping("/helpSc")
+	public String goHelp() {
+		return "helpSc";
+	}
 	
 }

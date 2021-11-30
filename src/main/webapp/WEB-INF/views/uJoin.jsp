@@ -300,6 +300,12 @@
 			$("#name").focus();
 			return;
 		}
+		if($("#phone").val().trim().length < 1){
+			alert("휴대폰번호를 입력해주세요.");
+			$("#phone").val("");
+			$("#phone").focus();
+			return;
+		}
 		if($("#chkID").val() == 1){
 			alert("아이디 중복확인을 해주세요");
 			return;
