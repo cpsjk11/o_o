@@ -42,17 +42,18 @@
 		justify-content: space-between;
 	}
 	.bbs{
+		cursor: wait;
 		width: 45%;
 		height: 15%;
 		border: 0.7px solid #ababab;
 		padding: 1em;
 		transform: translate(0, 0px);
 		transition-property:transform;
-		transition-duration:0.4s;
+		transition-duration:0.3s;
 	}
 	.bbs:hover{
-		transform: translate(0, -5px);
-		box-shadow: 2px 3px 15px rgb(0 0 0 / 7%)
+		transform: translate(0, -4px);
+		box-shadow: 2px 3px 15px rgb(0 0 0 / 15%)
 	}
 	.bbs div span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;

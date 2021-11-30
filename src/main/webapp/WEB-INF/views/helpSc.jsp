@@ -38,7 +38,7 @@
 					</ul>
 				</div>
 				<div id="bbs_b_area">
-					<div class="bbs">
+					<div class="bbs" onclick="javascrip:location.href='/?b_idx=1'">
 						<div id="bbs_title"><span>국삐는 어떻게 사용하는건가요?</span></div>
 						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
 						<div id="bbs_writer"><span>안치환</span></div>
