@@ -16,126 +16,12 @@
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/foot.css">
+<link rel="stylesheet" href="resources/css/helpSc.css">
 
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-	#wrap{
-		width: 100%;
-		height: 100%;
-	}
-	#bbs_area{
-		margin: 0 auto;
-		width: 60%;
-		height: 2000px;
-	}
-	#category_area{
-		margin-top: 100px;
-		border: 0.6px solid #efefef;
-		padding: 2.3em;
-		margin-bottom: 2.3em;
-	}
-	#category_area ul{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		display: flex;
-		justify-content: space-between;
-		margin-left: 2%;
-	}
-	#category_area ul a{
-		color: #94969b;
-		font-size: 1em;
-		font-weight: 350;
-		flex: auto;
-		transition-property:color;
-		transition-duration:0.2s;
-	}
-	#category_area ul a:nth-child(1){
-		color: #3A2F2F;
-	}
-	#category_area ul a:hover{color: #3A2F2F;}
-	#bbs_b_area{
-		margin: 0 auto;
-		padding: 2%;
-		width: 90%;
-		height: 85%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-	.bbs{
-		width: 45%;
-		height: 15%;
-		border: 0.7px solid #ababab;
-		padding: 1em;
-		transform: translate(0, 0px);
-		transition-property:transform;
-		transition-duration:0.4s;
-	}
-	.bbs:hover{
-		transform: translate(0, -5px);
-		box-shadow: 2px 3px 15px rgb(0 0 0 / 7%)
-	}
-	.bbs div span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		color: #94969b;
-	}
-	#bbs_title{
-		margin: 1em 0 1.5em;
-	}
-	#bbs_title span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1.2em;
-		font-weight: 450;
-	}
-	#bbs_content{
-		margin: 1em 0 5.5em;
-	}
-	#bbs_content span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1.0em;
-		font-weight: 400;
-	}#bbs_writer{
-		margin: 1em 0 1em;
-	}
-	#bbs_writer span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1.0em;
-	}
-	#bbs_prop span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 0.8em;
-	}
-	#bbs_date{
-		float: right;
-	}
-	#bbs_date span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 0.8em;
-	}
-	#menu_area{
-		width: 100%;
-		height: 3%;
-		padding: 0.2em;
-	}
-	#menu_panel{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		float: right;
-		text-align: center;
-		line-height: 50px;
-		width: 5em;
-		height:	100%; 
-		font-size: 1em;
-		background-color: #ffa500;
-		border: 1px solid #efefef;
-		border-radius: 5px;
-	}
-	#menu_panel:hover {
-		background-color: #ed9a03;
-	}
-	#paging_area{
-		margin: 0 auto;
-		font-size: 12px;
-	}
+	
 </style>
 </head>
 <body>
