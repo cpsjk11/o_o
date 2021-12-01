@@ -62,7 +62,7 @@ public class BbsPaging {
 		sb = new StringBuffer("<ol class='paging'>");
 
 		if (isPrePage) {
-			sb.append("<li><a href='list.inc?cPage=");
+			sb.append("<li><a href='helpSc?cPage=");
 			sb.append(nowPage - blockPage);
 			sb.append("'> &lt; </a></li>"); // <a href='list.inc?cPage=1'> < </a></li>
 		} else
@@ -77,7 +77,7 @@ public class BbsPaging {
 				sb.append(i);
 				sb.append("</li>");
 			} else {
-				sb.append("<li><a href='list.inc?cPage=");
+				sb.append("<li><a href='helpSc?cPage=");
 				sb.append(i); // 파라미터 값
 				sb.append("'>"); // <a href='list.inc?cPage=1>
 				sb.append(i);// 화면에 표현되는 페이지 값
@@ -87,7 +87,7 @@ public class BbsPaging {
 
 		// 다음기능 가능여부를 확인
 		if (isNextPage) {
-			sb.append("<li><a href='list.inc?cPage=");
+			sb.append("<li><a href='helpSc?cPage=");
 			sb.append(nowPage + blockPage);
 			sb.append("'> &gt; </a></li>");
 		} else

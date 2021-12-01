@@ -32,33 +32,36 @@
 	
 	ol.paging li {
 	    float:left;
-	    margin-right:8px;
+	    margin-right:2em;
 	}
 	
 	ol.paging li a {
 	    display:block;
 	    padding:3px 7px;
-	    border:1px solid #00B3DC;
+	    border:1px solid #898989;
+	    border-radius: 9999px;
 	    color:#2f313e;
 	    font-weight:bold;
 	}
 	
 	ol.paging li a:hover {
-	    background:#00B3DC;
+	    background:#86e9ff;
 	    color:white;
 	    font-weight:bold;
 	}
 	
 	.disable {
 	    padding:3px 7px;
-	    border:1px solid silver;
+	    border:1px solid #ababab;
+	    border-radius: 9999px;
 	    color:silver;
 	}
 	
 	.now {
 	   padding:3px 7px;
-	    border:1px solid #ff4aa5;
-	    background:#ff4aa5;
+	   border:1px solid #ababab;
+	    border-radius: 9999px;
+	    background:#9b9cff;
 	    color:white;
 	    font-weight:bold;
 	}

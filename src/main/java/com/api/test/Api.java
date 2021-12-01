@@ -481,7 +481,7 @@ public class Api { //
 	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&returnType=XML&outType=2");
+		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=qWqEb8rhoMy5PH165fAA0bQIXsuy9OvZ&returnType=XML&outType=2");
 		sb.append("&srchTorgId="+TRAINST_CST_ID);
 		sb.append("&srchTrprDegr="+TRPR_DEGR);
 		sb.append("&srchTrprId="+TRPR_ID);

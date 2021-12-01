@@ -58,7 +58,6 @@ public class BbsController {
 		mv.addObject("rowTotal", rowTotal);
 		mv.addObject("blockList", block_list);
 		mv.addObject("pageCode", pageCode);
-		System.out.println("ar: "+ar +"pageCode"+pageCode);
 		mv.setViewName("/helpSc");
 		return mv;
 	}
