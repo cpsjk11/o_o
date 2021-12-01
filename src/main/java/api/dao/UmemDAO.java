@@ -2,20 +2,17 @@ package api.dao;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import api.action.CheckChart;
 import api.u_member.vo.UmemVO;
+
 
 @Repository
 public class UmemDAO {
@@ -111,7 +108,7 @@ public class UmemDAO {
 	// 기업 일반 유저 회원의 보고싶을 수를 반환하는 기능
 	public UmemVO[] getMember(String member, String begin, String end) {
 		UmemVO[] uvo = null; 
-		
+		System.out.println(member);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("stat", member);
 		map.put("begin", begin);
@@ -146,8 +143,12 @@ public class UmemDAO {
 	}
 	
 	// 기업 일반 유저 삭제 기능
-	public int delList(String value) {
-		return ss.update("umem.delList", value);
+	public int delList(String value,String stat) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("value", value);
+		map.put("result", stat);
+		
+		return ss.update("umem.delList", map);
 	}
 	
 	// 기업 일반 유저 검색된 총 수를 반환

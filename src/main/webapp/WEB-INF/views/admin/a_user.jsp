@@ -278,7 +278,6 @@
                     		<form action="a_user" method="post">
                     			<select name="search" id="search"  style="width: 120px; float:left; margin-right: 10px; margin-top:2px; height: 100%;" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
                             		<option  value="null" style="display: none;"></option>
-		                            <option value="ids">삭제</option>
 		                            <option value="id">ID검색</option>
 		                            <option value="name">이름검색</option>
 		                            <option value="email">이메일검색</option>
@@ -318,17 +317,16 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<colgroup>
-										<col width="50px">
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-									</colgroup>
                                     <thead>
+                                    <colgroup>
+                                    	<col width="345px">
+                                    	<col width="120px">
+                                    	<col width="250px">
+                                    	<col width="*">
+                                    	<col width="120px">
+                                    	<col width="120px">
+                                    	<col width="80px">
+                                    </colgroup>
                                         <tr>
                                             <th>아이디</th>
                                             <th>이름</th>
@@ -348,19 +346,28 @@
 	                                            <td>${uvo.name}</td>
 	                                            <td>${uvo.email}</td>
 	                                            <td>${uvo.addr}</td>
-	                                            <c:if test="${uvo.stat eq 0 }">
+	                                            <c:if test="${uvo.stat eq 0 || uvo.stat eq 1}">
 	                                            	<td>회원</td>
 	                                            </c:if>
-	                                            <c:if test="${uvo.stat eq 1 }">
+	                                            <c:if test="${uvo.stat eq -1 || uvo.stat eq -2}">
 	                                            	<td>탈퇴회원</td>
 	                                            </c:if>
 	                                            <c:if test="${uvo.u_date ne null }">
 	                                            	<td>${fn:substring(uvo.u_date,0,11)}</td>
 	                                            </c:if>
+	                                            <c:if test="${uvo.u_date eq null }">
+	                                            	<td></td>
+	                                            </c:if>
 	                                            <%-- <td>${uvo.ip}</td> --%>
-	                                            <td>
-	                                        		<button class="btn btn-primary" style="height: 34px; width:100%; text-align: center; line-height: 100%; font-size: 12px; margin: auto;" type="button" id="del${uvo.id}" value="${uvo.id}" onclick="delSend('${uvo.id}')">삭제</button>
-	                                        	</td>
+	                                            <c:if test="${uvo.stat eq -1 || uvo.stat eq -2}">
+	                                            	<td><button class="btn btn-primary" style="height: 34px; width:100%; text-align: center; line-height: 100%; font-size: 12px; margin: auto;" disabled="disabled" type="button">삭제</button></td>
+	                                            </c:if>
+	                                            <c:if test="${uvo.stat ne -1 && uvo.stat ne -2}">
+		                                            <td>
+		                                        		<button class="btn btn-primary" style="height: 34px; width:100%; text-align: center; line-height: 100%; font-size: 12px; margin: auto;" type="button" id="del${uvo.id}" value="${uvo.id}" onclick="delSend('${uvo.id}')">삭제</button>
+		                                        	</td>
+	                                            </c:if>
+	                                            	
 	                                        </tr>
                                         </c:forEach>
                                     </tbody>
@@ -446,7 +453,8 @@
 	function delSend(ss){
 		
 		var id = $("#del"+ss).val();
-		var stat = 1;
+		var stat = ${member};
+		alert(stat);
 		if (!confirm("삭제를 확인합니다.")) {
 	        // 취소(아니오) 버튼 클릭 시 이벤트
 	        return;
@@ -483,11 +491,11 @@
 			
 			
 			
-			if(result.trim().length < 1){
+			if(result.trim().length < 1 && result != 'null'){
 				alert("입력해유~");
 				return;
 			}
-			if(value.trim().length < 1){
+			if(value.trim().length < 1 && result != 'null'){
 				alert("입력해유~");
 				return;
 			}
