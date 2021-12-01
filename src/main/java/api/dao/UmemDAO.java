@@ -108,4 +108,56 @@ public class UmemDAO {
 		return uvo;
 	}
 	
+	// 기업 일반 유저 회원의 보고싶을 수를 반환하는 기능
+	public UmemVO[] getMember(String member, String begin, String end) {
+		UmemVO[] uvo = null; 
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("stat", member);
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		List<UmemVO> list = ss.selectList("umem.getList",map);
+		
+		if(list != null && !list.isEmpty()) {
+			uvo = new UmemVO[list.size()];
+			list.toArray(uvo);
+		}
+		return uvo;
+	}
+	// 기업 일반 유저 검색시 반환하는 기능
+	public UmemVO[] getSearchMember(String member, String begin, String end, String result, String value) {
+		UmemVO[] uvo = null; 
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("stat", member);
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("result", result);
+		map.put("value", value);
+		
+		List<UmemVO> list = ss.selectList("umem.searchList",map);
+		
+		if(list != null && !list.isEmpty()) {
+			uvo = new UmemVO[list.size()];
+			list.toArray(uvo);
+		}
+		return uvo;
+	}
+	
+	// 기업 일반 유저 삭제 기능
+	public int delList(String value) {
+		return ss.update("umem.delList", value);
+	}
+	
+	// 기업 일반 유저 검색된 총 수를 반환
+	public int searchFind(String member,String result,String value) {
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("stat", member);
+		map.put("result", result);
+		map.put("value", value);
+		
+		return ss.selectOne("umem.searchFindUser", map);
+	}
+	
 }

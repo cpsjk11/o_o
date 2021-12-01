@@ -49,6 +49,30 @@
 	SELECT COUNT(*) FROM u_member
 	WHERE stat = 0
 </select>
+
+<!-- 검색된 회원의 수를 반환하는 기능! -->
+<select id="searchFindUser" parameterType="Map" resultType="Integer">
+	SELECT COUNT(*) FROM u_member
+	<if test="result == 'id'">
+  		WHERE stat = #{stat} AND id = #{value}
+  	</if>
+  	<if test="result == 'name'">
+  		WHERE stat = #{stat} AND name = #{value}
+  	</if>
+  	<if test="result == 'email'">
+  		WHERE stat = #{stat} AND email = #{value}
+  	</if>
+  	<if test="result == 'addr'">
+  		WHERE stat = #{stat} AND addr = #{value}
+  	</if>
+  	<if test="result == 'stat'">
+  		WHERE stat = #{stat} AND stat = #{value}
+  	</if>
+  	<if test="result == 'u_date'">
+  		WHERE stat = #{stat} AND u_date = #{value}
+  	</if>
+</select>
+
 <!-- 총 기업회원의 수를 반환하는 기능! -->
 <select id="findCompany" resultType="Integer">
 	SELECT COUNT(*) FROM u_member
@@ -80,5 +104,52 @@
 <select id="all" resultType="api.u_member.vo.UmemVO">
 	SELECT * FROM u_member
 </select>
+
+<!-- 원하는 페이지 결과값만큼 반환하는 기능 -->
+<select id="getList" parameterType="Map" resultType="api.u_member.vo.UmemVO">
+	SELECT * FROM(
+	  	SElECT rownum r_num,a.* FROM (
+		  	SELECT * FROM u_member
+		  	WHERE stat = #{stat}
+		  	ORDER BY id DESC
+		) a 
+	) WHERE r_num BETWEEN #{begin} AND #{end}
+</select>
+
+<!-- 찾기 기능 -->
+<select id="searchList" parameterType="Map" resultType="api.u_member.vo.UmemVO">
+	SELECT * FROM(
+	  	SElECT rownum r_num,a.* FROM (
+		  	SELECT * FROM u_member
+		  	<if test="result == 'id'">
+		  		WHERE stat = #{stat} AND id = #{value}
+		  	</if>
+		  	<if test="result == 'name'">
+		  		WHERE stat = #{stat} AND name = #{value}
+		  	</if>
+		  	<if test="result == 'email'">
+		  		WHERE stat = #{stat} AND email = #{value}
+		  	</if>
+		  	<if test="result == 'addr'">
+		  		WHERE stat = #{stat} AND addr = #{value}
+		  	</if>
+		  	<if test="result == 'stat'">
+		  		WHERE stat = #{stat} AND stat = #{value}
+		  	</if>
+		  	<if test="result == 'u_date'">
+		  		WHERE stat = #{stat} AND u_date = #{value}
+		  	</if>
+		  	ORDER BY id DESC
+		) a 
+	) WHERE r_num BETWEEN #{begin} AND #{end}
+</select>
+
+<!-- 삭제기능 -->
+<update id="delList" parameterType="String">
+	UPDATE u_member
+	SET stat = '-1'
+	WHERE id = #{value}
+</update>
+
 
 </mapper>

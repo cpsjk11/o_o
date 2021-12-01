@@ -14,6 +14,7 @@ public class Paging {
 		endPage, // 마지막 페이지 값
 		begin, // 한 페이지의 시작 레코드 값
 		end; // 한 페이지의 표현할 마지막 레코드 값
+	private String page;
 	
 	//블록페이지를 구해야 스타트페이지와 엔드페이지를 구할 수 있다.
 	
@@ -28,11 +29,12 @@ public class Paging {
 	//JSP에서 표현할 페이징 HTML코드를 저장할 곳!
 	private StringBuffer sb;
 	
-	public Paging(int nowPage, int rowTotal, int blockList, int blockPage) {
+	public Paging(int nowPage, int rowTotal, int blockList, int blockPage,String stat) {
 		this.nowPage = nowPage;
 		this.rowTotal = rowTotal;
 		this.blockList = blockList;
 		this.blockPage = blockPage;
+		this.page = page;
 		
 		//이전기능과 다음기능을 초기화 시킨다.
 		//절대로 지금은 수행하면안돼 !!! 기달려!!
@@ -72,27 +74,30 @@ public class Paging {
 		
 		//이제 현재페이지 값도 알고, 시작페이지와 마지막페이지 값을알았으니
 		//페이지 기법에 사용할 코드를 작성하여 StringBuffer에 저장하자!
-		sb = new StringBuffer("<ol class='paging'>");
-		
+		sb = new StringBuffer("<div class='col-sm-12 col-md-7'><div class='dataTables_paginate paging_simple_numbers' id='dataTable_paginate'style='float: right;'>");
+		sb.append("<div style='float: right;'>");
+		sb.append("<ul class='pagination'>");
 		if(isPrePage) {
-			sb.append("<li><a href='api?page=");
+			sb.append("<li class='paginate_button page-item next' id='dataTable_previous'><a href='a_user?member="+stat+"&page=");
 			sb.append(nowPage-blockPage);
-			sb.append("'> &lt; </a></li>"); // <a href='list.inc?cPage=1'> < </a></li>
+			sb.append("'aria-controls='dataTable' class='page-link'> &lt; </a></li>"); // <a href='list.inc?cPage=1'> < </a></li>
 		}else
-			sb.append("<li class='disable'> &lt; </li>");
+			sb.append("<li class='paginate_button page-item previous disabled'><a href='#' aria-controls='dataTable' tabindex='0' class='page-link'>&lt;</a></li>");
 		
 		//페이지 번호를 출력하는 반복문
 		for(int i=startPage; i<=endPage; i++) {
 			//i의 값이 현재페이지의 값과 같을 때는 
 			// a태그를 지정하지 않고 숫자만 출력하자!
 			if(i == nowPage) {
-				sb.append("<li class='now'>");
+				sb.append("<li class='paginate_button page-item active'>");
+				sb.append("<a href='#' aria-controls='dataTable' data-dt-idx="+i+" tabindex='0' class='page-link'>");
 				sb.append(i);
+				sb.append("</a></li>");
 				sb.append("</li>");
 			} else {
-				sb.append("<li><a href='api?page=");
+				sb.append("<li  class='paginate_button page-item'><a href='a_user?member="+stat+"&page=");
 				sb.append(i); //파라미터 값
-				sb.append("'>"); // <a href='list.inc?cPage=1>
+				sb.append("'aria-controls='dataTable' data-dt-idx="+i+" tabindex='0' class='page-link'>"); // <a href='list.inc?cPage=1>
 				sb.append(i);// 화면에 표현되는 페이지 값
 				sb.append("</a></li>");
 			}
@@ -100,13 +105,13 @@ public class Paging {
 		
 		//다음기능 가능여부를 확인
 		if(isNextPage) {
-			sb.append("<li><a href='api?page=");
-			sb.append(nowPage+blockPage);
-			sb.append("'> &gt; </a></li>");
+			sb.append("<li class='paginate_button page-item next' id='dataTable_previous'><a href='a_user?member="+stat+"&page=");
+			sb.append(nowPage-blockPage);
+			sb.append("'aria-controls='dataTable' class='page-link'> &gt; </a></li>");
 		} else 
-			sb.append("<li class='disable'> &gt; </li>");
+			sb.append("<li class='paginate_button page-item previous disabled'><a href='#' aria-controls='dataTable' tabindex='0' class='page-link'>&gt;</a></li>");
 		
-		sb.append("</ol>");
+		sb.append("</ul></div></div>");
 	}
 
 	public int getNowPage() {

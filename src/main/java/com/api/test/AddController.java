@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.action.CheckChart;
+import api.action.Paging;
 import api.action.RecommendedSchool;
 import api.dao.RdDAO;
 import api.dao.UmemDAO;
+import api.u_member.vo.UmemVO;
 import api.vo.Search2;
 
 @Controller
@@ -137,22 +139,15 @@ public class AddController {
 				result[i] = res[i].substring(idx+1, id);
 				
 			}
-			System.out.println(a);
 			if(a == 0) {
-				System.out.println("h1");
 				// 유저 회원가입 정보
 				userX = chk.getChart(result);
 				Y = chk.getChart(count);
-				System.out.println(userX);
-				System.out.println(result);
 			}
 			
 				
 			else if(a == 1) {
-				System.out.println("h2");
 				companyX = chk.getChart(result);
-				System.out.println(companyX);
-				System.out.println(result);
 			}
 				
 		}
@@ -161,7 +156,6 @@ public class AddController {
 		
 		/*String resultX = chk.getChart(result);
 		String resultY = chk.getChart(count);*/
-		System.out.println(userX+"/"+Y+"/"+companyX);
 		
 		mv.addObject("ux", userX);
 		mv.addObject("ychart", Y);
@@ -176,20 +170,88 @@ public class AddController {
 	// 삭제 버튼을 눌렀을때 삭제!
 	@RequestMapping("/a_del")
 	@ResponseBody
-	public Map<String, String> delCompany(String id){
+	public Map<String, String> delCompany(String id, String stat){
 		Map<String, String> map = new HashMap<String, String>();
-		
-		int cnt = r_dao.delCompany(id);
-		
-		if(cnt > 0) {
-			map.put("value", "1");
-		}else
-			map.put("value", "2");
-		
+		if(stat == null)
+			stat = "0";
+		if(stat.equals("0")) {
+			// 추천학원 삭제일 경우
+			int cnt = r_dao.delCompany(id);
+			
+			if(cnt > 0) {
+				map.put("value", "1");
+			}else
+				map.put("value", "2");
+			
+		}else {
+			System.out.println(id);
+			int cnt = u_dao.delList(id);
+			
+			if(cnt > 0) {
+				map.put("value", "1");
+			}else
+				map.put("value", "2");
+		}
 		return map;
+		
 	}
 	
-	
+	// 일반 회원들을 반환해주는 기능
+	@RequestMapping("/a_user")
+	public ModelAndView goUser(String page, String member,String listnum,String search,String value) {
+		ModelAndView mv = new ModelAndView();
+		
+		int total = 0;
+		
+		if(member == null) {
+			mv.setViewName("redirect:/a_index");
+			return mv;
+		}
+		
+		if(member.equals("0"))
+			total = u_dao.finduser();
+		else if(member.equals("1"))
+			total = u_dao.findCompany();
+		
+		if(listnum == null)
+			listnum = "5";
+		
+		if(page == null)
+			page = "1";
+		
+			
+		if(search == null)
+			search = "0";
+		
+		UmemVO[] uvo = null;
+		
+		Paging pa = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, member);
+		
+		if(search.equals("0"))
+			uvo = u_dao.getMember(member, String.valueOf(pa.getBegin()), String.valueOf(pa.getEnd()));
+		
+		else {
+			// 검색된 값이 있을때 이다.
+				total = u_dao.searchFind(member, search, value);
+				Paging pa1 = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, member+"&search="+search+"&value="+value);
+				System.out.println(search);
+				System.out.println(member+"&search="+search+"&value="+value);
+				System.out.println(pa1.getBegin());
+				System.out.println(pa1.getEnd());
+				uvo = u_dao.getSearchMember(member, String.valueOf(pa1.getBegin()), String.valueOf(pa1.getEnd()), search, value);
+				//System.out.println(uvo.toString());
+				
+		}
+		
+		mv.addObject("all", uvo);
+		mv.addObject("listnum", listnum);
+		mv.addObject("pa", page);
+		mv.addObject("member", member);
+		mv.addObject("page", pa.getSb().toString());
+		mv.setViewName("admin/a_user");
+		
+		return mv;
+	}
 
 	
 }

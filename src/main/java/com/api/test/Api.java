@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.OpenAtts;
 
 import api.action.Paging;
 import api.action.RecommendedSchool;
@@ -280,11 +279,11 @@ public class Api { //
 		}	
 		
 			int totalPage = Integer.parseInt(counts);
-			Paging paging = new Paging(Integer.parseInt(page), totalPage, 30, 5);
+			//Paging paging = new Paging(Integer.parseInt(page), totalPage, 30, 5);
 			mv.addObject("list", vo1);
 			mv.addObject("n", totalPage);
 			mv.addObject("p", page);
-			mv.addObject("page", paging.getSb().toString());
+			//mv.addObject("page", paging.getSb().toString());
 			mv.setViewName("api");
 			return mv;
 	}
