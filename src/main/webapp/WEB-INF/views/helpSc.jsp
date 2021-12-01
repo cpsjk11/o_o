@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +24,45 @@
 	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 	
+	/* paging */
+	
+	ol.paging {
+	    list-style:none;
+	}
+	
+	ol.paging li {
+	    float:left;
+	    margin-right:8px;
+	}
+	
+	ol.paging li a {
+	    display:block;
+	    padding:3px 7px;
+	    border:1px solid #00B3DC;
+	    color:#2f313e;
+	    font-weight:bold;
+	}
+	
+	ol.paging li a:hover {
+	    background:#00B3DC;
+	    color:white;
+	    font-weight:bold;
+	}
+	
+	.disable {
+	    padding:3px 7px;
+	    border:1px solid silver;
+	    color:silver;
+	}
+	
+	.now {
+	   padding:3px 7px;
+	    border:1px solid #ff4aa5;
+	    background:#ff4aa5;
+	    color:white;
+	    font-weight:bold;
+	}
+	
 </style>
 </head>
 <body>
@@ -30,65 +71,17 @@
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>
 				<div id="bbs_b_area">
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>국삐는 어떻게 사용하는건가요?</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span>&nbsp;&nbsp;<span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
+				<c:forEach var="vo" items="${ar }" varStatus="st">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+						<div id="bbs_title"><span>${vo.subject }</span></div>
+						<div id="bbs_content"><span>${vo.content }</span></div>
+						<div id="bbs_writer"><span>${vo.writer }</span></div>
+						<div id="bbs_prop"><span>${vo.hit }</span>&nbsp;&nbsp;<span>좋아요</span></div>
+						<div id="bbs_date"><span>${vo.write_date }</span></div>
 						<div class="transition"></div>
 					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span>&nbsp;&nbsp;<span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-						<div class="transition"></div>
-					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span>&nbsp;&nbsp;<span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span><span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span><span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span><span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span><span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-					</div>
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=1'">
-						<div id="bbs_title"><span>이래도 되는건가요</span></div>
-						<div id="bbs_content"><span>사람이 꽃보다 아름다워</span></div>
-						<div id="bbs_writer"><span>안치환</span></div>
-						<div id="bbs_prop"><span>조회수</span><span>좋아요</span></div>
-						<div id="bbs_date"><span>2021-11-30</span></div>
-					</div>
-					<div id="paging_area">1 2 3 4 5</div>
+				</c:forEach>
+					<div id="paging_area">${pageCode }</div>
 					<div id="menu_area">
 						<a href="/helpWrite?bname=자주묻는질문" id="menu_panel">글쓰기</a>
 					</div>	
