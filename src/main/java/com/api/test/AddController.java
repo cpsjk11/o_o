@@ -23,6 +23,8 @@ import api.dao.UmemDAO;
 import api.u_member.vo.UmemVO;
 import api.vo.Search2;
 
+
+
 @Controller
 public class AddController {
 
@@ -161,8 +163,8 @@ public class AddController {
 	public Map<String, String> delCompany(String id, String stat){
 		Map<String, String> map = new HashMap<String, String>();
 		if(stat == null)
-			stat = "0";
-		if(stat.equals("0")) {
+			stat = "3";
+		if(stat.equals("3")) {
 			// 추천학원 삭제일 경우
 			int cnt = r_dao.delCompany(id);
 			
@@ -172,8 +174,7 @@ public class AddController {
 				map.put("value", "2");
 			
 		}else {
-			System.out.println(id);
-			int cnt = u_dao.delList(id);
+			int cnt = u_dao.delList(id,stat);
 			
 			if(cnt > 0) {
 				map.put("value", "1");
@@ -188,7 +189,7 @@ public class AddController {
 	@RequestMapping("/a_user")
 	public ModelAndView goUser(String page, String member,String listnum,String search,String value) {
 		ModelAndView mv = new ModelAndView();
-		
+		String paging = "";
 		int total = 0;
 		
 		if(member == null) {
@@ -214,9 +215,10 @@ public class AddController {
 		UmemVO[] uvo = null;
 		
 		Paging pa = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, member);
-		
-		if(search.equals("0"))
+		if(search.equals("0")) {
 			uvo = u_dao.getMember(member, String.valueOf(pa.getBegin()), String.valueOf(pa.getEnd()));
+			paging = pa.getSb().toString();
+		}
 		
 		else {
 			// 검색된 값이 있을때 이다.
@@ -228,6 +230,7 @@ public class AddController {
 				System.out.println(pa1.getEnd());
 				uvo = u_dao.getSearchMember(member, String.valueOf(pa1.getBegin()), String.valueOf(pa1.getEnd()), search, value);
 				//System.out.println(uvo.toString());
+				paging = pa1.getSb().toString();
 				
 		}
 		
@@ -235,7 +238,7 @@ public class AddController {
 		mv.addObject("listnum", listnum);
 		mv.addObject("pa", page);
 		mv.addObject("member", member);
-		mv.addObject("page", pa.getSb().toString());
+		mv.addObject("page", paging);
 		mv.setViewName("admin/a_user");
 		
 		return mv;
