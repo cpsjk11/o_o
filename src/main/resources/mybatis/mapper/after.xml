@@ -16,4 +16,10 @@
 	WHERE tr_id = #{no}
 </select>
 
+<!-- 수강후기 작성자 불러오기 기능 -->
+<select id="list_id" parameterType="String" resultType="String">
+	SELECT u_mem_id FROM after
+	WHERE u_mem_id = #{id}
+</select>
+
 </mapper>

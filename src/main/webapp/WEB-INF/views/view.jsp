@@ -92,6 +92,9 @@
 		border-bottom: 1px solid #ddd;
 		text-align: left;
 	}
+	#add_btn{
+		float: right;
+	}
 	
 	
 </style>
@@ -111,7 +114,7 @@
 				<span style="width: 700px; height: 150px; float:right;"><h2>${vo.TRPR_NM}<br/></h2><h3>${vo3.TR_STA_DT} ~ ${vo3.TR_END_DT}(${vo2.TOT_TRAING_DYCT}일, ${vo2.TOT_TRAING_TIME}시간)</h3></span>
 			</div>
 			<div style="width: 700px; height: 50px; float:right;">
-				<button type="button" class="btn2" id="register_btn" onclick="">수강신청</button>&nbsp;&nbsp;
+				<a href="register?id=${session.userName}&TRPR_ID=${vo.TRPR_ID}" target="_blank"><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
 				<button type="button" class="btn" id="like_btn" onclick="like(this)">&#x1f49b;관심</button>
 				<input type="hidden" id="like" name="like" value="false"/>
 				<button type="button" class="btn" id="list_btn" onclick="list()" style="float:right;">목록</button>
@@ -161,7 +164,8 @@
 		</div>
 		
 		<div id="bottom2_div">
-			<h2>수강후기</h2>
+			<h2 style="margin-bottom:0;">수강후기</h2>
+			<h6 style="margin-top:0; margin-bottom:0; color:gray">수강후기는 수정이 불가하며 수정이 필요할 시 고객센터에 문의하시기 바랍니다.</h6>
 			<input type="button" id="add_btn" value="후기 등록" onclick="add1()"/>
 			<table id="after_table">
 				<tbody>
@@ -176,11 +180,11 @@
 		
 		<div id="add_div" class="hidden">
 			<form action="view" name="add_after" method="post">
-				<input type="hidden" id="u_id" name="u_id" value="test"/>
+				<input type="hidden" id="u_id" name="u_id" value="${session.userName}"/>
 				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
 				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
 				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
-				<input type="text" id="content" name="content"/>
+				<textarea id="content" name="content" rows="5" cols="30"></textarea>
 				<input type="button" id="ok_btn" value="확인" onclick="ok1()"/>
 				<input type="button" id="cancel_btn" value="취소" onclick="cancel1()"/>
 			</form>
@@ -232,9 +236,14 @@
 		}
 	}
 	function add1() {
-		$("#add_div").dialog({
-			title:"후기등록"
-		});
+		if($("#u_id").val() != null && $("#u_id").val().length > 1) {
+			alert($("#u_id").val());
+			$("#add_div").dialog({
+				title:"후기등록"
+			});
+		}else{
+			alert("수강완료한 인원만 등록이 가능합니다.");
+		}
 	}
 	function cancel1() {
 		$("#add_div").dialog("close");
@@ -243,6 +252,7 @@
 	function ok1() {
 		$("#add_div").dialog("close");
 		$("#add_div").css("display", "none");
+		alert($("#content").val());
 		document.add_after.submit();
 	}	
 </script>

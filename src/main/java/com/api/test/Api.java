@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -91,6 +92,8 @@ public class Api { //
 	@Autowired
 	private HttpServletRequest req;
 	
+	@Autowired
+	private HttpSession session;
 
 	@Autowired
 	private ArDAO a_dao;
@@ -495,6 +498,12 @@ public class Api { //
 			mv.addObject("end", end);
 			mv.addObject("list", vo);
 			mv.addObject("search_bar", search_bar);
+			
+			/*
+			String userName = (String) session.getAttribute("userName");
+			System.out.println(userName);
+			*/
+			
 		}
 		mv.setViewName("search");
 		return mv;
@@ -503,6 +512,11 @@ public class Api { //
 	@RequestMapping(value="/view")
 	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		/*
+		String userName = (String) session.getAttribute("userName");
+		System.out.println(userName);
+		*/
 		
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
 		
@@ -669,6 +683,8 @@ public class Api { //
 		
 		mv.setViewName("view");
 		
+		System.out.println(TRPR_ID);
+		
 		AfterVO[] afvo = af_dao.list(TRPR_ID);
 		mv.addObject("afvo", afvo);
 		
@@ -678,15 +694,16 @@ public class Api { //
 	@RequestMapping(value="/view", method=RequestMethod.POST)
 	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String u_id, String content) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
 		mv.addObject("TRPR_DEGR", TRPR_DEGR);
 		mv.addObject("TRPR_ID", TRPR_ID);
 		
-		af_dao.add(TRPR_ID, u_id, content);
+		if(af_dao.list_id(u_id)) {
+			af_dao.add(TRPR_ID, u_id, content);
+		}
 		
 		mv.setViewName("redirect:view");
-		
+			
 		return mv;
 	}
 	
@@ -694,13 +711,14 @@ public class Api { //
 	public ModelAndView register1(String id, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		UmemVO uvo = u_dao.searchUser2(id);
-		
-		mv.addObject("uvo", uvo);
-		
-		mv.addObject("TRPR_ID", TRPR_ID);
-		
-		mv.setViewName("register");
+		if(id != null && !id.trim().equals("")) {
+			UmemVO uvo = u_dao.searchUser2(id);
+			mv.addObject("uvo", uvo);
+			mv.addObject("TRPR_ID", TRPR_ID);
+			mv.setViewName("register");
+		}else {
+			mv.setViewName("redirect:/ex");
+		}
 		return mv;
 	}
 	

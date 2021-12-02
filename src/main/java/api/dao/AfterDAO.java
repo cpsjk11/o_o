@@ -44,4 +44,17 @@ public class AfterDAO {
 		return afvo;
 	}
 	
+	// 후기 작성자 불러오기
+	public boolean list_id(String u_id) {
+		
+		boolean chk = true;
+		
+		String id = ss.selectOne("after.list_id", u_id);
+		
+		if(id != null && !id.trim().equals(""))
+			chk = false;
+		
+		return chk;
+	}	
+	
 }
