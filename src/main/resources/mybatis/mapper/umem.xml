@@ -178,5 +178,16 @@
 	WHERE id = #{value}
 </update>
 
+<!-- 한 사용자의 정보를 불러오는 기능 -->
+<select parameterType="String" id="searchUser2" resultType="api.u_member.vo.UmemVO">
+	SELECT * FROM u_member
+	WHERE id = #{no}
+</select>
+
+<!-- 수강신청 기능 -->
+<insert parameterType="Map" id="register">
+	INSERT INTO api(a_idx, tr_id, u_mem_id, u_name, u_birth, u_email, u_phone, u_addr, stat)
+	VALUES (4, #{tr_id}, #{u_mem_id}, #{u_name}, #{u_birth}, #{u_email}, #{u_phone}, #{u_addr}, #{stat})
+</insert>
 
 </mapper>
