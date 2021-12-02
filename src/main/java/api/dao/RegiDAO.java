@@ -32,4 +32,14 @@ public class RegiDAO {
 		
 		return ss.insert("umem.register", map);
 	}
+	
+	//수강신청한 인원 확인 기능
+	public boolean reg_search(String u_id) {
+		boolean chk = true;
+		String id = ss.selectOne("umem.reg_search", u_id);
+		if(id != null && !id.trim().equals(""))
+			chk = false;
+		
+		return chk;
+	}
 }

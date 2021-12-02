@@ -688,8 +688,6 @@ public class Api { //
 		
 		mv.setViewName("view");
 		
-		System.out.println(TRPR_ID);
-		
 		if(t_dao.search(TRPR_ID))
 			t_dao.add(TRPR_ID, TRPR_NM, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP);
 		
@@ -706,7 +704,7 @@ public class Api { //
 		mv.addObject("TRPR_DEGR", TRPR_DEGR);
 		mv.addObject("TRPR_ID", TRPR_ID);
 		
-		if(af_dao.list_id(u_id)) {
+		if(af_dao.list_id(u_id, TRPR_ID)) {
 			af_dao.add(TRPR_ID, u_id, content);
 		}
 		
@@ -716,11 +714,11 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public ModelAndView register1(String id, String TRPR_ID) throws Exception {
+	public ModelAndView register1(String u_id, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		if(id != null && !id.trim().equals("")) {
-			UmemVO uvo = u_dao.searchUser2(id);
+		if(u_id != null && !u_id.trim().equals("")) {
+			UmemVO uvo = u_dao.searchUser2(u_id);
 			mv.addObject("uvo", uvo);
 			mv.addObject("TRPR_ID", TRPR_ID);
 			mv.setViewName("register");
@@ -734,13 +732,13 @@ public class Api { //
 	public ModelAndView register2(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		regi_dao.register(u_id, u_name, u_birth, u_email, u_phone, u_addr, TRPR_ID);
+		if(regi_dao.reg_search(u_id)) {
+			regi_dao.register(u_id, u_name, u_birth, u_email, u_phone, u_addr, TRPR_ID);
+			System.out.println("저장이 잘되었어요");
+		}
+		//mv.setViewName("register");
 		
-		System.out.println("저장이 잘되었어요");
-		
-		mv.setViewName("register");
-		
-		return mv; 
+		return mv;
 	}	
 	
 }

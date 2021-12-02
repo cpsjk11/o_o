@@ -90,7 +90,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 			if(uvo.getMember() == null) {
 				uvo.setMember("user");
 			}
-			uvo.setC_num(uvo.getC_num().replace("-", ""));
+			//uvo.setC_num(uvo.getC_num().replace("-", ""));
 			
 			// Inbody에 저장
 			i_dao.addInbody(uvo.getId(), fat);

@@ -23,7 +23,7 @@
 		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
 	<!-- 오른쪽 영역 -->
-	
+
 	<div id="bbb_right">
 		<div id="benetype1">
 			<div class="content">
@@ -47,6 +47,7 @@
 				
 			</div>
 		</div>
+		
 	
 	
 	<!-- 오른쪽 영역 끝 -->
@@ -81,12 +82,18 @@ $(function() {
 
 $(function () {
 	$("#anysignLink4").click(function () {
+
+		 var id = $("#id").val();
 		
 	 var result = confirm("탈퇴하시겠습니까?");
-	 if (result) {
-	      alert("탈퇴가 완료되었습니다!");
-	      location.href="http://localhost:9090/ex";
-	    } else {
+	
+      if(result) {
+    	 
+    		  	alert("탈퇴가 완료되었습니다!");
+    			location.href="http://localhost:9090/mypage/remove";
+		}
+    	  
+	     else {
 	        
 	    }
 	 return

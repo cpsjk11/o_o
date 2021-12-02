@@ -24,6 +24,7 @@
 		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
 	<!-- 오른쪽 메뉴 -->
+	
 <div id="bbb_right">
 			<div class="m_id">
 				<h2>회원정보변경</h2>
@@ -35,6 +36,8 @@
 			</span>
 			</div>
 		<br/>
+		
+		<c:forEach var="vo" items="${vo }">
 		<table class="table_type01" 
 		style="width: 900px">
 			<colgroup>
@@ -46,7 +49,7 @@
 					<th>
 						이름
 					</th>
-					<td></td>	
+					<td>${vo.name }</td>	
 				</tr>
 				<tr>
 					<th>
@@ -55,15 +58,16 @@
 					</th>
 					<td>
 					  <p>
-					   <input type="text" name="addr" id="addr"
-					    class="join"/>
-					    <button type="button" class="btnType" id="search_addr" onclick="execPostCode();">우편번호 찾기</button>
+					   <input type="text" name="zonecode" id="zonecode"
+					    class="join" value="${vo.zonecode }"/>
+					    <button type="button" class="btnType" id="search_addr">우편번호 찾기</button>
 					    <br/>
-					   <input type="text" name="addr1" id="addr1"
-					    class="join"/><br/>
+					   <input type="text" name="addr" id="addr"
+					    class="join" value="${vo.addr }"/><br/>
 					    
 					   <input type="text" name="addr2" id="addr2"
-					    class="join"/>
+					    class="join" value="${vo.addr2 }"/>
+					    <input type="hidden" id="id" value="${vo.id}">
 					</td>
 				</tr>	
 				<tr>
@@ -76,48 +80,9 @@
 					  </p>
 					  <p>
 					   <label for="s_phone" class="hidden">휴대폰번호</label>
-					   <input type="text" name="" id="s_phone"
-					    class="join"/>   -
-					   <input type="text" name="" id="s_phone"
-					    class="join"/>   -
-					   <input type="text" name="" id="s_phone"
-					    class="join"/>
-					  </p>
-					</td>
-				</tr>
-				<tr>
-					<th>
-					 전화번호
-					</th>
-					<td>
-					  <p class="guide_txt">
-					  본인의 전화번호를 입력해주세요.
-					  </p>
-					  <p>
-					   <label for="s_call" class="hidden">휴대폰번호</label>
-					   <select>
-					   		<option value="선택">선택</option>
-					   		<option value="선택">02</option>
-					   		<option value="선택">032</option>
-					   		<option value="선택">031</option>
-					   		<option value="선택">041</option>
-					   		<option value="선택">042</option>
-					   		<option value="선택">043</option>
-					   		<option value="선택">051</option>
-					   		<option value="선택">052</option>
-					   		<option value="선택">053</option>
-					   		<option value="선택">055</option>
-					   		<option value="선택">061</option>
-					   		<option value="선택">062</option>
-					   		<option value="선택">063</option>
-					   		<option value="선택">064</option>
-					   		<option value="선택">070</option>
-					   </select>   -
-					   <input type="text" name="" id="s_call"
-					    class="join"/>   -
-					   <input type="text" name="" id="s_call"
-					    class="join"/>
-					  </p>
+					   <input type="text" name="phone" id="phone"
+					    class="join" value="${vo.phone }"/>
+						</p>
 					</td>
 				</tr>
 				<tr>
@@ -128,22 +93,15 @@
 					<td>
 					  <p>
 					   <label for="e-mail" class="hidden"></label>
-					   <input type="email" id="e-mail"
-					    class="join"/>  @   
-					    <select>
-					    	<option value="naver.com">naver.com</option>
-					    	<option value="hanmail.net">hanmail.net</option>
-					    	<option value="gmail.com">gmail.com</option>
-					    	<option value="nate.com">nate.com</option>
-					    	<option value="paran.com">paran.com</option>
-					    	<option value="yahoo.com">yahoo.com</option>
-					    	<option value="hotmail.com">hotmail.com</option>
-					    </select>			    
+					   <input type="email" id="e-mail" name="email"
+					    class="join" value="${vo.email }"/>   
 					  </p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		</c:forEach>
+	
 		<div>
 			<button type="button" class="btnType1" id="b_ok">변경하기</button>
 		</div>
@@ -209,8 +167,8 @@ $(function() {
             console.log(fullRoadAddr);
             
             
-            $("[name=addr]").val(data.zonecode);
-            $("[name=addr1]").val(fullRoadAddr);
+            $("[name=zonecode]").val(data.zonecode);
+            $("[name=addr]").val(fullRoadAddr);
         }
     }).open();
 	})
@@ -218,24 +176,21 @@ $(function() {
 
 $(function () {
 	$("#b_ok").click(function() {
-		 var addr = $("#addr").val();
-		 var addr1 = $("#addr1").val();
+		 var addr = $("#zonecode").val();
+		 var addr1 = $("#addr").val();
 		 var addr2 = $("#addr2").val();
+		 var phone = $("#phone").val();
 		 var email = $("#e-mail").val();
+		 var id = $("#id").val();
+		 
 		
 	     	if (!addr.trim()) {
 	          alert("주소를 입력하십시오");
 	          
-	        $("#addr").focus();  
+	        $("#zonecode").focus();  
 	     	return
 	        }
 	     
-	     	if(!addr2.trim()){
-	     		alert("상세주소를 입력하십시오");	
-	     	
-	     	$("#addr2").focus();  
-	     	return
-	     	}
 	     
 	     	if(!email.trim()){
 	     		alert("이메일을 입력하십시오");	
@@ -246,15 +201,33 @@ $(function () {
 	     	 
 	     	 var result = confirm("변경하시겠습니까?");
 			 if (result) {
-	    	      alert("변경이 완료되었습니다!");
-	    	      location.href="http://localhost:9090/";
+				 
+				
+				 var param = "addr="+encodeURIComponent(addr1)+"&zonecode="+encodeURIComponent(addr)
+							+"&phone="+encodeURIComponent(phone)+"&email="+encodeURIComponent(email)
+							+"&id="+encodeURIComponent(id)+"&addr2="+encodeURIComponent(addr2);	
+				 $.ajax({
+					 url:"changess",
+					 data:param,
+					 type:"post",
+					 dataType:"json"
+				 }).done(function(data){
+					 if(data.result == 1){
+						 alert("변경이 완료되었습니다!");
+					
+					 }else
+						 alert("실패");
+				 }).fail(function(err){
+					 alert("오류");
+				 });
+	    	       location.href="http://localhost:9090/";
 	  	    } else {
 	  	        
 	  	    }
 	     	return
-	})
+	});
 			
-})
+});
 
 </script>
 </body>

@@ -51,6 +51,7 @@ public class LoginController {
 		UmemVO uvo = u_dao.login(id, chkpw);
 		if(uvo != null) {
 			// 로그인 성공 했을때 이다.
+			System.out.println(uvo.getAddr());
 			session.setAttribute("userName", uvo);
 			session.setAttribute("stat", uvo.getStat());
 			session.setAttribute("rank", "1");

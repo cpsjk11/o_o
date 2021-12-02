@@ -34,6 +34,7 @@
 			</span>
 			</div>
 		<br/>
+		<c:forEach var="vo" items="${vo }">
 		<table class="table_type01" 
 		style="width: 900px">
 			<colgroup>
@@ -43,7 +44,7 @@
 			<tbody>
 				<tr>
 					<th>아이디</th>
-					<td></td>
+					<td>${vo.id }</td>
 				</tr>
 				<tr>
 					<th>
@@ -55,7 +56,7 @@
 					  </p>
 					  <p>
 					   <label for="s_pw" class="hidden">비밀번호</label>
-					   <input type="password" name="s_pw" id="s_pw"
+					   <input type="password" name="pw" id="pw"
 					    class="join"/>
 					  </p>
 					</td>
@@ -90,13 +91,14 @@
 					  </p>
 					  <p>
 					   <label for="s_pw2" class="hidden" id="pw">비밀번호확인</label>
-					   <input type="password" name="s_pw2" id="s_pw2"
+					   <input type="password" name="pw2" id="pw2"
 					    class="join"/>			    
 					  </p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		</c:forEach>
 		<div>
 			<button type="button" class="btnType1" id="b_ok">변경하기</button>
 		</div>
@@ -136,16 +138,16 @@ $(function() {
 
 $(function () {
 	$("#b_ok").click(function() {
-		var s_pw = $("#s_pw").val();
+		var s_pw = $("#pw").val();
 		var new_pw = $("#new_pw").val();
-		var s_pw2 = $("#s_pw2").val();
+		var s_pw2 = $("#pw2").val();
 		var num = new_pw.search(/[0-9]/g);
 		var eng = new_pw.search(/[a-z]/ig);
 		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi);
 		
 		if(!s_pw.trim()){
 			alert("비밀번호를 입력하세요");
-			$("#s_pw").focus();
+			$("#pw").focus();
 			return
 		}
 		
@@ -167,7 +169,7 @@ $(function () {
 		
 		if(!s_pw2.trim()){
 			alert("비밀번호 확인을 입력하세요");
-			$("#s_pw2").focus();
+			$("#pw2").focus();
 			return
 		}
 		
@@ -181,8 +183,8 @@ $(function () {
    	      		
    	      		alert("비밀번호가 일치하지 않습니다.");
    	      		
-   	      		$("#s_pw2").val("");
-   	      		$("#s_pw2").focus();
+   	      		$("#pw2").val("");
+   	      		$("#pw2").focus();
    	      		
    	      		return
    	      	}
