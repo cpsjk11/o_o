@@ -162,17 +162,29 @@
 		
 		<div id="bottom2_div">
 			<h2>수강후기</h2>
+			<input type="button" id="add_btn" value="후기 등록" onclick="add1()"/>
 			<table id="after_table">
 				<tbody>
+				<c:forEach var="afvo" items="${afvo}" varStatus="st">
 					<tr>
-						<th>&#187; 너무 재미없어요</th>
+						<th>&#187; ${afvo.content}</th>
 					</tr>
-					<tr>
-						<th>&#187; 수업이 졸려요</th>
-					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>
+		
+		<div id="add_div" class="hidden">
+			<form action="view" name="add_after" method="post">
+				<input type="hidden" id="u_id" name="u_id" value="test"/>
+				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
+				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
+				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
+				<input type="text" id="content" name="content"/>
+				<input type="button" id="ok_btn" value="확인" onclick="ok1()"/>
+				<input type="button" id="cancel_btn" value="취소" onclick="cancel1()"/>
+			</form>
+		</div>		
 	</div>		
 	
 	<div id="footer">
@@ -184,6 +196,8 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4txv35ahqp"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 	
 	$(function() {
@@ -217,5 +231,19 @@
 			$("#like").val("true");
 		}
 	}
+	function add1() {
+		$("#add_div").dialog({
+			title:"후기등록"
+		});
+	}
+	function cancel1() {
+		$("#add_div").dialog("close");
+		$("#add_div").css("display", "none");
+	}
+	function ok1() {
+		$("#add_div").dialog("close");
+		$("#add_div").css("display", "none");
+		document.add_after.submit();
+	}	
 </script>
 </html>

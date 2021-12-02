@@ -28,8 +28,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import api.action.Paging;
 import api.action.RecommendedSchool;
+import api.dao.AfterDAO;
 import api.dao.ArDAO;
 import api.dao.RdDAO;
+import api.dao.RegiDAO;
+import api.dao.UmemDAO;
+import api.u_member.vo.AfterVO;
+import api.u_member.vo.UmemVO;
 import api.vo.Api00;
 import api.vo.Search2;
 import api.vo.SearchVO;
@@ -92,6 +97,15 @@ public class Api { //
 	
 	@Autowired
 	private RdDAO r_dao;
+	
+	@Autowired
+	private UmemDAO u_dao;
+	
+	@Autowired
+	private RegiDAO regi_dao;
+	
+	@Autowired
+	private AfterDAO af_dao;
 	
 	@RequestMapping("/ex")
 	public String view() {
@@ -331,8 +345,17 @@ public class Api { //
 		Calendar cal = Calendar.getInstance();
 		StringBuffer now_date = new StringBuffer();
 		now_date.append(cal.get(Calendar.YEAR));
-		now_date.append(cal.get(Calendar.MONTH)+1);
-		now_date.append(cal.get(Calendar.DAY_OF_MONTH));
+		String month = String.valueOf(cal.get(Calendar.MONTH)+1); 
+		if(month.length() == 1) {
+			month = 0+month;
+		}
+		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)); 
+		if(day.length() == 1) {
+			day = 0+day;
+		}
+		
+		now_date.append(month);
+		now_date.append(day);
 		
 		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
 			svo.setSrchTraArea1(null);
@@ -481,6 +504,8 @@ public class Api { //
 	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
+		
 		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=qWqEb8rhoMy5PH165fAA0bQIXsuy9OvZ&returnType=XML&outType=2");
 		sb.append("&srchTorgId="+TRAINST_CST_ID);
 		sb.append("&srchTrprDegr="+TRPR_DEGR);
@@ -591,7 +616,7 @@ public class Api { //
 		mv.addObject("vo2", avo2);
 		mv.addObject("vo3", avo3);
 		
-		System.out.println(ADDR1);
+		//System.out.println(ADDR1);
 		
 		String address = URLEncoder.encode(ADDR1,"utf-8");
 		String api = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+address;
@@ -644,7 +669,52 @@ public class Api { //
 		
 		mv.setViewName("view");
 		
+		AfterVO[] afvo = af_dao.list(TRPR_ID);
+		mv.addObject("afvo", afvo);
+		
 		return mv;
 	}
+	
+	@RequestMapping(value="/view", method=RequestMethod.POST)
+	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String u_id, String content) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
+		mv.addObject("TRPR_DEGR", TRPR_DEGR);
+		mv.addObject("TRPR_ID", TRPR_ID);
+		
+		af_dao.add(TRPR_ID, u_id, content);
+		
+		mv.setViewName("redirect:view");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	public ModelAndView register1(String id, String TRPR_ID) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		UmemVO uvo = u_dao.searchUser2(id);
+		
+		mv.addObject("uvo", uvo);
+		
+		mv.addObject("TRPR_ID", TRPR_ID);
+		
+		mv.setViewName("register");
+		return mv;
+	}
+	
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public ModelAndView register2(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		regi_dao.register(u_id, u_name, u_birth, u_email, u_phone, u_addr, TRPR_ID);
+		
+		System.out.println("저장이 잘되었어요");
+		
+		mv.setViewName("register");
+		
+		return mv; 
+	}	
 	
 }
