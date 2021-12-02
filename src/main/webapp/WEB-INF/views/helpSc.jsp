@@ -38,31 +38,28 @@
 	ol.paging li a {
 	    display:block;
 	    padding:3px 7px;
-	    border:1px solid #898989;
-	    border-radius: 9999px;
 	    color:#2f313e;
 	    font-weight:bold;
 	}
 	
 	ol.paging li a:hover {
-	    background:#86e9ff;
-	    color:white;
+	    border-bottom: 4px solid #4270e0;
+	    color:black;
+	    font-size: 1em;
 	    font-weight:bold;
 	}
 	
 	.disable {
 	    padding:3px 7px;
 	    border:1px solid #ababab;
-	    border-radius: 9999px;
-	    color:silver;
+	    color:#6a6969;
 	}
 	
 	.now {
 	   padding:3px 7px;
-	   border:1px solid #ababab;
-	    border-radius: 9999px;
-	    background:#9b9cff;
-	    color:white;
+		border-bottom: 4px solid #4270e0;
+	    color:black;
+	    font-size: 1em;
 	    font-weight:bold;
 	}
 	

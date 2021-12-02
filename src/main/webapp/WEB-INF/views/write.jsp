@@ -1,0 +1,206 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="resources/js/summernote-lite.js"></script>
+<script src="resources/js/lang/summernote-ko-KR.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="shortcut icon" href="resources/ico/Frame.png">
+
+<%-- css링크구역!! --%>
+<link rel="stylesheet" href="resources/css/header.css">
+<link rel="stylesheet" href="resources/css/home.css">
+<link rel="stylesheet" href="resources/css/foot.css">
+<link rel="stylesheet" href="resources/css/helpSc.css">
+<link rel="stylesheet" href="resources/css/summernote-lite.css">
+
+
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+	#write_area{
+		margin: 0 auto;
+		width: 60%;
+		height: 1000px;
+		border: 1px solid;
+	}
+	#bbs_b_area{
+		border: 1px solid red;
+	}
+	#write_panel{
+		margin: 0 auto;
+		width: 90%;
+		height: 90%;		
+		border: 1px solid blue; 
+	}
+	#title_area{
+		margin: 20px auto 20px;
+		width: 70%;
+		height: 5%;
+		border: 1px solid #ababab;
+		padding: 1em;
+		vertical-align: middle;
+		text-align: center;
+	}
+	#title_area span{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 1.2em;
+	}
+	#title_area input{
+		width: 80%;
+		height: 40%;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 1em;
+		padding: 7px;
+		border: 0.6px solid #ababab;
+		border-radius:7px; 
+	}
+	#content{
+		margin: 20px auto 20px;
+		width: 70%;
+		height: 40%;
+		border: 1px solid #ababab;
+		padding: 1em;
+		vertical-align: middle;
+		text-align: center;
+	}
+</style>
+
+</head>
+<body>
+	<div id="wrap">
+		<jsp:include page="header.jsp"/>
+		<div id="write_area" style="height: 1500px;">
+			<jsp:include page="helpCategory.jsp"/>
+			<div id="bbs_b_area">
+				<form action="write.inc" method="post" 
+			encType="multipart/form-data" id="write_panel">
+					<div id="title_area">
+						<span>제목 : </span>
+						<input type="text" id ="subject" name="subject" placeholder="제목을 입력해주세요" maxlength="30">
+					</div>
+					<div id="contetn_area">
+						<textarea name="content" id="content" 
+							rows="8"></textarea>
+					</div>
+					<div id="btn_area">
+						<input type="button" value="저장"
+						onclick="sendData()"/>
+						<input type="button" value="목록"
+						onclick="javascript:location.href='helpSc'"/>
+						<input type="button" value="테스트"
+						onclick="test()"/>
+					</div>
+					<input hidden="bname" value="일반게시판">
+					<input hidden="writer" value="${sessionScope.userName.name }">
+				</form>
+			</div>
+		</div>
+		<jsp:include page="footer.jsp"/>
+	</div>
+	
+	
+	<script>
+		$(function(){
+			$("#content").summernote({
+				height: 500,
+				minHeight: null,
+				maxHeight: null,  
+				leng: "ko-KR",
+				focus: true, /* 커서를 미리 가져다 놓는다. */
+				toolbar: [
+				    // [groupName, [list of button]]
+				    ['fontname', ['fontname']],
+				    ['fontsize', ['fontsize']],
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    ['color', ['forecolor','color']],
+				    ['table', ['table']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['insert',['picture','link','video']],
+				    ['view', ['fullscreen', 'help']]
+				  ],
+				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+				callbacks:{
+					onImageUpload: function(files, editor){
+						//이미지가 에디터에 추가될 때마다 수행하는 곳!
+						//추가되어 들어온 이미지가 배열로 인식됨!
+						for(var i=0; i<files.length; i++)
+							sendImage(files[i], editor);//서버로 비동기식 통신으로
+											//이미지를 서버로 업로드시킨다.
+					}
+				}
+			});
+			$("#content").summernote("lineHeight",.7);
+		});
+		
+		function sendImage(file, editor){
+			var frm = new FormData();
+			//파일을 보내야할때는 폼에 담아서 보내야한다.
+			
+			//보내고자 하는 자원을 위해서 만든 폼객체에 파라미터로 넣어준다.
+			frm.append("s_file", file);
+			
+			//비동기식 통신
+			$.ajax({
+				url: "saveImg",
+				data: frm,
+				type: "post",
+				contentType: false,//파일의형식 - enpType으로 가기 위해서 파일의 형식을 없애버렸다.
+				processData: false,
+				cache: false,
+				dataType: "json", // 서버로부터 받을 데이터 형식
+			}).done(function(data){
+				$("#content").summernote("editor.insertImage", data.url+"/"+data.fname);
+			}).fail(function(err){
+				//서버에서 오류가 발생 시
+			});
+		}
+	
+		function sendData(){
+			if(document.forms[0].subject.value.trim().length < 0){
+				alert("제목을 입력하세요.");
+				document.forms[0].subject.focus();
+				return;//수행 중단
+			}
+			if(document.forms[0].content.value.trim().length < 0){
+				alert("내용을 입력해주세요.");
+				document.forms[0].content.focus();
+				return;//수행 중단
+			}
+	
+			document.forms[0].submit();
+		}
+		function test(){
+			var t1 = $("#subject").val();
+			var t2 = $("#content").val();
+			
+			console.log(t1);
+			console.log(t2);
+			
+			
+		}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
