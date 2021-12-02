@@ -62,7 +62,20 @@
 	    font-size: 1em;
 	    font-weight:bold;
 	}
-	
+	#bbs_bot{
+		text-align: center;
+		margin: 0 auto;
+		width: 100%;
+	}
+	#paging_area{
+		display: inline-block;
+		margin: 0 auto;
+	}
+	#menu_area{
+		margin: 2em;
+		width: 90%;
+		display: inline-block;
+	}
 </style>
 </head>
 <body>
@@ -77,17 +90,27 @@
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
 						<div id="bbs_prop"><span>${vo.hit }</span>&nbsp;&nbsp;<span>좋아요</span></div>
-						<div id="bbs_date"><span>${vo.write_date }</span></div>
+						<div id="bbs_date">
+							<span>
+								<c:if test="${vo.write_date ne null }">
+									${fn:substring(vo.write_date, 0, 16) }
+								</c:if>
+							</span>
+						</div>
 						<div class="transition"></div>
 					</div>
 				</c:forEach>
-					<div id="paging_area">${pageCode }</div>
-					<div id="menu_area">
-						<a href="/helpWrite?bname=자주묻는질문" id="menu_panel">글쓰기</a>
-					</div>	
 				</div>
+					<div id="bbs_bot">
+						<div id="paging_area">${pageCode }</div>
+						<div id="menu_area">
+							<a href="/helpWrite" id="menu_panel">글쓰기</a>
+						</div>	
+					</div>
 			</div>
 		<jsp:include page="footer.jsp"/>
 	</div>
+	
+	
 </body>
 </html>

@@ -29,26 +29,21 @@
 	#write_area{
 		margin: 0 auto;
 		width: 60%;
-		height: 1000px;
-		border: 1px solid;
 	}
 	#bbs_b_area{
-		border: 1px solid red;
+		margin: 0 auto;
 	}
 	#write_panel{
 		margin: 0 auto;
 		width: 90%;
-		height: 90%;		
-		border: 1px solid blue; 
 	}
 	#title_area{
-		margin: 20px auto 20px;
+		margin: 1em 0 1em 0;
 		width: 70%;
 		height: 5%;
-		border: 1px solid #ababab;
-		padding: 1em;
 		vertical-align: middle;
-		text-align: center;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 0.8em;
 	}
 	#title_area span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
@@ -72,16 +67,37 @@
 		vertical-align: middle;
 		text-align: center;
 	}
+	
+	#btn_area{
+		width: 90%;
+		margin: 20px auto 0;
+	}
+	#btn_area input{
+		margin: 1em 0 1em 0;
+		float: right;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 0.8em;
+		color: #3A2F2F;
+		margin-left: 1.2em;
+		width: 6%;
+		height: 53%;
+		color: #3A2F2F;
+		background-color: white;
+		border: 0.6px solid #bcbcbc;
+	}
+	#btn_area input:hover{
+		background-color: #efefef;
+	}
 </style>
 
 </head>
 <body>
 	<div id="wrap">
 		<jsp:include page="header.jsp"/>
-		<div id="write_area" style="height: 1500px;">
+		<div id="write_area">
 			<jsp:include page="helpCategory.jsp"/>
 			<div id="bbs_b_area">
-				<form action="write.inc" method="post" 
+				<form action="/write" method="post" 
 			encType="multipart/form-data" id="write_panel">
 					<div id="title_area">
 						<span>제목 : </span>
@@ -91,17 +107,15 @@
 						<textarea name="content" id="content" 
 							rows="8"></textarea>
 					</div>
-					<div id="btn_area">
-						<input type="button" value="저장"
-						onclick="sendData()"/>
-						<input type="button" value="목록"
-						onclick="javascript:location.href='helpSc'"/>
-						<input type="button" value="테스트"
-						onclick="test()"/>
-					</div>
-					<input hidden="bname" value="일반게시판">
-					<input hidden="writer" value="${sessionScope.userName.name }">
+					<input hidden="bname" name="bname" id="bname" value="일반게시판">
+					<input hidden="writer" name="writer" id="writer" value="${sessionScope.userName.name }">
 				</form>
+				<div id="btn_area">
+					<input type="button" value="저장"
+					onclick="sendData()"/>
+					<input type="button" value="목록"
+					onclick="javascript:location.href='helpSc'"/>
+				</div>
 			</div>
 		</div>
 		<jsp:include page="footer.jsp"/>
@@ -162,17 +176,29 @@
 			}).done(function(data){
 				$("#content").summernote("editor.insertImage", data.url+"/"+data.fname);
 			}).fail(function(err){
-				//서버에서 오류가 발생 시
+				alert("서버오류");
 			});
 		}
-	
+		/* function removeHTML(str){
+			str = str.replace(/<br\/>/ig, "\n");
+			str = str.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
+			
+			return str;
+		} */
+		
 		function sendData(){
-			if(document.forms[0].subject.value.trim().length < 0){
+			var t1 = $("#subject");
+			var t2 = $("#content");
+			
+			/* t2 = removeHTML(t2);
+			$("#content").val(t2); */
+			
+			if(t1.val().trim().length < 0){
 				alert("제목을 입력하세요.");
 				document.forms[0].subject.focus();
 				return;//수행 중단
 			}
-			if(document.forms[0].content.value.trim().length < 0){
+			if(t2.val().trim().length < 0){
 				alert("내용을 입력해주세요.");
 				document.forms[0].content.focus();
 				return;//수행 중단
@@ -180,15 +206,9 @@
 	
 			document.forms[0].submit();
 		}
-		function test(){
-			var t1 = $("#subject").val();
-			var t2 = $("#content").val();
-			
-			console.log(t1);
-			console.log(t2);
-			
-			
-		}
+
+		
+		
 </script>
 </body>
 </html>

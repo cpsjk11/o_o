@@ -6,7 +6,6 @@
 	#bbs_area{
 		margin: 0 auto;
 		width: 60%;
-		height: 2000px;
 	}
 	#category_area{
 		margin-top: 100px;
@@ -36,17 +35,18 @@
 		margin: 0 auto;
 		padding: 2%;
 		width: 90%;
-		height: 85%;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
 	.bbs{
-		cursor: wait;
-		width: 45%;
-		height: 15%;
+		cursor: pointer;
+		width: 450px;
+		height: 251px;
 		border: 0.7px solid #ababab;
 		padding: 1em;
+		margin-bottom: 3em;
+		
 		transform: translate(0, 0px);
 		transition-property:transform;
 		transition-duration:0.3s;
@@ -60,7 +60,8 @@
 		color: #94969b;
 	}
 	#bbs_title{
-		margin: 1em 0 1.5em;
+		width: 90%;
+		height: 10%;
 	}
 	#bbs_title span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
@@ -68,7 +69,12 @@
 		font-weight: 450;
 	}
 	#bbs_content{
-		margin: 1em 0 5.5em;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		-webkit-line-clamp: 1; /* ellipsis line */
+		margin: 1em 1em 2em;
+		width: 90%;
+		height: 35%;
 	}
 	#bbs_content span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
@@ -76,17 +82,22 @@
 		font-weight: 400;
 	}#bbs_writer{
 		margin: 1em 0 1em;
+		width: 90%;
+		height: 10%;
 	}
 	#bbs_writer span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1.0em;
+		font-size: 1em;
 	}
 	#bbs_prop span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 0.8em;
 	}
 	#bbs_date{
+		z-index: 1;
 		float: right;
+		width: 90%;
+		height: 10%;
 	}
 	#bbs_date span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;

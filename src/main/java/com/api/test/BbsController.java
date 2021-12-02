@@ -90,8 +90,7 @@ public class BbsController {
 	}
 	//글쓰기 페이지로 이동
 	@RequestMapping("/helpWrite")
-	public String goWrite(String bname) {
-		System.out.println(bname);
+	public String goWrite() {
 		return "/write";
 	}
 
@@ -131,10 +130,12 @@ public class BbsController {
 		
 		return map;
 	}
-	@RequestMapping(value="/write.inc", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(BbsVO vo)throws Exception{
 		
 		System.out.println(vo.getWriter());
+		System.out.println(vo.getBname());
 		
 //		// 첨부된 파일을 vo로부터 얻어낸다.
 //		MultipartFile mf = vo.getFile();
