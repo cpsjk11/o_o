@@ -30,6 +30,11 @@ public class UmemDAO {
 		return ss.selectOne("umem.searchUser", id);
 	}
 	
+	// 아이디가 있다면 로그인으로! AND 아이디 중복 확인
+		public UmemVO user(String id) {
+			return ss.selectOne("umem.user", id);
+		}
+	
 	// 이메일 중복 확인하는 기능
 	public String searchEmail(String email) {
 		return ss.selectOne("umem.searchEmail", email);
