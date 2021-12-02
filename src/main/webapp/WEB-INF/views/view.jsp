@@ -94,6 +94,25 @@
 	}
 	#add_btn{
 		float: right;
+		width: 75px;
+		height: 30px;
+		background: #EFEFEF;
+		border-radius: 6px;
+		text-align: center;
+		font-weight: 600;
+		font: #3A2F2F;
+		line-height: 30px;
+	}
+	#iw_inner{
+		text-align: center;
+		height: 40px;
+	}
+	#iw_inner>h5{
+		margin-top: 5px;
+		margin-bottom: 0;
+	}
+	#iw_inner>h6{
+		margin-top: 5px;
 	}
 	
 	
@@ -220,6 +239,26 @@
 		    position: new naver.maps.LatLng(${y}, ${x}),
 		    map: map
 		});
+		
+		var contentString = [
+		    '<div id="iw_inner">',
+		    '<h5><c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if></h5>',
+		    '<h6>${vo.ADDR1}</h6>',
+		    '</div>'
+		].join('');
+		
+		var infowindow = new naver.maps.InfoWindow({
+		    content: contentString
+		});
+
+		naver.maps.Event.addListener(marker, "click", function(e) {
+		    if (infowindow.getMap()) {
+		        infowindow.close();
+		    } else {
+		        infowindow.open(map, marker);
+		    }
+		});
+
 	});
 	
 	function list() {
@@ -251,7 +290,6 @@
 	function ok1() {
 		$("#add_div").dialog("close");
 		$("#add_div").css("display", "none");
-		alert($("#content").val());
 		document.add_after.submit();
 	}
 </script>

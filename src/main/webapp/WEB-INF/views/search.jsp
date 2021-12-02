@@ -359,7 +359,7 @@
 					<div class="edu_tab">
 						<em class="title">
 						<c:if test="${vo.TITLE.length() > 10}">
-							${fn:substring(vo.TITLE, 0, 20)}
+							${fn:substring(vo.TITLE, 0, 18)}
 						</c:if>
 						</em><br/>
 						<label class="tab_label">교육기간</label>

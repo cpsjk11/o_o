@@ -704,7 +704,7 @@ public class Api { //
 		mv.addObject("TRPR_DEGR", TRPR_DEGR);
 		mv.addObject("TRPR_ID", TRPR_ID);
 		
-		if(af_dao.list_id(u_id)) {
+		if(af_dao.list_id(u_id, TRPR_ID)) {
 			af_dao.add(TRPR_ID, u_id, content);
 		}
 		
