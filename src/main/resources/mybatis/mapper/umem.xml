@@ -5,8 +5,8 @@
 <mapper namespace="umem">
 
 <insert id="joing" parameterType="api.u_member.vo.UmemVO">
-	INSERT INTO u_member (id,pw,name<if test="birth != null">,birth</if><if test="email != null">,email</if><if test="phone != null">,phone</if><if test="addr != null">,addr</if>,member,u_date,stat,c_num)
-	VALUES (#{id},#{pw},#{name}<if test="birth != null">,#{birth}</if><if test="email != null">,#{email}</if><if test="phone != null">,#{phone}</if><if test="addr != null">,#{addr}</if>,#{member},sysdate,#{stat},${c_num})
+	INSERT INTO u_member (id,pw,name<if test="birth != null">,birth</if><if test="email != null">,email</if><if test="phone != null">,phone</if><if test="addr != null">,addr</if>,member,u_date,stat)
+	VALUES (#{id},#{pw},#{name}<if test="birth != null">,#{birth}</if><if test="email != null">,#{email}</if><if test="phone != null">,#{phone}</if><if test="addr != null">,#{addr}</if>,#{member},sysdate,#{stat})
 </insert>
 
 <!-- 유저가 회원가입이 되 있는지 안 됬는지 확인 하는 문장 -->
@@ -187,7 +187,13 @@
 <!-- 수강신청 기능 -->
 <insert parameterType="Map" id="register">
 	INSERT INTO api(a_idx, tr_id, u_mem_id, u_name, u_birth, u_email, u_phone, u_addr, stat)
-	VALUES (4, #{tr_id}, #{u_mem_id}, #{u_name}, #{u_birth}, #{u_email}, #{u_phone}, #{u_addr}, #{stat})
+	VALUES (reg_seq.NEXTVAL, #{tr_id}, #{u_mem_id}, #{u_name}, #{u_birth}, #{u_email}, #{u_phone}, #{u_addr}, #{stat})
 </insert>
+
+<!-- 수강신청 인원 확인 기능 -->
+<select id="reg_search" parameterType="String" resultType="String">
+	SELECT u_mem_id FROM api
+	WHERE u_mem_id = #{id}
+</select>
 
 </mapper>
