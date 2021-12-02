@@ -21,6 +21,13 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 게시판 파일 업로더 resolver -->
+	<beans:bean id="multipartResolver" 
+ 	  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<beans:property name="defaultEncoding" value="utf-8"/>
+ 		<beans:property name="maxUploadSize" value="-1"/>
+ 	</beans:bean>
+	
 	<beans:bean id="jsonHttpMessageConverter"
 			class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 		<beans:bean

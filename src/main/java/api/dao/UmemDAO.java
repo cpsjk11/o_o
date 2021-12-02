@@ -166,4 +166,9 @@ public class UmemDAO {
 		return ss.selectOne("umem.searchFindUser", map);
 	}
 	
+	// 한 사용자의 정보를 반환하는 기능
+	public UmemVO searchUser2(String id) {
+		return ss.selectOne("umem.searchUser2", id);
+	}
+	
 }

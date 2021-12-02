@@ -18,7 +18,7 @@
 		right: 0;
 		background-color: #FFF5FF;
 		border-bottom: 0.5px solid #efefef;
-		z-index: 1;
+		z-index: 3;
 	}
 	#title{
 		position: absolute;
