@@ -33,6 +33,7 @@ import api.dao.AfterDAO;
 import api.dao.ArDAO;
 import api.dao.RdDAO;
 import api.dao.RegiDAO;
+import api.dao.TraDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.AfterVO;
 import api.u_member.vo.UmemVO;
@@ -109,6 +110,9 @@ public class Api { //
 	
 	@Autowired
 	private AfterDAO af_dao;
+	
+	@Autowired
+	private TraDAO t_dao;
 	
 	@RequestMapping("/ex")
 	public String view() {
@@ -513,6 +517,7 @@ public class Api { //
 	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		
 		/*
 		String userName = (String) session.getAttribute("userName");
 		System.out.println(userName);
@@ -684,6 +689,9 @@ public class Api { //
 		mv.setViewName("view");
 		
 		System.out.println(TRPR_ID);
+		
+		if(t_dao.search(TRPR_ID))
+			t_dao.add(TRPR_ID, TRPR_NM, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP);
 		
 		AfterVO[] afvo = af_dao.list(TRPR_ID);
 		mv.addObject("afvo", afvo);
