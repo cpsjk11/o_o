@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="after">
+
+<!-- 수강후기 등록 기능 -->
+<insert id="add" parameterType="Map">
+	INSERT INTO after(af_idx, tr_id, u_mem_id, stat, content)
+	VALUES (af_seq.NEXTVAL, #{tr_id}, #{u_mem_id}, #{stat}, #{content})
+</insert>
+
+<!-- 수강후기 불러오기 기능 -->
+<select id="list" parameterType="String" resultType="api.u_member.vo.AfterVO">
+	SELECT * FROM after
+	WHERE tr_id = #{no}
+</select>
+
+<!-- 수강후기 작성자 불러오기 기능 -->
+<select id="list_id" parameterType="String" resultType="String">
+	SELECT u_mem_id FROM after
+	WHERE u_mem_id = #{id}
+</select>
+
+</mapper>

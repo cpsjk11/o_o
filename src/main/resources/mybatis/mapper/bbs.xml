@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+	
+	<resultMap id="map1" type="api.vo.BbsVO">
+		<id property="b_idx" column="b_idx"/>
+		<!-- 원글 하나에 여러 개의 댓글들이 존재할 수 있으므로
+			집합구조를 일대 다관계에 맞는 collection을 선언한다. -->
+		<collection property="c_list" ofType="api.vo.CommVO" 
+			select="commList" column="b_idx"/>
+	</resultMap>
+	
+	<!-- 해당 원글(b_idx)에 맞는 댓글들을 가져오는 기능 -->
+	<select id="commList" parameterType="String" 
+	resultType="api.vo.CommVO">
+		SELECT * FROM comment_t
+		WHERE b_idx = #{b_idx}
+	</select>
+
+	<!-- 원글들을 가져오는 기능 (status가 1이면 삭제된 글, 
+		정렬로 가장 최근의 글을 맨 위로 올라오도록 함!) -->
+	<select id="bbsList" resultMap="map1" parameterType="java.util.Map">
+		SELECT * FROM (
+			SELECT rownum r_num,a.* FROM (SELECT * FROM bbs_t
+							WHERE status = 0 AND bname = #{bname}
+							ORDER BY b_idx DESC
+			) a
+		) WHERE r_num BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 총 게시물 수를 반환하는 SELECT -->
+	<select id="totalCount" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM bbs_t
+		WHERE status = 0 AND bname = #{bname}
+	</select>
+	
+	<!-- 원글 저장 -->
+	<insert id="add" parameterType="api.vo.BbsVO">
+		INSERT INTO bbs_t(b_idx, subject, writer, content,
+			file_name, ori_name, pwd, write_date, ip, hit, status, bname)
+		VALUES(bbs_t_seq.NEXTVAL, #{subject}, #{writer}, #{content},
+			#{file_name, jdbcType=VARCHAR },
+			#{ori_name, jdbcType=VARCHAR }, #{pwd}, sysdate, #{ip}, 0, 0, #{bname})
+
+	</insert>
+	
+	<!-- 기본키(b_idx_)를 인자로 받아 원글을 검색해 주는 기능 -->
+	<select id="getBbs" parameterType="String" resultMap="map1">
+		SELECT * FROM bbs_t
+		WHERE b_idx = #{no}
+	</select>
+	
+	<!-- 댓글 저장 -->
+	<insert id="addAns" parameterType="api.vo.CommVO">
+		INSERT INTO comment_t(c_idx, writer, content, write_date,
+			ip, pwd, b_idx)
+		VALUES(comment_t_seq.NEXTVAL, #{writer}, #{content}, sysdate,
+			#{ip}, #{pwd}, #{b_idx})
+	</insert>
+	
+	<!-- 원글 삭제 update -->
+	<update id="delBbs" parameterType="String">
+		UPDATE bbs_t
+		SET status = 1
+		WHERE b_idx = ${no}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="hit" parameterType="String">
+		UPDATE bbs_t
+		SET hit = hit+1
+		WHERE b_idx = #{no}
+	</update>
+	
+	<!-- 원글 수정 -->
+	<update id="edit" parameterType="api.vo.BbsVO">
+		UPDATE bbs_t
+		SET
+			subject = #{subject},
+			content = #{content}
+			<if test="file_name != null">
+				,file_name = #{file_name}
+				,ori_name = #{ori_name}
+			</if>
+		WHERE b_idx = #{b_idx} AND pwd = #{pwd}
+	</update>
+</mapper>
+
+
+
+
+
