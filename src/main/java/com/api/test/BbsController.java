@@ -82,12 +82,7 @@ public class BbsController {
 		mv.setViewName("/helpSc");
 		return mv;
 	}
-	//게시물상세보기
-	@RequestMapping("/helpScV")
-	public String goView(String b_idx) {
-		System.out.println(b_idx);
-		return "helpScV";
-	}
+	
 	//글쓰기 페이지로 이동
 	@RequestMapping("/helpWrite")
 	public String goWrite() {
@@ -168,6 +163,17 @@ public class BbsController {
 		return mv;
 	}
 	
+	//게시물상세보기
+	@RequestMapping("/helpScV")
+	public ModelAndView view(String b_idx, String nowPage) {
+		ModelAndView mv = new ModelAndView();
+		
+		BbsVO vo = b_dao.getBbs(b_idx);
+		mv.addObject("vo",vo);
+		mv.addObject("ip", request.getRemoteAddr());
+		mv.setViewName("helpScV");
+		return mv;
+	}
 	
 	@RequestMapping("/ans_write.inc")
 	public ModelAndView ans_write(CommVO cvo, String cPage) {

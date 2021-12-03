@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
 	#footer{
-		position: relative;
-		height: 110px;
 		left: 0;
 		bottom: 0;
 		border-top: 0.7px solid #efefef;
 		padding: 20px;
+		width: 100%;
 	}
 	#foot_menu ol{
 		margin: 0 auto;

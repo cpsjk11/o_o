@@ -190,15 +190,12 @@
 			var t1 = $("#subject");
 			var t2 = $("#content");
 			
-			/* t2 = removeHTML(t2);
-			$("#content").val(t2); */
-			
-			if(t1.val().trim().length < 0){
+			if(t1.val().trim().length < 1){
 				alert("제목을 입력하세요.");
 				document.forms[0].subject.focus();
 				return;//수행 중단
 			}
-			if(t2.val().trim().length < 0){
+			if(t2.val().trim().length < 2){
 				alert("내용을 입력해주세요.");
 				document.forms[0].content.focus();
 				return;//수행 중단
