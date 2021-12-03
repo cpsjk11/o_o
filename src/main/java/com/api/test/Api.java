@@ -155,6 +155,23 @@ public class Api { //
 				
 }
 	
+	@RequestMapping("/look")
+	public String look() {
+		return "과정제도";
+	}
+	@RequestMapping("/look2")
+	public String look2() {
+		return "취업성공패키지개요";
+	}
+	@RequestMapping("/look3")
+	public String look3() {
+		return "프로그램구성";
+	}
+	@RequestMapping("/look4")
+	public String look4() {
+		return "지원혜택";
+	}
+	
 	
 	@RequestMapping("/api")
 	public ModelAndView getData(SearchVO svo, String page) throws Exception  {
