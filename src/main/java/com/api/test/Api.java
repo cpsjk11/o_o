@@ -175,6 +175,10 @@ public class Api { //
 	public String look5() {
 		return "취업성공패키지신청자격";
 	}
+	@RequestMapping("/look6")
+	public String look6() {
+		return "신청방법";
+	}
 	
 	
 	@RequestMapping("/api")
