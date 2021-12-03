@@ -169,10 +169,10 @@
                         <li class="mul1 "><a href="look2">개요</a></li>
                         <li class="mul2 "><a href="look3">프로그램 구성</a></li>
                         <li class="mul3 "><a href="look4">지원혜택</a></li>
-                        <li class="mul4 "><a href="#">신청자격</a></li>
-                        <li class="mul5 "><a href="#">신청방법</a></li>
-                        <li class="mul6 "><a href="#">참여제한</a></li>
-                        <li class="mul7 "><a href="#">재참여</a></li>
+                        <li class="mul4 "><a href="look5">신청자격</a></li>
+                        <li class="mul5 "><a href="look6">신청방법</a></li>
+                        <li class="mul6 "><a href="look7">참여제한</a></li>
+                        <li class="mul7 "><a href="look8">재참여</a></li>
                     </ul>
                 </div><!-- m-unit-body -->
             </div>

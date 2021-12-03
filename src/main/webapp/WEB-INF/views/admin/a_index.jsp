@@ -624,6 +624,11 @@
 		}
 		function delSend(ss){
 			
+			if (!confirm("삭제를 확인합니다.")) {
+		        // 취소(아니오) 버튼 클릭 시 이벤트
+		        return;
+		    }
+			
 			var id = $("#id"+ss).val();
 			var param = "id="+encodeURIComponent(id);
 						

@@ -499,25 +499,27 @@
 				alert("입력해유~");
 				return;
 			}
-			if(value == '회원' || value == '탈퇴' || value == '탈퇴회원'){
-				
-				if(result == 'stat' && stat == 0 && value == '탈퇴' || value == '탈퇴회원')
-					value = "-1";
-				
-				if(result == 'stat' && stat == 0 && value == '회원')
-					value = "0";
-				
-				if(result == 'stat' && stat == 1 && value == '탈퇴' || value == '탈퇴회원')
-					value = "-2";
-				
+			if(result == 'stat'){
+				if(value == '회원' || value == '탈퇴' || value == '탈퇴회원'){
 					
-				if(result == 'stat' && stat == 1 && value == '회원')
-					value = "1";
-				
-				
-			}else{
-				alert("잘못입력했습니다");
-				return;
+					if(stat == 0 && value == '탈퇴' || value == '탈퇴회원')
+						value = "-1";
+					
+					if(stat == 0 && value == '회원')
+						value = "0";
+					
+					if(stat == 1 && value == '탈퇴' || value == '탈퇴회원')
+						value = "-2";
+					
+						
+					if(stat == 1 && value == '회원')
+						value = "1";
+					
+					
+				}else{
+					alert("잘못입력했습니다");
+					return;
+				}
 			}
 			alert(value);
 			$("#value").val(value);
