@@ -94,6 +94,25 @@
 	}
 	#add_btn{
 		float: right;
+		width: 75px;
+		height: 30px;
+		background: #EFEFEF;
+		border-radius: 6px;
+		text-align: center;
+		font-weight: 600;
+		font: #3A2F2F;
+		line-height: 30px;
+	}
+	#iw_inner{
+		text-align: center;
+		height: 40px;
+	}
+	#iw_inner>h5{
+		margin-top: 5px;
+		margin-bottom: 0;
+	}
+	#iw_inner>h6{
+		margin-top: 5px;
 	}
 	
 	
@@ -114,7 +133,7 @@
 				<span style="width: 700px; height: 150px; float:right;"><h2>${vo.TRPR_NM}<br/></h2><h3>${vo3.TR_STA_DT} ~ ${vo3.TR_END_DT}(${vo2.TOT_TRAING_DYCT}일, ${vo2.TOT_TRAING_TIME}시간)</h3></span>
 			</div>
 			<div style="width: 700px; height: 50px; float:right;">
-				<a href="register?id=${session.userName}&TRPR_ID=${vo.TRPR_ID}" target="_blank"><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
+				<a href="register?u_id=${userName.id}&TRPR_ID=${vo.TRPR_ID}" target="_blank"><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
 				<button type="button" class="btn" id="like_btn" onclick="like(this)">&#x1f49b;관심</button>
 				<input type="hidden" id="like" name="like" value="false"/>
 				<button type="button" class="btn" id="list_btn" onclick="list()" style="float:right;">목록</button>
@@ -180,7 +199,7 @@
 		
 		<div id="add_div" class="hidden">
 			<form action="view" name="add_after" method="post">
-				<input type="hidden" id="u_id" name="u_id" value="${session.userName}"/>
+				<input type="hidden" id="u_id" name="u_id" value="${userName.id}"/>
 				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
 				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
 				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
@@ -220,6 +239,26 @@
 		    position: new naver.maps.LatLng(${y}, ${x}),
 		    map: map
 		});
+		
+		var contentString = [
+		    '<div id="iw_inner">',
+		    '<h5><c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if></h5>',
+		    '<h6>${vo.ADDR1}</h6>',
+		    '</div>'
+		].join('');
+		
+		var infowindow = new naver.maps.InfoWindow({
+		    content: contentString
+		});
+
+		naver.maps.Event.addListener(marker, "click", function(e) {
+		    if (infowindow.getMap()) {
+		        infowindow.close();
+		    } else {
+		        infowindow.open(map, marker);
+		    }
+		});
+
 	});
 	
 	function list() {
@@ -237,7 +276,6 @@
 	}
 	function add1() {
 		if($("#u_id").val() != null && $("#u_id").val().length > 1) {
-			alert($("#u_id").val());
 			$("#add_div").dialog({
 				title:"후기등록"
 			});
@@ -252,8 +290,7 @@
 	function ok1() {
 		$("#add_div").dialog("close");
 		$("#add_div").css("display", "none");
-		alert($("#content").val());
 		document.add_after.submit();
-	}	
+	}
 </script>
 </html>

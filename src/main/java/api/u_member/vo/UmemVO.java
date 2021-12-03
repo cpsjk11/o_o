@@ -1,7 +1,7 @@
 package api.u_member.vo;
 
 public class UmemVO {
-	private String 	id,pw,name,birth,email,phone,addr,member,u_date,stat,c_num;
+	private String 	id,pw,name,birth,email,phone,addr,addr2,member,u_date,stat,c_num,zonecode;
 	
 	public UmemVO() {}
 
@@ -83,6 +83,14 @@ public class UmemVO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+	
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
 
 	public String getMember() {
 		return member;
@@ -108,6 +116,13 @@ public class UmemVO {
 		this.stat = stat;
 	}
 	
+	public String getZonecode() {
+		return zonecode;
+	}
+
+	public void setZonecode(String zonecode) {
+		this.zonecode = zonecode;
+	}
 	
 	
 }

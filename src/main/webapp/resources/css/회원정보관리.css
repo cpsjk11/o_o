@@ -69,21 +69,28 @@
 .table_type01 p{padding-bottom: 20px; /* 아이디, 비밀번호란 내부 */}
 
 
-#addr1{
+#zonecode{
+	width: 110px;
+	margin-top: 10px;
+	
+}
+#addr{
 	width: 390px;
 	margin-top: 10px;
 }
 #addr2{
 	width: 390px;
 	margin-top: 10px;
+	
 }
 
 .table_type01 .join{
 	/* 입력 칸 영역 */
-	width: 110px;
+	width: 180px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	padding: 5px;
+	
 }
 
 .hidden{

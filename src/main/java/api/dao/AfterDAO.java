@@ -45,11 +45,15 @@ public class AfterDAO {
 	}
 	
 	// 후기 작성자 불러오기
-	public boolean list_id(String u_id) {
+	public boolean list_id(String u_id, String tr_id) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("u_id", u_id);
+		map.put("tr_id", tr_id);
 		
 		boolean chk = true;
 		
-		String id = ss.selectOne("after.list_id", u_id);
+		String id = ss.selectOne("after.list_id", map);
 		
 		if(id != null && !id.trim().equals(""))
 			chk = false;

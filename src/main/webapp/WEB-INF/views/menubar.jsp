@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <div id="bbb_left">
 		<div id="menu_wrapper">
 		<div class="m-unit">
@@ -38,15 +40,15 @@
 					<ul>
 						<li class="mul1">
 							<span class="m-bullet"></span>
-							<a href="change">정보변경</a>
+							<a href="change?id=${sessionScope.userName.id}">정보변경</a>
 						</li>
 						<li class="mul2">
 							<span class="m-bullet"></span>
-							<a href="pwd">비밀번호변경</a>
+							<a href="pwd?id=${sessionScope.userName.id }">비밀번호변경</a>
 						</li>
 						<li class="mul4">
 							<span class="m-bullet"></span>
-							<a href="remove">회원탈퇴</a>
+							<a href="remove?id=${sessionScope.userName.id }">회원탈퇴</a>
 						</li>
 					</ul>
 				</div>
@@ -95,5 +97,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
