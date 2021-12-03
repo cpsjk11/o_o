@@ -7,7 +7,7 @@
 					<a href="/">국삐</a>	
 				</div>
 				<div id="right_m">
-					<c:if test="${sessionScope.userName.stat ne '2' }">
+					<c:if test="${sessionScope.userName eq null }">
 						<a href="ex" id="login">로그인</a>
 						<a href="join">회원가입</a>
 					</c:if>
