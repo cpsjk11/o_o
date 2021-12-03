@@ -31,7 +31,7 @@
 				</div>
 				<div id="left_m">
 					<a href="goSearch">훈련과정</a>
-					<a href="jk">지원제도</a>
+					<a href="look">지원제도</a>
 					<a href="helpSc">고객센터</a>
 				</div> 
 			</div>
