@@ -107,7 +107,7 @@
 						<textarea name="content" id="content" 
 							rows="8"></textarea>
 					</div>
-					<input hidden="bname" name="bname" id="bname" value="일반게시판">
+					<input hidden="bname" name="bname" id="bname" value="${bname }">
 					<input hidden="writer" name="writer" id="writer" value="${sessionScope.userName.name }">
 				</form>
 				<div id="btn_area">
@@ -201,6 +201,8 @@
 			}
 	
 			document.forms[0].submit();
+			
+			
 		}
 
 		

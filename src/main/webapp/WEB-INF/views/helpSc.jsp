@@ -101,18 +101,16 @@
 					</div>
 				</c:forEach>
 				</div>
-					<div id="bbs_bot">
-						<div id="paging_area">${pageCode }</div>
-						<div id="menu_area">
-							<c:if test="${userName ne null }">
-								<a href="/helpWrite" id="menu_panel">글쓰기</a>
-							</c:if>
-						</div>	
-					</div>
+				<div id="bbs_bot">
+					<div id="paging_area">${pageCode }</div>
+					<div id="menu_area">
+						<c:if test="${userName ne null }">
+							<a href="/helpWrite?bname=${bname }" id="menu_panel">글쓰기</a>
+						</c:if>
+					</div>	
+				</div>
 			</div>
 		<jsp:include page="footer.jsp"/>
 	</div>
-	
-	
 </body>
 </html>

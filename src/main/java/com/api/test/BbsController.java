@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import api.dao.BbsDAO;
 import api.vo.BbsVO;
@@ -50,7 +52,7 @@ public class BbsController {
 	List<BbsVO> b_list;
 	
 	//게시물 리스트보기
-	@RequestMapping({"/helpSc","/helpSc1","/helpSc2","/helpSc3","/helpSc4"})
+	@RequestMapping("/helpSc")
 	public ModelAndView goHelp(String cPage, String bname) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -60,7 +62,7 @@ public class BbsController {
 			nowPage = Integer.parseInt(cPage);
 
 		if (bname == null)
-			bname = "일반게시판"; // 일반게시물
+			bname = "회원자유게시판";
 
 		
 		
@@ -74,6 +76,7 @@ public class BbsController {
 		
 		BbsVO[] ar = b_dao.getList(begin, end, bname);
 		
+		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("rowTotal", rowTotal);
@@ -85,52 +88,49 @@ public class BbsController {
 	
 	//글쓰기 페이지로 이동
 	@RequestMapping("/helpWrite")
-	public String goWrite() {
-		return "/write";
+	public ModelAndView goWrite(String bname) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("bname",bname);
+		mv.setViewName("/write");
+		return mv;
 	}
 
 	@RequestMapping(value="/saveImg", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> saveImg(ImgVO vo){
-		//반환객체 생성
 		Map<String, String> map = new HashMap<String, String>();
 		
-		//넘어온 이미지 파일이 있는지 확인
 		MultipartFile f = vo.getS_file();
-		String fname = null; // 반환할 때 필요함!
+		String fname = null;
 		
 		if(f.getSize() > 0) {
-			//이미지 파일이 있는 경우
 			String realPath = application.getRealPath(img_path);
 			
-			fname = f.getOriginalFilename(); //f.getName();// s_file
+			fname = f.getOriginalFilename();
 			
-			//첨부파일이 앞서 저장된 파일명과 동일할 경우 파일명 뒤에 숫자를
-			//붙여서 같은 이름을 피한다.
 			fname = FileRenameUtil.checkSameFileName(fname, realPath);
 			
 			try {
-				f.transferTo(new File(realPath, fname));//지정된 위치(realPath)에
-														//파일 올린다.
+				f.transferTo(new File(realPath, fname));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
-		//파일이 업로드가 되었으므로 이제 정확한 경로를 반환해야 한다.(JSON)
 		String c_path = request.getContextPath();
 		
 		map.put("url", c_path+img_path);
-		map.put("fname", fname);// flag.png
+		map.put("fname", fname);
 		
 		return map;
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public ModelAndView write(BbsVO vo)throws Exception{
-		
-		System.out.println(vo.getWriter());
-		System.out.println(vo.getBname());
+	public ModelAndView write(BbsVO vo, String bname)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(vo.getWriter()+"글스니`!~!");
+		System.out.println(vo.getBname()+"bname~!~!~!");
+		System.out.println(bname+"bbbb");
 		
 //		// 첨부된 파일을 vo로부터 얻어낸다.
 //		MultipartFile mf = vo.getFile();
@@ -152,12 +152,10 @@ public class BbsController {
 //			vo.setOri_name(fname);
 //		}
 			
-		vo.setIp(request.getRemoteAddr());//접속자 IP저장
+		vo.setIp(request.getRemoteAddr());
 		
-		b_dao.add(vo);// DB에 저장!!!!
+		b_dao.add(vo);
 		
-		//반환을 위한 객체 생성
-		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/helpSc");
 		
 		return mv;
