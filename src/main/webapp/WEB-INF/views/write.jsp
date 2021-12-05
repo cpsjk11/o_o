@@ -154,7 +154,6 @@
 					}
 				}
 			});
-			$("#content").summernote("lineHeight",.7);
 		});
 		
 		function sendImage(file, editor){

@@ -50,7 +50,7 @@ public class BbsController {
 	List<BbsVO> b_list;
 	
 	//게시물 리스트보기
-	@RequestMapping("/helpSc")
+	@RequestMapping({"/helpSc","/helpSc1","/helpSc2","/helpSc3","/helpSc4"})
 	public ModelAndView goHelp(String cPage, String bname) {
 		ModelAndView mv = new ModelAndView();
 		

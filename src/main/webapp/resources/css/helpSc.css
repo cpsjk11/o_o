@@ -12,14 +12,13 @@
 		border: 0.6px solid #efefef;
 		padding: 2.3em;
 		margin-bottom: 2.3em;
-	}
-	#category_area ul{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		display: flex;
 		justify-content: space-between;
 		margin-left: 2%;
 	}
-	#category_area ul a{
+	#category_area a{
+		text-align: center;
 		color: #94969b;
 		font-size: 1em;
 		font-weight: 350;
@@ -27,10 +26,7 @@
 		transition-property:color;
 		transition-duration:0.2s;
 	}
-	#category_area ul a:nth-child(1){
-		color: #3A2F2F;
-	}
-	#category_area ul a:hover{color: #3A2F2F;}
+	#category_area a:hover{color: #3A2F2F;}
 	#bbs_b_area{
 		margin: 0 auto;
 		padding: 2%;
@@ -78,7 +74,7 @@
 	}
 	#bbs_content span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1.0em;
+		font-size: 1em;
 		font-weight: 400;
 	}#bbs_writer{
 		margin: 1em 0 1em;
