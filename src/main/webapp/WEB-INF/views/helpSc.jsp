@@ -76,6 +76,9 @@
 		width: 90%;
 		display: inline-block;
 	}
+	#comment_len{
+		display: inline-block;
+	}
 </style>
 </head>
 <body>
@@ -90,19 +93,22 @@
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
 						<div id="bbs_prop">
-							<span>조회수</span>&nbsp;
-							<span>${vo.hit }</span>&nbsp;&nbsp;
-							<c:if test="${vo.c_list ne null }">
-								<span>댓글수</span>
-								<span>(${vo.c_list.size() })</span>
-							</c:if>
+							<div id="views">
+								<span>조회수</span>&nbsp;
+								<span>${vo.hit }</span>&nbsp;&nbsp;
+							</div>
+							<div id="comment_len">
+								<c:if test="${vo.c_list ne null }">
+									<span>댓글</span>
+									<span>(${vo.c_list.size() })</span>
+								</c:if>
+							</div>
 							<span id="bbs_date">
 								<c:if test="${vo.write_date ne null }">
 									${fn:substring(vo.write_date, 0, 16) }
 								</c:if>
 							</span>
 						</div>
-						<div class="transition"></div>
 					</div>
 				</c:forEach>
 				</div>

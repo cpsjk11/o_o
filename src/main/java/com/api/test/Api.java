@@ -207,6 +207,22 @@ public class Api { //
 	   public String card5() {
 	      return "내일배움카드재발급";
 	   }
+	   @RequestMapping("/country1")
+	   public String country1() {
+	      return "국가기간전략개요";
+	   }
+	   @RequestMapping("/country2")
+	   public String country2() {
+	      return "국가기간전략지원";
+	   }
+	   @RequestMapping("/country3")
+	   public String country3() {
+	      return "국가기간전략지원자격";
+	   }
+	   @RequestMapping("/country4")
+	   public String country4() {
+	      return "과정제도";
+	   }
 	
 	
 	@RequestMapping("/api")

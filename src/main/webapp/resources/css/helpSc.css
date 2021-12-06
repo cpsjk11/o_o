@@ -68,7 +68,7 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 		-webkit-line-clamp: 1; /* ellipsis line */
-		margin: 1em 1em 2em;
+		margin: 1em 1.2em 3em;
 		width: 90%;
 		height: 35%;
 	}
@@ -77,7 +77,7 @@
 		font-size: 1em;
 		font-weight: 400;
 	}#bbs_writer{
-		margin: 1em 0 1em;
+		margin: 1em 0 0;
 		width: 90%;
 		height: 10%;
 	}

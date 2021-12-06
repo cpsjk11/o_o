@@ -38,7 +38,7 @@
     }
     th{
         border: 1px solid #dfdfdf;
-        font-size: 15px;
+        font-size: 13px;
         height: 50px;
         color: black;
         background-color: #efefef;
