@@ -63,6 +63,7 @@
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1.2em;
 		font-weight: 450;
+		color: #555962;
 	}
 	#bbs_content{
 		text-overflow: ellipsis;
