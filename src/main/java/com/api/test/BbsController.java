@@ -63,7 +63,6 @@ public class BbsController {
 
 		if (bname == null)
 			bname = "회원자유게시판";
-
 		
 		
 		rowTotal = b_dao.getTotalCount(bname);
@@ -75,6 +74,8 @@ public class BbsController {
 		pageCode = page.getSb().toString();
 		
 		BbsVO[] ar = b_dao.getList(begin, end, bname);
+		
+		
 		
 		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);
@@ -128,9 +129,8 @@ public class BbsController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(BbsVO vo, String bname, RedirectAttributes rt)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(vo.getWriter()+"글스니`!~!");
-		System.out.println(vo.getBname()+"bname~!~!~!");
-		System.out.println(bname+"bbbb");
+		
+		
 //		// 첨부된 파일을 vo로부터 얻어낸다.
 //		MultipartFile mf = vo.getFile();
 //		
@@ -155,6 +155,7 @@ public class BbsController {
 		
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
+		mv.addObject("bname",bname);
 		mv.setViewName("/redirect:/helpSc");
 		
 		return mv;
@@ -166,6 +167,8 @@ public class BbsController {
 		ModelAndView mv = new ModelAndView();
 		
 		BbsVO vo = b_dao.getBbs(b_idx);
+		
+		b_dao.updateHit(vo.getB_idx());
 		
 		mv.addObject("vo",vo);
 		mv.addObject("nowPage",nowPage);

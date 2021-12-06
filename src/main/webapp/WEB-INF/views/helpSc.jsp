@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>국삐-${bname }</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
@@ -90,8 +90,12 @@
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
 						<div id="bbs_prop">
+							<span>조회수</span>&nbsp;
 							<span>${vo.hit }</span>&nbsp;&nbsp;
-							<span>좋아요</span>
+							<c:if test="${vo.c_list ne null }">
+								<span>댓글수</span>
+								<span>(${vo.c_list.size() })</span>
+							</c:if>
 							<span id="bbs_date">
 								<c:if test="${vo.write_date ne null }">
 									${fn:substring(vo.write_date, 0, 16) }
@@ -113,5 +117,7 @@
 			</div>
 		<jsp:include page="footer.jsp"/>
 	</div>
+	<script type="text/javascript">
+	</script>
 </body>
 </html>

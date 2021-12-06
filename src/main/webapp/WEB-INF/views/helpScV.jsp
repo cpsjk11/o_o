@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>국삐-고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <link rel="shortcut icon" href="resources/ico/Frame.png">
@@ -160,8 +160,8 @@
 						</div>
 						<div id="v_bbs_content"><span>${vo.content }</span></div>
 						<div id="v_bbs_prop">
-							<span>조회수</span>&nbsp;&nbsp;
-							<span>좋아요</span>
+							<span>조회수</span>&nbsp;
+							<span>${vo.hit }</span>
 							<div id="v_bbs_date">
 								<span>
 									<c:if test="${vo.write_date ne null }">
@@ -175,7 +175,9 @@
 				
 				<div id="coment_write_area">
 					<form action="/ansWrite" method="POST">
-						<span>댓글&nbsp;35</span>
+						<c:if test="${vo.c_list ne null }">
+							<span>댓글 (${vo.c_list.size() })</span>
+						</c:if>
 						<div id="coment_btn_area">
 						<c:if test="${sessionScope.userName ne null}">
 							<textarea name="content" id="content" placeholder="내용을 입력해주세요."
