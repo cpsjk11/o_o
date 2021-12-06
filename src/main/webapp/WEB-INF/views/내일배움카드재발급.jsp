@@ -25,7 +25,7 @@
 
     .content{
         width: 900px;
-        margin: 145px 550px;
+        margin: 145px auto;
 		font-size: medium;
     }
 
@@ -38,7 +38,7 @@
       
     }
     th{
-        border: 1px solid #dfdfdf;
+       border: 1px solid #dfdfdf;
         font-size: 15px;
         height: 50px;
         color: black;
@@ -54,13 +54,18 @@
         border: 1px solid #dfdfdf;
         margin: 10px;
         font-size: 13px;
+        text-align: center;
+    }
+    .text-center{
+        
+        text-align: center;
     }
     #header{
         margin: 10px 0 ;
     }
     .content-title{
     	border-bottom: 2px solid skyblue;
-        width: 36%;
+        width: 40%;
        	position: relative !important;
     	left: 50px !important;
     	top: 0px !important;
@@ -68,22 +73,20 @@
     
    li{
         padding: 3px 3px 3px 8px;
-		list-style: none;
-		font-size: 0.8em;
-		padding: 8px;
+	
+		font-size: 0.9em;
+		
 		margin: 10px 0;
     }
     ul{
         margin: 10px 0;
-		width: 720px;
+		
     }
-    table{
+    .ta{
         width: 100%;
+        margin: 25px 0;
     }
-	strong{
-		display: inline-block;
-		margin: 0 0 15px;
-	}
+	
 
 /*    <!-- 여기는 좌측 메뉴바 css --> */
   .leftBox {
@@ -138,6 +141,9 @@
 
 }
 .no-style{
+    list-style-position: outside;
+}
+.no-styles{
     list-style: none;
 }
 .li-dot{
@@ -154,6 +160,47 @@
 }
 #text{
 	margin: 5px 0;
+}
+.content-sub-title{
+    margin-left: 48px;
+    color: skyblue;
+}
+.no-margin-li{
+    margin-left: -30px;
+    list-style: decimal;
+}
+.li-line{
+    list-style-type: square;
+}
+.text-padding{
+    padding: 10px;
+}
+#td-center td{
+    padding-left: 20px;
+}
+.table-wrapper{
+    margin-left: -40px;
+}
+.block-center{
+    margin-left: -40px;
+}
+.a-hidden{
+    text-decoration: none;
+    color: black;
+}
+.left a:hover {
+    color: skyblue;
+}
+.go_hrd:hover {
+    color: skyblue;
+}
+.num-style{
+    list-style: decimal;
+
+}
+strong{
+	display: inline-block;
+	margin-bottom: 5px;
 }
 
 </style>
@@ -178,7 +225,7 @@
             </div>
             
             
-           <div class="m-unit item5 ">
+            <div class="m-unit item5 ">
                 <div class="m-unit-title to2">실업자 내일배움카드&nbsp;&nbsp;👇</div>
                 <div class="m-unit-body2 up">
                     <ul class="left">
@@ -239,42 +286,24 @@
     </div><!-- bbb_left -->
 
     <div class="content">
-	<h2 class="content-title"><span class="content-title-bar"></span>취업성공패키지 프로그램구성</h2>
-	<ul class="out">
-		<li class="no-l_style">취업성공패키지는 최장 1년 동안 서비스가 제공되며, 각 단계별로 지원되는 서비스의 내용은 아래와 같습니다.</li>
-	</ul>
-	<ul>
-		<li>
-			<span class="li-dot"></span>
-			<strong>진단, 의욕증진 및 경로설정 단계</strong><br>
-			개인별 취업활동 계획(IAP)* 수립을 위한 취업성공패키지의 첫 번째 단계입니다. 직업심리검사 및 집단상담 프로그램 등을 통하여 참가자의 취업역량, 구직의욕 및 적성 등을 정확히 진단한 후, 이를 토대로 취업에 대한 자신감 회복 및 개인별 취업활동 경로를 설정하게 됩니다.
-			<div class="footnote-box">
-				<div class="footnote-box-un">
-				*IAP란 Individual Action Plan의 줄임말로서, 취업 성공을 위한 구체적 목표 설정 및 실행 계획을 담고 있는 계획표입니다.
-				</div>
-			</div>
-		</li>
-		<li>
-			<span class="li-dot"></span>
-			<strong>취업상담 • 취업알선 단계 (2유형만 해당)</strong><br>
-			1단계 종료 후 필요한 경우에 한하여 상담사와 참여자의 협의를 통해 2~4주간에 걸쳐 취업상담 및 취업알선을 받을 수 있게 됩니다. 해당 단계가 불필요하다고 인정되는 경우 생략 가능합니다. 
-		</li>
-		<li>
-			<span class="li-dot"></span>
-			<strong>직업능력 및 직장적응력 증진 단계</strong><br>
-			직업훈련, 창업프로그램, 인턴과 같은 세부 프로그램들을 통해 현장에서 요구되는 직무 능력을 습득하는 단계입니다. 이러한 과정을 거쳐 직장생활 적응을 위해 필요한 기술을 익히게 됩니다.
-		</li>
-		<li>
-			<span class="li-dot"></span>
-			<strong>집중 취업알선 단계</strong><br>
-			고용센터 및 민간위탁기관에서 일자리 알선 및 동행 면접을 실시하는 단계입니다. 3개월의 기간을 원칙으로 참가자에 대한 취업알선 서비스가 집중적으로 제공됩니다.
-		</li>
-		<li>
-			<span class="li-dot"></span>
-			<strong>사후관리</strong><br>
-			취업성공패키지 서비스 종료일로부터 3개월 동안 참가자에 대한 지속적인 관리가 이어집니다. 취업자에게는 직장적응 및 장기근속을 유도하고, 미취업자의 경우 고용센터의 구인정보 등을 꾸준히 제공하여 취업의지가 약화되는 것을 방지합니다.
-		</li>
-	</ul>
+    <h2 class="content-title"><span class="content-title-bar"></span>실업자 내일배움카드 재발급</h2>
+    <ul class="no-padding">
+        <li>
+            실업자 내일배움카드는 첫 발급을 포함하여 최대 3회까지 발급 받을 수 있으며, 재발급 조건은 아래와 같습니다.
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <span class="li-dot"></span>
+            <strong>발급가능횟수</strong><br>
+            계좌발급 가능횟수는 첫 발급을 포함하여 총 3회로 제한됩니다. 다만, 180일 이상 취업 또는 창업했다가 실직 또는<br/> 폐업한 경우 발급가능횟수는 3회로 리셋됩니다.
+        </li>
+        <li>
+            <span class="li-dot"></span>
+            <strong>180일 경과</strong><br>
+            카드만료일 또는 잔액소멸일로부터 180일이 지난 후에도 미취업 상태일 경우 재발급 신청이 가능합니다. 
+        </li>
+    </ul>
 </div><!-- content -->
     <jsp:include page="footer.jsp"></jsp:include>
 </body>
