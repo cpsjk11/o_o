@@ -156,29 +156,57 @@ public class Api { //
 }
 	
 	@RequestMapping("/look")
-	public String look() {
-		return "과정제도";
-	}
-	@RequestMapping("/look2")
-	public String look2() {
-		return "취업성공패키지개요";
-	}
-	@RequestMapping("/look3")
-	public String look3() {
-		return "프로그램구성";
-	}
-	@RequestMapping("/look4")
-	public String look4() {
-		return "지원혜택";
-	}
-	@RequestMapping("/look5")
-	public String look5() {
-		return "취업성공패키지신청자격";
-	}
-	@RequestMapping("/look6")
-	public String look6() {
-		return "신청방법";
-	}
+	   public String look() {
+	      return "과정제도";
+	   }
+	   @RequestMapping("/look2")
+	   public String look2() {
+	      return "취업성공패키지개요";
+	   }
+	   @RequestMapping("/look3")
+	   public String look3() {
+	      return "프로그램구성";
+	   }
+	   @RequestMapping("/look4")
+	   public String look4() {
+	      return "지원혜택";
+	   }
+	   @RequestMapping("/look5")
+	   public String look5() {
+	      return "취업성공패키지신청자격";
+	   }
+	   @RequestMapping("/look6")
+	   public String look6() {
+	      return "신청방법";
+	   }
+	   @RequestMapping("/look7")
+	   public String look7() {
+	      return "참여제한";
+	   }
+	   @RequestMapping("/look8")
+	   public String look8() {
+	      return "재참여";
+	   }
+	   @RequestMapping("/card1")
+	   public String card1() {
+	      return "내일배움카드개요";
+	   }
+	   @RequestMapping("/card2")
+	   public String card2() {
+	      return "내일배움카드지원";
+	   }
+	   @RequestMapping("/card3")
+	   public String card3() {
+	      return "내일배움카드발급자격";
+	   }
+	   @RequestMapping("/card4")
+	   public String card4() {
+	      return "내일배움카드신청방법";
+	   }
+	   @RequestMapping("/card5")
+	   public String card5() {
+	      return "내일배움카드재발급";
+	   }
 	
 	
 	@RequestMapping("/api")
