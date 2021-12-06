@@ -79,6 +79,10 @@
 	#comment_len{
 		display: inline-block;
 	}
+	#que_bbs{
+		text-align: center;
+		line-height: 15em;
+	}
 </style>
 </head>
 <body>
@@ -87,6 +91,7 @@
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>
 				<div id="bbs_b_area">
+				<c:if test="${bname ne '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
 					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&bname=${bname }'">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
@@ -111,6 +116,16 @@
 						</div>
 					</div>
 				</c:forEach>
+				</c:if>
+				<c:if test="${bname eq '문의게시판' }">
+				<c:forEach var="vo" items="${ar }" varStatus="st">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&bname=${bname }'">
+						<div id="que_bbs">
+							<span>문의 게시물은 작성자만 열람할 수 있습니다.</span>
+						</div>
+					</div>
+				</c:forEach>
+				</c:if>
 				</div>
 				<div id="bbs_bot">
 					<div id="paging_area">${pageCode }</div>

@@ -161,7 +161,7 @@ public class BbsController {
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
 		mv.addObject("bname",bname);
-		mv.setViewName("/redirect:/helpSc");
+		mv.setViewName("redirect:helpSc");
 		
 		return mv;
 	}
@@ -222,6 +222,10 @@ public class BbsController {
 	public String test() {
 		return "/testPage";
 	}
+	
+	
+	
+	
 	
 	public boolean checkBbs(BbsVO vo){
 		boolean value = true;
