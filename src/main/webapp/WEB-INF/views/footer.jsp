@@ -20,9 +20,9 @@
 					Copyright ⓒ 2016. Human Resources Development Service Of Korea. All Rights Reserved.</span>
 				</div>
 			</div>
-			<div id="foot_text">
-				<div id="title">
+			<!-- <div id="foot_text">
+				<div id="foot_title">
 					<a href="/">국삐</a>	
 				</div>
-			</div>
+			</div> -->
 		</div>

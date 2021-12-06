@@ -89,9 +89,10 @@
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
-						<div id="bbs_prop"><span>${vo.hit }</span>&nbsp;&nbsp;<span>좋아요</span></div>
-						<div id="bbs_date">
-							<span>
+						<div id="bbs_prop">
+							<span>${vo.hit }</span>&nbsp;&nbsp;
+							<span>좋아요</span>
+							<span id="bbs_date">
 								<c:if test="${vo.write_date ne null }">
 									${fn:substring(vo.write_date, 0, 16) }
 								</c:if>

@@ -90,14 +90,7 @@
 		font-size: 0.8em;
 	}
 	#bbs_date{
-		z-index: 1;
 		float: right;
-		width: 90%;
-		height: 10%;
-	}
-	#bbs_date span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 0.8em;
 	}
 	#menu_area{
 		width: 100%;
