@@ -22,7 +22,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="admin/a_index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>관리자 페이지</span></a>
             </li>
