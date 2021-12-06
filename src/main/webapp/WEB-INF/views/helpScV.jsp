@@ -44,6 +44,7 @@
 	}
 	#v_bbs_content{
 		padding: 1em;
+		position: relative;
 	}
 	#v_bbs_content span{
 	    font-family: 'Noto Sans KR','Roboto', sans-serif;
@@ -134,6 +135,11 @@
 		color: #94969b;
 		font-size: 0.9em;
 	}
+	#noLogin{
+		text-align: center;
+		vertical-align: middle;
+		position: relative;
+	}
 </style>
 </head>
 <body>
@@ -174,12 +180,12 @@
 						<c:if test="${sessionScope.userName ne null}">
 							<textarea name="content" id="content" placeholder="내용을 입력해주세요."
 								rows="8"></textarea>
+							<input type="submit" value="댓글달기" id="coment_btn">
 						</c:if>
 						<c:if test="${sessionScope.userName eq null}">
 							<textarea name="content" id="content" placeholder="로그인 후 입력이 가능합니다."
 								rows="8" readonly="readonly" disabled="disabled"></textarea>
 						</c:if>
-							<input type="submit" value="댓글달기" id="coment_btn">
 						</div>
 						<input type="hidden" name="bnmae" value=${vo.bname }>
 						<input type="hidden" name="b_idx" value=${vo.b_idx }>
