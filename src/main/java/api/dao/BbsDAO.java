@@ -56,10 +56,7 @@ public class BbsDAO {
 	}
 	
 	public int addAns(CommVO vo) {
-		
 		int cnt = ss.insert("bbs.addAns", vo);
-		
-		
 		return cnt;
 	}
 	

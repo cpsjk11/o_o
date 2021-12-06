@@ -16,7 +16,8 @@
 	<select id="commList" parameterType="String" 
 	resultType="api.vo.CommVO">
 		SELECT * FROM comment_t
-		WHERE b_idx = #{b_idx}
+		WHERE b_idx = #{b_idx} 
+		ORDER BY C_IDX DESC
 	</select>
 
 	<!-- 원글들을 가져오는 기능 (status가 1이면 삭제된 글, 
@@ -55,9 +56,9 @@
 	<!-- 댓글 저장 -->
 	<insert id="addAns" parameterType="api.vo.CommVO">
 		INSERT INTO comment_t(c_idx, writer, content, write_date,
-			ip, pwd, b_idx)
+			ip, b_idx)
 		VALUES(comment_t_seq.NEXTVAL, #{writer}, #{content}, sysdate,
-			#{ip}, #{pwd}, #{b_idx})
+			#{ip}, #{b_idx})
 	</insert>
 	
 	<!-- 원글 삭제 update -->

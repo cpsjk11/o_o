@@ -155,7 +155,7 @@ public class BbsController {
 		
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
-		mv.setViewName("redirect:/helpSc");
+		mv.setViewName("/redirect:/helpSc");
 		
 		return mv;
 	}
@@ -166,20 +166,24 @@ public class BbsController {
 		ModelAndView mv = new ModelAndView();
 		
 		BbsVO vo = b_dao.getBbs(b_idx);
+		
 		mv.addObject("vo",vo);
+		mv.addObject("nowPage",nowPage);
 		mv.addObject("ip", request.getRemoteAddr());
-		mv.setViewName("helpScV");
+		mv.setViewName("/helpScV");
 		return mv;
 	}
 	
-	@RequestMapping("/ans_write.inc")
-	public ModelAndView ans_write(CommVO cvo, String cPage) {
+	@RequestMapping("/ansWrite")
+	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx) {
 		ModelAndView mv = new ModelAndView();
+		BbsVO vo = b_dao.getBbs(b_idx);
 		
-		//댓글정보가 모두 cvo에 저장되어 넘어왔다.
-		b_dao.addAns(cvo); //댓글 저장
-		
-		mv.setViewName("redirect:/view.inc?b_idx="+cvo.getB_idx()+"&cPage="+cPage);
+		cvo.setWriter(vo.getWriter());
+		cvo.setIp(request.getRemoteAddr());
+		b_dao.addAns(cvo);
+		mv.addObject("cvo",cvo);
+		mv.setViewName("redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname);
 		
 		return mv;
 		

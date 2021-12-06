@@ -85,7 +85,7 @@
 				<jsp:include page="helpCategory.jsp"/>
 				<div id="bbs_b_area">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&bname=${bname }'">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
