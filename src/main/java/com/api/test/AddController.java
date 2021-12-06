@@ -1,26 +1,33 @@
 package com.api.test;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.action.BbsPaging;
 import api.action.CheckChart;
 import api.action.Paging;
 import api.action.RecommendedSchool;
+import api.dao.BbsDAO;
 import api.dao.RdDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.UmemVO;
+import api.vo.BbsVO;
 import api.vo.Search2;
 
 
@@ -35,10 +42,16 @@ public class AddController {
 	private UmemDAO u_dao;
 	
 	@Autowired
+	private BbsDAO b_dao;
+	
+	@Autowired
 	private HttpSession session;
 	
 	@Autowired
 	private HttpServletRequest request;
+	
+	@Autowired
+	private ServletContext application;
 	
 	// 추천학원기능을 저장하는 기능
 	@RequestMapping("/admin")
@@ -71,6 +84,10 @@ public class AddController {
 	@RequestMapping("/a_login")
 	public String st() {
 		return "admin/a_login";
+	}
+	@RequestMapping("/a_notice")
+	public String notice() {
+		return "admin/a_notice";
 	}
 	
 	@RequestMapping("/a_index")
@@ -214,7 +231,7 @@ public class AddController {
 		
 		UmemVO[] uvo = null;
 		
-		Paging pa = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, member);
+		Paging pa = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, "a_user?member="+member);
 		if(search.equals("0")) {
 			uvo = u_dao.getMember(member, String.valueOf(pa.getBegin()), String.valueOf(pa.getEnd()));
 			paging = pa.getSb().toString();
@@ -223,7 +240,7 @@ public class AddController {
 		else {
 			// 검색된 값이 있을때 이다.
 				total = u_dao.searchFind(member, search, value);
-				Paging pa1 = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, member+"&search="+search+"&value="+value);
+				Paging pa1 = new Paging(Integer.parseInt(page), total, Integer.parseInt(listnum), 5, "a_user?member="+member+"&search="+search+"&value="+value);
 				System.out.println(search);
 				System.out.println(member+"&search="+search+"&value="+value);
 				System.out.println(pa1.getBegin());
@@ -243,6 +260,56 @@ public class AddController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/a_QNA")
+	public ModelAndView qna(String page, String listnum) {
+		ModelAndView mv = new ModelAndView();
+		
+			int nowPage = 0;
+			
+			if (page == null)
+				nowPage = 1;
+			else
+				nowPage = Integer.parseInt(page);
+
+			String bname = "공지사항";
+			
+			if(listnum == null)
+				listnum = "5";
+			
+			
+			int rowTotal = b_dao.getTotalCount(bname);
+			
+			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,"a_QNA?");
+			
+			int begin = pa.getBegin();
+			int end = pa.getEnd();
+			
+			String pageCode = pa.getSb().toString();
+			
+			BbsVO[] ar = b_dao.getList(begin, end, bname);
+			
+			mv.addObject("qna", ar);
+			mv.addObject("listnum", listnum);
+			mv.addObject("pa", page);
+			mv.addObject("paging", pageCode);
+			mv.setViewName("admin/a_QNA");
+		return mv;
+	}
+	
+	@RequestMapping("/a_answer")
+	public ModelAndView view(String b_idx, String page) {
+		ModelAndView mv = new ModelAndView();
+		
+		BbsVO vo = b_dao.getBbs(b_idx);
+		
+		mv.addObject("vo",vo);
+		mv.addObject("nowPage",page);
+		mv.addObject("ip", request.getRemoteAddr());
+		mv.setViewName("admin/answer");
+			
+			return mv;
+		}
 
 	
 }

@@ -428,11 +428,11 @@
                         <th colspan="5">훈련분야별 취업률</th>
                     </tr>
                     <tr>
-                        <th class="wth16p">70% 이상</th>
-                        <th class="wth16p">55% 이상<br>70% 미만</th>
-                        <th class="wth16p">45% 이상<br>55% 미만</th>
-                        <th class="wth16p">35% 이상<br>44% 미만</th>
-                        <th class="wth16p">35% 미만</th>
+                        <th class="wth16p">70% ~</th>
+                        <th class="wth16p">55% ~ 69%</th>
+                        <th class="wth16p">45% ~ 54%</th>
+                        <th class="wth16p">35% ~ 43%</th>
+                        <th class="wth16p">0% ~ 35%</th>
                     </tr>
                     <tr class="text-center">
                         <th>일반 실업자</th>

@@ -78,7 +78,7 @@ public class Paging {
 		sb.append("<div style='float: right;'>");
 		sb.append("<ul class='pagination'>");
 		if(isPrePage) {
-			sb.append("<li class='paginate_button page-item next' id='dataTable_previous'><a href='a_user?member="+stat+"&page=");
+			sb.append("<li class='paginate_button page-item next' id='dataTable_previous'><a href='"+stat+"&page=");
 			sb.append(nowPage-blockPage);
 			sb.append("'aria-controls='dataTable' class='page-link'> &lt; </a></li>"); // <a href='list.inc?cPage=1'> < </a></li>
 		}else
@@ -95,7 +95,7 @@ public class Paging {
 				sb.append("</a></li>");
 				sb.append("</li>");
 			} else {
-				sb.append("<li  class='paginate_button page-item'><a href='a_user?member="+stat+"&page=");
+				sb.append("<li  class='paginate_button page-item'><a href='"+stat+"&page=");
 				sb.append(i); //파라미터 값
 				sb.append("'aria-controls='dataTable' data-dt-idx="+i+" tabindex='0' class='page-link'>"); // <a href='list.inc?cPage=1>
 				sb.append(i);// 화면에 표현되는 페이지 값
@@ -105,7 +105,7 @@ public class Paging {
 		
 		//다음기능 가능여부를 확인
 		if(isNextPage) {
-			sb.append("<li class='paginate_button page-item next' id='dataTable_previous'><a href='a_user?member="+stat+"&page=");
+			sb.append("<li class='paginate_button page-item next' id='dataTable_previous'><a href='"+stat+"&page=");
 			sb.append(nowPage-blockPage);
 			sb.append("'aria-controls='dataTable' class='page-link'> &gt; </a></li>");
 		} else 
