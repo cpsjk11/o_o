@@ -13,7 +13,9 @@ import api.vo.CommVO;
 
 @Component
 public class BbsDAO {
+	
 
+	
 	@Autowired
 	private SqlSessionTemplate ss;
 	
@@ -77,6 +79,7 @@ public class BbsDAO {
 		return ss.update("bbs.edit", vo);
 		
 	}
+	
 }
 
 

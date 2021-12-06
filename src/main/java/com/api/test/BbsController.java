@@ -1,6 +1,7 @@
 package com.api.test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,11 +10,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,7 +32,9 @@ import api.action.BbsPaging;
 public class BbsController {
 
 	@Autowired
-	BbsDAO b_dao;
+	private BbsDAO b_dao;
+	
+	private List<BbsVO> r_list;
 	
 	@Autowired
 	private ServletContext application;
@@ -168,14 +173,34 @@ public class BbsController {
 		
 		BbsVO vo = b_dao.getBbs(b_idx);
 		
-		b_dao.updateHit(vo.getB_idx());
-		
+		Object obj = application.getAttribute("read_list");
+		if(obj == null){
+			r_list = new ArrayList<BbsVO>();
+			application.setAttribute("read_list", r_list);
+		}else {
+			r_list = (List<BbsVO>) obj;
+			
+			ApplicationContext ctx =
+			WebApplicationContextUtils.getWebApplicationContext(application);
+			
+			BbsDAO bbsdao = ctx.getBean(BbsDAO.class);
+		}
+		if(b_idx != null){
+			BbsVO bvo = b_dao.getBbs(b_idx);// 사용자가 선택한 게시물
+			
+			boolean chk = checkBbs(vo);//한번이라도 읽었던 게시물인지 확인한다.
+			
+			if(chk){ //한번도 보지않은 게시물인 경우 조회수 증가
+				b_dao.updateHit(b_idx);
+				r_list.add(vo);
+			}
 		mv.addObject("vo",vo);
 		mv.addObject("nowPage",nowPage);
 		mv.addObject("ip", request.getRemoteAddr());
 		mv.setViewName("/helpScV");
-		return mv;
-	}
+			}
+			return mv;
+		}
 	
 	@RequestMapping("/ansWrite")
 	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx) {
@@ -198,4 +223,16 @@ public class BbsController {
 		return "/testPage";
 	}
 	
+	public boolean checkBbs(BbsVO vo){
+		boolean value = true;
+		
+		for(BbsVO bvo : r_list){
+			if(bvo.getB_idx().equals(vo.getB_idx())){
+				value = false;
+				break;
+			}
+		}
+		
+		return value;
+	}
 }
