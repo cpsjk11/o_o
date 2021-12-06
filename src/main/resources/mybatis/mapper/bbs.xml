@@ -40,7 +40,6 @@
 		VALUES(bbs_t_seq.NEXTVAL, #{subject}, #{writer}, #{content},
 			#{file_name, jdbcType=VARCHAR },
 			#{ori_name, jdbcType=VARCHAR }, <if test="pwd != null">#{pwd},</if> sysdate, #{ip}, 0, 0, #{bname}, #{id})
-
 	</insert>
 	
 	<!-- 기본키(b_idx_)를 인자로 받아 원글을 검색해 주는 기능 -->
@@ -83,6 +82,12 @@
 			</if>
 		WHERE b_idx = #{b_idx} AND pwd = #{pwd}
 	</update>
+	
+	<!-- 자기가 문의한 글 가져오기 -->
+	<select id="queBbs" parameterType="api.vo.BbsVO" resultType="api.vo.BbsVO">
+		SELECT * FROM bbs_t
+		WHERE id = ${id} AND bname ='문의게시판'
+	</select>
 </mapper>
 
 

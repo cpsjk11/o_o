@@ -125,10 +125,6 @@
 							<div id="bbs_content"><span>${vo.content }</span></div>
 							<div id="bbs_writer"><span>${vo.writer }</span></div>
 							<div id="bbs_prop">
-								<div id="views">
-									<span>조회수</span>&nbsp;
-									<span>${vo.hit }</span>&nbsp;&nbsp;
-								</div>
 								<div id="comment_len">
 									<c:if test="${vo.c_list ne null }">
 										<span>댓글</span>
@@ -154,7 +150,7 @@
 				<div id="bbs_bot">
 					<div id="paging_area">${pageCode }</div>
 					<div id="menu_area">
-						<c:if test="${userName ne null }">
+						<c:if test="${bname ne '공지사항' && bname ne '국삐활용가이드' }">
 							<a href="/helpWrite?bname=${bname }" id="menu_panel">글쓰기</a>
 						</c:if>
 					</div>	

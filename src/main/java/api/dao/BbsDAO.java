@@ -44,6 +44,20 @@ public class BbsDAO {
 		
 		return ar;
 	}
+	public BbsVO[] queBbs(String id) {
+		BbsVO[] ar = null;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		
+		List<BbsVO> list = ss.selectList("bbs.queBbs", map);
+		
+		if(list != null && list.size() > 0 && !list.isEmpty()) {
+			ar = new BbsVO[list.size()];
+			list.toArray(ar);
+		}
+		
+		return ar;
+	}
 	
 	public int add(BbsVO vo) {
 		
@@ -75,9 +89,7 @@ public class BbsDAO {
 	}
 	
 	public int editBbs(BbsVO vo) {
-		
 		return ss.update("bbs.edit", vo);
-		
 	}
 	
 }

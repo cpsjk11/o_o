@@ -18,9 +18,7 @@
 		top: 0px;
 		background: #FFFFFF;
 	}
-	#pop_area a:hover{
-		transform: translate(0, -3px);
-	}
+	
 	#main_content{
 		display: block;
 		padding: 150px 300px;
@@ -103,6 +101,13 @@
 		color: #3A2F2F;
 		margin: 40px 20px;
 		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
+		transform: translate(0, 0px);
+		transition-property:transform;
+		transition-duration:0.3s;
+	}
+	#pop_area a:hover{
+		transform: translate(0, -4px);
+		box-shadow: 2px 3px 15px rgb(0 0 0 / 15%)
 	}
 	.tr span{
 		padding: 5px;
