@@ -155,10 +155,9 @@ public class KakaoController {
 			
 			// 로그인 기능!!
 			UmemVO uvos = u_dao.login(uvo.getId(), ress);
-			System.out.println("Kakao 158번행 : "+uvos.getStat()); 
 			if(uvos != null) {
 				// 로그인 성공시이다.
-				session.setAttribute("userName", uvo);
+				session.setAttribute("userName", uvos);
 				session.setAttribute("stat", uvos.getStat());
 				session.setAttribute("rank", "2");
 				mv.setViewName("redirect:/");

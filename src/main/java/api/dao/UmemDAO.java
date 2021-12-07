@@ -86,6 +86,10 @@ public class UmemDAO {
 		return ss.selectOne("umem.findCompany");
 	}
 	
+	public int findCompanySu() {
+		return ss.selectOne("umem.findCompanySu");
+	}
+	
 	// 사용자의 날짜별 가입인원을 반환하는 기능
 	public List<Map<String, String>> searchDate(String yearMonth, String year, String stat) {
 		

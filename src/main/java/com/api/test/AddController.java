@@ -98,7 +98,7 @@ public class AddController {
 		
 		Search2[] rd = r_dao.getFamous(); 
 		int usernum = u_dao.finduser();
-		int companyNum = u_dao.findCompany();
+		int companyNum = u_dao.findCompanySu();
 		String result[] = null;
 		String count[] = null;
 		
