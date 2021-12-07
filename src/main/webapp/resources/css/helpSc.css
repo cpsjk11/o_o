@@ -27,9 +27,6 @@
 		transition-property:color;
 		transition-duration:0.2s;
 	}
-	#category_area a:nth-child(1){
-		color: #3A2F2F;
-	}
 	#category_area a:hover{color: #3A2F2F;}
 	#bbs_b_area{
 		margin: 0 auto;
@@ -67,6 +64,7 @@
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1.2em;
 		font-weight: 450;
+		color: #57585a;
 	}
 	#bbs_content{
 		text-overflow: ellipsis;
@@ -117,12 +115,12 @@
 		width: 5em;
 		height:	100%; 
 		font-size: 1em;
-		background-color: #ffa500;
-		border: 1px solid #efefef;
-		border-radius: 5px;
+		color: white;
+		font-weight: 500;
+		background-color: #da3238;
 	}
 	#menu_panel:hover {
-		background-color: #ed9a03;
+		background-color: #bf2c32;
 	}
 	#paging_area{
 		margin: 0 auto;

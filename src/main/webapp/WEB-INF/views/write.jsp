@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,6 +157,7 @@
 					}
 				}
 			});
+			$("#content").summernote("lineHeight",.7);
 		});
 		
 		function sendImage(file, editor){
@@ -190,20 +193,21 @@
 			var t1 = $("#subject");
 			var t2 = $("#content");
 			
-			if(t1.val().trim().length < 1){
+			/* t2 = removeHTML(t2);
+			$("#content").val(t2); */
+			
+			if(t1.val().trim().length < 0){
 				alert("제목을 입력하세요.");
 				document.forms[0].subject.focus();
 				return;//수행 중단
 			}
-			if(t2.val().trim().length < 2){
+			if(t2.val().trim().length < 0){
 				alert("내용을 입력해주세요.");
 				document.forms[0].content.focus();
 				return;//수행 중단
 			}
 	
 			document.forms[0].submit();
-			
-			
 		}
 
 		

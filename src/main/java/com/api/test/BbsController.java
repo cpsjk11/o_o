@@ -133,7 +133,7 @@ public class BbsController {
 	
 	//글쓰기 페이지로 이동
 	@RequestMapping("/helpWrite")
-	public ModelAndView goWrite(String bname) {
+	public ModelAndView goWrite(BbsVO vo, String bname) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("bname",bname);
 		mv.setViewName("/write");
@@ -171,12 +171,17 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public ModelAndView write(BbsVO vo, String bname, RedirectAttributes rt)throws Exception{
+	public ModelAndView write(BbsVO vo, String bname, String status,
+			RedirectAttributes rt)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		
-		
-			
+		if(bname.equals("문의게시판")) {
+			vo.setStatus("5");
+		}else {
+			vo.setStatus("0");
+		}
+		System.out.println(vo.getStatus());
 		vo.setIp(request.getRemoteAddr());
 		
 		b_dao.add(vo);

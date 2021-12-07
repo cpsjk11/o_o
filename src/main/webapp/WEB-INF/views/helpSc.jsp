@@ -104,10 +104,12 @@
 				</div>
 					<div id="bbs_bot">
 						<div id="paging_area">${pageCode }</div>
-						<c:if test="${userName ne null }">
+						<c:if test="${userName ne null && bname ne '공지사항'}">
+						<c:if test="${bname ne '국삐활용가이드' }">
 							<div id="menu_area">
-								<a href="/helpWrite" id="menu_panel">글쓰기</a>
+								<a href="/helpWrite?bname=${bname }" id="menu_panel">글쓰기</a>
 							</div>	
+						</c:if>
 						</c:if>
 					</div>
 			</div>
