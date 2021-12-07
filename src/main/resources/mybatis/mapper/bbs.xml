@@ -21,7 +21,7 @@
 	<select id="bbsList" resultMap="map1" parameterType="java.util.Map">
 		SELECT * FROM (
 			SELECT rownum r_num,a.* FROM (SELECT * FROM bbs_t
-							WHERE status = 0 or status = 5 AND bname = #{bname}
+							WHERE status = 0 AND bname = #{bname} or status = 5
 							ORDER BY b_idx DESC
 			) a
 		) WHERE r_num BETWEEN #{begin} AND #{end}
@@ -30,7 +30,7 @@
 	<!-- 총 게시물 수를 반환하는 SELECT -->
 	<select id="totalCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = 0 or status = 5 AND bname = #{bname}
+		WHERE status = 0 AND bname = #{bname} or status = 5
 	</select>
 	
 	<!-- 원글 저장 -->

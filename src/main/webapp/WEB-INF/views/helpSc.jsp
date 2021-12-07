@@ -85,6 +85,24 @@
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>
 				<div id="bbs_b_area">
+				<c:if test="${bname ne '문의게시판' }">
+				<c:forEach var="vo" items="${ar }" varStatus="st">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+						<div id="bbs_title"><span>${vo.subject }</span></div>
+						<div id="bbs_content"><span>${vo.content }</span></div>
+						<div id="bbs_writer"><span>${vo.writer }</span></div>
+						<div id="bbs_prop"><span>${vo.hit }</span>&nbsp;&nbsp;<span>좋아요</span></div>
+						<div id="bbs_date">
+							<span>
+								<c:if test="${vo.write_date ne null }">
+									${fn:substring(vo.write_date, 0, 16) }
+								</c:if>
+							</span>
+						</div>
+					</div>
+				</c:forEach>
+				</c:if>
+				<c:if test="${bname eq '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
 					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
 					<c:if test="${sessionScope.userName.id eq vo.id }">
@@ -107,6 +125,7 @@
 					</c:if>
 					</div>
 				</c:forEach>
+				</c:if>
 				</div>
 					<div id="bbs_bot">
 						<div id="paging_area">${pageCode }</div>
