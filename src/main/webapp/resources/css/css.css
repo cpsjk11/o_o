@@ -3,15 +3,6 @@
 body{
 	margin: 0;
 }
-
-#bbb_left {
-position:relative;
-float:left;
-width:222px;
-min-height:300px;
-z-index:0;
-top:200px;
-}
 #menu_wrapper {
 border:1px solid #ddd;
 }
@@ -250,7 +241,6 @@ color:#000;
 	
 	#footer{
 		position: absolute;
-		width: 1920px;
 		height: 110px;
 		left: 0px;
 		top: 1700px;

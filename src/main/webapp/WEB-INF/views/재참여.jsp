@@ -6,15 +6,17 @@
 <jsp:include page="header.jsp"></jsp:include>
 <head>
     <title></title>
-    <link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
-	<link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
-	
+<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/lookCategory.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/lookMenu.css" rel="stylesheet" type="text/css"/>	
 </head>
 <style>
-    
-    body{
-        width: 2000px;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+	h2,sapn,th,ul,#m-unit{
+	font-family: 'Noto Sans KR','Roboto', sans-serif;
+	}
     header{
     	top: 0;
     }
@@ -25,7 +27,7 @@
 
     .content{
         width: 900px;
-        margin: 145px auto;
+         margin: 145px 550px;
 		font-size: medium;
     }
 
@@ -88,73 +90,6 @@
     }
 	
 
-/*    <!-- 여기는 좌측 메뉴바 css --> */
-  .leftBox {
-  
-  padding: 0px;
-  margin-left: 200px;
-  margin-top: 150px;
-  width: 205px;
-  background: #fff;
-  
-}
-#bbb_left{
-	position: absolute;
-	top: 0;
-}
-.left{
-	list-style: none;
-}
-
-.left li a {
-  text-decoration: none !important;
-  padding: 10px !important;
-  display: block !important;
-  color: #000 !important;
-  font-weight: bold !important;
-}
-
-.left li .m-bullet {
-  background : #333;
-  color: #fff;
-}
-
-.cd1 {
-  margin-left: 120px;
-}
-.m-unit-title{
-    width: 100%;
-    text-align: center;
-    line-height: 45px;
-    background-color: #efefef;
-    font-size: 13px;
- 
-}
-.up{
-    display: none;
-}
-#menu_wrapper{
-    border: 1px solid #efefef; 
-}
-#footer{
-	position: inherit;
-
-}
-.no-style{
-    list-style-position: outside;
-}
-.no-styles{
-    list-style: none;
-}
-.li-dot{
-    font-size: 15px;
-}
-.no-l_style{
-	list-style: none;
-	font-size: 14px;
-	font-weight: bold;
-	width: 100%;
-}
 .out{
 	list-style-position: outside;
 }
@@ -198,85 +133,7 @@
 
 </style>
 <body>
-
-    <div id="bbb_left" class="leftBox">
-        <div id="menu_wrapper">
-            
-            <div class="m-unit item7 ">
-                <div class="m-unit-title to1">취업성공패키지&nbsp;&nbsp;👇</div>
-                <div class="m-unit-body up">
-                    <ul class="left">
-                        <li class="mul1 "><a href="look2">개요</a></li>
-                        <li class="mul2 "><a href="look3">프로그램 구성</a></li>
-                        <li class="mul3 "><a href="look4">지원혜택</a></li>
-                        <li class="mul4 "><a href="look5">신청자격</a></li>
-                        <li class="mul5 "><a href="look6">신청방법</a></li>
-                        <li class="mul6 "><a href="look7">참여제한</a></li>
-                        <li class="mul7 "><a href="look8">재참여</a></li>
-                    </ul>
-                </div><!-- m-unit-body -->
-            </div>
-            
-            
-            <div class="m-unit item5 ">
-                <div class="m-unit-title to2">실업자 내일배움카드&nbsp;&nbsp;👇</div>
-                <div class="m-unit-body2 up">
-                    <ul class="left">
-                        <li class="mul1 "><a href="card1">개요</a></li>
-                        <li class="mul2 "><a href="card2">지원혜택</a></li>
-                        <li class="mul3 "><a href="card3">발급자격</a></li>
-                        <li class="mul4 "><a href="card4">신청방법</a></li>
-                        <li class="mul5 "><a href="card5">재발급</a></li>
-                    </ul>
-                </div><!-- m-unit-body -->
-            </div>
-            
-            
-            <div class="m-unit item4 on">
-                <div class="m-unit-title to3">국가기간전략산업직종훈련&nbsp;&nbsp;👇</div>
-                <div class="m-unit-body3 up">
-                    <ul class="left">
-                        <li class="mul1 "><a href="country1">개요</a></li>
-                        <li class="mul2 "><a href="country2">지원혜택</a></li>
-                        <li class="mul3 "><a href="country3">지원자격</a></li>
-                        <li class="mul4"><a href="country4">훈련분야</a></li>
-                    </ul>
-                </div><!-- m-unit-body -->
-            </div>
-            
-            
-            <div class="m-unit item5 ">
-                <div class="m-unit-title to4">일학습병행제&nbsp;&nbsp;👇</div>
-                <div class="m-unit-body4 up">
-                    <ul class="left">
-                        <li class="mul1 "><a href="#">개요</a></li>
-                        <li class="mul2 "><a href="#">훈련대상자</a></li>
-                        <li class="mul3 "><a href="#">운영절차</a></li>
-                        <li class="mul4 "><a href="#">신청방법</a></li>
-                        <li class="mul5 "><a href="#">기업참여조건</a></li>
-                    </ul>
-                </div><!-- m-unit-body -->
-            </div>
-            
-            
-            
-            <div class="m-unit item4 ">
-                <div class="m-unit-title to5">고용디딤돌&nbsp;&nbsp;👇</div>
-                <div class="m-unit-body5 up">
-                    <ul class="left">
-                        <li class="mul1 "><a href="#">개요</a></li>
-                        <li class="mul2 "><a href="#">참여대상자</a></li>
-                        <li class="mul3 "><a href="#">운영절차</a></li>
-                        <li class="mul4 "><a href="#">참여신청</a></li>
-                    </ul>
-                </div><!-- m-unit-body -->
-            </div>
-            
-            
-            
-            
-        </div><!-- menu_wrapper -->
-    </div><!-- bbb_left -->
+<jsp:include page="lookMenu.jsp"/>
 
     <div class="content">
     <h2 class="content-title"><span class="content-title-bar"></span>취업성공패키지 재참여</h2>
