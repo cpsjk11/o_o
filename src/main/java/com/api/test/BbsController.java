@@ -199,15 +199,17 @@ public class BbsController {
 		}
 	
 	@RequestMapping("/ansWrite")
-	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx) {
+	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx, String admin) {
 		ModelAndView mv = new ModelAndView();
 		BbsVO vo = b_dao.getBbs(b_idx);
+		
+		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : admin;
 		
 		cvo.setWriter(vo.getWriter());
 		cvo.setIp(request.getRemoteAddr());
 		b_dao.addAns(cvo);
 		mv.addObject("cvo",cvo);
-		mv.setViewName("redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname);
+		mv.setViewName(views);
 		
 		return mv;
 		

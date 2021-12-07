@@ -331,6 +331,7 @@
 							<input type="hidden" name="b_idx" value=${vo.b_idx }>
 							<input type="hidden" name="page" value=${page }>
 							<input type="hidden" name="writer" value="${vo.writer}">
+							<input type="hidden" name="admin" value="admin">
 							<input class="btn btn-primary" type="submit" value="댓글달기" id="coment_btn">
 							<input class="btn btn-primary" type="button" value="답변완료" onclick="send('${vo.b_idx }')"/>
 						</div>
