@@ -110,6 +110,10 @@ public class BbsDAO {
 		map.put("status", status);
 		return ss.update("bbs.qnaSuccess", map);
 	}
+	
+	public int qnaSu() {
+		return ss.selectOne("bbs.qnaSu");
+	}
 }
 
 

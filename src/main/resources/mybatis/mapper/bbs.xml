@@ -40,9 +40,16 @@
 		WHERE status = 0 AND bname = #{bname} or status = 5 
 	</select>
 	
-	<select id="qnaCount" resultType="int" parameterType="String">
+	<select id="qnaCount" resultType="int" parameterType="Map">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = #{status} AND bname = '문의게시판' or status = 5
+		<if test="bname == '문의게시판'">WHERE status = #{status} AND bname = #{bname} or status = 4 ORDER BY status DESC</if>
+		<if test="bname == '공지사항'">WHERE bname = #{bname} AND status = 0 ORDER BY b_idx DESC</if>
+	</select>
+	
+	<select id="qnaSu" resultType="int">
+		SELECT COUNT(*) FROM bbs_t
+		WHERE status = 5
+		
 	</select>
 	
 	<!-- 원글 저장 -->

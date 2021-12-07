@@ -156,8 +156,10 @@ public class AddController {
 			else if(a == 1) {
 				companyX = chk.getChart(result);
 			}
+			
 				
 		}
+		int searchNum =  b_dao.qnaSu();
 			
 		
 		
@@ -166,6 +168,7 @@ public class AddController {
 		
 		mv.addObject("ux", userX);
 		mv.addObject("ychart", Y);
+		mv.addObject("searchNum", searchNum);
 		mv.addObject("cx", companyX);
 		mv.addObject("userNum", usernum);
 		mv.addObject("company", rd);
@@ -274,24 +277,21 @@ public class AddController {
 
 			bname = (bname == null) ? "문의게시판" : bname;
 			
+			String searchItem = (bname.equals("공지사항")) ? "a_QNA?bname=공지사항" : "a_QNA?";
+			
 			if(listnum == null)
 				listnum = "5";
 			
 			String stat = (status == null) ? "0" : status;
 			
 			int rowTotal = b_dao.getQnaCount(bname,stat);
-			System.out.println(rowTotal);
-			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,"a_QNA?");
+			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,searchItem);
 			
 			int begin = pa.getBegin();
 			int end = pa.getEnd();
 			
 			String pageCode = pa.getSb().toString();
-			System.out.println(begin);
-			System.out.println(end);
-			System.out.println(pageCode);
 			BbsVO[] ar = b_dao.getList(begin, end, bname, stat);
-			System.out.println(stat+"///////////"+bname);
 			mv.addObject("qna", ar);
 			mv.addObject("status", stat);
 			mv.addObject("listnum", listnum);
