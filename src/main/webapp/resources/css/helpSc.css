@@ -70,7 +70,7 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 		-webkit-line-clamp: 1; /* ellipsis line */
-		margin: 1em 1em 4em;
+		margin: 1em 1em 3em;
 		width: 90%;
 		height: 35%;
 	}

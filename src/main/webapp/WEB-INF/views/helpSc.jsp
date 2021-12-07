@@ -91,7 +91,8 @@
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
-						<div id="bbs_prop"><span>${vo.hit }</span>&nbsp;&nbsp;<span>좋아요</span></div>
+						<div id="bbs_prop"><span>조회수 ${vo.hit }</span></div><br/>
+						<div id="bbs_prop"><span>댓글 ${vo.c_list.size() }</span></div>
 						<div id="bbs_date">
 							<span>
 								<c:if test="${vo.write_date ne null }">

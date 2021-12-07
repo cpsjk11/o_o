@@ -95,7 +95,7 @@
 		justify-content: space-between;
 	}
 	#coment_btn{
-		height: 100%;
+		height: 107%;
 	}
 	#coment_write_area textarea{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
@@ -129,11 +129,12 @@
 		width: 100%;
 		font-size: 1em;
 		color: #222;
+		margin: 0.5em;
 	}
 	#c_write_date_area{	
 		width: 100%;
 		color: #94969b;
-		font-size: 0.9em;
+		font-size: 0.7em;
 	}
 	#noLogin{
 		text-align: center;
