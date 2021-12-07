@@ -106,7 +106,12 @@
 				<%-- 문의게시판영역!! --%>
 				<c:if test="${bname eq '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
+					<c:if test="${sessionScope.userName.id eq vo.id }">
 					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&status=${status }'">
+					</c:if>
+					<c:if test="${sessionScope.userName.id ne vo.id }">
+					<div class="bbs" onclick="javascrip:void()">
+					</c:if>
 					<c:if test="${sessionScope.userName.id eq vo.id }">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>

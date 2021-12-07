@@ -145,6 +145,7 @@
 </head>
 <body>
 	<div id="wrap">
+	${categoryStyle}
 		<jsp:include page="header.jsp"/>
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>

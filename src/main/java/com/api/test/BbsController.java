@@ -203,8 +203,47 @@ public class BbsController {
 	@RequestMapping("/helpScV")
 	public ModelAndView view(String b_idx, String nowPage, String bname) {
 		ModelAndView mv = new ModelAndView();
+		String sb = null;
 		
+		if (bname == null)
+			bname = "회원자유게시판";
 
+		if(bname.equals("자주묻는질문")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(1) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("회원자유게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(2) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("공지사항")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(3) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("문의게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(4) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("국삐활용가이드")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(5) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		
 		BbsVO vo = b_dao.getBbs(b_idx);
 		
 		Object obj = application.getAttribute("read_list");
@@ -229,7 +268,7 @@ public class BbsController {
 				r_list.add(vo);
 			}
 			
-			
+		mv.addObject("categoryStyle", sb);
 		mv.addObject("vo",vo);
 		mv.addObject("nowPage",nowPage);
 		mv.addObject("ip", request.getRemoteAddr());
