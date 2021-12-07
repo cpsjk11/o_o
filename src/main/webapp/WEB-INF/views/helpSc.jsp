@@ -72,43 +72,29 @@
 		margin: 0 auto;
 	}
 	#menu_area{
-		margin-bottom: 2em;
+		margin: 2em;
 		width: 90%;
 		display: inline-block;
-	}
-	#comment_len{
-		display: inline-block;
-	}
-	#que_bbs{
-		text-align: center;
-		line-height: 15em;
 	}
 </style>
 </head>
 <body>
 	<div id="wrap">
+		${categoryStyle}
 		<jsp:include page="header.jsp"/>
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>
 				<div id="bbs_b_area">
 				<c:if test="${bname ne '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&bname=${bname }'">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
-						<div id="bbs_prop">
-							<div id="views">
-								<span>조회수</span>&nbsp;
-								<span>${vo.hit }</span>&nbsp;&nbsp;
-							</div>
-							<div id="comment_len">
-								<c:if test="${vo.c_list ne null }">
-									<span>댓글</span>
-									<span>(${vo.c_list.size() })</span>
-								</c:if>
-							</div>
-							<span id="bbs_date">
+						<div id="bbs_prop"><span>조회수 ${vo.hit }</span></div><br/>
+						<div id="bbs_prop"><span>댓글 ${vo.c_list.size() }</span></div>
+						<div id="bbs_date">
+							<span>
 								<c:if test="${vo.write_date ne null }">
 									${fn:substring(vo.write_date, 0, 16) }
 								</c:if>
@@ -119,46 +105,43 @@
 				</c:if>
 				<c:if test="${bname eq '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&bname=${bname }'">
-						<c:if test="${vo.id eq userName.id}">
-							<div id="bbs_title"><span>${vo.subject }</span></div>
-							<div id="bbs_content"><span>${vo.content }</span></div>
-							<div id="bbs_writer"><span>${vo.writer }</span></div>
-							<div id="bbs_prop">
-								<div id="comment_len">
-									<c:if test="${vo.c_list ne null }">
-										<span>댓글</span>
-										<span>(${vo.c_list.size() })</span>
-									</c:if>
-								</div>
-								<span id="bbs_date">
-									<c:if test="${vo.write_date ne null }">
-										${fn:substring(vo.write_date, 0, 16) }
-									</c:if>
-								</span>
-							</div>
-						</c:if>
-						<c:if test="${vo.id ne userName.id}">
-							<div id="que_bbs" style="background-color: #eee">
-								<span>문의 게시물은 작성자만 열람할 수 있습니다.</span>
-							</div>
-						</c:if>
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+					<c:if test="${sessionScope.userName.id eq vo.id }">
+						<div id="bbs_title"><span>${vo.subject }</span></div>
+						<div id="bbs_content"><span>${vo.content }</span></div>
+						<div id="bbs_writer"><span>${vo.writer }</span></div>
+						<div id="bbs_prop"><span>${vo.hit }</span>&nbsp;&nbsp;<span>좋아요</span></div>
+						<div id="bbs_date">
+							<span>
+								<c:if test="${vo.write_date ne null }">
+									${fn:substring(vo.write_date, 0, 16) }
+								</c:if>
+							</span>
+						</div>
+					</c:if>
+					<c:if test="${sessionScope.userName.id ne vo.id }">
+						<div id="noWriter_area">
+							<span id="noWriter">문의게시물은 작성자 본인만 볼 수 있습니다.</span>
+						</div>
+					</c:if>
 					</div>
 				</c:forEach>
 				</c:if>
 				</div>
-				<div id="bbs_bot">
-					<div id="paging_area">${pageCode }</div>
-					<div id="menu_area">
-						<c:if test="${bname ne '공지사항' && bname ne '국삐활용가이드' }">
-							<a href="/helpWrite?bname=${bname }" id="menu_panel">글쓰기</a>
+					<div id="bbs_bot">
+						<div id="paging_area">${pageCode }</div>
+						<c:if test="${userName ne null && bname ne '공지사항'}">
+						<c:if test="${bname ne '국삐활용가이드' }">
+							<div id="menu_area">
+								<a href="/helpWrite?bname=${bname }" id="menu_panel">글쓰기</a>
+							</div>	
 						</c:if>
-					</div>	
-				</div>
+						</c:if>
+					</div>
 			</div>
 		<jsp:include page="footer.jsp"/>
 	</div>
-	<script type="text/javascript">
-	</script>
+	
+	
 </body>
 </html>

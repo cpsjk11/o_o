@@ -21,8 +21,8 @@
 	<select id="bbsList" resultMap="map1" parameterType="java.util.Map">
 		SELECT * FROM (
 			SELECT rownum r_num,a.* FROM (SELECT * FROM bbs_t
-						<if test="status == null">WHERE status = 0</if>
-						<if test="status != null">WHERE status = #{status}</if>
+						<if test="status == null">WHERE status = 0 or status = 5</if>
+						<if test="status != null">WHERE status = #{status} or status = 5</if>
 							 AND bname = #{bname}
 							ORDER BY b_idx DESC
 			) a
@@ -32,7 +32,7 @@
 	<!-- 총 게시물 수를 반환하는 SELECT -->
 	<select id="totalCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = 0 AND bname = #{bname}
+		WHERE status = 0 or status = 5 AND bname = #{bname}
 	</select>
 	
 	<select id="qnaCount" resultType="int" parameterType="String">
