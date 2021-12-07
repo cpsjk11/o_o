@@ -262,7 +262,7 @@ public class AddController {
 	}
 	
 	@RequestMapping("/a_QNA")
-	public ModelAndView qna(String page, String listnum) {
+	public ModelAndView qna(String page, String listnum, String status, String bname) {
 		ModelAndView mv = new ModelAndView();
 		
 			int nowPage = 0;
@@ -272,13 +272,13 @@ public class AddController {
 			else
 				nowPage = Integer.parseInt(page);
 
-			String bname = "공지사항";
+			bname = (bname == null) ? "공지사항" : bname;
 			
 			if(listnum == null)
 				listnum = "5";
 			
 			
-			int rowTotal = b_dao.getTotalCount(bname);
+			int rowTotal = b_dao.getQnaCount(bname,status);
 			
 			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,"a_QNA?");
 			
@@ -287,9 +287,10 @@ public class AddController {
 			
 			String pageCode = pa.getSb().toString();
 			
-			BbsVO[] ar = b_dao.getList(begin, end, bname);
+			BbsVO[] ar = b_dao.getList(begin, end, bname, status);
 			
 			mv.addObject("qna", ar);
+			mv.addObject("status", status);
 			mv.addObject("listnum", listnum);
 			mv.addObject("pa", page);
 			mv.addObject("paging", pageCode);
@@ -310,6 +311,19 @@ public class AddController {
 			
 			return mv;
 		}
-
+	
+	@RequestMapping("a_qnaSuccess") // 답변 완료 하기 기능
+	@ResponseBody
+	public Map<String, String> qnaSuccess(String b_idx) {
+		Map<String, String> map = new HashMap<String, String>();
+		int cnt = b_dao.qnaSuccess(b_idx);
+		
+		if(cnt > 0)
+			map.put("result", "1");
+		else
+			map.put("result", "2");
+		
+		return map;
+	}
 	
 }

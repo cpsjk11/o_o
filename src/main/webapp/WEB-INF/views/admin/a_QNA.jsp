@@ -254,10 +254,22 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    
+                    <c:if test="${status eq '5' }">
                     <h1 class="h3 mb-2 text-gray-800">답변을 기다리는 QNA</h1>
+                    </c:if>
+                    <c:if test="${status eq '4' }">
+                    <h1 class="h3 mb-2 text-gray-800">답변 완료 QNA</h1>
+                    </c:if>
+                    <c:if test="${status eq null }">
+                    <h1 class="h3 mb-2 text-gray-800">공지사항 목록</h1>
+                    </c:if>
+                    <c:if test="${status eq null }">
+                    <h1 class="h3 mb-2 text-gray-800"><p class="mb-4"><a target="_blank"href="javascript:void(0)">공지사항</a></p></h1>
+                    </c:if>
+                    <c:if test="${status ne null }">
                     <p class="mb-4"><a target="_blank"
                             href="javascript:void(0)">QNA</a></p>
+                    </c:if>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display: inline-block;">
                             
@@ -321,12 +333,17 @@
 													<td></td>
 												</c:if>
 	                                           
-	                                            <c:if test="${uvo.status eq 0}">
+	                                            <c:if test="${uvo.status eq 5}">
 		                                            <td>
 		                                        		<a href="a_answer?b_idx=${uvo.b_idx}&page=${pa}">답변대기</a>
 		                                        	</td>
 	                                            </c:if>
-	                                             <c:if test="${uvo.status ne 0}">
+	                                            <c:if test="${uvo.status eq 0}">
+	                                            	<td>
+		                                        		<a href="a_answer?b_idx=${uvo.b_idx}&page=${pa}">수정하기</a>
+		                                        	</td>
+	                                            </c:if>
+	                                             <c:if test="${uvo.status eq 4}">
 		                                            <td>
 		                                        		답변완료
 		                                        	</td>

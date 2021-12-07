@@ -64,7 +64,6 @@ public class BbsController {
 	@RequestMapping("/helpSc")
 	public ModelAndView goHelp(String cPage, String bname) {
 		ModelAndView mv = new ModelAndView();
-		String sb = null;
 		
 		if (cPage == null)
 			nowPage = 1;
@@ -73,42 +72,6 @@ public class BbsController {
 
 		if (bname == null)
 			bname = "회원자유게시판";
-
-		if(bname.equals("자주묻는질문")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(1) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("회원자유게시판")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(2) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("공지사항")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(3) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("문의게시판")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(4) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("국삐활용가이드")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(5) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
 		
 		rowTotal = b_dao.getTotalCount(bname);
 		BbsPaging page = new BbsPaging(nowPage, rowTotal, block_list, block_page);
@@ -118,9 +81,16 @@ public class BbsController {
 		
 		pageCode = page.getSb().toString();
 		
-		BbsVO[] ar = b_dao.getList(begin, end, bname);
+		BbsVO[] ar = b_dao.getList(begin, end, bname,null);
 		
-		mv.addObject("categoryStyle", sb);
+		if(bname.equals("문의게시판")) {
+			Object obj = session.getAttribute("userId");
+			
+			//BbsVO[] qvo = b_dao.queBbs();
+			
+		}
+		
+		
 		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);
@@ -133,8 +103,9 @@ public class BbsController {
 	
 	//글쓰기 페이지로 이동
 	@RequestMapping("/helpWrite")
-	public ModelAndView goWrite(BbsVO vo, String bname) {
+	public ModelAndView goWrite(String bname) {
 		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("bname",bname);
 		mv.setViewName("/write");
 		return mv;
@@ -171,23 +142,19 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public ModelAndView write(BbsVO vo, String bname, String status,
-			RedirectAttributes rt)throws Exception{
+	public ModelAndView write(BbsVO vo, String bname, RedirectAttributes rt, String admin)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(admin);
+		String views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
 		
-		if(bname.equals("문의게시판")) {
-			vo.setStatus("5");
-		}else {
-			vo.setStatus("0");
-		}
-		System.out.println(vo.getStatus());
+		System.out.println(views);	
 		vo.setIp(request.getRemoteAddr());
 		
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
 		mv.addObject("bname",bname);
-		mv.setViewName("redirect:helpSc");
+		mv.setViewName(views);
 		
 		return mv;
 	}

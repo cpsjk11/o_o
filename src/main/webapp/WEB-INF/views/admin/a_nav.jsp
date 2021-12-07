@@ -79,11 +79,11 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <li class="nav-item">
-                <a class="nav-link collapsed" href="a_QNA" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="a_QNA?status=5" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>답변을 기다리는 QNA</span>
                 </a>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="a_QNA?status=4" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>답변이 완료된 QNA</span>
                 </a>
