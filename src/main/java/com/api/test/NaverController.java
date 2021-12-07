@@ -111,6 +111,11 @@ public class NaverController {
 			String res = i_dao.searchFat(id);
 			String str = SecureUtil.getEncrypt(id, res);
 			uvo = u_dao.login(id, str);
+			if(uvo.getStat().startsWith("-")) 
+				return "redirect:/";
+				
+			
+			
 			session.setAttribute("userName", uvo);
 		}
 		session.setAttribute("rank", "3");

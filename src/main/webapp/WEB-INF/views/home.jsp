@@ -136,6 +136,8 @@ function imgclick() {
 
 
 $(function(){
+
+	
 	//아래 인기카테고리!
 	$("#ct_top_category ol li").bind("click",function(){
 		var value = $(this).val();

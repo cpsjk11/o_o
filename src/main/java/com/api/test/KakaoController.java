@@ -157,6 +157,11 @@ public class KakaoController {
 			UmemVO uvos = u_dao.login(uvo.getId(), ress);
 			if(uvos != null) {
 				// 로그인 성공시이다.
+				if(uvos.getStat().startsWith("-")) {
+					mv.setViewName("redirect:/");
+					return mv;
+					
+				}
 				session.setAttribute("userName", uvos);	
 				session.setAttribute("stat", uvos.getStat());
 				session.setAttribute("rank", "2");

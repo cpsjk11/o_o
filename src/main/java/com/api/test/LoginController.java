@@ -49,9 +49,16 @@ public class LoginController {
 		String chkpw = SecureUtil.getEncrypt(pw, fat);
 		
 		UmemVO uvo = u_dao.login(id, chkpw);
+		if(uvo.getStat().startsWith("-")) {
+			map.put("value", "2");
+			return map;
+			
+		}
+		
 		if(uvo != null) {
 			// 로그인 성공 했을때 이다.
 			System.out.println(uvo.getAddr());
+			
 			session.setAttribute("userName", uvo);
 			session.setAttribute("stat", uvo.getStat());
 			session.setAttribute("rank", "1");
