@@ -277,8 +277,9 @@ public class AddController {
 			if(listnum == null)
 				listnum = "5";
 			
+			String stat = (status == null) ? "0" : status;
 			
-			int rowTotal = b_dao.getQnaCount(bname,status);
+			int rowTotal = b_dao.getQnaCount(bname,stat);
 			
 			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,"a_QNA?");
 			
@@ -287,10 +288,10 @@ public class AddController {
 			
 			String pageCode = pa.getSb().toString();
 			
-			BbsVO[] ar = b_dao.getList(begin, end, bname, status);
+			BbsVO[] ar = b_dao.getList(begin, end, bname, stat);
 			
 			mv.addObject("qna", ar);
-			mv.addObject("status", status);
+			mv.addObject("status", stat);
 			mv.addObject("listnum", listnum);
 			mv.addObject("pa", page);
 			mv.addObject("paging", pageCode);

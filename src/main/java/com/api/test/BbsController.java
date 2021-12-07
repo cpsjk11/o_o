@@ -238,7 +238,7 @@ public class BbsController {
 		ModelAndView mv = new ModelAndView();
 		BbsVO vo = b_dao.getBbs(b_idx);
 		
-		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : admin;
+		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : "redirect:/a_answer?b_idx="+b_idx;
 		
 		cvo.setWriter(vo.getWriter());
 		cvo.setIp(request.getRemoteAddr());
