@@ -81,7 +81,7 @@ public class BbsController {
 		
 		pageCode = page.getSb().toString();
 		
-		BbsVO[] ar = b_dao.getList(begin, end, bname);
+		BbsVO[] ar = b_dao.getList(begin, end, bname,null);
 		
 		if(bname.equals("문의게시판")) {
 			Object obj = session.getAttribute("userId");
@@ -89,6 +89,7 @@ public class BbsController {
 			//BbsVO[] qvo = b_dao.queBbs();
 			
 		}
+		
 		
 		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);
@@ -104,6 +105,7 @@ public class BbsController {
 	@RequestMapping("/helpWrite")
 	public ModelAndView goWrite(String bname) {
 		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("bname",bname);
 		mv.setViewName("/write");
 		return mv;
@@ -140,18 +142,19 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public ModelAndView write(BbsVO vo, String bname, RedirectAttributes rt)throws Exception{
+	public ModelAndView write(BbsVO vo, String bname, RedirectAttributes rt, String admin)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(admin);
+		String views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
 		
-		
-			
+		System.out.println(views);	
 		vo.setIp(request.getRemoteAddr());
 		
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
 		mv.addObject("bname",bname);
-		mv.setViewName("redirect:helpSc");
+		mv.setViewName(views);
 		
 		return mv;
 	}

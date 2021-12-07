@@ -21,7 +21,9 @@
 	<select id="bbsList" resultMap="map1" parameterType="java.util.Map">
 		SELECT * FROM (
 			SELECT rownum r_num,a.* FROM (SELECT * FROM bbs_t
-							WHERE status = 0 AND bname = #{bname}
+						<if test="status == null">WHERE status = 0</if>
+						<if test="status != null">WHERE status = #{status}</if>
+							 AND bname = #{bname}
 							ORDER BY b_idx DESC
 			) a
 		) WHERE r_num BETWEEN #{begin} AND #{end}
@@ -31,6 +33,11 @@
 	<select id="totalCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM bbs_t
 		WHERE status = 0 AND bname = #{bname}
+	</select>
+	
+	<select id="qnaCount" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM bbs_t
+		WHERE status = #{status} AND bname = #{bname}
 	</select>
 	
 	<!-- 원글 저장 -->
@@ -60,7 +67,7 @@
 	<update id="delBbs" parameterType="String">
 		UPDATE bbs_t
 		SET status = 1
-		WHERE b_idx = ${no}
+		WHERE b_idx = #{no}
 	</update>
 	
 	<!-- 조회수 증가 -->
@@ -88,6 +95,14 @@
 		SELECT * FROM bbs_t
 		WHERE id = ${id} AND bname ='문의게시판'
 	</select>
+	
+	<!-- 답변완료된 문의글 상태값 변경하는 기능 -->
+	<update id="qnaSuccess">
+	UPDATE bbs_t
+	SET status = 4
+	WHERE b_idx = #{no}
+		
+	</update>
 </mapper>
 
 
