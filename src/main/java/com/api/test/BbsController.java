@@ -110,8 +110,10 @@ public class BbsController {
 					+ "</style>");
 		};
 		
+		String views = (bname == null) ? "" : "bname="+bname;
+		
 		rowTotal = b_dao.getTotalCount(bname);
-		BbsPaging page = new BbsPaging(nowPage, rowTotal, block_list, block_page);
+		BbsPaging page = new BbsPaging(nowPage, rowTotal, block_list, block_page,views);
 		
 		int begin = page.getBegin();
 		int end = page.getEnd();
