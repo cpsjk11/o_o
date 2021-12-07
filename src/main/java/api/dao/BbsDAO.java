@@ -104,8 +104,11 @@ public class BbsDAO {
 		return ss.update("bbs.edit", vo);
 	}
 	
-	public int qnaSuccess(String idx) {
-		return ss.update("bbs.qnaSuccess", idx);
+	public int qnaSuccess(String idx,String status) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("b_idx", idx);
+		map.put("status", status);
+		return ss.update("bbs.qnaSuccess", map);
 	}
 }
 

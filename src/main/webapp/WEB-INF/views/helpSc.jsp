@@ -103,6 +103,7 @@
 					</div>
 				</c:forEach>
 				</c:if>
+				<%-- 문의게시판영역!! --%>
 				<c:if test="${bname eq '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
 					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
@@ -128,6 +129,7 @@
 					</div>
 				</c:forEach>
 				</c:if>
+				<%-- 문의게시판영역!! --%>
 				</div>
 					<div id="bbs_bot">
 						<div id="paging_area">${pageCode }</div>

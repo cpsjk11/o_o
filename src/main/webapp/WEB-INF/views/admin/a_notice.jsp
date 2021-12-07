@@ -47,6 +47,9 @@
 	.note-editor{
 		width: 1280px !important;
 	}
+	textarea{
+		resize: none;
+	}
 </style>
 <body id="page-top">
 

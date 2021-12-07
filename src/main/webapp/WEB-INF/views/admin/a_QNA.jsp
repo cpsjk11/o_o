@@ -322,6 +322,7 @@
                                     
                                     <tbody>
                                     	<c:forEach var="uvo" items="${qna}" varStatus="st">
+	                                       
 	                                        <tr>
 	                                            <td>${uvo.b_idx}</td>
 	                                            <td>${uvo.writer}</td>
@@ -350,6 +351,9 @@
 	                                            </c:if>
 	                                            	
 	                                        </tr>
+	                                        
+	                                       
+	                                        
                                         </c:forEach>
                                     </tbody>
                                    

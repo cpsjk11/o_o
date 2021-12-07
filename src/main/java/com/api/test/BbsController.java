@@ -240,6 +240,11 @@ public class BbsController {
 		
 		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : "redirect:/a_answer?b_idx="+b_idx;
 		
+		String name = (bname == null) ? "문의게시판" : bname;
+		
+		if (name.equals("문의게시판")) 
+			b_dao.qnaSuccess(b_idx, "5");
+		
 		cvo.setWriter(vo.getWriter());
 		cvo.setIp(request.getRemoteAddr());
 		b_dao.addAns(cvo);

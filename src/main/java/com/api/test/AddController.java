@@ -272,7 +272,7 @@ public class AddController {
 			else
 				nowPage = Integer.parseInt(page);
 
-			bname = (bname == null) ? "공지사항" : bname;
+			bname = (bname == null) ? "문의게시판" : bname;
 			
 			if(listnum == null)
 				listnum = "5";
@@ -280,16 +280,18 @@ public class AddController {
 			String stat = (status == null) ? "0" : status;
 			
 			int rowTotal = b_dao.getQnaCount(bname,stat);
-			
+			System.out.println(rowTotal);
 			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,"a_QNA?");
 			
 			int begin = pa.getBegin();
 			int end = pa.getEnd();
 			
 			String pageCode = pa.getSb().toString();
-			
+			System.out.println(begin);
+			System.out.println(end);
+			System.out.println(pageCode);
 			BbsVO[] ar = b_dao.getList(begin, end, bname, stat);
-			
+			System.out.println(stat+"///////////"+bname);
 			mv.addObject("qna", ar);
 			mv.addObject("status", stat);
 			mv.addObject("listnum", listnum);
@@ -317,7 +319,7 @@ public class AddController {
 	@ResponseBody
 	public Map<String, String> qnaSuccess(String b_idx) {
 		Map<String, String> map = new HashMap<String, String>();
-		int cnt = b_dao.qnaSuccess(b_idx);
+		int cnt = b_dao.qnaSuccess(b_idx, "4");
 		
 		if(cnt > 0)
 			map.put("result", "1");

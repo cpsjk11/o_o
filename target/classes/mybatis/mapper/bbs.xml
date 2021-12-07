@@ -21,10 +21,15 @@
 	<select id="bbsList" resultMap="map1" parameterType="java.util.Map">
 		SELECT * FROM (
 			SELECT rownum r_num,a.* FROM (SELECT * FROM bbs_t
-						<if test="status == null">WHERE status = 0 or status = 5</if>
-						<if test="status != null">WHERE status = #{status} or status = 5</if>
-							 AND bname = #{bname}
-							ORDER BY b_idx DESC
+							 WHERE bname = #{bname}
+						<!-- <if test="status == null">WHERE status = 0</if> -->
+						<if test="bname == '자주묻는질문'">AND status = 0 ORDER BY b_idx DESC</if>
+						<if test="bname == '회원자유게시판'">AND status = 0 ORDER BY b_idx DESC</if>
+						<if test="bname == '공지사항'">AND status = 0 ORDER BY b_idx DESC</if>
+						<if test="bname == '문의게시판'">AND status = 5 or status = 4 ORDER BY status DESC</if>
+						<if test="bname == '국삐활용가이드'">AND status = 0 ORDER BY b_idx DESC</if>
+							 
+							
 			) a
 		) WHERE r_num BETWEEN #{begin} AND #{end}
 	</select>
@@ -32,12 +37,12 @@
 	<!-- 총 게시물 수를 반환하는 SELECT -->
 	<select id="totalCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = 0 or status = 5 AND bname = #{bname}
+		WHERE status = 0 AND bname = #{bname} or status = 5 
 	</select>
 	
 	<select id="qnaCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = #{status} AND bname = #{bname}
+		WHERE status = #{status} AND bname = '문의게시판' or status = 5
 	</select>
 	
 	<!-- 원글 저장 -->
@@ -46,7 +51,7 @@
 			file_name, ori_name, <if test="pwd != null">pwd,</if> write_date, ip, hit, status, bname, id)
 		VALUES(bbs_t_seq.NEXTVAL, #{subject}, #{writer}, #{content},
 			#{file_name, jdbcType=VARCHAR },
-			#{ori_name, jdbcType=VARCHAR }, <if test="pwd != null">#{pwd},</if> sysdate, #{ip}, 0, 0, #{bname}, #{id})
+			#{ori_name, jdbcType=VARCHAR }, <if test="pwd != null">#{pwd},</if> sysdate, #{ip}, 0, #{status}, #{bname}, #{id})
 	</insert>
 	
 	<!-- 기본키(b_idx_)를 인자로 받아 원글을 검색해 주는 기능 -->
@@ -98,10 +103,9 @@
 	
 	<!-- 답변완료된 문의글 상태값 변경하는 기능 -->
 	<update id="qnaSuccess">
-	UPDATE bbs_t
-	SET status = 4
-	WHERE b_idx = #{no}
-		
+		UPDATE bbs_t
+		SET status = #{status}
+		WHERE b_idx = #{b_idx}
 	</update>
 </mapper>
 
