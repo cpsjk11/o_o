@@ -6,91 +6,49 @@
 <jsp:include page="header.jsp"></jsp:include>
 <head>
     <title></title>
-<link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookCategory.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookMenu.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/look.css" rel="stylesheet" type="text/css"/>
 	
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-	h2,sapn,th,ul,#m-unit{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-	}
-	*{
-		list-style: none;
-	}
-    header{
-    	top: 0;
-    }
-
-    .content{
-        width: 900px;
-        margin: 120px 550px;
-    }
-
-    .style{
-        list-style: none;
-    }
-
-    table{
-        border-collapse: collapse;
-      
-    }
-    th{
-        border: 1px solid #dfdfdf;
-        font-size: 13px;
-        height: 50px;
-        color: black;
-        background-color: #efefef;
-        padding: 3px;
-        text-align: center;
-    }
-    .wth25p{
-        
-        height: 40px;
-    }
-    td{
-        border: 1px solid #dfdfdf;
-        margin: 10px;
-        font-size: 13px;
-    }
-    #header{
-        margin: 10px 0 ;
-    }
-    .content-title{
-    	position: inherit;
-        border-bottom: 2px solid skyblue;
-    }
-    
-    li{
-        padding: 3px 3px 3px 8px;
-    }
-    ul{
-        margin: 10px 0;
-    }
 </style>
 <body>
 <jsp:include page="lookMenu.jsp"/>
-
     <div class="content">
     	<div id="lookCategory">
-	    	<div id="">
+	    	<div id="Caetgory">
+	    		<div id="ct1" class="ct">
+	    			<span>구직자</span>
+	    		</div>
+	    		<div id="ct2" class="ct">
+	    			<span>실업자</span>
+	    		</div>
+	    		<div id="ct3" class="ct">
+	    			<span>학생</span>
+	    		</div>
 	    	</div>	
     	</div>
-        <ul>
+        <ul id="content_panel">
             <li id="header">
-                <h2 class="content-title"><span class="content-title-bar"></span>국가기간·전략산업직종훈련 훈련분야</h2>
+                <h2 class="content-title">
+                	<span class="content-title-bar">
+                		국가기간·전략산업직종훈련 훈련분야
+                	</span>
+                </h2>
                 <span class="li-dot">
-                국가기간·전략산업직종훈련의 대상 직종은 아래와 같습니다.
+                	국가기간·전략산업직종훈련의 대상 직종은 아래와 같습니다.
                 </span>
             </li>
             <li class="style">
                 <div class="table-wrapper">
                     <table>
-                        <tbody><tr>
+                        <tbody>
+                        <tr>
                             <th class="wth25p">대분류</th>
                             <th class="wth25p">기간산업직종(47개)</th>
                             <th class="wth25p">전략산업직종(25개)</th>
@@ -139,7 +97,7 @@
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <th>문화·예술·디자인·방송<br>(8)</th>
+                            <th>문화·예술·디자인·방송(8)</th>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>
@@ -594,7 +552,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>인쇄·목재·가구·공예<br>(5)</th>
+                            <th>인쇄·목재·가구·공예(5)</th>
                             <td>
                                 <ul class="no-margin-li">
                                     <li>
@@ -710,7 +668,7 @@
     </div><!-- content -->
     <jsp:include page="footer.jsp"></jsp:include>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
 $(function(){

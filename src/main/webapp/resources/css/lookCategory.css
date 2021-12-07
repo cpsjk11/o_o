@@ -2,10 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 
-
+h2,sapn,th,ul,#m-unit{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+	}
 #lookCategory{
-	margin: 0 auto;
-	width: 89%;
-	height: 5em;
-	border: 1px solid;
+	margin: 0 0 2em 3em;
+    width: 94%;
+	height: 3em;
+}
+#Caetgory{
+	display: flex;
+	justify-content: space-around;
+	line-height: 3em;
+	margin-bottom: 2em;
+	color: #57585a;
+}
+.ct{
+	text-align: center;
+	border: 0.6px solid #eee;	
+	font-family: 'Noto Sans KR','Roboto', sans-serif;
+	font-size: 1em;
+	height: 100%;
+	width: 100%;
+	background-color: #eee;
+	transition-property:background-color;
+	transition-duration:0.2s;
+	cursor: pointer;
+}
+.ct:hover {
+	background-color: #ccc;
 }

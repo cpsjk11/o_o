@@ -6,7 +6,6 @@
 <jsp:include page="header.jsp"></jsp:include>
 <head>
     <title></title>
-<link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookCategory.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookMenu.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
