@@ -12,14 +12,14 @@
 		border: 0.6px solid #efefef;
 		padding: 2.3em;
 		margin-bottom: 2.3em;
+	}
+	#category_area ul{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		display: flex;
 		justify-content: space-between;
 		margin-left: 2%;
 	}
-	#category_area a{
-		width: 1em;
-		text-align: center;
+	#category_area ul a{
 		color: #94969b;
 		font-size: 1em;
 		font-weight: 350;
@@ -27,7 +27,10 @@
 		transition-property:color;
 		transition-duration:0.2s;
 	}
-	#category_area a:hover{color: #3A2F2F;}
+	#category_area ul a:nth-child(1){
+		color: #3A2F2F;
+	}
+	#category_area ul a:hover{color: #3A2F2F;}
 	#bbs_b_area{
 		margin: 0 auto;
 		padding: 2%;
@@ -38,7 +41,7 @@
 	}
 	.bbs{
 		cursor: pointer;
-		width: 45%;
+		width: 450px;
 		height: 251px;
 		border: 0.7px solid #ababab;
 		padding: 1em;
@@ -64,35 +67,42 @@
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1.2em;
 		font-weight: 450;
-		color: #555962;
 	}
 	#bbs_content{
 		text-overflow: ellipsis;
 		overflow: hidden;
 		-webkit-line-clamp: 1; /* ellipsis line */
-		margin: 1em 1.2em 3em;
+		margin: 1em 1em 4em;
 		width: 90%;
 		height: 35%;
 	}
 	#bbs_content span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1em;
+		font-size: 1.0em;
 		font-weight: 400;
 	}#bbs_writer{
-		margin: 1em 0 0;
-		width: 90%;
+		margin: 1em 0 0.5em;
 		height: 10%;
 	}
 	#bbs_writer span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1em;
 	}
+	#bbs_prop{
+		display: inline-block;
+	}
 	#bbs_prop span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 0.8em;
 	}
 	#bbs_date{
+		z-index: 1;
 		float: right;
+		height: 10%;
+	}
+	#bbs_date span{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 0.8em;
 	}
 	#menu_area{
 		width: 100%;

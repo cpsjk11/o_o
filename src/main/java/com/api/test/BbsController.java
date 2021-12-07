@@ -64,6 +64,7 @@ public class BbsController {
 	@RequestMapping("/helpSc")
 	public ModelAndView goHelp(String cPage, String bname) {
 		ModelAndView mv = new ModelAndView();
+		String sb = null;
 		
 		if (cPage == null)
 			nowPage = 1;
@@ -72,6 +73,43 @@ public class BbsController {
 
 		if (bname == null)
 			bname = "회원자유게시판";
+
+		System.out.println(bname);
+		if(bname.equals("자주묻는질문")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(1) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("회원자유게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(2) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("공지사항")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(3) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("문의게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(4) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("국삐활용가이드")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(5) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
 		
 		rowTotal = b_dao.getTotalCount(bname);
 		BbsPaging page = new BbsPaging(nowPage, rowTotal, block_list, block_page);
@@ -83,13 +121,7 @@ public class BbsController {
 		
 		BbsVO[] ar = b_dao.getList(begin, end, bname);
 		
-		if(bname.equals("문의게시판")) {
-			Object obj = session.getAttribute("userId");
-			
-			//BbsVO[] qvo = b_dao.queBbs();
-			
-		}
-		
+		mv.addObject("categoryStyle", sb);
 		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);

@@ -32,7 +32,7 @@
 				<div id="left_m">
 					<a href="goSearch">훈련과정</a>
 					<a href="look">지원제도</a>
-					<a href="/helpSc?bname=자주묻는질문">고객센터</a>
+					<a href="/helpSc?bname=자주묻는질문">국삐게시판</a>
 				</div> 
 			</div>
 		</header>
