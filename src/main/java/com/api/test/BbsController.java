@@ -74,7 +74,6 @@ public class BbsController {
 		if (bname == null)
 			bname = "회원자유게시판";
 
-		System.out.println(bname);
 		if(bname.equals("자주묻는질문")) {
 			sb = ("<style>\r\n"
 					+ "	#category_area a:nth-child(1) {\r\n"
