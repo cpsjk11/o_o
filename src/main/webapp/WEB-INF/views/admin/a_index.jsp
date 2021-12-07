@@ -26,6 +26,14 @@
 		.str{
 			margin: 10px auto;
 		}
+		a{
+			text-decoration: none;
+			color: black;
+		}
+		a:hover{
+			text-decoration: none;
+			color: skyblue;
+		}
 	</style>
 </head>
 
@@ -155,7 +163,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 최근 추가된 질문</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${searchNum }개</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="a_QNA?bname=문의게시판">${searchNum }개</a></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
