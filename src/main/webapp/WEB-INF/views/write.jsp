@@ -108,6 +108,7 @@
 							rows="8"></textarea>
 					</div>
 					<input hidden="bname" name="bname" id="bname" value="${bname }">
+					<input hidden="id" name="id" id="id" value="${sessionScope.userName.id }">
 					<input hidden="writer" name="writer" id="writer" value="${sessionScope.userName.name }">
 				</form>
 				<div id="btn_area">

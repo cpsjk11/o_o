@@ -120,9 +120,29 @@
 				<c:if test="${bname eq '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
 					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&bname=${bname }'">
-						<div id="que_bbs">
-							<span>문의 게시물은 작성자만 열람할 수 있습니다.</span>
-						</div>
+						<c:if test="${vo.id eq userName.id}">
+							<div id="bbs_title"><span>${vo.subject }</span></div>
+							<div id="bbs_content"><span>${vo.content }</span></div>
+							<div id="bbs_writer"><span>${vo.writer }</span></div>
+							<div id="bbs_prop">
+								<div id="comment_len">
+									<c:if test="${vo.c_list ne null }">
+										<span>댓글</span>
+										<span>(${vo.c_list.size() })</span>
+									</c:if>
+								</div>
+								<span id="bbs_date">
+									<c:if test="${vo.write_date ne null }">
+										${fn:substring(vo.write_date, 0, 16) }
+									</c:if>
+								</span>
+							</div>
+						</c:if>
+						<c:if test="${vo.id ne userName.id}">
+							<div id="que_bbs" style="background-color: #eee">
+								<span>문의 게시물은 작성자만 열람할 수 있습니다.</span>
+							</div>
+						</c:if>
 					</div>
 				</c:forEach>
 				</c:if>
@@ -130,7 +150,7 @@
 				<div id="bbs_bot">
 					<div id="paging_area">${pageCode }</div>
 					<div id="menu_area">
-						<c:if test="${userName ne null }">
+						<c:if test="${bname ne '공지사항' && bname ne '국삐활용가이드' }">
 							<a href="/helpWrite?bname=${bname }" id="menu_panel">글쓰기</a>
 						</c:if>
 					</div>	

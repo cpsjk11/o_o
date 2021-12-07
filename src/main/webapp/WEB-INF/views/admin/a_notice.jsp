@@ -423,7 +423,8 @@
 				dataType: "json", // 서버로부터 받을 데이터 형식
 			}).done(function(data){
 				$("#content").summernote("editor.insertImage", data.url+"/"+data.fname);
-				alert("저장성공");
+				
+				
 			}).fail(function(err){
 				alert("서버오류");
 			});

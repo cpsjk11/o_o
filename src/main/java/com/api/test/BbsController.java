@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -40,6 +41,9 @@ public class BbsController {
 	private ServletContext application;
 	
 	@Autowired
+	private HttpSession session;
+	
+	@Autowired
 	private HttpServletRequest request;
 	
 	private String img_path = "resources/editor_img";
@@ -69,7 +73,6 @@ public class BbsController {
 		if (bname == null)
 			bname = "회원자유게시판";
 		
-		
 		rowTotal = b_dao.getTotalCount(bname);
 		BbsPaging page = new BbsPaging(nowPage, rowTotal, block_list, block_page);
 		
@@ -80,7 +83,12 @@ public class BbsController {
 		
 		BbsVO[] ar = b_dao.getList(begin, end, bname);
 		
-		
+		if(bname.equals("문의게시판")) {
+			Object obj = session.getAttribute("userId");
+			
+			//BbsVO[] qvo = b_dao.queBbs();
+			
+		}
 		
 		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);
@@ -136,25 +144,7 @@ public class BbsController {
 		ModelAndView mv = new ModelAndView();
 		
 		
-//		// 첨부된 파일을 vo로부터 얻어낸다.
-//		MultipartFile mf = vo.getFile();
-//		
-//		if(mf.getSize() > 0) {
-//			//절대경로 얻기
-//			String realPath = application.getRealPath(bbs_upload);
-//			
-//			//파일명 얻기
-//			String fname = mf.getOriginalFilename();
-//			
-//			//동일한 파일명이 있다면 fname변경!
-//			fname = FileRenameUtil.checkSameFileName(fname, realPath);
-//			
-//			mf.transferTo(new File(realPath, fname));
-//			
-//			//첨부된 파일명을 DB에 저장하기 위해 vo안에 있는 file_name에 저장
-//			vo.setFile_name(fname);
-//			vo.setOri_name(fname);
-//		}
+		
 			
 		vo.setIp(request.getRemoteAddr());
 		
@@ -168,9 +158,10 @@ public class BbsController {
 	
 	//게시물상세보기
 	@RequestMapping("/helpScV")
-	public ModelAndView view(String b_idx, String nowPage) {
+	public ModelAndView view(String b_idx, String nowPage, String bname) {
 		ModelAndView mv = new ModelAndView();
 		
+
 		BbsVO vo = b_dao.getBbs(b_idx);
 		
 		Object obj = application.getAttribute("read_list");
@@ -194,6 +185,8 @@ public class BbsController {
 				b_dao.updateHit(b_idx);
 				r_list.add(vo);
 			}
+			
+			
 		mv.addObject("vo",vo);
 		mv.addObject("nowPage",nowPage);
 		mv.addObject("ip", request.getRemoteAddr());
