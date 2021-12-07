@@ -87,6 +87,7 @@
 				<div id="bbs_b_area">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
 					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+					<c:if test="${sessionScope.userName.id eq vo.id }">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
@@ -98,7 +99,12 @@
 								</c:if>
 							</span>
 						</div>
-						<div class="transition"></div>
+					</c:if>
+					<c:if test="${sessionScope.userName.id ne vo.id }">
+						<div id="noWriter_area">
+							<span id="noWriter">문의게시물은 작성자 본인만 볼 수 있습니다.</span>
+						</div>
+					</c:if>
 					</div>
 				</c:forEach>
 				</div>
