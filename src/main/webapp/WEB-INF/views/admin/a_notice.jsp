@@ -282,7 +282,7 @@
 						<span>공지사항 : </span>
 						<input type="text" class="form-control form-control-user str" id="subject" name="subject" style="width: 260px; display: inline-block; margin-bottom: 25px;" placeholder="공지사항을 적어주세요">
 					</div>
-					<div id="contetn_area">
+					<div id="contetn_area">   
 						<textarea name="content" id="content" 
 							rows="8"></textarea>
 					</div>
