@@ -326,10 +326,10 @@
 	                                            <td>${uvo.b_idx}</td>
 	                                            <td>${uvo.writer}</td>
 	                                            <td>${uvo.subject}</td>
-	                                            <c:if test="${vo.write_date ne null }">
-													<td>${fn:substring(vo.write_date, 0, 16) }</td>
+	                                            <c:if test="${uvo.write_date ne null }">
+													<td>${fn:substring(uvo.write_date, 0, 16) }</td>
 												</c:if>
-												<c:if test="${vo.write_date eq null }">
+												<c:if test="${uvo.write_date eq null }">
 													<td></td>
 												</c:if>
 	                                           
