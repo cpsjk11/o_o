@@ -62,7 +62,7 @@ public class BbsController {
 	
 	//게시물 리스트보기
 	@RequestMapping("/helpSc")
-	public ModelAndView goHelp(String cPage, String bname) {
+	public ModelAndView goHelp(String cPage, String bname, String status) {
 		ModelAndView mv = new ModelAndView();
 		String sb = null;
 		
@@ -112,7 +112,9 @@ public class BbsController {
 		
 		String views = (bname == null) ? "" : "bname="+bname;
 		
-		rowTotal = b_dao.getTotalCount(bname);
+		status = (status == null) ? "0" : status;
+		
+		rowTotal = b_dao.getTotalCount(bname,status);
 		BbsPaging page = new BbsPaging(nowPage, rowTotal, block_list, block_page,views);
 		
 		int begin = page.getBegin();
@@ -122,6 +124,7 @@ public class BbsController {
 		
 		BbsVO[] ar = b_dao.getList(begin, end, bname, null);
 		
+		mv.addObject("status",status);
 		mv.addObject("categoryStyle", sb);
 		mv.addObject("bname",bname);
 		mv.addObject("ar", ar);

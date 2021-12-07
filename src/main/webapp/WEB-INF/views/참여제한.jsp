@@ -6,10 +6,11 @@
 <jsp:include page="header.jsp"></jsp:include>
 <head>
     <title></title>
-   <link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookCategory.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookMenu.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');

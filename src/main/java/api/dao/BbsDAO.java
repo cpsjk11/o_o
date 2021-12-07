@@ -20,9 +20,11 @@ public class BbsDAO {
 	private SqlSessionTemplate ss;
 	
 	//총 게시물 수 - 총페이지 값을 구할 수 있다.
-	public int getTotalCount(String bname) {
-		
-		int cnt = ss.selectOne("bbs.totalCount", bname);
+	public int getTotalCount(String bname,String status) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("bname", bname);
+		map.put("status", status);
+		int cnt = ss.selectOne("bbs.totalCount", map);
 		
 		return cnt;
 	}

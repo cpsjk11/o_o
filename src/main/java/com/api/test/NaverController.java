@@ -92,7 +92,7 @@ public class NaverController {
 		
 		String user = u_dao.searchUser(id);
 		
-		UmemVO uvo = new UmemVO(id, id, name, b_day, email, phone, null,"naver");
+		UmemVO uvo = new UmemVO(id, id, name, b_day, email, phone, null,"0","naver");
 		
 		if(user == null) {
 			// 사용자 비밀번호 암호화

@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/나의카드.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookCategory.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/lookMenu.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 	
 </head>
 <style>

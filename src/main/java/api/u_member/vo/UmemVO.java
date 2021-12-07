@@ -6,7 +6,7 @@ public class UmemVO {
 	public UmemVO() {}
 
 	public UmemVO(String id, String pw, String name, String birth, 
-			String email, String phone, String addr, String member) {
+			String email, String phone, String addr, String stat, String member) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -15,6 +15,7 @@ public class UmemVO {
 		this.email = email;
 		this.phone = phone;
 		this.addr = addr;
+		this.stat = stat;
 		this.member = member;
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <link rel="shortcut icon" href="resources/ico/Frame.png">
 		<header>
 			<div id="header">
 				<div id="title">
@@ -32,7 +33,7 @@
 				<div id="left_m">
 					<a href="goSearch">훈련과정</a>
 					<a href="look">지원제도</a>
-					<a href="/helpSc?bname=자주묻는질문">고객센터</a>
+					<a href="/helpSc?bname=자주묻는질문&status=0">국삐게시판</a>
 				</div> 
 			</div>
 		</header>

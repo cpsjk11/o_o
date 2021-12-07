@@ -124,7 +124,7 @@ public class KakaoController {
 					String b_day = (String) kakao_acc.get("birthday");
 					String phone = (String) kakao_acc.get("phone_number");
 					
-					uvo = new UmemVO(id,id,nickNames, b_year+b_day, eamil, phone, null,"kakao");
+					uvo = new UmemVO(id,id,nickNames, b_year+b_day, eamil, phone, null,"0","kakao");
 				}
 				
 				
@@ -157,7 +157,7 @@ public class KakaoController {
 			UmemVO uvos = u_dao.login(uvo.getId(), ress);
 			if(uvos != null) {
 				// 로그인 성공시이다.
-				session.setAttribute("userName", uvos);
+				session.setAttribute("userName", uvos);	
 				session.setAttribute("stat", uvos.getStat());
 				session.setAttribute("rank", "2");
 				mv.setViewName("redirect:/");

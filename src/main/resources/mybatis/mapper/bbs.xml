@@ -35,9 +35,14 @@
 	</select>
 	
 	<!-- 총 게시물 수를 반환하는 SELECT -->
-	<select id="totalCount" resultType="int" parameterType="String">
+	<select id="totalCount" resultType="int" parameterType="Map">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = 0 AND bname = #{bname} or status = 5 
+		WHERE status = 0 AND bname = #{bname}
+		<if test="bname == '자주묻는질문'">AND status = #{status} ORDER BY b_idx DESC</if>
+		<if test="bname == '회원자유게시판'">AND status = #{status} ORDER BY b_idx DESC</if>
+		<if test="bname == '공지사항'">AND status = #{status} ORDER BY b_idx DESC</if>
+		<if test="bname == '문의게시판'">AND status = #{status} or status = 4 ORDER BY status DESC</if>
+		<if test="bname == '국삐활용가이드'">AND status = #{status} ORDER BY b_idx DESC</if> 
 	</select>
 	
 	<select id="qnaCount" resultType="int" parameterType="Map">

@@ -87,7 +87,7 @@
 				<div id="bbs_b_area">
 				<c:if test="${bname ne '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&status=${status }'">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>
@@ -106,7 +106,7 @@
 				<%-- 문의게시판영역!! --%>
 				<c:if test="${bname eq '문의게시판' }">
 				<c:forEach var="vo" items="${ar }" varStatus="st">
-					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}'">
+					<div class="bbs" onclick="javascrip:location.href='/helpScV?b_idx=${vo.b_idx }&cPage=${nowPage}&status=${status }'">
 					<c:if test="${sessionScope.userName.id eq vo.id }">
 						<div id="bbs_title"><span>${vo.subject }</span></div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
