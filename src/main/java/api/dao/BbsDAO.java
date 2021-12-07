@@ -26,16 +26,28 @@ public class BbsDAO {
 		
 		return cnt;
 	}
+		
+	public int getQnaCount(String bname ,String status) {
+		Map<String, String> map = new HashMap<String, String>();
+		String st = (status == null) ? "5" : status;
+		map.put("bname", bname);
+		map.put("status", st);
+		int cnt = ss.selectOne("bbs.qnaCount", map);
+		
+		return cnt;
+	}
 	
 	//목록
-	public BbsVO[] getList(int begin, int end, String bname) {
+	public BbsVO[] getList(int begin, int end, String bname, String status) {
 		BbsVO[] ar = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("begin", String.valueOf(begin));
 		map.put("end", String.valueOf(end));
 		map.put("bname", bname);
-		
+		if(status != null)
+			map.put("status", status);
+			
 		List<BbsVO> list = ss.selectList("bbs.bbsList", map);
 		if(list != null && list.size() > 0 && !list.isEmpty()) {
 			ar = new BbsVO[list.size()];
@@ -92,6 +104,9 @@ public class BbsDAO {
 		return ss.update("bbs.edit", vo);
 	}
 	
+	public int qnaSuccess(String idx) {
+		return ss.update("bbs.qnaSuccess", idx);
+	}
 }
 
 

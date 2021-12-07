@@ -282,12 +282,14 @@
 						<span>공지사항 : </span>
 						<input type="text" class="form-control form-control-user str" id="subject" name="subject" style="width: 260px; display: inline-block; margin-bottom: 25px;" placeholder="공지사항을 적어주세요">
 					</div>
-					<div id="contetn_area">
+					<div id="contetn_area">   
 						<textarea name="content" id="content" 
 							rows="8"></textarea>
 					</div>
 					<input hidden="bname" name="bname" id="bname" value="공지사항">
+					<input hidden="bname" name="admin" value="admin">
 					<input hidden="writer" name="writer" id="writer" value="${sessionScope.userName.name }">
+					<input hidden="id" name="id" id="id" value="${sessionScope.userName.id }">
 				</form>
 				
 			</div>
@@ -306,7 +308,7 @@
 							<input type="button" class="btn btn-primary" value="저장"
 							onclick="sendData()"/>
 							<input type="button" class="btn btn-primary" value="목록"
-							onclick="javascript:location.href='helpSc'"/>
+							onclick="javascript:location.href='a_QNA?bname=공지사항'"/>
 						</div>
                         </div>
                     </div>

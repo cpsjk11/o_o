@@ -279,46 +279,46 @@
 				<div id="wrap">
 			<div id="bbs_area">
 				<div id="v_bbs_b_area">
+				<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">QNA댓글</h6>
+				</div>
+				<div class="card-body" style="background-color: #fff;">
 					<div class="v_bbs">
 						<div id="v_bbs_title">
 							<div id="v_bbs_title_area">
 								<span>제목 :&nbsp;</span>
-								<span>${vo.subject }</span>
-							</div>
-							<div id="v_bbs_writer">
-								<span>${vo.writer }</span>
-							</div>
-						</div>
-						<div id="v_bbs_content"><span>${vo.content }</span></div>
-						<div id="v_bbs_prop">
-							
-							<div id="v_bbs_date">
+								<span>${vo.subject } &nbsp;&nbsp;</span>
+								<span>작성날짜 :&nbsp;&nbsp;</span>
 								<span>
 									<c:if test="${vo.write_date ne null }">
-										${fn:substring(vo.write_date, 0, 16) }
+										${fn:substring(vo.write_date, 0, 11) }&nbsp;&nbsp;작성자 : &nbsp;&nbsp;
 									</c:if>
 								</span>
+								<span>${vo.writer }</span>
 							</div>
+								
 						</div>
+						<div id="v_bbs_content">
+							<span>내용 : </span><br/>
+							<span>${vo.content }</span>
+						</div>
+						<span>댓글 : ${vo.writer}</span><br/>
+						
 					</div>
-				</div>
+				
+				
 				<c:forEach var="cvo" items="${vo.c_list }" varStatus="st">
-				<div class="com" style="margin: 5px 0;">
-					
 					<span>${cvo.writer}</span>
-	
 					<span>${cvo.content }</span>
-					
 					<c:if test="${cvo.write_date ne null }">
 						${fn:substring(cvo.write_date, 0, 16) }
 					</c:if>
-					
-					
-				
-				</div>
+					<br/>
 				</c:forEach>
+				</div>
+				</div>
 				<div id="coment_write_area" >
-					<form action="/ansWrite" method="POST">
+					<form action="/ansWrite" method="POST" name="ff">
 						<c:if test="${vo.c_list ne null }">
 							
 						</c:if>
@@ -327,11 +327,14 @@
 							<div class = "card-body" >
 								<textarea rows="10%" cols="85%" name="content"  id="content" placeholder="QNA 답변 칸"></textarea>
 							</div>
-							<input class="btn btn-primary" " type="submit" value="댓글달기" id="coment_btn">
+							<input type="hidden" name="bnmae" value=${vo.bname }>
+							<input type="hidden" name="b_idx" value=${vo.b_idx }>
+							<input type="hidden" name="page" value=${page }>
+							<input type="hidden" name="writer" value="${vo.writer}">
+							<input class="btn btn-primary" type="submit" value="댓글달기" id="coment_btn">
+							<input class="btn btn-primary" type="button" value="답변완료" onclick="send('${vo.b_idx }')"/>
 						</div>
-						<input type="hidden" name="bnmae" value=${vo.bname }>
-						<input type="hidden" name="b_idx" value=${vo.b_idx }>
-						<input type="hidden" name="page" value=${page }>
+						
 					</form>
 				</div>
 				<div id="coment_area">
@@ -427,3 +430,25 @@
 
     <!-- Page level custom scripts -->
     <script src="../resources/js/demo/datatables-demo.js"></script>
+    <script>
+    	function send(idx){
+    		$.ajax({
+    			url: "a_qnaSuccess",
+    			data: {"b_idx":idx},
+    			type:"post",
+    			dataType:"json",
+    		}).done(function(data){
+    			if(data.result == 1){
+    				alert("답변완료");
+    				location.href = "a_QNA?status=4";
+    			}else{
+    				alert("답변실패");
+    				location.href = "a_QNA?status=5";
+    			}
+    		}).fail(function(err){
+    			
+    		});
+    		/*document.ff.action = "a_qnaSuccess";
+    		document.ff.submit();*/
+    	}
+    </script>

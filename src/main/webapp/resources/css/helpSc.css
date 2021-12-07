@@ -12,7 +12,6 @@
 		border: 0.6px solid #efefef;
 		padding: 2.3em;
 		margin-bottom: 2.3em;
-		text-align: center;
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		display: flex;
 		justify-content: space-between;
@@ -20,6 +19,7 @@
 	}
 	#category_area a{
 		width: 1em;
+		text-align: center;
 		color: #94969b;
 		font-size: 1em;
 		font-weight: 350;
@@ -38,7 +38,7 @@
 	}
 	.bbs{
 		cursor: pointer;
-		width: 450px;
+		width: 45%;
 		height: 251px;
 		border: 0.7px solid #ababab;
 		padding: 1em;
@@ -64,43 +64,35 @@
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1.2em;
 		font-weight: 450;
-		color: #57585a;
+		color: #555962;
 	}
 	#bbs_content{
 		text-overflow: ellipsis;
 		overflow: hidden;
 		-webkit-line-clamp: 1; /* ellipsis line */
-		margin: 1em 1em 4em;
+		margin: 1em 1.2em 3em;
 		width: 90%;
 		height: 35%;
 	}
 	#bbs_content span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1.0em;
+		font-size: 1em;
 		font-weight: 400;
 	}#bbs_writer{
-		margin: 1em 0 0.5em;
+		margin: 1em 0 0;
+		width: 90%;
 		height: 10%;
 	}
 	#bbs_writer span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1em;
 	}
-	#bbs_prop{
-		display: inline-block;
-	}
 	#bbs_prop span{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 0.8em;
 	}
 	#bbs_date{
-		z-index: 1;
 		float: right;
-		height: 10%;
-	}
-	#bbs_date span{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 0.8em;
 	}
 	#menu_area{
 		width: 100%;
@@ -115,27 +107,14 @@
 		width: 5em;
 		height:	100%; 
 		font-size: 1em;
-		color: white;
-		font-weight: 500;
-		background-color: #da3238;
+		background-color: #ffa500;
+		border: 1px solid #efefef;
+		border-radius: 5px;
 	}
 	#menu_panel:hover {
-		background-color: #bf2c32;
+		background-color: #ed9a03;
 	}
 	#paging_area{
 		margin: 0 auto;
 		font-size: 12px;
-	}
-	#noWriter_area{
-		width: 100%;
-		height: 100%; 
-		text-align: center; 
-		line-height: 15em;
-		background-color: #f3f3f3;
-	}
-	#noWriter{
-		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 1em;
-		font-weight: 400;
-		color: #444444;
 	}
