@@ -171,10 +171,12 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public ModelAndView write(BbsVO vo, String bname, String status,
+	public ModelAndView write(BbsVO vo, String bname, String status, String admin,
 			RedirectAttributes rt)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		 String views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
+
 		
 		if(bname.equals("문의게시판")) {
 			vo.setStatus("5");
@@ -187,7 +189,7 @@ public class BbsController {
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
 		mv.addObject("bname",bname);
-		mv.setViewName("redirect:helpSc");
+		 mv.setViewName(views);
 		
 		return mv;
 	}
