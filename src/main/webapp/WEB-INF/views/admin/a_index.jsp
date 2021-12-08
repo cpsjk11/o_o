@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,11 +15,11 @@
 
     <title>관리자 페이지 메뉴</title>
 
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	
     <!-- Custom fonts for this template-->
     <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    
 
     <!-- Custom styles for this template-->
     <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
@@ -201,8 +202,8 @@
                                     </div>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
+                                <div class="card-body" style=" height: 506px">
+                                    <div class="chart-area"  style="margin: 61px 0;">
                                         <canvas id="myAreaChart">
                                         	
                                         </canvas>
@@ -215,7 +216,7 @@
 						<input id="y" type="hidden" value="${y}"/>
 						
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-4 col-lg-5 ">
 	                        <div
 	                          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 	                         <h6 class="m-0 font-weight-bold text-primary">추천학원 저장</h6>
@@ -229,6 +230,8 @@
 									<input type="text" class="form-control form-control-user str" id="addr" name="addr" style="width: 260px;" placeholder="주소">
 									<input type="text" class="form-control form-control-user str" id="title" name="title" style="width: 260px;" placeholder="제목">
 									<input type="text" class="form-control form-control-user str" id="sub" name="subject" style="width: 260px;" placeholder="회사명">
+									<input type="text" class="form-control form-control-user str" id="start_date" name="start_date" style="width: 260px;" placeholder="훈련시작날짜">
+									<input type="text" class="form-control form-control-user str" id="end_date" name="end_date" style="width: 260px;" placeholder="훈련마감날짜">
 								</form>
 								<a href="javascript:insertSend()" class="btn btn-primary btn-user btn-block str" style="width: 260px;">
                                    저장
@@ -254,6 +257,8 @@
                                     			<th>회사명</th>
                                     			<th>주소</th>
                                     			<th>제목</th>
+                                    			<th>훈련시작날짜</th>
+                                    			<th>훈련마감날짜</th>
                                     			<th>버튼</th>
                                     		</tr>
                                     	</thead>
@@ -270,6 +275,8 @@
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.subject}</td>
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.addr}</td>
 	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${vo.title}</td>
+	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${fn:substring(vo.start_date,0,11)}</td>
+	                                    			<td class="hand" onclick="viewdata('${vo.srchTrprId}')">${fn:substring(vo.end_date,0,11)}</td>
 	                                    			<td>
 	                                    					<input type="hidden" id="id${vo.srchTrprId}" value="${vo.srchTrprId}"/>
 	                                    					<a href="javascript:delSend('${vo.srchTrprId}')" class="btn btn-danger btn-circle">
@@ -376,12 +383,11 @@
     </div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="../resources/js/jquery.min.js"></script>
     <script src="../resources/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../resources/js/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="../resources/js/sb-admin-2.min.js"></script>
@@ -393,6 +399,30 @@
     <script src="../resources/js/chart-area-demo.js"></script>
     <script src="../resources/js/chart-pie-demo.js"></script>
 	<script>
+	
+	$(function(){
+		$("#start_date").bind("mousedown",function(){
+			$("#start_date").datepicker({
+				dateFormat: 'yymmdd',
+				monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+				monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+				dayNamesMin: ['일','월','화','수','목','금','토'],
+				dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+				showMonthAfterYear:true,
+				showOtherMonths: true
+			});
+		});
+		$("#end_date").bind("mousedown",function(){
+			$("#end_date").datepicker({dateFormat: 'yymmdd',
+				monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+				monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+				dayNamesMin: ['일','월','화','수','목','금','토'],
+				dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+				showMonthAfterYear:true,
+				showOtherMonths: true
+			});
+		});
+	});
 	
 	function poiExcel(num) {
 		
@@ -491,6 +521,8 @@
 			var srchTrprId = $("#srchTrprId"+ids).val();
 			var srchTrprDegr = $("#srchTrprDegr"+ids).val();
 			var subject = $("#subject"+ids).val();
+			var start_date = $("#start_date"+ids).val();
+			var end_date = $("#end_date"+ids).val();
 			
 			if(r_rank.trim().length < 1 && addr.trim().length < 1 && srchTrprId.trim().length < 1 && srchTrprDegr.trim().length < 1){
 				alert("하나라도 입력해줘야즁 ㅡ,,ㅡ");

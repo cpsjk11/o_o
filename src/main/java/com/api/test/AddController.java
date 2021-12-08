@@ -118,7 +118,7 @@ public class AddController {
 		String Y = "";
 		String companyX = "";
 		
-		rd = RecommendedSchool.getSchool(rd);
+		//rd = RecommendedSchool.getSchool(rd);
 		
 		//u_dao.searchDate();
 		
