@@ -92,6 +92,11 @@
 	WHERE stat = 1 OR stat = -2
 </select>
 
+<select id="findCompanySu" resultType="Integer">
+	SELECT COUNT(*) FROM u_member
+	WHERE stat = 1
+</select>
+
 <!-- 사용자의 가입날짜에 따라 숫자를 반환하는 기능 -->
 <select id="searchDate" parameterType="Map" resultType="Map">
 		SELECT TO_CHAR(b.dt, 'YY-MM') AS u_date

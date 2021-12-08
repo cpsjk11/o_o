@@ -13,6 +13,7 @@
     	font-weight: 700;
     	color: #0598e0;
 }
+
 	</style>
 </head>
 	<!-- 상단영역 -->
@@ -45,6 +46,7 @@
 				<tr>
 					<th>아이디</th>
 					<td>${vo.id }</td>
+					 <input type="hidden" id="id" value="${vo.id}">
 				</tr>
 				<tr>
 					<th>
@@ -52,13 +54,10 @@
 					 현재 비밀번호
 					</th>
 					<td>
-					  <p class="guide_txt">
-					  </p>
-					  <p>
 					   <label for="s_pw" class="hidden">비밀번호</label>
-					   <input type="password" name="pw" id="pw"
-					    class="join"/>
-					  </p>
+					   <input type="password" name="pw" id="pw" class="join"/>
+					  <font name="check" size="2" color="red"></font>
+					  <font name="check2" size="2" color="blue"></font>
 					</td>
 				</tr>
 				<tr>
@@ -134,6 +133,24 @@ $(function() {
 		$('.m-unit-body4').toggle(); 
 	})
 })
+	
+$("#pw").bind("keyup", function() {
+
+	 	// 비밀번호 확인
+		var pw = $("#pw").val();
+		var id = $("#id").val();
+		param = "pw="+encodeURIComponent(pw)+"&id="+encodeURIComponent(id);
+		
+		$.ajax({
+			url:"pwdss",
+			data:param,
+			type:"post",
+			dataType:"json"
+		}).done(function (data) {
+			console.log(data);
+			
+		})
+	});		
 
 
 $(function () {
@@ -141,10 +158,11 @@ $(function () {
 		var s_pw = $("#pw").val();
 		var new_pw = $("#new_pw").val();
 		var s_pw2 = $("#pw2").val();
+		var id = $("#id").val();
 		var num = new_pw.search(/[0-9]/g);
 		var eng = new_pw.search(/[a-z]/ig);
 		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi);
-		
+			
 		if(!s_pw.trim()){
 			alert("비밀번호를 입력하세요");
 			$("#pw").focus();
@@ -176,7 +194,8 @@ $(function () {
 		var result = confirm("변경하시겠습니까?");
 		 
 		if (result) {
-   	      	
+			
+			
 			if(new_pw == s_pw2){
    	      		alert("변경이 완료되었습니다.");
    	      	}else{
@@ -195,6 +214,7 @@ $(function () {
     	return
 	})
 })
+
 
 
 </script>
