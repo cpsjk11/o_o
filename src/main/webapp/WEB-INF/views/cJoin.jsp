@@ -37,6 +37,7 @@
 							<input type="text" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="10">
 							<span class="infoTo">사업자등록번호</span>
 							<input type="text" name="c_num" id="c_num" placeholder="사업자 등록번호를 입력해주세요." maxlength="12"><div class="checkBox"><span id="c_num_checkBox" class="checkBox"></span></div>
+							<input type="button" name="c_numChk" id="c_numChk" value="사업자 등록번호 조회" onclick="numChk()"/>
 							<span class="infoTo">이메일</span>
 							<input type="email" name="email" id="email" placeholder="담당자 이메일을 입력해주세요." maxlength="40"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
 							<input type="button" name="email_chk" id="email_chk" value="인증코드 보내기" onclick="sends()"/>
@@ -76,6 +77,31 @@
 		<%-- 푸터에용~ --%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+function numChk(){
+	
+ 	var c_num = $("#c_num").val();
+ 	var reg = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/
+ 		
+ 	if(c_num.trim().length < 1){
+ 		alert("사업자등록번호 입력하세요");
+ 		$("#c_num").val();
+ 		$("#c_num").focus();
+ 		return;
+ 	}
+ 	
+ 		$.ajax({
+ 			url:"companyRegistrarion",
+			data:{"registrarion":c_num},
+			type:"post",
+			dataType:"json",
+ 		}).done(function(data){
+ 			alert(((data.result == 1) ? "확인완료" : "등록되지 않은 번호입니다."));
+ 		});
+ 	
+}
+
+
 	function handleOnInput(e){
 		e.value = e.value.replace(/[^A-Za-z0-9]/ig , '');
 	}
@@ -194,27 +220,7 @@
 			}
 		});
 		
-
-	 	$("#c_num").bind("keyup", function(){
-	 	var c_num = $("#c_num").val();
-	 	var reg = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/
-
-	 	if(c_num.trim().length > 1){
-	 		$.ajax({
-	 			url:"checkCnum",
-				data:"c_num="+encodeURIComponent(c_num),
-				type:"post",
-				dataType:"json",
-	 		}).done(function(data){
-	 			if(reg.test(c_num) == false || data.overlap == 2){
-					$("#c_num_checkBox").text("사업자 번호가 올바르지 않거나 이미 등록된 번호입니다.").css("color","red");
-				}else if(reg.test(c_num) == true && data.overlap == 1){
-					$("#c_num_checkBox").html("사용가능").css("color","#12b886");
-				}
-	 		});
-	 	}
-	 		
-	 	});
+		
 		
 		 $("#email_chkOk").bind("input",function(){
 		 // 메일 인증번호 확인 기능
@@ -242,8 +248,6 @@
 			});
 		 
 	}); 
-	
-	
 	function sends(){
 		// 이메일을 중복되었다면 바로 return해준다.
 		

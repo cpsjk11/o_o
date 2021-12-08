@@ -27,9 +27,7 @@ public class CompanyRegistrationNumberController {
 	@ResponseBody
 	public Map<String, String> companyRegistrarion(String registrarion) throws IOException {
 		Map<String, String> map = new HashMap<String, String>();
-		
 		registrarion = (registrarion == null) ? "0000000000" : registrarion;
-		
 		OkHttpClient client = new OkHttpClient().newBuilder()
 				  .build();
 				MediaType mediaType = MediaType.parse("application/json");
@@ -40,8 +38,7 @@ public class CompanyRegistrationNumberController {
 				  .addHeader("Content-Type", "application/json")
 				  .build();
 				Response response = client.newCall(request).execute();
-				map.put("result", (response.toString().equals("부가가치세 일반과세자")? "1" : "2"));
-				
+				map.put("result", (response.body().string().contains("부가가치세")? "1" : "2"));
 		return map;
 	}
 }
