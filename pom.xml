@@ -7,13 +7,29 @@
 	<name>HrdAPI</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<okhttp.version>3.10.0</okhttp.version>
 	</properties>
+	
+	
+        
+    
+
+    
+	
 	<dependencies>
+	
+	<dependency>
+         <groupId>com.squareup.okhttp3</groupId>
+         <artifactId>okhttp</artifactId>
+         <version>${okhttp.version}</version>
+     </dependency>
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -217,6 +233,9 @@
 		
 		 
 	</dependencies>
+	
+	
+	
     <build>
         <plugins>
             <plugin>
