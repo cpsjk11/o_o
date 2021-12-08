@@ -138,6 +138,7 @@
 <jsp:include page="lookMenu.jsp"/>
 
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
     <h2 class="content-title"><span class="content-title-bar"></span>실업자 내일배움카드 신청방법 및 구비서류</h2>
     <ul>
         <li>

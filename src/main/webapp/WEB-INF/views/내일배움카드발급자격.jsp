@@ -135,6 +135,7 @@
 <jsp:include page="lookMenu.jsp"/>
 
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
 		<!-- 실업자, 학생 -->
 		<h2 class="content-title"><span class="content-title-bar"></span>실업자 내일배움카드 발급자격</h2>
 		

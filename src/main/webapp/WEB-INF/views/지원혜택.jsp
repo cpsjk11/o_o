@@ -112,6 +112,7 @@
 <body>
 <jsp:include page="lookMenu.jsp"/>
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
     <h2 class="content-title"><span class="content-title-bar"></span>취업성공패키지 지원혜택</h2>
     <ul>
         <li class="no-l_style"><span class="li-dot"></span>유형별 지원혜택은 아래와 같습니다.</li>

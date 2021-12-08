@@ -136,6 +136,7 @@
 <jsp:include page="lookMenu.jsp"/>
 
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
     <h2 class="content-title"><span class="content-title-bar"></span>취업성공패키지 재참여</h2>
     <ul>
         <li>

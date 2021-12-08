@@ -79,10 +79,7 @@
     <jsp:include page="lookMenu.jsp"/>
     	
 	<div class="content">
-	    <div id="lookCategory">
-	    	<div id="">
-	    	</div>	
-    	</div>
+	    <jsp:include page="lookCategory.jsp"/>
 		<h2 class="content-title">
 			<span class="content-title-bar"></span>
 			취업성공패키지 개요

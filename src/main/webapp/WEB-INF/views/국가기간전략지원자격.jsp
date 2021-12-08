@@ -144,6 +144,7 @@ h3{
 <body>
 <jsp:include page="lookMenu.jsp"/>
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
     <h2 class="content-title"><span class="content-title-bar"></span>국가기간·전략산업직종훈련 지원자격</h2>
     <ul class="no-padding">
         <li>

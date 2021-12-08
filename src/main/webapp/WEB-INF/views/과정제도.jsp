@@ -20,19 +20,7 @@
 <body>
 <jsp:include page="lookMenu.jsp"/>
     <div class="content">
-    	<div id="lookCategory">
-	    	<div id="Caetgory">
-	    		<div id="ct1" class="ct">
-	    			<span>구직자</span>
-	    		</div>
-	    		<div id="ct2" class="ct">
-	    			<span>실업자</span>
-	    		</div>
-	    		<div id="ct3" class="ct">
-	    			<span>학생</span>
-	    		</div>
-	    	</div>	
-    	</div>
+    	<jsp:include page="lookCategory.jsp"/>
         <ul id="content_panel">
             <li id="header">
                 <h2 class="content-title">

@@ -100,6 +100,7 @@
 <jsp:include page="lookMenu.jsp"/>
 
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
 	<h2 class="content-title"><span class="content-title-bar"></span>취업성공패키지 프로그램구성</h2>
 	<ul class="out">
 		<li class="no-l_style">취업성공패키지는 최장 1년 동안 서비스가 제공되며, 각 단계별로 지원되는 서비스의 내용은 아래와 같습니다.</li>
