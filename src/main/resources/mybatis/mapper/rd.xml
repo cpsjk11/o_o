@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rd">
 <!-- 추천 학원을 반환하는 기능 -->
-<select id="rd" resultType="api.vo.Search2">
+<select id="rd" resultType="api.vo.Search2" parameterType="String">
 	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,
 	RANK() OVER (ORDER BY r_rank ASC) AS rank
-	FROM rd WHERE state = 1
+	FROM rd WHERE state = 1 AND start_date >= TO_DATE(#{yesterday})
 </select>
 
 <!-- 추천 학원을 저장하는 기능! -->

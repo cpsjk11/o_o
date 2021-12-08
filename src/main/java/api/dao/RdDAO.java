@@ -15,10 +15,10 @@ public class RdDAO {
 	private SqlSessionTemplate ss;
 	
 	// 추천학원들 가져오는 기능
-	public Search2[] getFamous() {
+	public Search2[] getFamous(String yesterday) {
 		Search2[] vo = null;
 		
-		List<Search2> a_list = ss.selectList("rd.rd");
+		List<Search2> a_list = ss.selectList("rd.rd",yesterday);
 		
 		if(a_list != null && !a_list.isEmpty()) {
 			vo = new Search2[a_list.size()];

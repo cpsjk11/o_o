@@ -3,7 +3,10 @@ package com.api.test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +57,15 @@ public class ExcelController {
 		ExcelConversion ex = new ExcelConversion();
 		
 		if(Excel.equals("2")) {
-			Search2[] svo = r_dao.getFamous();
+			// 날짜 구하기
+			Date date = new Date();
+	        // 포맷변경 ( 년월일 시분초)
+	        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd"); 
+	        // Java 시간 더하기
+	        Calendar cal = Calendar.getInstance();
+	        cal.add(Calendar.DATE, -1);
+	        String yesterday = sdformat.format(cal.getTime());
+			Search2[] svo = r_dao.getFamous(yesterday);
 			ex.getRecommended("추천학원", svo,"Recommended",response);
 		}else if(Excel.equals("1")) {
 			UmemVO[] uvo = u_dao.getList();

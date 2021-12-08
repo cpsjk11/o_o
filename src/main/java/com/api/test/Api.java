@@ -130,7 +130,7 @@ public class Api { //
 		
 		String ip = req.getRemoteAddr();
 		Search2[] se = a_dao.getFamous(yesterday);
-		Search2[] rd = r_dao.getFamous();
+		Search2[] rd = r_dao.getFamous(yesterday);
 		
 		
 		if(se != null) {
