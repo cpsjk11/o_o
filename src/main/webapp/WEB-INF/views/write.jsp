@@ -92,7 +92,6 @@
 
 </head>
 <body>
-${categoryStyle}
 	<div id="wrap">
 		<jsp:include page="header.jsp"/>
 		<div id="write_area">

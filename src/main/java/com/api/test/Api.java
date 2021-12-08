@@ -130,28 +130,30 @@ public class Api { //
 		Search2[] rd = r_dao.getFamous();
 		
 		
-		for(int i=0;  i< se.length; i++) {
-			String srchTrprId = se[i].getSrchTrprId();
-			String srchTrprDegr = se[i].getSrchTrprDegr();
-			String srchTraProcessNm = se[i].getSrchTraProcessNm();
-			String addr = se[i].getAddr();
-			String subject = se[i].getSubject();
-			String title = se[i].getTitle();
-			String start_date = se[i].getTitle();
-			String end_date = se[i].getTitle();
-			
-			Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
-			
-			se[i++] = svo;
-			
-		}// for end
-		mv.addObject("avo", se);
+		if(se != null) {
+			for(int i=0;  i< se.length; i++) {
+				String srchTrprId = se[i].getSrchTrprId();
+				String srchTrprDegr = se[i].getSrchTrprDegr();
+				String srchTraProcessNm = se[i].getSrchTraProcessNm();
+				String addr = se[i].getAddr();
+				String subject = se[i].getSubject();
+				String title = se[i].getTitle();
+				
+				
+				Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
+				
+				se[i++] = svo;
+				
+			}// for end
+			mv.addObject("avo", se);
+			mv.addObject("length", se.length);
+		}
 		
 		rd = RecommendedSchool.getSchool(rd);
 		
 		mv.addObject("avos", rd);
 		
-		mv.addObject("length", se.length);
+		
 		mv.addObject("lengths", rd.length);
 		mv.setViewName("home");
 		

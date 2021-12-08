@@ -74,7 +74,41 @@ public class BbsController {
 		if (bname == null)
 			bname = "회원자유게시판";
 
-		sb = checkBname(bname);
+		if(bname.equals("자주묻는질문")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(1) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("회원자유게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(2) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("공지사항")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(3) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("문의게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(4) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("국삐활용가이드")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(5) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
 		
 		String views = (bname == null) ? "" : "bname="+bname;
 		
@@ -89,7 +123,6 @@ public class BbsController {
 		pageCode = page.getSb().toString();
 		
 		BbsVO[] ar = b_dao.getList(begin, end, bname, null);
-		
 		
 		mv.addObject("status",status);
 		mv.addObject("categoryStyle", sb);
@@ -149,8 +182,6 @@ public class BbsController {
 		
 		 String views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
 
-		 String sb = null;
-		 sb = checkBname(bname);
 		
 		if(bname.equals("문의게시판")) {
 			vo.setStatus("5");
@@ -162,7 +193,6 @@ public class BbsController {
 		
 		b_dao.add(vo);
 		rt.addAttribute("bname", bname);
-		mv.addObject("categoryStyle",sb);
 		mv.addObject("bname",bname);
 		 mv.setViewName(views);
 		
@@ -174,10 +204,45 @@ public class BbsController {
 	public ModelAndView view(String b_idx, String nowPage, String bname) {
 		ModelAndView mv = new ModelAndView();
 		String sb = null;
+		
 		if (bname == null)
 			bname = "회원자유게시판";
 
-		sb = checkBname(bname);
+		if(bname.equals("자주묻는질문")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(1) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("회원자유게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(2) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("공지사항")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(3) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("문의게시판")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(4) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
+		if(bname.equals("국삐활용가이드")) {
+			sb = ("<style>\r\n"
+					+ "	#category_area a:nth-child(5) {\r\n"
+					+ "		color: black;\r\n"
+					+ "}\r\n"
+					+ "</style>");
+		};
 		
 		BbsVO vo = b_dao.getBbs(b_idx);
 		
@@ -202,7 +267,7 @@ public class BbsController {
 				b_dao.updateHit(b_idx);
 				r_list.add(vo);
 			}
-		mv.addObject("bname",bname);
+			
 		mv.addObject("categoryStyle", sb);
 		mv.addObject("vo",vo);
 		mv.addObject("nowPage",nowPage);
@@ -255,44 +320,5 @@ public class BbsController {
 		}
 		
 		return value;
-	}
-	public String checkBname(String bname) {
-		String sb = null;
-		if(bname.equals("자주묻는질문")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(1) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("회원자유게시판")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(2) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("공지사항")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(3) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("문의게시판")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(4) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		if(bname.equals("국삐활용가이드")) {
-			sb = ("<style>\r\n"
-					+ "	#category_area a:nth-child(5) {\r\n"
-					+ "		color: black;\r\n"
-					+ "}\r\n"
-					+ "</style>");
-		};
-		return sb;
 	}
 }

@@ -45,7 +45,7 @@
 						<span>실시간 인기 훈련과정</span>
 					</div>
            			<c:forEach var="vo" items="${avo}" varStatus="st">				
-					<a class="tr" href="/">
+					<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}">
 						<div class="tr_img_box">
 							<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
 						</div>
@@ -67,18 +67,19 @@
 					<div id="pop_text">
 						<span>추천 훈련 과정</span>
 					</div>		
-	      			<c:forEach var="vo" items="${avos}" varStatus="st">				
-					<a class="tr" href="/">
-						<div class="tr_img_box">
-							<img alt="" src="resources/img/img0${st.index+1}.png" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<span class="tr_addr">${vo.addr}</span>
-							<span class="tr_name">${vo.title}${vo.subject}</span>
-						</div>
-					</a>
-					</c:forEach>
-			
+					<c:if test="${avos ne null }">
+		      			<c:forEach var="vo" items="${avos}" varStatus="st">				
+						<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}">
+							<div class="tr_img_box">
+								<img alt="" src="resources/img/img0${st.index+1}.png" style="width: 100%; height: 100%;">
+							</div>
+							<div id="tr_text_box">
+								<span class="tr_addr">${vo.addr}</span>
+								<span class="tr_name">${vo.title}${vo.subject}</span>
+							</div>
+						</a>
+						</c:forEach>
+					</c:if>
 				</div>
 			</div>
 		<%--추천훈련과정영역입니당! --%>

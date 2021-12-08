@@ -12,57 +12,7 @@
 		.m-unit-body2 li:hover > a, .m-unit-body2 li.mul1 > a {
     	font-weight: 700;
     	color: #0598e0;
-    	}
-    	ol.paging {
-	    list-style:none;
-	}
-	
-	ol.paging li {
-	    float:left;
-	    margin-right:2em;
-	}
-	
-	ol.paging li a {
-	    display:block;
-	    padding:3px 7px;
-	    color:#2f313e;
-	    font-weight:bold;
-	}
-	
-	ol.paging li a:hover {
-	    border-bottom: 4px solid #4270e0;
-	    color:black;
-	    font-size: 1em;
-	    font-weight:bold;
-	}
-	
-	.disable {
-	    padding:3px 7px;
-	    border:1px solid #ababab;
-	    color:#6a6969;
-	}
-	
-	.now {
-	   padding:3px 7px;
-		border-bottom: 4px solid #4270e0;
-	    color:black;
-	    font-size: 1em;
-	    font-weight:bold;
-	}
-	#bbs_bot{
-		text-align: center;
-		margin: 0 auto;
-		width: 100%;
-	}
-	#paging_area{
-		display: inline-block;
-		margin: 0 auto;
-	}
-	#menu_area{
-		margin-bottom: 2em;
-		width: 90%;
-		display: inline-block;
-	}
+}
 	</style>
 </head>
 	<!-- 상단영역 -->
@@ -81,8 +31,8 @@
 					<h3 class="content-ex1">관심 훈련</h3>
 				</div>
 				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
+				
 					  <div id="dele1" class="del">
-					
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<span>
@@ -110,25 +60,22 @@
 							</ul>
 						</div>
 					</div>
-					
 					</div>
 					<div id="dele2" class="del">
-					
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<span>
-							<input type="checkbox" class="divTable" id="num" name="num" value="1">
+							<input type="checkbox" class="divTable" id="num" name="num" value="2">
 							</span>
-							<ul class="divTable">
+							<ul class="divTable" id="ul_t">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt">
+									<span class="txt" style="color:#4171df;">
 									</span>
 								</li>
 								<li>
 									<strong class="tit">과정기간</strong>
-									<span class="txt">
-									</span>
+									<span class="txt"></span>
 								</li>
 								<li>
 									<strong class="tit">가격</strong>
@@ -141,12 +88,10 @@
 							</ul>
 						</div>
 					</div>
-					
 					</div>
 					<button type="button" class="divTable" id="del_btn">삭제</button>
-				<div id="bbs_bot">
-					<div id="paging_area">${pageCode }</div>
-				</div>
+					
+				 
 				</li>
 			</ul>
 			
@@ -212,7 +157,7 @@ $(function () {
 				select_obj += $(this).val();
 				
 				var del = $(this).parents(".del");
-				
+				alert(del)
 				$(del).css("display","none");
 			})
 				
