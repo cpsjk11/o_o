@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -123,8 +124,9 @@ public class Api { //
 	@RequestMapping({"/","/*"})
 	public ModelAndView test() throws Exception {
 		ModelAndView mv = new ModelAndView();
+		Date date = new Date(System.currentTimeMillis());
 		String ip = req.getRemoteAddr();
-		Search2[] se = a_dao.getFamous();
+		Search2[] se = a_dao.getFamous(date.toString());
 		Search2[] rd = r_dao.getFamous();
 		
 		
@@ -135,10 +137,12 @@ public class Api { //
 			String addr = se[i].getAddr();
 			String subject = se[i].getSubject();
 			String title = se[i].getTitle();
+			String start_date = se[i].getTitle();
+			String end_date = se[i].getTitle();
 			
 			Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
 			
-			se[i] = svo; 
+			se[i++] = svo;
 			
 		}// for end
 		mv.addObject("avo", se);

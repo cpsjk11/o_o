@@ -1,7 +1,7 @@
 package api.u_member.vo;
 
 public class UmemVO {
-	private String 	id,pw,name,birth,email,phone,addr,addr2,member,u_date,stat,c_num,zonecode;
+	private String 	id,pw,name,birth,email,phone,addr,addr2,member,u_date,stat,c_num,zonecode,start_date,end_date;
 	
 	public UmemVO() {}
 
@@ -123,6 +123,22 @@ public class UmemVO {
 
 	public void setZonecode(String zonecode) {
 		this.zonecode = zonecode;
+	}
+
+	public String getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+
+	public String getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
 	}
 	
 	
