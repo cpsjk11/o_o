@@ -9,62 +9,30 @@
 <link href="../resources/css/lookMenu.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
+<link href="../resources/css/look.css" rel="stylesheet" type="text/css"/>
 	
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-	h2,sapn,th,ul,#m-unit{
-	font-family: 'Noto Sans KR','Roboto', sans-serif;
-	}
-	header{
-		top:0;
-	}
-    .content{
-        width: 900px;
-        margin: 145px 550px;
-    }
 
-    .style{
-        list-style: none;
-    }
-
-    table{
-        border-collapse: collapse;
-      
-    }
-    th{
-        border: 1px solid #dfdfdf;
-        font-size: 15px;
-        height: 50px;
-        color: black;
-        background-color: #efefef;
-        padding: 3px;
-        text-align: center;
-    }
-    .wth25p{
-        
-        height: 40px;
-    }
-    td{
-        border: 1px solid #dfdfdf;
-        margin: 10px;
-        font-size: 13px;
-    }
-    #header{
-        margin: 10px 0 ;
-    }
-    .content-title{
-        border-bottom: 2px solid skyblue;
-        width: 25%;
-       	position: relative !important;
-    	left: 50px !important;
-    	top: 0px !important;
-    }
-    li{
-        padding: 3px 3px 3px 8px;
-        list-style: none;
-    }
+   .content-title {
+	    height: 10%;
+	    border-bottom: 2px solid skyblue;
+	    width: 36%;
+	    position: relative !important;
+	    left: 50px !important;
+	    top: 16px !important;
+	}
+	#lookCategory {
+	    margin: 0 0 0.9em 3em;
+	    width: 94%;
+	    height: 3em;
+	}
+   	.leftBox {
+	    margin-left: 260px;
+	    margin-top: 90px;
+	}
     ul{
         margin: 10px 0;
     }

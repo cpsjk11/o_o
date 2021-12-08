@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>${bname }</title>
+
+
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="resources/js/summernote-lite.js"></script>
 <script src="resources/js/lang/summernote-ko-KR.js"></script>
@@ -92,6 +95,14 @@
 
 </head>
 <body>
+<c:if test="${bname eq '공지사항' || bname eq '국삐활용가이드'}">
+	<script type="text/javascript">
+		$(function() {
+			alert("잘못된 접근입니다.");
+			location.href="/";
+		})
+	</script>
+</c:if>
 ${categoryStyle}
 	<div id="wrap">
 		<jsp:include page="header.jsp"/>

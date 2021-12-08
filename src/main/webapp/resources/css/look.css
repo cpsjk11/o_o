@@ -9,7 +9,7 @@
 	}
     .content{
         width: 900px;
-        margin: 120px 550px;
+        margin: 145px 550px;
     }
      .content-title{
 		height: 1.8em;
@@ -18,7 +18,7 @@
     }
     table{
         border-collapse: collapse;
-    }
+    }	
     th{
         border: 1px solid #dfdfdf;
         font-size: 14px;

@@ -16,6 +16,29 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+.content-title {
+	        height: 10%;
+    border-bottom: 2px solid skyblue;
+    width: 52%;
+    position: relative !important;
+    /* left: 50px !important; */
+    top: 16px !important;
+	}
+	#lookCategory {
+	    margin: 0 0 0.9em 3em;
+	    width: 94%;
+	    height: 3em;
+	}
+   	.leftBox {
+	    margin-left: 260px;
+	    margin-top: 90px;
+	}
+    ul{
+        margin: 10px 0;
+    }
+    table{
+        width: 100%;
+    }
 </style>
 <body>
 <jsp:include page="lookMenu.jsp"/>

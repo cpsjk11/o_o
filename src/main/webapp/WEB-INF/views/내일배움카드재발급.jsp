@@ -20,12 +20,8 @@
     header{
     	top: 0;
     }
-    
-    footer{
-    	bottom: 0;
-    }
-
     .content{
+    	height: 500px;
         width: 900px;
          margin: 145px 550px;
 		font-size: medium;
@@ -71,14 +67,6 @@
        	position: relative !important;
     	left: 50px !important;
     	top: 0px !important;
-    }
-    
-   li{
-        padding: 3px 3px 3px 8px;
-	
-		font-size: 0.9em;
-		
-		margin: 10px 0;
     }
     ul{
         margin: 10px 0;

@@ -68,18 +68,6 @@
     	left: 50px !important;
     	top: 0px !important;
     }
-    
-   li{
-        padding: 3px 3px 3px 8px;
-		list-style: none;
-		font-size: 0.8em;
-		padding: 8px;
-		margin: 10px 0;
-    }
-    ul{
-        margin: 10px 0;
-		width: 720px;
-    }
     table{
         width: 100%;
     }

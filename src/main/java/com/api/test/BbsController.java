@@ -107,6 +107,17 @@ public class BbsController {
 	@RequestMapping("/helpWrite")
 	public ModelAndView goWrite(BbsVO vo, String bname) {
 		ModelAndView mv = new ModelAndView();
+		String sb = null;
+		
+		
+		if(bname.equals("공지사항") || bname.equals("국삐활용가이드")) {
+			mv.setViewName("/");
+		}else {
+			sb = checkBname(bname);
+		}
+		
+		 mv.addObject("categoryStyle",sb);
+		 
 		mv.addObject("bname",bname);
 		mv.setViewName("/write");
 		return mv;
@@ -293,6 +304,9 @@ public class BbsController {
 					+ "}\r\n"
 					+ "</style>");
 		};
+		if(bname == null) {
+			sb = null;
+		}
 		return sb;
 	}
 }

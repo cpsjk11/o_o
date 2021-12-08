@@ -11,17 +11,17 @@ h2,sapn,th,ul,#m-unit{
 		float:left;
 		width:222px;
 		min-height:300px;
-		z-index:0;
+		z-index:3;
 	}
 	.leftBox {
-		  margin-left: 260px;
-		  margin-top: 110px;
+	  margin-left: 260px;
+	  margin-top: 90px;
 	}
 	.left li a {
 	  text-decoration: none;
 	  padding: 10px;
 	  display: block;
-	  color: #000;
+	  color: #464646;
 	  font-weight: bold;
 	}
 	

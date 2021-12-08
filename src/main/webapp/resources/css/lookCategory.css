@@ -25,10 +25,19 @@ h2,sapn,th,ul,#m-unit{
 	height: 100%;
 	width: 100%;
 	background-color: #eee;
-	transition-property:background-color;
-	transition-duration:0.2s;
 	cursor: pointer;
+	transform: translate(0, 0px);
+	transition-property:background-color;
+	transition-property:transform;
+	transition-duration:0.3s;
 }
 .ct:hover {
-	background-color: #ccc;
+	background-color: #e1e1e1;
+	transform: translate(0, -4px);
 }
+li{
+    padding: 3px 3px 3px 8px;
+	list-style: none;
+	padding: 8px;
+	margin: 10px 0;
+   }

@@ -70,14 +70,6 @@
     	left: 50px !important;
     	top: 0px !important;
     }
-    
-   li{
-        padding: 3px 3px 3px 8px;
-	
-		font-size: 0.9em;
-		
-		margin: 10px 0;
-    }
     ul{
         margin: 10px 0;
     }
@@ -128,6 +120,7 @@
 <jsp:include page="lookMenu.jsp"/>
 
     <div class="content">
+    <jsp:include page="lookCategory.jsp"/>
     <h2 class="content-title"><span class="content-title-bar"></span>취업성공패키지 신청방법 및 구비서류</h2>
     <h3 class="content-sub-title">신청방법</h3>
     <ul>
