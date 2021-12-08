@@ -57,10 +57,9 @@
 		color: #94969b;
 	}
 	#bbs_title{
-		width: 90%;
 		height: 10%;
 	}
-	#bbs_title span{
+	#bbs_title span:nth-child(1){
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1.2em;
 		font-weight: 450;
@@ -137,5 +136,11 @@
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1em;
 		font-weight: 400;
+		color: #444444;
+	}
+	#sucComment{
+		float: right;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 0.9em;
 		color: #444444;
 	}
