@@ -38,7 +38,7 @@
 		<%--상단 검색 영역입니당! --%>
 		
 		<%--실시간 인기 훈련과정영역입니당! --%>
-		<div id="sub_content" data-aos="fade-up" data-aos-duration="1500">
+		<div id="sub_content" data-aos="fade-up" data-aos-duration="1000">
 			<div id="pop_tr">
 				<div id="pop_area">
 					<div id="pop_text">
@@ -50,8 +50,9 @@
 							<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
 						</div>
 						<div id="tr_text_box">
-							<span class="tr_addr">${vo.addr}</span>
-							<span class="tr_name">${vo.subject}${vo.title}</span>
+							<div class="tr_name"><p>${vo.subject}</p></div>
+							<div class="tr_addr"><p>${vo.addr}</p></div>
+							<div class="tr_title"><p>${vo.title}</p></div>
 						</div>
 					</a> 
 					</c:forEach>
@@ -62,7 +63,7 @@
 
 
 			<%--추천훈련과정영역입니당! --%>
-			<div id="beli_tr" data-aos="fade-up" data-aos-duration="1500">
+			<div id="beli_tr" data-aos="fade-up" data-aos-duration="1000">
 				<div id="pop_area" class="pop_area">
 					<div id="pop_text">
 						<span>추천 훈련 과정</span>
@@ -74,8 +75,9 @@
 								<img alt="" src="resources/img/img0${st.index+1}.png" style="width: 100%; height: 100%;">
 							</div>
 							<div id="tr_text_box">
-								<span class="tr_addr">${vo.addr}</span>
-								<span class="tr_name">${vo.title}${vo.subject}</span>
+								<div class="tr_name"><p>${vo.subject}</p></div>
+								<div class="tr_addr"><p>${vo.addr}</p></div>
+								<div class="tr_title"><p>${vo.title}</p></div>
 							</div>
 						</a>
 						</c:forEach>
@@ -83,7 +85,7 @@
 				</div>
 			</div>
 		<%--추천훈련과정영역입니당! --%>
-			<div id="pop_ct" data-aos="fade-up" data-aos-duration="1500">
+			<div id="pop_ct" data-aos="fade-up" data-aos-duration="1000">
 				<div id="ct_top_text">
 					<span>인기 카테고리</span>
 				</div>
@@ -158,7 +160,7 @@ $(function(){
         arrows : false,         // 옆으로 이동하는 화살표 표시 여부
         dots : false,         // 스크롤바 아래 점으로 페이지네이션 여부
         autoplay : true,            // 자동 스크롤 사용 여부
-        autoplaySpeed : 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+        autoplaySpeed : 4000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
         pauseOnHover : true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
         vertical : false,        // 세로 방향 슬라이드 옵션
         prevArrow : "<button type='button' class='slick-prev'>Previous</button>",        // 이전 화살표 모양 설정
@@ -195,7 +197,7 @@ $(function(){
         arrows : false,         // 옆으로 이동하는 화살표 표시 여부
         dots : false,         // 스크롤바 아래 점으로 페이지네이션 여부
         autoplay : true,            // 자동 스크롤 사용 여부
-        autoplaySpeed : 2500,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+        autoplaySpeed : 4000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
         pauseOnHover : true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
         vertical : false,        // 세로 방향 슬라이드 옵션
         prevArrow : "<button type='button' class='slick-prev'>Previous</button>",        // 이전 화살표 모양 설정
