@@ -1,6 +1,8 @@
 package api.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,15 @@ public class ArDAO {
 	private SqlSessionTemplate ss;
 	
 	// 인기 많은 학원의 학원 아이디 그리고 과정 아이디 훈련횟차를 반환하는 기능
-	public Search2[] getFamous() {
+	public Search2[] getFamous(String sysdate) {
+		System.out.println(sysdate);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("s_date", sysdate);
+		map.put("sysdate", sysdate);
+		
 		Search2[] vo = null;
 		
-		List<Search2> a_list = ss.selectList("ar.famous");
+		List<Search2> a_list = ss.selectList("ar.famous",map);
 		
 		if(a_list != null && !a_list.isEmpty()) {
 			vo = new Search2[a_list.size()];

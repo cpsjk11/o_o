@@ -5,9 +5,13 @@
 <mapper namespace="ar">
 
 <!-- 인기 많은 학원을 반환하는 기능 -->
-<select id="famous" resultType="api.vo.Search2">
-	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,
+<select id="famous" parameterType="Map" resultType="api.vo.Search2">
+	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,start_date,end_date,
 	RANK() OVER (ORDER BY hit DESC) AS rank
-	FROM AT_TR
+	FROM at_tr
+    WHERE end_date >= TO_DATE(#{sysdate})
+
+					
+
 </select>
 </mapper>
