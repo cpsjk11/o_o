@@ -9,9 +9,6 @@
 	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,start_date,end_date,
 	RANK() OVER (ORDER BY hit DESC) AS rank
 	FROM at_tr
-    WHERE end_date >= TO_DATE(#{sysdate})
-
-					
-
+    WHERE start_date >= TO_DATE(#{sysdate})					
 </select>
 </mapper>

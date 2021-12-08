@@ -1,7 +1,10 @@
 package com.api.test;
 
-import java.sql.Date;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -94,9 +97,18 @@ public class AddController {
 	public ModelAndView goIndex() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		// 날짜 구하기
+		Date ydate = new Date();
+        // 포맷변경 ( 년월일 시분초)
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd"); 
+        // Java 시간 더하기
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        String yesterday = sdformat.format(cal.getTime());
+		
 		List<Map<String, String>> list = null;
 		
-		Search2[] rd = r_dao.getFamous(); 
+		Search2[] rd = r_dao.getFamous(yesterday); 
 		int usernum = u_dao.finduser();
 		int companyNum = u_dao.findCompanySu();
 		String result[] = null;
@@ -106,13 +118,18 @@ public class AddController {
 		String Y = "";
 		String companyX = "";
 		
-		rd = RecommendedSchool.getSchool(rd);
+		//rd = RecommendedSchool.getSchool(rd);
 		
 		//u_dao.searchDate();
 		
 		// 현재 날짜를 비교해 최근 3~6개월 정도에 결과값을 가져오는 기능
-		Date dates = new Date(System.currentTimeMillis());
-		String to_date = dates.toString();
+		Date dates = new Date();
+        // 포맷변경 ( 년월일 시분초)
+        SimpleDateFormat sdformats = new SimpleDateFormat("yyyy-MM-dd"); 
+        // Java 시간 더하기
+        Calendar cals = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        String to_date = sdformat.format(cal.getTime()); 
 		
 		int s = to_date.indexOf("0");
 		int n = to_date.indexOf("-");
