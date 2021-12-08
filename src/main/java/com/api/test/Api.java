@@ -3,15 +3,14 @@ package com.api.test;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import api.action.Paging;
 import api.action.RecommendedSchool;
 import api.dao.AfterDAO;
 import api.dao.ArDAO;
@@ -38,14 +35,11 @@ import api.dao.TraDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.AfterVO;
 import api.u_member.vo.UmemVO;
-import api.vo.Api00;
 import api.vo.Search2;
 import api.vo.SearchVO;
 import api.vo.api_1;
 import api.vo.api_2_1;
 import api.vo.api_2_2;
-import api.vo.api_2_3;
-import api.vo.api_2_4;
 import api.vo.api_3;
 
 
@@ -124,9 +118,18 @@ public class Api { //
 	@RequestMapping({"/","/*"})
 	public ModelAndView test() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Date date = new Date(System.currentTimeMillis());
+
+		// 날짜 구하기
+		Date date = new Date();
+        // 포맷변경 ( 년월일 시분초)
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd"); 
+        // Java 시간 더하기
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        String yesterday = sdformat.format(cal.getTime());
+		
 		String ip = req.getRemoteAddr();
-		Search2[] se = a_dao.getFamous(date.toString());
+		Search2[] se = a_dao.getFamous(yesterday);
 		Search2[] rd = r_dao.getFamous();
 		
 		
