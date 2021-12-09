@@ -394,7 +394,7 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/search")
-	public ModelAndView index(SearchVO svo, String search_bar, String end, String srchTraArea1, String srchTraArea2, String srchKeco1, String srchTraStDt, String srchTraEndDt, String hei) throws Exception {
+	public ModelAndView index(SearchVO svo, String search_bar, String end, String srchTraArea1, String srchTraArea2, String srchKeco1, String srchTraStDt, String srchTraEndDt, String hei, String page) throws Exception {
 		//System.out.println(search_bar);
 		//System.out.println(srchTraStDt);
 		
@@ -406,13 +406,16 @@ public class Api { //
 		if(hei == null || (hei != null && hei.trim().equals("")))
 			hei = "1000";
 		
-		mv.addObject("hei", hei);
+		if(page == null || (page != null && page.trim().equals("")))
+			page = "1";
+		page = String.valueOf((Integer.parseInt(page)/15)+1);
 		
-		//for(int num=1; num<65; num++) {
-		for(int num=1; num<2; num++) {
-		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageSize=100&outType=1");
-			sb.append("&pageNum="+num);
-				
+		mv.addObject("hei", hei);
+		mv.addObject("page", page);
+		
+		/*
+		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageSize=10&outType=1&pageNum=1");
+			
 		if(svo.getSort() != null)
 			sb.append("&sort="+svo.getSort());
 		else
@@ -422,7 +425,9 @@ public class Api { //
 			sb.append("&sortCol="+svo.getSortCol());
 		else
 			sb.append("&sortCol=TR_STT_DT");
+		*/
 		
+		svo.setSrchTraProcessNm(search_bar);
 		svo.setSrchTraArea1(srchTraArea1);
 		svo.setSrchTraArea2(srchTraArea2);
 		svo.setSrchKeco1(srchKeco1);
@@ -439,11 +444,11 @@ public class Api { //
 		Calendar cal = Calendar.getInstance();
 		StringBuffer now_date = new StringBuffer();
 		now_date.append(cal.get(Calendar.YEAR));
-		String month = String.valueOf(cal.get(Calendar.MONTH)+1); 
+		String month = String.valueOf(cal.get(Calendar.MONTH)+1);
 		if(month.length() == 1) {
 			month = 0+month;
 		}
-		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)); 
+		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)+1); 
 		if(day.length() == 1) {
 			day = 0+day;
 		}
@@ -452,10 +457,21 @@ public class Api { //
 		now_date.append(day);
 		
 		StringBuffer end_date = new StringBuffer();
-		end_date.append(cal.get(Calendar.YEAR));
-		end_date.append(String.valueOf(Integer.parseInt(month)+6));
+		if((cal.get(Calendar.MONTH)+1) > 6) {
+			end_date.append(cal.get(Calendar.YEAR)+1);
+			month = String.valueOf(cal.get(Calendar.MONTH)-5);
+		}else {
+			end_date.append(cal.get(Calendar.YEAR));
+			month = String.valueOf(cal.get(Calendar.MONTH)+7);
+		}
+		if(month.length() == 1)
+			end_date.append(0+month);
+		else
+			end_date.append(month);
 		end_date.append(day);
 		
+		if(svo.getSrchTraProcessNm() != null && svo.getSrchTraProcessNm().equals(","))
+			svo.setSrchTraProcessNm(null);
 		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
 			svo.setSrchTraArea1(null);
 		if(svo.getSrchTraArea2() != null && svo.getSrchTraArea2().equals(","))
@@ -471,7 +487,7 @@ public class Api { //
 		else if(svo.getSrchTraEndDt() == null)
 			svo.setSrchTraEndDt(end_date.toString());
 		
-		
+		/*
 		if(svo.getSrchTraArea1() != null && !svo.getSrchTraArea1().trim().equals(""))
 			sb.append("&srchTraArea1="+svo.getSrchTraArea1());
 		if(svo.getSrchTraArea2() != null && !svo.getSrchTraArea2().trim().equals(""))
@@ -488,10 +504,7 @@ public class Api { //
 			sb.append("&srchTraGbn="+svo.getSrchTraGbn());
 		if(svo.getSrchTraType() != null)
 			sb.append("&srchTraType="+svo.getSrchTraType());
-		
-		System.out.println("리퀘스트:"+sb.toString());
-		
-		
+				
 		URL url = new URL(sb.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
@@ -503,9 +516,143 @@ public class Api { //
 		Document document = builder.build(conn.getInputStream());
 		
 		Element root = document.getRootElement();
-		Element srchList = root.getChild("srchList");
-		s_list.addAll(srchList.getChildren("scn_list"));
 		String counts = root.getChildText("scn_cnt");
+		//int count = Integer.parseInt(counts)/6;
+		 */
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		
+		System.out.println(page);
+		
+		//for(int num=1; num<65; num++) {
+		//for(int num=1; num<=count+1; num++) {
+		for(int num=1; num<=Integer.parseInt(page); num++) {
+			/*
+			StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&outType=1");
+			sb.append("&pageSize=96");
+			sb.append("&pageNum="+num);
+					
+			if(svo.getSort() != null)
+				sb.append("&sort="+svo.getSort());
+			else
+				sb.append("&sort=ASC");
+			
+			if(svo.getSortCol() != null)
+				sb.append("&sortCol="+svo.getSortCol());
+			else
+				sb.append("&sortCol=TR_STT_DT");
+					
+			if(svo.getSrchTraProcessNm() != null && !svo.getSrchTraProcessNm().trim().equals("")) {
+				String search = URLEncoder.encode(svo.getSrchTraProcessNm(), "UTF-8");
+				sb.append("&srchTraProcessNm="+search);
+			}
+			if(svo.getSrchTraArea1() != null && !svo.getSrchTraArea1().trim().equals(""))
+				sb.append("&srchTraArea1="+svo.getSrchTraArea1());
+			if(svo.getSrchTraArea2() != null && !svo.getSrchTraArea2().trim().equals(""))
+				sb.append("&srchTraArea2="+svo.getSrchTraArea2());
+			if(svo.getSrchKeco1() != null && !svo.getSrchKeco1().trim().equals(""))
+				sb.append("&srchKeco1="+svo.getSrchKeco1());
+			if(svo.getSrchTraStDt() != null && !svo.getSrchTraStDt().trim().equals(""))
+				sb.append("&srchTraStDt="+svo.getSrchTraStDt());
+			if(svo.getSrchTraEndDt() != null && !svo.getSrchTraEndDt().trim().equals(""))
+				sb.append("&srchTraEndDt="+svo.getSrchTraEndDt());
+			if(svo.getCrseTracseSe() != null)
+				sb.append("&crseTracseSe="+svo.getCrseTracseSe());
+			if(svo.getSrchTraGbn() != null)
+				sb.append("&srchTraGbn="+svo.getSrchTraGbn());
+			if(svo.getSrchTraType() != null)
+				sb.append("&srchTraType="+svo.getSrchTraType());
+				*/
+			
+			StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/hrdp/api/apipo/APIPO0101T.do?"); // 접속위치
+			String sortCol = null;
+			if(svo.getSortCol() != null) 
+				sortCol = "&sortCol="+svo.getSortCol();
+			
+			sb.append("returnType=XML"); // 리턴 타입 XML 고정
+			sb.append("&pageSize=30");  // 볼 페이지 수 정하기
+			sb.append("&authKey=UzKsh6RpTEHTTwIPUzd8OrcRauHZI14b"); // 인증키
+			sb.append("&sort=ASC");  // 정렬 방식
+			sb.append("&outType=1"); // 1 : 보기 2 : 상세보기
+			sb.append("&srchTraStDt=20211111"); // 시작날짜
+			sb.append("&pageNum=1");            // 현재 페이지 값
+			
+			if(sortCol != null) 
+				sb.append(sortCol);
+			else
+				sb.append("&sortCol=TR_STT_DT");    // 정렬의 기준
+			
+			sb.append("&srchTraEndDt=20220211"); // 마지막 날짜
+			sb.append("&srchTraPattern=N1");  // ??
+			sb.append("&srchPart=-99"); // ??
+			sb.append("&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp"); // 요청한 api주소
+			sb.append("&apiRequstIp="+req.getRemoteAddr()); // 서버 ip 주소
+			
+			if(svo != null) {
+				// 검색 조건이 하나라도 들어온 경우
+				if(svo.getSrchKeco1() != null) {
+					srchKeco1 = "&srchKeco1="+svo.getSrchKeco1();
+					sb.append(srchKeco1);
+				}
+				if(svo.getSrchKeco2() != null) {
+					sb.append("&srchKeco2="+svo.getSrchKeco2());
+				}
+				if(svo.getSrchKeco3() != null && svo.getSrchKeco4() == null) {
+					sb.append("&srchKeco3="+svo.getSrchKeco3());
+				}
+				if(svo.getSrchKeco4() != null) {
+					sb.append("&srchKeco3="+svo.getSrchKeco4());
+				}
+				if(svo.getSrchTraArea1() != null) {
+					srchTraArea1 = "&srchTraArea1="+svo.getSrchTraArea1();
+					sb.append(srchTraArea1);
+				}
+				if(svo.getSrchTraArea2() != null) {
+					srchTraArea2 = "&srchTraArea2="+svo.getSrchTraArea2();
+					sb.append(srchTraArea2);
+				}
+				if(svo.getSrchTraOrganNm() != null) {
+					sb.append("&srchTraOrganNm="+svo.getSrchTraOrganNm());
+				}
+				if(svo.getSrchTraProcessNm() != null) {
+					sb.append("&srchTraProcessNm="+svo.getSrchTraProcessNm());
+				}
+				if(svo.getCrseTracseSe() != null) {
+					sb.append("&crseTracseSe="+svo.getCrseTracseSe());
+				}if(svo.getSrchTraStDt() != null) {
+					srchTraStDt = "&srchTraStDt="+svo.getSrchTraStDt();
+					sb.append(srchTraStDt);
+				}if(svo.getSrchTraEndDt() != null) {
+					srchTraEndDt = "&srchTraEndDt="+svo.getSrchTraEndDt();
+					sb.append(srchTraEndDt);
+				}
+			}
+			
+			System.out.println("리퀘스트:"+sb.toString());
+			
+			URL url = new URL(sb.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			
+			conn.setRequestProperty("Content-Type", "application/xml");
+			conn.connect();
+			
+			SAXBuilder builder = new SAXBuilder();
+			
+			Document document = builder.build(conn.getInputStream());
+			
+			Element root = document.getRootElement();
+			//Element srchList = root.getChild("srchList");
+			Element srchList = (search_bar == null) ? root.getChild("srchList") : root.getChild("srchList");
+			System.out.println(search_bar);
+			s_list.addAll(srchList.getChildren("scn_list"));
+			List<String> ss = new ArrayList<String>();
+			ss.add(srchList.getChildren("scn_list").toString());
+			System.out.println(s_list);
+			System.out.println(ss);
+			System.out.println(document.toString());
+			System.out.println(root.toString());
+			System.out.println(srchList.toString());
+			System.out.println(srchList.getChildren("scn_list").toString());
 		}
 		
 		if(search_bar == null) {
@@ -516,8 +663,6 @@ public class Api { //
 			if(el.getChildText("title").toUpperCase().contains(search_bar.toUpperCase()))
 				cnt++;
 		}
-		
-		DecimalFormat formatter = new DecimalFormat("###,###");
 		
 		if(cnt > 0) {
 			api_1[] ar = new api_1[cnt];
@@ -735,11 +880,53 @@ public class Api { //
 			avo3 = new api_3(null, null, null, null, null, null, null, null, null, null, null, null, null);
 		}
 		
+		sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageNum=1&pageSize=100&srchTraStDt=20210101&srchTraEndDt=20211231&outType=1&sort=ASC&sortCol=TR_STT_DT");
+		String ino = URLEncoder.encode(INO_NM, "UTF-8");
+		sb.append("&srchTraOrganNm="+ino);
+		
+		System.out.println("리퀘스트:"+sb.toString());
+		
+		url = new URL(sb.toString());
+		conn = (HttpURLConnection) url.openConnection();
+		
+		conn.setRequestProperty("Content-Type", "application/xml");
+
+		conn.connect();
+		
+		builder = new SAXBuilder();
+		
+		document = builder.build(conn.getInputStream());
+		
+		root = document.getRootElement();
+		Element srchList = root.getChild("srchList");
+		List<Element> s_list = srchList.getChildren("scn_list");
+		
+		System.out.println(s_list);
+		System.out.println(s_list.size());
+		
+		int k=0;
+		int sum=0;
+		int avg=0;
+				
+		if(s_list != null) {
+			for(Element el : s_list) {
+				String EI_EMPL_RATE6 = el.getChildText("eiEmplRate6");
+				System.out.println(EI_EMPL_RATE6);
+				if(EI_EMPL_RATE6 != null && EI_EMPL_RATE6 != "" && Integer.parseInt(EI_EMPL_RATE6) > 0) {
+					sum += Integer.parseInt(EI_EMPL_RATE6);
+					k++;
+				}
+			}
+			if(k>0)
+				avg = sum/k;
+		}
+	
+		
+		mv.addObject("rate6", avg);
+		
 		mv.addObject("vo", avo);
 		mv.addObject("vo2", avo2);
 		mv.addObject("vo3", avo3);
-		
-		//System.out.println(ADDR1);
 		
 		String address = URLEncoder.encode(ADDR1,"utf-8");
 		String api = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+address;
@@ -761,9 +948,7 @@ public class Api { //
 		while((line = br.readLine()) != null) {
 			sb.append(line).append("\n");
 		}
-		
-		System.out.println(sb);
-		
+				
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject;
 		JSONObject jsonObject2;

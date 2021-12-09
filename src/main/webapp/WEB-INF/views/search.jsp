@@ -257,7 +257,7 @@
 				<c:if test="${value ne null }">
 					'${value }'의 검색 결과입니다.
 				</c:if>
-			</form>
+			</form>  
 		</div>
 		<div id="detail_div" class="hidden">
 			<form method="post" action="search" name="search_detail">

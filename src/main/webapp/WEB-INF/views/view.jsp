@@ -201,7 +201,7 @@
 				</c:forEach>
 				</tbody>
 			</table>
-		</div>
+		</div>  
 		
 		<div id="bottom2_div">
 			<h2 style="margin-bottom:0;">수강후기</h2>
