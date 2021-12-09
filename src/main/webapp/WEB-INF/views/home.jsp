@@ -26,40 +26,42 @@
 	<div id="wrap">
 		<jsp:include page="header.jsp"/>
 		<%--상단 검색 영역입니당! --%>
-		<div id="main_content">
-			<div id="search_area">
-				<span>나에게 맞는 훈련을 찾아보세요! </span>
-				<div id="input_area">
-					<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 " onkeyup="enterkey()"/>
-					<img src="resources/img/px.png" style="cursor: pointer;" onclick="imgclick()">
-				</div>
-			</div>
-		</div>
-		<%--상단 검색 영역입니당! --%>
-		
-		<%--실시간 인기 훈련과정영역입니당! --%>
-		<div id="sub_content" data-aos="fade-up" data-aos-duration="1000">
-			<div id="pop_tr">
-				<div id="pop_area">
-					<div id="pop_text">
-						<span>실시간 인기 훈련과정</span>
+		<div>
+			<div id="main_content">
+				<div id="search_area">
+					<span>나에게 맞는 훈련을 찾아보세요! </span>
+					<div id="input_area">
+						<input type="text" id="search" name="search" placeholder="검색할 내용을 입력해주세요!😀 " onkeyup="enterkey()"/>
+						<img src="resources/img/px.png" style="cursor: pointer;" onclick="imgclick()">
 					</div>
-           			<c:forEach var="vo" items="${avo}" varStatus="st">				
-					<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}">
-						<div class="tr_img_box">
-							<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
-						</div>
-						<div id="tr_text_box">
-							<div class="tr_name"><p>${vo.subject}</p></div>
-							<div class="tr_addr"><p>${vo.addr}</p></div>
-							<div class="tr_title"><p>${vo.title}</p></div>
-						</div>
-					</a> 
-					</c:forEach>
-				
 				</div>
 			</div>
+			<%--상단 검색 영역입니당! --%>
+		
 			<%--실시간 인기 훈련과정영역입니당! --%>
+			<c:if test="${!empty avo}">
+			<div id="sub_content" data-aos="fade-up" data-aos-duration="1000">
+				<div id="pop_tr">
+					<div id="pop_area">
+						<div id="pop_text">
+							<span>실시간 인기 훈련과정</span>
+						</div>
+	           			<c:forEach var="vo" items="${avo}" varStatus="st">				
+						<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}">
+							<div class="tr_img_box">
+								<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
+							</div>
+							<div id="tr_text_box">
+								<div class="tr_name"><p>${vo.subject}</p></div>
+								<div class="tr_addr"><p>${vo.addr}</p></div>
+								<div class="tr_title"><p>${vo.title}</p></div>
+							</div>
+						</a> 
+						</c:forEach>
+					</div>
+				</div>
+			</c:if>
+				<%--실시간 인기 훈련과정영역입니당! --%>
 
 
 			<%--추천훈련과정영역입니당! --%>
@@ -86,31 +88,33 @@
 			</div>
 		<%--추천훈련과정영역입니당! --%>
 			<div id="pop_ct" data-aos="fade-up" data-aos-duration="1000">
-				<div id="ct_top_text">
-					<span>인기 카테고리</span>
-				</div>
-				<div id="ct_top_category" style="padding: 60px 45px;">
-					<ol onclick="search_pa()" id="search_ol">
-						<li value="20" id="1">정보통신</li>
-						<li value="02" id="2">경영/회계</li>
-						<li value="08" id="3">디자인/방송</li>
-						<li value="13" id="4">음식서비스</li>
-					</ol>
-					<ol>
-						<li value="03" id="a">금융/보험</li>
-						<li value="19" id="a">전기전자</li>
-						<li value="16" id="a">재료</li>
-						<li value="06" id="a">보건의료</li>
-					</ol>
+				<div id="bot_category">
+					<div id="ct_top_text">
+						<span>인기 카테고리</span>
+					</div>
+					<div id="ct_top_category" style="padding: 60px 45px;">
+						<ol onclick="search_pa()" id="search_ol">
+							<li value="20" id="1">정보통신</li>
+							<li value="02" id="2">경영/회계</li>
+							<li value="08" id="3">디자인/방송</li>
+							<li value="13" id="4">음식서비스</li>
+						</ol>
+						<ol>
+							<li value="03" id="a">금융/보험</li>
+							<li value="19" id="a">전기전자</li>
+							<li value="16" id="a">재료</li>
+							<li value="06" id="a">보건의료</li>
+						</ol>
+					</div>
 				</div>
 			</div>
+			<%--추천훈련과정영역입니당! --%>
 		</div>
 		
 		<%-- 푸터에용~ --%>
 		<jsp:include page="footer.jsp"/>
 		<%-- 푸터에용~ --%>
-		
-	</div>
+	</div>		
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="text/javascript">
 

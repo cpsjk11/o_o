@@ -11,20 +11,14 @@
 	}
 	
 	#wrap{
-		position: absolute;
 		width: 100%;
 		height: 100%;
-		left: 0px;
-		top: 0px;
 		background: #FFFFFF;
 	}
-	
 	#main_content{
 		display: block;
-		padding: 150px 300px;
 		margin: 0 auto;
-		width: 1000px;
-		height: 2550px;
+		width: 63em;
 		text-align: center;
 	}
 	#main_content #search_area span{
@@ -50,43 +44,28 @@
 	}
 	#search_area{
 		width: 100%;
-		padding-top: 150px;
+		margin: 15em 0 5em 0;
 	}
 	#sub_content{
-		position: absolute;
 		display: block;
-		height: 2007px;
-		left: 0px;
-		top: 864px;
+		margin: 0 auto;
 	}
 	#sub_content #pop_tr{
-		position: absolute;
-		width: 1323px;
-		height: 456.72px;
-		left: 297px;
-		top: 142.14px;
 		
 	}
 	#sub_content #beli_tr{
-		position: absolute;
-		width: 1323px;
-		height: 456.72px;
-		left: 297px;
-		top: 766px;
+		margin: 0 auto;
 	}
 	#sub_content #pop_ct{
-		position: absolute;
-		width: 1323px;
-		height: 456.72px;
-		left: 297px;
-		top: 1422px;
+		margin: 0 auto;
+		width: 65%;
+	}
+	#bot_category{
 	}
 	#pop_area{
-		width: 1323px;
-		height: 456.72px;
-		/* left: 297px;
-		top: 142.14px;
-		display: flex; */
+		margin: 8em auto;
+		width: 65%;
+		height: 50%;
 		flex-direction: row;
 		justify-content: space-between;
 		background: #FFFFFF;
@@ -94,12 +73,10 @@
 		
 	}
 	#pop_area .tr{
-		width: 218.32px;
-		height: 305.64px;
-		text-decoration: none;
+		height: 20em;
 		color: #3A2F2F;
-		margin: 40px 20px;
-		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
+		margin: 1em;
+		box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
 		transform: translate(0, 0px);
 		transition-property:transform;
 		transition-duration:0.3s;
@@ -159,11 +136,12 @@
 	}
 	
 	#pop_text{
-		padding: 30px 40px 0px;
+		padding: 1em 0 0 1.2em;
 	}
 	#pop_text span{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-weight: 600;
-		font-size: 30px;
+		font-size: 1.5em;
 		color: #3A2F2F;
 	}
 	#ct_top_text{

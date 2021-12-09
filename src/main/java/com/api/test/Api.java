@@ -158,7 +158,6 @@ public class Api { //
 			mv.addObject("avo", se);
 			mv.addObject("length", se.length);
 		}
-		
 		rd = RecommendedSchool.getSchool(rd);
 		
 		mv.addObject("avos", rd);
