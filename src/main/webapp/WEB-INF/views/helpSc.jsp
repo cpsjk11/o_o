@@ -115,7 +115,7 @@
 					</c:if>
 					<c:if test="${sessionScope.userName.id eq vo.id }">
 						<div id="bbs_title">
-							<span>${vo.subject } <c:if test="${vo.status eq 4 }"><span id="que_ok">답변완료👌</span></c:if></span>
+							<span id="bbs_title">${vo.subject } <c:if test="${vo.status eq 4 }"><span id="que_ok">답변완료👌</span></c:if></span>
 						</div>
 						<div id="bbs_content"><span>${vo.content }</span></div>
 						<div id="bbs_writer"><span>${vo.writer }</span></div>

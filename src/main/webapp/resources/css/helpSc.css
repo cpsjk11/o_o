@@ -56,10 +56,10 @@
 		color: #94969b;
 	}
 	#bbs_title{
-		width: 90%;
+		width: 100%;
 		height: 10%;
 	}
-	#bbs_title span{
+	#bbs_title{
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 		font-size: 1.2em;
 		font-weight: 450;
@@ -141,7 +141,7 @@
 	#que_ok{
 		float: right;
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
-		font-size: 0.8em;
+		font-size: 0.6em;
 		font-weight: 400;
 		color: #444444;
 	}
