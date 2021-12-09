@@ -23,7 +23,7 @@
 	}
 	div#body {
 		width: 1200px;
-		height: 3000px;
+		height: 2200px;
 		margin-left: 150px;
 	}
 	div#footer {
@@ -40,19 +40,19 @@
 	}
 	div#center_div {
 		width: 1200px;
-		height: 500px;
+		height: 100px;
 	}
 	div#center2_div {
 		width: 1200px;
-		height: 500px;
+		height: 300px;
 	}
 	div#bottom_div {
 		width: 1200px;
-		height: 500px;
+		height: 400px;
 	}
 	div#bottom2_div {
 		width: 1200px;
-		height: 500px;
+		height: 400px;
 	}
 	.btn{
 		width: 70px; 
@@ -183,6 +183,7 @@
 				<span>훈련기관 전화번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_TEL}</span><br/>
 				<span>이메일(e-mail)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_EMAIL}</span><br/>
 				<span>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.HP_ADDR}</span><br/><br/>
+				<span>취업률&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${rate6}%</span><br/><br/>
 				<a href="https://www.hrd.go.kr/hrdp/co/pcoco/PCOCO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&trainstCstmrId=${TRAINST_CST_ID}&crseTracseSe={vo.TRPR_GBN}&pageId=" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
 			</div>
 			

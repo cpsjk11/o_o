@@ -383,6 +383,7 @@
 					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_less" name="srchTraArea1"/>
 					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_less" name="srchTraArea2"/>
 					<input type="hidden" value="${srchKeco1}" id="srchKeco1_less" name="srchKeco1"/>
+					<input type="hidden" value="${page}" id="page_less" name="page"/>
 					<input type="hidden" value="${hei}" id="hei_less" name="hei"/>
 				</c:if>
 				</form>			
@@ -395,6 +396,7 @@
 					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_more" name="srchTraArea1"/>
 					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_more" name="srchTraArea2"/>
 					<input type="hidden" value="${srchKeco1}" id="srchKeco1_more" name="srchKeco1"/>
+					<input type="hidden" value="${page}" id="page_more" name="page"/>
 					<input type="hidden" value="${hei}" id="hei_more" name="hei"/>
 				</c:if>
 				</form>
@@ -430,8 +432,10 @@
 			end = parseInt($("#end_more").val())+end_size;
 		}
 		$("#end_more").val(end);
-		var hei = parseInt($("#hei").val())
-		$("#hei").val(hei+1000);
+		var hei = parseInt($("#hei_more").val())+1000;
+		$("#hei_more").val(hei);
+		var page = parseInt($("#page_more").val())+1;
+		$("#page_more").val(page);
 		document.more.submit();
 	}
 	function less1() {
@@ -444,8 +448,10 @@
 			end = parseInt($("#end_less").val())-end_size;
 		}
 		$("#end_less").val(end);
-		var hei = parseInt($("#hei").val())
-		$("#hei").val(hei-1000);
+		var hei = parseInt($("#hei_less").val())-1000;
+		$("#hei_less").val(hei);
+		var page = parseInt($("#page_less").val())-1;
+		$("#page_less").val(page);
 		document.less.submit();
 	}
 	function detail1() {
