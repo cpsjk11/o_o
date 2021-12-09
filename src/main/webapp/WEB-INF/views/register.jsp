@@ -19,7 +19,7 @@
 	}
 	div#body {
 		width: 1200px;
-		height: 500px;
+		height: 450px;
 		margin-left: 150px;
 	}
 	div#footer {
@@ -41,23 +41,25 @@
 	<div id="body" name="body">
 		<div id="body_div1">
 			<h3>신청정보</h3>
-			<span>·성명, 생년월일, 전화번호, 이메일, 주소는 수강신청을 위한 필수 입력 정보입니다.</span><br/>
+			<span>성명, 생년월일, 전화번호, 이메일, 주소는 수강신청을 위한 필수 입력 정보입니다.</span><br/>
 			<span>※해당 정보는 통계 및 수강신청의 목적으로 활용되며 훈련기관을 제외한 외부에 제공되지 않습니다.</span>
 		</div>
 		<div id="body_div2">
 			<h3>신청절차</h3>
-			<ul>
+			<ol>
 				<li>온라인 수강신청</li>
 				<li>수강신청접수</li>
 				<li>신청내용검토</li>
 				<li>최종합격훈련생등록</li>
-			</ul>
+			</ol>
 		</div>
 		<div id="body_div3">
 			<h3>유의사항</h3>
-			<span>·1년에 5회를 초과하여 수강할 수 없습니다.</span><br/>
-			<span>·동일한 NCS직종의 훈련과정에 대해 1년에 3회를 초과하여 수강 신청할 수 없습니다.</span><br/>
-			<span>·동일한 훈련과정의 재수강은 허용되지 않습니다.</span><br/>
+			<ul type = "circle" style="margin-bottom: 30px;">
+				<li>1년에 5회를 초과하여 수강할 수 없습니다.</li>
+				<li>동일한 NCS직종의 훈련과정에 대해 1년에 3회를 초과하여 수강 신청할 수 없습니다.</li>
+				<li>동일한 훈련과정의 재수강은 허용되지 않습니다.</li>
+			</ul>
 			<input type="checkbox" id="check" name="check"/>
 			<span>위의 사항을 모두 확인하였습니다.</span>
 		</div>
@@ -104,8 +106,8 @@ function ok1() {
 		if(confirm("정보를 정확히 확인하셨습니까?")) {
 			$("#info").dialog("close");
 			$("#info").css("display", "none");
-			document.info_form.submit();
 			alert("수강신청이 완료되었습니다.");
+			document.info_form.submit();
 		}
 }
 </script>

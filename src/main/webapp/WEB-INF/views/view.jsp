@@ -87,12 +87,12 @@
 	.hidden {
 		display: none;
 	}
-	table#after_table th, td{
+	table#after_table th, td, table#help_bbs_table th, td{
 		padding: 15px 0;
 		border-bottom: 1px solid #ddd;
 		text-align: left;
 	}
-	#add_btn{
+	#add_btn, #add2_btn{
 		float: right;
 		width: 75px;
 		height: 30px;
@@ -133,8 +133,8 @@
 				<span style="width: 700px; height: 150px; float:right;"><h2>${vo.TRPR_NM}<br/></h2><h3>${vo3.TR_STA_DT} ~ ${vo3.TR_END_DT}(${vo2.TOT_TRAING_DYCT}일, ${vo2.TOT_TRAING_TIME}시간)</h3></span>
 			</div>
 			<div style="width: 700px; height: 50px; float:right;">
-				<a href="register?u_id=${userName.id}&TRPR_ID=${vo.TRPR_ID}" target="_blank"><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
-				<button type="button" class="btn" id="like_btn" onclick="like(this)">&#x1f49b;관심</button>
+				<a href="register?u_id=${userName.id}&TRPR_ID=${vo.TRPR_ID}" target="_blank" ><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
+				<button type="button" class="btn" id="like_btn" onclick="like(this)">관심&#x1f49b;</button>
 				<input type="hidden" id="like" name="like" value="false"/>
 				<button type="button" class="btn" id="list_btn" onclick="list()" style="float:right;">목록</button>
 			</div>
@@ -159,9 +159,9 @@
 						<th>기관명</th>
 						<th>${vo.INO_NM} (tel:${vo.TRPR_CHAP_TEL})</th>
 						<th>주소</th>
-						<th><a href="map?addr=${vo.ADDR1}">${vo.ADDR1}
-						<c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if>
-						</a></th>
+						<th>
+						${vo.ADDR1} <c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if>
+						</th>
 					</tr>
 				</tbody>
 			</table>
@@ -170,21 +170,41 @@
 		<div id="map" style="width:100%;height:400px;"></div>
 		
 		<div id="center_div">
-			<h1>훈련과정 개요(훈련목표)</h1>
-			<h3>시간표</h3>
+			<h2>훈련과정 개요(훈련목표)</h2>
+			<a href="https://www.hrd.go.kr/hrdp/co/pcobo/PCOBO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&crseTracseSe={vo.TRPR_GBN}&trainstCstmrId=${TRAINST_CST_ID}#undefined" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
+			<%-- <h3>시간표</h3> --%>
 		</div>
 		
 		<div id="center2_div">
-			<h1>훈련기관 정보</h1>
+			<h2>훈련기관 정보</h2>
+			<div id="com_div">
+				<h3>${vo.INO_NM}</h3>
+				<span>훈련기관 주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.ADDR1} <c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if></span><br/>
+				<span>훈련기관 전화번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_TEL}</span><br/>
+				<span>이메일(e-mail)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_EMAIL}</span><br/>
+				<span>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.HP_ADDR}</span><br/><br/>
+				<a href="https://www.hrd.go.kr/hrdp/co/pcoco/PCOCO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&trainstCstmrId=${TRAINST_CST_ID}&crseTracseSe={vo.TRPR_GBN}&pageId=" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
+			</div>
+			
 		</div>
 		
 		<div id="bottom_div">
-			<h1>훈련문의</h1>
+			<h2 style="margin-bottom:0;">훈련문의</h2>
+			<input type="button" id="add2_btn" value="문의 등록" onclick="add2()"/>
+			<table id="help_bbs_table">
+				<tbody>
+				<c:forEach var="hvo" items="${hvo}" varStatus="st">
+					<tr>
+						<th>&#187; ${hvo.content}</th>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
 		</div>
 		
 		<div id="bottom2_div">
 			<h2 style="margin-bottom:0;">수강후기</h2>
-			<h6 style="margin-top:0; margin-bottom:0; color:gray">수강후기는 수정이 불가하며 수정이 필요할 시 고객센터에 문의하시기 바랍니다.</h6>
+			<h6 style="margin-top:0; margin-bottom:0; color:gray">수강후기는 한번만 등록이 가능하며 수정이 불가합니다. 수정이 필요할 시 고객센터에 문의하시기 바랍니다.</h6>
 			<input type="button" id="add_btn" value="후기 등록" onclick="add1()"/>
 			<table id="after_table">
 				<tbody>
@@ -206,6 +226,19 @@
 				<textarea id="content" name="content" rows="5" cols="30"></textarea>
 				<input type="button" id="ok_btn" value="확인" onclick="ok1()"/>
 				<input type="button" id="cancel_btn" value="취소" onclick="cancel1()"/>
+			</form>
+		</div>
+				
+		<div id="add_help" class="hidden">
+			<form action="view" name="add_help" method="post">
+				<input type="hidden" id="u_id" name="u_id" value="${userName.id}"/>
+				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
+				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
+				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
+				<input type="hidden" id="help" name="help" value="true"/>
+				<textarea id="content" name="content" rows="5" cols="30"></textarea>
+				<input type="button" id="ok_btn2" value="확인" onclick="ok2()"/>
+				<input type="button" id="cancel_btn2" value="취소" onclick="cancel2()"/>
 			</form>
 		</div>		
 	</div>		
@@ -283,6 +316,15 @@
 			alert("수강완료한 인원만 등록이 가능합니다.");
 		}
 	}
+	function add2() {
+		if($("#u_id").val() != null && $("#u_id").val().length > 1) {
+			$("#add_help").dialog({
+				title:"문의등록"
+			});
+		}else{
+			alert("로그인 후 이용가능합니다.");
+		}
+	}
 	function cancel1() {
 		$("#add_div").dialog("close");
 		$("#add_div").css("display", "none");
@@ -291,6 +333,15 @@
 		$("#add_div").dialog("close");
 		$("#add_div").css("display", "none");
 		document.add_after.submit();
+	}
+	function cancel2() {
+		$("#add_help").dialog("close");
+		$("#add_help").css("display", "none");
+	}
+	function ok2() {
+		$("#add_help").dialog("close");
+		$("#add_help").css("display", "none");
+		document.add_help.submit();
 	}
 </script>
 </html>

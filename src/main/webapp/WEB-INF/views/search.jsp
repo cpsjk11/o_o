@@ -338,11 +338,11 @@
 				</div>
 			</form>
 		</div>
-		<div id="top2_div">
+		<div id="top2_div"><%-- 
 			<select title="정렬" id="pageOrder" name="pageOrder">
 				<option value="Order1">인기순</option>
 				<option value="Order2">취업율순</option>
-			</select>
+			</select>--%>
 		</div>
 		<div id="center_div">
 			<ol id="edu_list">
@@ -367,7 +367,7 @@
 						<label class="tab_label">훈련비</label>
 						<span class="tab_span">${vo.real_price}원(${vo.REAL_MAN}원)</span><br/>
 						<label class="tab_label">모집인원</label>
-						<span class="tab_span">${vo.REG_COURSE_MAN}명</span><br/>
+						<span class="tab_span">${vo.YARD_MAN}명</span><br/>
 					</div>
 				</li>
 			</c:forEach>
@@ -382,6 +382,7 @@
 					<input type="hidden" value="${search_bar}" id="search_bar_less" name="search_bar"/>
 					<input type="hidden" value="${srchTraArea1}" id="srchTraArea1_less" name="srchTraArea1"/>
 					<input type="hidden" value="${srchTraArea2}" id="srchTraArea2_less" name="srchTraArea2"/>
+					<input type="hidden" value="${srchKeco1}" id="srchKeco1_less" name="srchKeco1"/>
 					<input type="hidden" value="${hei}" id="hei_less" name="hei"/>
 				</c:if>
 				</form>			
