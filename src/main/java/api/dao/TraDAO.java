@@ -16,9 +16,12 @@ public class TraDAO {
 	// 훈련 등록 기능
 	public int add(String tr_id, String tr_name, String price, String person, String start, String manager) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String price1 = price.replace(",", ""); 
+		
 		map.put("traning_id", tr_id);
 		map.put("content", tr_name);
-		map.put("price", price);
+		map.put("price", price1);
 		map.put("personnel", person);
 		map.put("term", start);
 		map.put("manager", manager);

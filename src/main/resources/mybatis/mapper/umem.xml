@@ -201,9 +201,9 @@
 </insert>
 
 <!-- 수강신청 인원 확인 기능 -->
-<select id="reg_search" parameterType="String" resultType="String">
+<select id="reg_search" parameterType="Map" resultType="String">
 	SELECT u_mem_id FROM api
-	WHERE u_mem_id = #{id}
+	WHERE u_mem_id = #{u_mem_id} AND tr_id = #{tr_id}
 </select>
 
 </mapper>

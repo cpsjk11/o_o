@@ -34,9 +34,13 @@ public class RegiDAO {
 	}
 	
 	//수강신청한 인원 확인 기능
-	public boolean reg_search(String u_id) {
+	public boolean reg_search(String u_id, String tr_id) {
 		boolean chk = true;
-		String id = ss.selectOne("umem.reg_search", u_id);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("u_mem_id", u_id);
+		map.put("tr_id", tr_id);
+		
+		String id = ss.selectOne("umem.reg_search", map);
 		if(id != null && !id.trim().equals(""))
 			chk = false;
 		

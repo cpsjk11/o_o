@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,7 @@ import api.dao.RegiDAO;
 import api.dao.TraDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.AfterVO;
+import api.u_member.vo.HelpVO;
 import api.u_member.vo.UmemVO;
 import api.vo.Search2;
 import api.vo.SearchVO;
@@ -399,14 +401,17 @@ public class Api { //
 		
 		
 		ModelAndView mv = new ModelAndView();
+		int cnt = 0;
+		List<Element> s_list = new ArrayList<Element>();
 		
 		if(hei == null || (hei != null && hei.trim().equals("")))
 			hei = "1000";
 		
 		mv.addObject("hei", hei);
 		
+		//for(int num=1; num<65; num++) {
+		for(int num=1; num<2; num++) {
 		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageSize=100&outType=1");
-		for(int num=1; num<100; num++)
 			sb.append("&pageNum="+num);
 				
 		if(svo.getSort() != null)
@@ -432,9 +437,6 @@ public class Api { //
 		mv.addObject("srchTraStDt", srchTraStDt);
 		mv.addObject("srchTraEndDt", srchTraEndDt);
 		
-		
-		
-		
 		Calendar cal = Calendar.getInstance();
 		StringBuffer now_date = new StringBuffer();
 		now_date.append(cal.get(Calendar.YEAR));
@@ -442,13 +444,18 @@ public class Api { //
 		if(month.length() == 1) {
 			month = 0+month;
 		}
-		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)+1); 
+		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)); 
 		if(day.length() == 1) {
 			day = 0+day;
 		}
 		
 		now_date.append(month);
 		now_date.append(day);
+		
+		StringBuffer end_date = new StringBuffer();
+		end_date.append(cal.get(Calendar.YEAR));
+		end_date.append(String.valueOf(Integer.parseInt(month)+6));
+		end_date.append(day);
 		
 		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
 			svo.setSrchTraArea1(null);
@@ -461,9 +468,9 @@ public class Api { //
 		else if(svo.getSrchTraStDt() == null)
 			svo.setSrchTraStDt(now_date.toString());
 		if(svo.getSrchTraEndDt() != null && (svo.getSrchTraEndDt().equals(",") || svo.getSrchTraEndDt().equals("")))
-			svo.setSrchTraEndDt("20220216");
+			svo.setSrchTraEndDt(end_date.toString());
 		else if(svo.getSrchTraEndDt() == null)
-			svo.setSrchTraEndDt("20220216");
+			svo.setSrchTraEndDt(end_date.toString());
 		
 		
 		if(svo.getSrchTraArea1() != null && !svo.getSrchTraArea1().trim().equals(""))
@@ -498,10 +505,9 @@ public class Api { //
 		
 		Element root = document.getRootElement();
 		Element srchList = root.getChild("srchList");
-		List<Element> s_list = srchList.getChildren("scn_list");
+		s_list.addAll(srchList.getChildren("scn_list"));
 		String counts = root.getChildText("scn_cnt");
-		
-		int cnt=0;
+		}
 		
 		if(search_bar == null) {
 			search_bar = "";
@@ -561,9 +567,10 @@ public class Api { //
 						REAL_MAN = formatter.format(Integer.parseInt(REAL_MAN));
 						real_price = formatter.format(Integer.parseInt(real_price));
 					}
-					
-					api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN, real_price);			
-					ar[i++] = avo1;
+					if(YARD_MAN != null && !YARD_MAN.equals("0")) {
+						api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN, real_price);			
+						ar[i++] = avo1;
+					}
 				}
 			}
 			
@@ -635,6 +642,7 @@ public class Api { //
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		
 		String ADDR1 = base_info.getChildText("addr1");
+		if(ADDR1 != null) {
 		String ADDR2 = base_info.getChildText("addr2");
 		String FILE_PATH = base_info.getChildText("filePath");
 		String HP_ADDR = base_info.getChildText("hpAddr");
@@ -672,6 +680,9 @@ public class Api { //
 			real_price = formatter.format(Integer.parseInt(real_price));
 		}
 		
+		if(TRPR_CHAP == null)
+			TRPR_CHAP = "";
+		
 		api_2_1 avo = new api_2_1(ADDR1, ADDR2, FILE_PATH, HP_ADDR, INO_NM, INST_INO, INST_PER_TRCO, NCS_CD, NCS_NM, NCS_YN, NON_NCS_COURSE_PRCTTQ_TIME, NON_NCS_COURSE_THEORY_TIME, P_FILE_NAME, PER_TRCO, TORG_PAR_GRAD, TR_DCNT, TRAING_MTH_CD, TRPR_CHAP, TRPR_CHAP_EMAIL, TRPR_CHAP_TEL, TRPR_DEGR, TRPR_GBN, TRPR_ID, TRPR_NM, TRPR_TARGET, TRPR_TARGET_NM, TRTM, ZIP_CD, real_price);
 		
 		String GOV_BUSI_NM = detail_info.getChildText("govBusiNm");
@@ -704,18 +715,26 @@ public class Api { //
 		root = document.getRootElement();
 		Element scn_list = root.getChild("scn_list");
 		
-		String EI_EMPL_RATE_3 = scn_list.getChildText("eiEmplRate3");
-		String EI_EMPL_CNT_3 = scn_list.getChildText("eiEmplRate6");
-		String EI_EMPL_RATE_6 = scn_list.getChildText("hrdEmplCnt6");
-		String EI_EMPL_CNT_6 = scn_list.getChildText("hrdEmplRate6");
-		String HRD_EMPL_RATE_6 = scn_list.getChildText("instIno");
-		String TOT_FXNUM = scn_list.getChildText("totFxnum");
-		String TOT_PAR_MKS = scn_list.getChildText("totFxnum");
-		String TOT_TRCO = scn_list.getChildText("totParMks");
-		String TR_END_DT = scn_list.getChildText("trEndDt");
-		String TR_STA_DT = scn_list.getChildText("trStaDt");
+		api_3 avo3 = null;
+		String TOT_FXNUM = null;
+		String TR_STA_DT = null;
 		
-		api_3 avo3 = new api_3(EI_EMPL_RATE_3, EI_EMPL_CNT_3, EI_EMPL_RATE_6, EI_EMPL_CNT_6, HRD_EMPL_RATE_6, EI_EMPL_CNT_6, INST_INO, TOT_FXNUM, TOT_PAR_MKS, TOT_TRCO, TR_END_DT, TR_STA_DT, TRPR_DEGR);
+		if(scn_list != null) {
+			String EI_EMPL_RATE_3 = scn_list.getChildText("eiEmplRate3");
+			String EI_EMPL_CNT_3 = scn_list.getChildText("eiEmplRate6");
+			String EI_EMPL_RATE_6 = scn_list.getChildText("hrdEmplCnt6");
+			String EI_EMPL_CNT_6 = scn_list.getChildText("hrdEmplRate6");
+			String HRD_EMPL_RATE_6 = scn_list.getChildText("instIno");
+			TOT_FXNUM = scn_list.getChildText("totFxnum");
+			String TOT_PAR_MKS = scn_list.getChildText("totFxnum");
+			String TOT_TRCO = scn_list.getChildText("totParMks");
+			String TR_END_DT = scn_list.getChildText("trEndDt");
+			TR_STA_DT = scn_list.getChildText("trStaDt");
+			
+			avo3 = new api_3(EI_EMPL_RATE_3, EI_EMPL_CNT_3, EI_EMPL_RATE_6, EI_EMPL_CNT_6, HRD_EMPL_RATE_6, EI_EMPL_CNT_6, INST_INO, TOT_FXNUM, TOT_PAR_MKS, TOT_TRCO, TR_END_DT, TR_STA_DT, TRPR_DEGR);
+		}else {
+			avo3 = new api_3(null, null, null, null, null, null, null, null, null, null, null, null, null);
+		}
 		
 		mv.addObject("vo", avo);
 		mv.addObject("vo2", avo2);
@@ -777,21 +796,32 @@ public class Api { //
 		if(t_dao.search(TRPR_ID))
 			t_dao.add(TRPR_ID, TRPR_NM, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP);
 		
+		
 		AfterVO[] afvo = af_dao.list(TRPR_ID);
 		mv.addObject("afvo", afvo);
+		
+		HelpVO[] hvo = af_dao.list2(TRPR_ID);
+		mv.addObject("hvo", hvo);
+		}else {
+			mv.setViewName("redirect:search");
+		}
 		
 		return mv;
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.POST)
-	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String u_id, String content) throws Exception {
+	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String u_id, String content, String help) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
 		mv.addObject("TRPR_DEGR", TRPR_DEGR);
 		mv.addObject("TRPR_ID", TRPR_ID);
 		
-		if(af_dao.list_id(u_id, TRPR_ID)) {
+		if(help == null && af_dao.list_id(u_id, TRPR_ID)) {
 			af_dao.add(TRPR_ID, u_id, content);
+		}
+		
+		if(help != null && help.equals("true")) {
+			af_dao.add2(TRPR_ID, u_id, content);
 		}
 		
 		mv.setViewName("redirect:view");
@@ -818,11 +848,10 @@ public class Api { //
 	public ModelAndView register2(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		if(regi_dao.reg_search(u_id)) {
+		if(regi_dao.reg_search(u_id, TRPR_ID)) {
 			regi_dao.register(u_id, u_name, u_birth, u_email, u_phone, u_addr, TRPR_ID);
-			System.out.println("저장이 잘되었어요");
 		}
-		//mv.setViewName("register");
+		mv.setViewName("endPage");
 		
 		return mv;
 	}	

@@ -22,4 +22,16 @@
 	WHERE u_mem_id = #{u_id} AND tr_id = #{tr_id}
 </select>
 
+<!-- 훈련문의 등록 기능 -->
+<insert id="add2" parameterType="Map">
+	INSERT INTO help_bbs(h_idx, tr_id, u_mem_id, stat, content)
+	VALUES (h_seq.NEXTVAL, #{tr_id}, #{u_mem_id}, #{stat}, #{content})
+</insert>
+
+<!-- 훈련문의 불러오기 기능 -->
+<select id="list2" parameterType="String" resultType="api.u_member.vo.HelpVO">
+	SELECT * FROM help_bbs
+	WHERE tr_id = #{no}
+</select>
+
 </mapper>

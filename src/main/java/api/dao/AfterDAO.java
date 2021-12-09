@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import api.u_member.vo.AfterVO;
+import api.u_member.vo.HelpVO;
 import api.u_member.vo.UmemVO;
 
 @Repository
 public class AfterDAO {
 	@Autowired
 	private SqlSessionTemplate ss;
-	
-	int i=4;
 	
 	// 수강후기 등록
 	public int add(String tr_id, String u_id, String content) {
@@ -59,6 +58,30 @@ public class AfterDAO {
 			chk = false;
 		
 		return chk;
-	}	
+	}
 	
+	// 훈련문의 등록
+	public int add2(String tr_id, String u_id, String content) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tr_id", tr_id);
+		map.put("u_mem_id", u_id);
+		map.put("content", content);
+		map.put("stat", 0);
+		
+		return ss.insert("after.add2", map);
+	}
+	
+	// 훈련문의 불러오기
+	public HelpVO[] list2(String tr_id) {
+		
+		List<HelpVO> list = ss.selectList("after.list2", tr_id);
+		HelpVO[] hvo = null;
+		
+		if(list != null && list.size() > 0) {
+			hvo = new HelpVO[list.size()];
+			list.toArray(hvo);
+		}
+		
+		return hvo;
+	}	
 }
