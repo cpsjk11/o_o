@@ -9,10 +9,11 @@
 	<link href="../resources/css/나의훈련.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
-		.m-unit-body3 li:hover > a, .m-unit-body3 li.mul2 > a {
+			.m-unit-body3 li:hover > a, .m-unit-body3 li.mul2 > a {
     	font-weight: 700;
     	color: #0598e0;
 }
+
 	</style>
 </head>
 	<!-- 상단영역 -->
@@ -38,15 +39,15 @@
 									</span>
 								</li>
 								<li>
-									<strong class="tit">과정코드</strong>
-									<span class="txt"></span>
-								</li>
-								<li>
-									<strong class="tit">회차</strong>
-									<span class="txt"></span>
-								</li>
-								<li>
 									<strong class="tit">훈련기간</strong>
+									<span class="txt"></span>
+								</li>
+								<li>
+									<strong class="tit">훈련신청</strong>
+									<span class="txt"></span>
+								</li>
+								<li>
+									<strong class="tit">훈련결과</strong>
 									<span class="txt"></span>
 								</li>
 							</ul>

@@ -44,7 +44,7 @@
 	}
 	div#center2_div {
 		width: 1200px;
-		height: 300px;
+		height: 400px;
 	}
 	div#bottom_div {
 		width: 1200px;
@@ -83,6 +83,13 @@
 	table#tra_table th, td{
 		padding: 15px 0;
 	    border-bottom: 1px solid #ddd;
+	}
+	table#com_table tr, th{
+		padding: 15px 0;
+	    border-bottom: 1px solid #ddd;
+	}
+	table#com_table tr th:first-child{
+		background-color: #ddd;
 	}
 	.hidden {
 		display: none;
@@ -171,23 +178,58 @@
 		
 		<div id="center_div">
 			<h2>훈련과정 개요(훈련목표)</h2>
-			<a href="https://www.hrd.go.kr/hrdp/co/pcobo/PCOBO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&crseTracseSe={vo.TRPR_GBN}&trainstCstmrId=${TRAINST_CST_ID}#undefined" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
+			<a href="https://www.hrd.go.kr/hrdp/co/pcobo/PCOBO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&crseTracseSe={vo.TRPR_GBN}&trainstCstmrId=${TRAINST_CST_ID}#undefined" target="_blank" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
 			<%-- <h3>시간표</h3> --%>
 		</div>
 		
 		<div id="center2_div">
 			<h2>훈련기관 정보</h2>
 			<div id="com_div">
+				<table id="com_table">
+					<colgroup>
+						<col width="10%"/>
+						<col width="90%"/>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>기관명</th>
+							<th>${vo.INO_NM}</th>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<th>${vo.ADDR1} <c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if></th>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<th>${vo.TRPR_CHAP_TEL}</th>
+						</tr>
+							<th>이메일</th>
+							<th>${vo.TRPR_CHAP_EMAIL}</th>
+						<tr>
+							<th>홈페이지</th>
+							<th><a href="${vo.HP_ADDR}" target="_blank">${vo.HP_ADDR}</a></th>
+						</tr>
+						<tr>
+							<th>취업률</th>
+							<th>
+								<c:if test="${rate3 >= rate6}"> ${rate3}% </c:if>
+								<c:if test="${rate3 < rate6}"> ${rate6}% </c:if>
+							</th>
+						</tr>
+					</tbody>
+				<%-- 
 				<h3>${vo.INO_NM}</h3>
 				<span>훈련기관 주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.ADDR1} <c:if test="${vo.ADDR2 ne null}">${vo.ADDR2}</c:if></span><br/>
 				<span>훈련기관 전화번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_TEL}</span><br/>
 				<span>이메일(e-mail)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_EMAIL}</span><br/>
-				<span>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.HP_ADDR}</span><br/><br/>
+				<span>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${vo.HP_ADDR}" target="_blank">${vo.HP_ADDR}</a></span><br/>
 				<span>취업률&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-				<c:if test="${rate3 >= rate6}"> ${rate3}% </c:if>
-				<c:if test="${rate3 < rate6}"> ${rate6}% </c:if>			
+				<c:if test="${rate3 >= rate6}"> <progress value="${rate3}" max="100" style="width: 600px; height: 50px; color: red;">${rate3}%</progress> </c:if>
+				<c:if test="${rate3 < rate6}"> <progress value="${rate6}" max="100" style="width: 600px; height: 50px; color: red;">${rate6}%</progress> </c:if>		
 				</span><br/><br/>
-				<a href="https://www.hrd.go.kr/hrdp/co/pcoco/PCOCO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&trainstCstmrId=${TRAINST_CST_ID}&crseTracseSe={vo.TRPR_GBN}&pageId=" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
+				--%>
+				</table>
+				<a href="https://www.hrd.go.kr/hrdp/co/pcoco/PCOCO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&trainstCstmrId=${TRAINST_CST_ID}&crseTracseSe={vo.TRPR_GBN}&pageId=" target="_blank" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
 			</div>
 			
 		</div>

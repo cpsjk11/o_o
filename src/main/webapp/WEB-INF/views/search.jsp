@@ -20,7 +20,7 @@
 	}
 	div#header {
 		width: 1500px;
-		height: 200px;
+		height: 100px;
 	}
 	div#body {
 		width: 1500px;
@@ -33,18 +33,21 @@
 	}
 	div#body #top1_div {
 		width: 1500px;
-		height: 10%;
-		text-align: center;
+		height: ${hei*5/100};
+		text-align: center; 
+		position: fixed;
+		top:120px;
 	}
 	div#body #top2_div {
 		width: 1000px;
-		height: 5%;
+		height: ${hei*15/100};
 		text-align: right;
 		margin-left: 250px;
+		margin-top: 200px;
 	}
 	div#body #center_div {
 		width: 1200px;
-		height: 85%;
+		height: ${hei*80/100};
 		margin-left: 150px;
 	}
 	li.top2_li {
@@ -250,7 +253,7 @@
 				<input type="text" id="search_bar" name="search_bar"/>
 				<input type="button" class="btn" id="search_btn" value="검색" onclick="search1()"/>
 				<input type="button" class="btn" id="detail_btn" value="상세검색" onclick="detail1()"/><br/><br/>
-				<label style="font-size: 20px">
+				<label style="font-size: 20px; font-weight: bold;">
 				<c:if test="${search_bar ne null and search_bar ne ''}">
 					'${search_bar}'의 검색 결과입니다.</label>
 				</c:if>

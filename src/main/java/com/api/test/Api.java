@@ -116,11 +116,11 @@ public class Api { //
 		return"login";
 	}
 	
-	@RequestMapping({"/*","/mypage/*","/404"})
-	public String goMain() {
-		return "redirect:/";
-	}
-	
+//	@RequestMapping({"/*","/mypage/*","/404"})
+//	public String goMain() {
+//		return "redirect:/";
+//	}
+//	
 	// 메인 페이지 나오자 마자 인기 학원 띄워주는 기능
 	@RequestMapping({"/","/*"})
 	public ModelAndView test() throws Exception {
