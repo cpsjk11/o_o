@@ -76,6 +76,7 @@
 				<label>주소</label><input id="addr" name="u_addr" value="${uvo.addr}"/><br/><br/>
 				<input type="button" id="ok_btn" value="확인" onclick="ok1()"/>
 				<input type="button" id="cancel_btn" value="취소" onclick="cancel1()"/>
+				
 			</form>
 		</div>
 	</div>
@@ -90,10 +91,8 @@
 <script>
 function register() {
 	if($("#check").prop("checked")) {
-		$("#info").dialog({
-			title : "신청정보",
-			width : "400px"
-		});
+		window.open("registers?u_id=${uvo.id}&TRPR_ID=${TRPR_ID}&u_name=${uvo.name}&u_birth=${uvo.birth}&u_phone=${uvo.phone}&u_email=${uvo.email}&u_addr=${uvo.addr}"
+					,"수강신청","width=780px,height=650px;,resizable=no");
 	}else {
 			alert("위 내용을 확인하고 체크해주시기 바랍니다.")
 	}

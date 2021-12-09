@@ -1035,10 +1035,24 @@ public class Api { //
 		return mv;
 	}
 	
+	@RequestMapping("/registers")
+	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id", u_id);
+		mv.addObject("name", u_name);
+		mv.addObject("birth", u_birth);
+		mv.addObject("email", u_email);
+		mv.addObject("phone", u_phone);
+		mv.addObject("addr", u_addr);
+		mv.addObject("tr_id", TRPR_ID);
+		
+		mv.setViewName("registers");
+		return mv;
+	}
+	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public ModelAndView register1(String u_id, String TRPR_ID) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
 		if(u_id != null && !u_id.trim().equals("")) {
 			UmemVO uvo = u_dao.searchUser2(u_id);
 			mv.addObject("uvo", uvo);
