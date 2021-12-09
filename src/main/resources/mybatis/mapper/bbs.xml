@@ -104,7 +104,7 @@
 				,file_name = #{file_name}
 				,ori_name = #{ori_name}
 			</if>
-		WHERE b_idx = #{b_idx} AND pwd = #{pwd}
+		WHERE b_idx = #{b_idx}
 	</update>
 	
 	<!-- 자기가 문의한 글 가져오기 -->

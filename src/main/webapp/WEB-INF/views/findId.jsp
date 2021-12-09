@@ -198,7 +198,7 @@
 					<div id="text_area">
 						<form action="userAdd"method="POST">
 							<span class="infoTo">이름</span>
-							<input type="text" name="id" id="id" placeholder="이름을 입력해주세요." maxlength="20"  oninput="handleOnInput(this)">
+							<input type="text" name="id" id="id" placeholder="이름을 입력해주세요." maxlength="20">
 							<span class="infoTo">이메일</span></span><span id="email_checkBox"></span>
 							<div id="se">
 								<input type="email" name="name" id="mail" placeholder="이메일을 입력해주세요."/>
@@ -255,7 +255,7 @@
 		 	var value = $("#email").val();
 				$.ajax({
 					url:"check",
-					data:{"value":value},
+					data:{"value":value , "str":hi},
 					type:"post",
 					dataType:"json",
 				}).done(function(data){
@@ -290,6 +290,13 @@
 			$("#mail").focus();
 			return;
 		}
+		if($("#chkEMAIL1").val() == 1){
+			alert("존재하지 않는 메일입니다.");
+			return;
+		}
+		
+		alert("인증코드를 메일로 보냈습니다");
+			
 		// 이메일 버튼을 클릭했을때 이메일을 전달해줘야한다.
 		$.ajax({
 			url:"email",
@@ -297,11 +304,11 @@
 			type:"post",
 			dataType:"json"
 		}).done(function(data){
+				
 			if(data.value == 2){
 				alert("메일이 존재하지 않습니다");
 			}
 			if(data.value == 1){
-				alert("인증코드를 메일로 보냈습니다");
 				hi = data.as;
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
@@ -315,6 +322,7 @@
 			$("#mail").focus();
 			return;
 		}
+		
 		if($("#chkCertified").val() == 1){
 			alert("인증번호를 확인해주세요");
 			return;

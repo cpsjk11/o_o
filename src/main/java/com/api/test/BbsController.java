@@ -223,6 +223,71 @@ public class BbsController {
 			return mv;
 		}
 	
+	//게시물 수정페이지로 이동
+		@RequestMapping("/helpScEdit")
+		public ModelAndView edit(BbsVO vo, String b_idx, String bname,
+				String user, RedirectAttributes rt) {
+			ModelAndView mv = new ModelAndView();
+			String sb = null;
+			sb = checkBname(vo.getBname());
+			
+			vo = b_dao.getBbs(b_idx);
+			
+			if(!vo.getId().equals(user)) {
+				rt.addAttribute("bname", bname);
+				mv.setViewName("redirect:/helpSc");
+			}else {
+				mv.addObject("bname",bname);
+				mv.addObject("categoryStyle", sb);
+				mv.addObject("nowPage",nowPage);
+				mv.addObject("ip", request.getRemoteAddr());
+				mv.addObject("vo",vo);
+				mv.setViewName("/helpScEdit");
+			}
+			
+			
+			
+			return mv;
+		}
+		// 게시물 수정하기
+		@RequestMapping(value="/edit", method=RequestMethod.POST)
+		public ModelAndView edit(BbsVO vo, String bname ,RedirectAttributes rt) {
+			ModelAndView mv = new ModelAndView();
+
+			String ctx = request.getContentType();
+
+			String fname = null;
+
+			if (ctx.startsWith("application")) {
+
+				BbsVO bvo = b_dao.getBbs(vo.getB_idx());
+				mv.addObject("vo", bvo);
+			} else if (ctx.startsWith("multipart")) {
+				MultipartFile f = vo.getFile();
+//				if (f.getSize() > 0) {
+//					String realPath = application.getRealPath(bbs_upload);
+//					fname = f.getOriginalFilename();
+//					fname = FileRenameUtil.checkSameFileName(fname, realPath);
+	//
+//					try {
+//						f.transferTo(new File(realPath, fname));
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//					vo.setFile_name(fname);
+//					vo.setOri_name(fname);
+//				}
+
+				vo.setIp(request.getRemoteAddr());
+				b_dao.editBbs(vo);
+				rt.addAttribute("bname", bname);
+				mv.setViewName("redirect:/helpSc?b_idx=" + vo.getB_idx());
+			}
+
+			return mv;
+		}
+		
+	
 	@RequestMapping("/ansWrite")
 	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx, String admin) {
 		ModelAndView mv = new ModelAndView();

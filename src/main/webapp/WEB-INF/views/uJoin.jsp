@@ -87,6 +87,9 @@
 		<%-- 푸터에용~ --%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+	
+	var hi = "%*$&#&@*@^#@$%@#)!@#&*!@^$";
+
 	function handleOnInput(e){
 		e.value = e.value.replace(/[^A-Za-z0-9]/ig , '');
 	}
@@ -257,8 +260,14 @@
 			type:"post",
 			dataType:"json",
 		}).done(function(data){
-			
-		});
+			alert("인증코드를 메일로 보냈습니다");
+			if(data.value == 2){
+				alert("메일이 존재하지 않습니다");
+			}
+			if(data.value == 1){
+				hi = data.as;
+			}
+		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}
 	
 	 

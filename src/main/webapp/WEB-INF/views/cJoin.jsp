@@ -36,7 +36,7 @@
 							<span class="infoTo">이름</span>
 							<input type="text" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="10">
 							<span class="infoTo">사업자등록번호</span>
-							<input type="text" name="c_num" id="c_num" placeholder="사업자 등록번호를 입력해주세요." maxlength="12"><div class="checkBox"><span id="c_num_checkBox" class="checkBox"></span></div>
+							<input type="text" name="c_num" id="c_num" placeholder="사업자 등록번호를 -기호를 제외하고 입력해주세요." maxlength="12"><div class="checkBox"><span id="c_num_checkBox" class="checkBox"></span></div>
 							<input type="button" name="c_numChk" id="c_numChk" value="사업자 등록번호 조회" onclick="numChk()"/>
 							<span class="infoTo">이메일</span>
 							<input type="email" name="email" id="email" placeholder="담당자 이메일을 입력해주세요." maxlength="40"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
@@ -50,6 +50,7 @@
 							<input type="hidden" id="chkRPW"/>
 							<input type="hidden" id="chkEMAIL"/>
 							<input type="hidden" id="chkEMAIL1"/>
+							<input type="hidden" id="CompanyNum" value="1"/>
 							<input type="hidden" name="stat" value="1"/>
 						</form>
 						<form action="email" method="post" name="ff">
@@ -78,7 +79,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-function numChk(){
+	var hi = "%*$&#&@*@^#@$%@#)!@#&*!@^$";
+
+	function numChk(){
 	
  	var c_num = $("#c_num").val();
  	var reg = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/
@@ -97,6 +100,7 @@ function numChk(){
 			dataType:"json",
  		}).done(function(data){
  			alert(((data.result == 1) ? "확인완료" : "등록되지 않은 번호입니다."));
+ 			$("#CompanyNum").val(((data.result == 1) ? "" : "1"))
  		});
  	
 }
@@ -271,8 +275,14 @@ function numChk(){
 			type:"post",
 			dataType:"json",
 		}).done(function(data){
-			
-		});
+			alert("인증코드를 메일로 보냈습니다");
+			if(data.value == 2){
+				alert("메일이 존재하지 않습니다");
+			}
+			if(data.value == 1){
+				hi = data.as;
+			}
+		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 	}
 	
 	 
@@ -314,14 +324,12 @@ function numChk(){
 			$("#name").focus();
 			return;
 		}
-		if($("#phone").val().trim().length < 1){
-			alert("휴대폰번호를 입력해주세요.");
-			$("#phone").val("");
-			$("#phone").focus();
-			return;
-		}
 		if($("#chkID").val() == 1){
 			alert("아이디 중복확인을 해주세요");
+			return;
+		}
+		if($("#CompanyNum").val() == 1){
+			alert("사업자등록번호를 확인해주세요.");
 			return;
 		}
 		if($("#chkPW").val() == 1){

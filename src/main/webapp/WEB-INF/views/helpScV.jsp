@@ -129,12 +129,11 @@
 		width: 100%;
 		font-size: 1em;
 		color: #222;
-		margin: 0.5em;
 	}
 	#c_write_date_area{	
 		width: 100%;
 		color: #94969b;
-		font-size: 0.7em;
+		font-size: 0.9em;
 	}
 	#noLogin{
 		text-align: center;
@@ -144,12 +143,17 @@
 </style>
 </head>
 <body>
+${categoryStyle }
 	<div id="wrap">
-	${categoryStyle}
 		<jsp:include page="header.jsp"/>
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>
 				<div id="v_bbs_b_area">
+				<c:if test="${vo.id eq sessionScope.userName.id }">
+					<div id="bbs_btn_area">
+						<input type="button" id="edit_btn" value="수정하기" onclick="javascript:location.href='helpScEdit?b_idx=${vo.b_idx }&bname=${vo.bname}&user=${sessionScope.userName.id }'">
+					</div>
+				</c:if>
 					<div class="v_bbs">
 						<div id="v_bbs_title">
 							<div id="v_bbs_title_area">

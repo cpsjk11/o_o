@@ -114,6 +114,11 @@ public class Api { //
 		return"login";
 	}
 	
+	@RequestMapping({"/*","/mypage/*","/404"})
+	public String goMain() {
+		return "redirect:/";
+	}
+	
 	// 메인 페이지 나오자 마자 인기 학원 띄워주는 기능
 	@RequestMapping({"/","/*"})
 	public ModelAndView test() throws Exception {
@@ -427,6 +432,9 @@ public class Api { //
 		mv.addObject("srchTraStDt", srchTraStDt);
 		mv.addObject("srchTraEndDt", srchTraEndDt);
 		
+		
+		
+		
 		Calendar cal = Calendar.getInstance();
 		StringBuffer now_date = new StringBuffer();
 		now_date.append(cal.get(Calendar.YEAR));
@@ -434,7 +442,7 @@ public class Api { //
 		if(month.length() == 1) {
 			month = 0+month;
 		}
-		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)); 
+		String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)+1); 
 		if(day.length() == 1) {
 			day = 0+day;
 		}

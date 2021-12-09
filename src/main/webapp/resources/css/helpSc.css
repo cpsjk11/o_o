@@ -38,15 +38,14 @@
 	}
 	.bbs{
 		cursor: pointer;
-		width: 450px;
-		height: 251px;
-		border: 0.7px solid #ababab;
-		padding: 1em;
-		margin-bottom: 3em;
-		
-		transform: translate(0, 0px);
-		transition-property:transform;
-		transition-duration:0.3s;
+	    width: 29.7em;
+	    height: 15em;
+	    border: 0.7px solid #ababab;
+	    padding: 1em;
+	    margin-bottom: 1em;
+	    transform: translate(0, 0px);
+	    transition-property: transform;
+	    transition-duration: 0.3s;
 	}
 	.bbs:hover{
 		transform: translate(0, -4px);
@@ -138,4 +137,31 @@
 		font-size: 1em;
 		font-weight: 400;
 		color: #444444;
+	}
+	#que_ok{
+		float: right;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		font-size: 0.8em;
+		font-weight: 400;
+		color: #444444;
+	}
+	#bbs_btn_area{
+	    width: 100%;
+	    display: inline-block;
+	}
+	#edit_btn{
+	    font-family: 'Noto Sans KR','Roboto', sans-serif;
+	    float: right;
+	    text-align: center;
+	    line-height: 50px;
+	    width: 5em;
+	    height: 100%;
+	    font-size: 1em;
+	    color: white;
+	    font-weight: 500;
+	    background-color: #da3238;
+	    border: none;
+	}
+	#edit_btn:hover {
+		background-color: #bf2c32;
 	}
