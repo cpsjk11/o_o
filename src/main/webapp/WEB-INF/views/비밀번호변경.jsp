@@ -38,8 +38,7 @@
 			</span>
 			</div>
 		<br/>
-		<c:forEach var="vo" items="${vo }">
-		<input type="hidden" id="mail" name="mail" value="${vo.email }"> 
+		<input type="hidden" id="mail" name="mail" value="${sessionScope.userName.email }"> 
 		<table class="table_type01" 
 		style="width: 900px">
 			<colgroup>
@@ -49,7 +48,7 @@
 			<tbody>
 				<tr>
 					<th>아이디</th>
-					<td>${vo.id }<input type="hidden" id="id" value="${vo.id}"></td>
+					<td>${sessionScope.userName.id }<input type="hidden" id="id" value="${sessionScope.userName.id }"></td>
 					 
 				</tr>
 				<tr>
@@ -101,7 +100,6 @@
 				</tr>
 			</tbody>
 		</table>
-		</c:forEach>
 		<div>
 			<button type="button" class="btnType1" id="b_ok">변경하기</button>
 		</div>

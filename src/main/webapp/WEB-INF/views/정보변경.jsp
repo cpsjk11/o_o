@@ -36,8 +36,6 @@
 			</span>
 			</div>
 		<br/>
-		
-		<c:forEach var="vo" items="${vo }">
 		<table class="table_type01" 
 		style="width: 900px">
 			<colgroup>
@@ -49,7 +47,7 @@
 					<th>
 						이름
 					</th>
-					<td>${vo.name }</td>	
+					<td>${sessionScope.userName.name }</td>	
 				</tr>
 				<tr>
 					<th>
@@ -59,15 +57,15 @@
 					<td>
 					  <p>
 					   <input type="text" name="zonecode" id="zonecode"
-					    class="join" value="${vo.zonecode }"/>
+					    class="join" value="${sessionScope.userName.zonecode }"/>
 					    <button type="button" class="btnType" id="search_addr">우편번호 찾기</button>
 					    <br/>
 					   <input type="text" name="addr" id="addr"
-					    class="join" value="${vo.addr }"/><br/>
+					    class="join" value="${sessionScope.userName.addr }"/><br/>
 					    
 					   <input type="text" name="addr2" id="addr2"
-					    class="join" value="${vo.addr2 }"/>
-					    <input type="hidden" id="id" value="${vo.id}">
+					    class="join" value="${sessionScope.userName.addr2 }"/>
+					    <input type="hidden" id="id" value="${sessionScope.userName.id }">
 					</td>
 				</tr>	
 				<tr>
@@ -81,7 +79,7 @@
 					  <p>
 					   <label for="s_phone" class="hidden">휴대폰번호</label>
 					   <input type="text" name="phone" id="phone"
-					    class="join" value="${vo.phone }"/>
+					    class="join" value="${sessionScope.userName.phone }"/>
 						</p>
 					</td>
 				</tr>
@@ -94,13 +92,12 @@
 					  <p>
 					   <label for="e-mail" class="hidden"></label>
 					   <input type="email" id="e-mail" name="email"
-					    class="join" value="${vo.email }"/>   
+					    class="join" value="${sessionScope.userName.email }"/>   
 					  </p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		</c:forEach>
 	
 		<div>
 			<button type="button" class="btnType1" id="b_ok">변경하기</button>

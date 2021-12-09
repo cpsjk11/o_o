@@ -10,7 +10,8 @@
 	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
 
-	.m-unit-body3 li:hover > a, .m-unit-body3 li.mul1_selected > a {
+
+.m-unit-body3 li:hover > a, .m-unit-body3 li.mul1_selected > a {
     	font-weight: 700;
     	color: #0598e0;
 }

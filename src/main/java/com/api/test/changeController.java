@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +29,25 @@ public class changeController {
 	@Autowired
 	private UmemDAO u_dao;
 	
+	@Autowired
+	private HttpServletRequest req;
+	
+	@Autowired
+	private HttpSession session;
 	
 	@RequestMapping("/mypage/change")
-	public ModelAndView hh(String id) {
+	public ModelAndView hh() {
 		ModelAndView mv = new ModelAndView();
-		UmemVO b = u_dao.user(id);
-		List<UmemVO> uvo = m_dao.getList(b);
+		
+		session = req.getSession(true);
+		
+		UmemVO uvo =  (UmemVO) session.getAttribute("userName");
+		
+		
+		System.out.println(uvo.getId());
+		
+//		UmemVO b = u_dao.user(id);
+//		List<UmemVO> uvo = m_dao.getList(b);
 		
 		mv.addObject("vo", uvo);
 		mv.setViewName("정보변경");

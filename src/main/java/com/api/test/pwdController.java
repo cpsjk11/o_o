@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,24 @@ public class pwdController {
 	private InDAO i_dao;
 	
 	@Autowired
+	private HttpServletRequest req;
+	
+	@Autowired
 	private HttpSession session;
 	
 	@RequestMapping("/mypage/pwd")
 	public ModelAndView pwd(String id) {
 		ModelAndView mv = new ModelAndView();
 		
-		UmemVO b = u_dao.user(id);
-		List<UmemVO> uvo = m_dao.getList(b);
+		session = req.getSession(true);
+		
+		UmemVO uvo =  (UmemVO) session.getAttribute("userName");
+		
+		
+		System.out.println(uvo.getId());
+		
+		//UmemVO b = u_dao.user(id);
+		//List<UmemVO> uvo = m_dao.getList(b);
 		
 		mv.addObject("vo", uvo);
 		mv.setViewName("비밀번호변경");

@@ -33,13 +33,13 @@
 						<li class="mul1">
 							<span class="m-bullet"></span>
 							<c:if test="${sessionScope.userName.id ne null}">
-							<a href="change?id=${sessionScope.userName.id}">정보변경</a>
+							<a href="change">정보변경</a>
 							</c:if>
 						</li>
 						<li class="mul2">
 							<span class="m-bullet"></span>
 							<c:if test="${sessionScope.userName.id ne null}">
-							<a href="pwd?id=${sessionScope.userName.id }">비밀번호변경</a>
+							<a href="pwd">비밀번호변경</a>
 							</c:if>
 						</li>
 						<li class="mul4">

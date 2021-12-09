@@ -9,7 +9,8 @@
 	<link href="../resources/css/나의훈련.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="resources/ico/Frame.png">
 	<style>
-			.m-unit-body3 li:hover > a, .m-unit-body3 li.mul2 > a {
+
+		.m-unit-body3 li:hover > a, .m-unit-body3 li.mul2 > a {
     	font-weight: 700;
     	color: #0598e0;
 }
