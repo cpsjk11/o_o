@@ -141,8 +141,12 @@
 			</div>
 			<div style="width: 700px; height: 50px; float:right;">
 				<a href="register?u_id=${userName.id}&TRPR_ID=${vo.TRPR_ID}" target="_blank" ><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
-				<button type="button" class="btn" id="like_btn" onclick="like(this)">관심&#x1f49b;</button>
-				<input type="hidden" id="like" name="like" value="false"/>
+				<c:if test="${like eq 'false'}">
+				<button type="button" class="btn" id="like_btn" onclick="like()" style="background-color: #EFEFEF;">관심&#x1f49b;</button>
+				</c:if>
+				<c:if test="${like eq 'true'}">
+				<button type="button" class="btn" id="like_btn" onclick="like()" style="background-color: red;">관심&#x1f49b;</button>
+				</c:if>
 				<button type="button" class="btn" id="list_btn" onclick="list()" style="float:right;">목록</button>
 			</div>
 		</div>
@@ -265,10 +269,11 @@
 		
 		<div id="add_div" class="hidden">
 			<form action="view" name="add_after" method="post">
-				<input type="hidden" id="u_id" name="u_id" value="${userName.id}"/>
+				<input type="hidden" id="u_id" name="u_id" value="${u_id}"/>
 				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
 				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
 				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
+				<input type="hidden" id="add1" name="add" value="1"/>
 				<textarea id="content" name="content" rows="5" cols="30"></textarea>
 				<input type="button" id="ok_btn" value="확인" onclick="ok1()"/>
 				<input type="button" id="cancel_btn" value="취소" onclick="cancel1()"/>
@@ -277,16 +282,31 @@
 				
 		<div id="add_help" class="hidden">
 			<form action="view" name="add_help" method="post">
-				<input type="hidden" id="u_id" name="u_id" value="${userName.id}"/>
+				<input type="hidden" id="u_id" name="u_id" value="${u_id}"/>
 				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
 				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
 				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
+				<input type="hidden" id="add2" name="add" value="2"/>
 				<input type="hidden" id="help" name="help" value="true"/>
 				<textarea id="content" name="content" rows="5" cols="30"></textarea>
 				<input type="button" id="ok_btn2" value="확인" onclick="ok2()"/>
 				<input type="button" id="cancel_btn2" value="취소" onclick="cancel2()"/>
 			</form>
-		</div>		
+		</div>
+		
+		<div id="like_div" class="hidden">
+			<form action="view" name="like_form" method="post">
+				<input type="hidden" id="u_id" name="u_id" value="${u_id}"/>
+				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${vo.TRPR_ID}"/>
+				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
+				<input type="hidden" id="INO_NM" name="INO_NM" value="${vo.INO_NM}"/>
+				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
+				<input type="hidden" id="TR_STA_DT" name="TR_STA_DT" value="${vo3.TR_STA_DT}"/>
+				<input type="hidden" id="TR_END_DT" name="TR_END_DT" value="${vo3.TR_END_DT}"/>
+				<input type="hidden" id="like" name="like" value="${like}"/>
+				<input type="hidden" id="add3" name="add" value="3"/>
+			</form>
+		</div>
 	</div>		
 	
 	<div id="footer">
@@ -343,15 +363,8 @@
 	function list() {
 		location.href="search";
 	}
-	function like(bt) {
-		var like = $("#like").val();
-		if(like == "true") {
-			$("#like_btn").css("background", "#EFEFEF");
-			$("#like").val("false");
-		}else if(like == "false") {
-			$("#like_btn").css("background", "#d00000");
-			$("#like").val("true");
-		}
+	function like() {
+		document.like_form.submit();
 	}
 	function add1() {
 		if($("#u_id").val() != null && $("#u_id").val().length > 1) {

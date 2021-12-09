@@ -1,11 +1,14 @@
 package api.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import api.u_member.vo.LikeVO;
 
 @Repository
 public class TraDAO {
@@ -41,4 +44,57 @@ public class TraDAO {
 		
 		return chk;
 	}
+	
+	//관심훈련 등록 기능
+	public int add2(String u_id, String tr_id, String tr_name, String tr_start, String tr_end, String like_date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String tr_term = tr_start+" ~ "+tr_end;
+		
+		map.put("u_mem_id", u_id);
+		map.put("tr_id", tr_id);
+		map.put("tr_name", tr_name);
+		map.put("tr_term", tr_term);
+		map.put("like_date", like_date);
+		map.put("stat", 1);
+		
+		return ss.insert("tra.add2", map);
+	}
+	
+	//관심훈련 검색 기능
+	public LikeVO[] list2(String u_id) {
+		
+		List<LikeVO> l_list = ss.selectList("tra.list2", u_id);
+		
+		LikeVO[] ar = new LikeVO[l_list.size()];
+		
+		l_list.toArray(ar);
+		
+		return ar;
+	}
+	
+	//관심훈련 좋아요 여부확인
+	public boolean search2(String u_id, String tr_id) {
+		boolean chk = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("u_mem_id", u_id);
+		map.put("tr_id", tr_id);
+		
+		String like = ss.selectOne("tra.search2", map);
+		if(like != null && !like.trim().equals("")) {
+			chk = true;
+		}
+		
+		return chk;
+	}
+	
+	//관심훈련 삭제
+	public int del(String u_id, String tr_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("u_mem_id", u_id);
+		map.put("tr_id", tr_id);
+		
+		return ss.delete("tra.del", map);
+	}
+
 }

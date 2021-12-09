@@ -12,8 +12,32 @@
 
 <!-- 훈련 검색 기능 -->
 <select id="search" parameterType="String" resultType="String">
-	SELECT * FROM traning
+	SELECT traning_id FROM traning
 	WHERE traning_id = #{no}
 </select>
+
+<!-- 관심 훈련 등록 기능 -->
+<insert id="add2" parameterType="Map">
+	INSERT INTO like_t(l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat)
+	VALUES (like_seq.NEXTVAL, #{u_mem_id}, #{tr_id}, #{tr_name}, #{tr_term}, #{like_date}, #{stat})
+</insert>
+
+<!-- 관심 훈련 검색 기능 -->
+<select id="list2" parameterType="String" resultType="api.u_member.vo.LikeVO">
+	SELECT * FROM like_t
+	WHERE u_mem_id = #{u_mem_id}
+</select>
+
+<!-- 관심 훈련 검색 기능 -->
+<select id="search2" parameterType="Map" resultType="String">
+	SELECT l_idx FROM like_t
+	WHERE u_mem_id = #{u_mem_id} and tr_id = #{tr_id} and stat = 1
+</select>
+
+<!-- 관심 훈련 삭제 기능 -->
+<delete id="del" parameterType="Map">
+	DELETE FROM like_t
+	WHERE u_mem_id = #{u_mem_id} and tr_id = #{tr_id}
+</delete>
 
 </mapper>

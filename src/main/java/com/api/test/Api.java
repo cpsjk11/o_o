@@ -36,6 +36,7 @@ import api.dao.TraDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.AfterVO;
 import api.u_member.vo.HelpVO;
+import api.u_member.vo.LikeVO;
 import api.u_member.vo.UmemVO;
 import api.vo.Search2;
 import api.vo.SearchVO;
@@ -522,8 +523,6 @@ public class Api { //
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");
 		
-		System.out.println(page);
-		
 		//for(int num=1; num<65; num++) {
 		//for(int num=1; num<=count+1; num++) {
 		for(int num=1; num<=Integer.parseInt(page); num++) {
@@ -743,10 +742,9 @@ public class Api { //
 		return mv;
 	}
 	
-	@RequestMapping(value="/view")
-	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID) throws Exception {
+	@RequestMapping(value="/view", method=RequestMethod.GET)
+	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
 		
 		/*
 		String userName = (String) session.getAttribute("userName");
@@ -998,10 +996,26 @@ public class Api { //
 		in.close();
 		
 		mv.setViewName("view");
+		mv.addObject("u_id", u_id);
 		
 		if(t_dao.search(TRPR_ID))
 			t_dao.add(TRPR_ID, TRPR_NM, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP);
 		
+		if(like == null)
+			like = "false";
+		
+		if(u_id != null) {
+			if(t_dao.search2(u_id, TRPR_ID)) {
+				like = "true";
+			}
+		}
+		System.out.println(u_id);
+		System.out.println(like);
+		
+		mv.addObject("like", like);
+
+		LikeVO[] lvo = t_dao.list2(u_id);
+		mv.addObject("lvo", lvo);
 		
 		AfterVO[] afvo = af_dao.list(TRPR_ID);
 		mv.addObject("afvo", afvo);
@@ -1016,22 +1030,44 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.POST)
-	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String u_id, String content, String help) throws Exception {
+	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String INO_NM, String TR_STA_DT, String TR_END_DT, String u_id, String content, String help, String like, String add) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
 		mv.addObject("TRPR_DEGR", TRPR_DEGR);
 		mv.addObject("TRPR_ID", TRPR_ID);
+		mv.addObject("u_id", u_id);
 		
-		if(help == null && af_dao.list_id(u_id, TRPR_ID)) {
-			af_dao.add(TRPR_ID, u_id, content);
-		}
+		Calendar cal = Calendar.getInstance();
+		StringBuffer now_date = new StringBuffer();
+		now_date.append(cal.get(Calendar.YEAR));
+		now_date.append("-");
+		now_date.append(cal.get(Calendar.MONTH)+1);
+		now_date.append("-");
+		now_date.append(cal.get(Calendar.DAY_OF_MONTH));
 		
-		if(help != null && help.equals("true")) {
-			af_dao.add2(TRPR_ID, u_id, content);
-		}
-		
-		mv.setViewName("redirect:view");
+		if(u_id != null && !u_id.trim().equals("")) {
+			if(help == null && af_dao.list_id(u_id, TRPR_ID) && add.equals("1")) {
+				af_dao.add(TRPR_ID, u_id, content);
+			}
 			
+			if(help != null && help.equals("true") && add.equals("2")) {
+				af_dao.add2(TRPR_ID, u_id, content);
+			}
+			
+			if(like != null && like.equals("false") && add.equals("3")) {
+				t_dao.add2(u_id, TRPR_ID, INO_NM, TR_STA_DT, TR_END_DT, now_date.toString());
+				mv.addObject("like", "true");
+			}
+			if(like != null && like.equals("true") && add.equals("3")) {
+				t_dao.del(u_id, TRPR_ID);
+				mv.addObject("like", "false");
+			}
+			
+			mv.setViewName("redirect:view");
+		}else {
+			mv.setViewName("redirect:ex");
+		}
+		
 		return mv;
 	}
 	

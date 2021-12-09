@@ -352,7 +352,7 @@
 			<c:forEach var="vo" items="${list}" varStatus="st">
 				<li class="edu">
 					<div class="img_div">
-						<a href="view?TRAINST_CST_ID=${vo.TRAINST_CST_ID}&TRPR_DEGR=${vo.TRPR_DEGR}&TRPR_ID=${vo.TRPR_ID}">
+						<a href="view?TRAINST_CST_ID=${vo.TRAINST_CST_ID}&TRPR_DEGR=${vo.TRPR_DEGR}&TRPR_ID=${vo.TRPR_ID}&u_id=${userName.id}">
 							<img src="resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png" class="edu_img"/>
 						</a>
 					</div>
