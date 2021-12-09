@@ -22,13 +22,12 @@ public class MemDAO {
 	public int edit(UmemVO vo) {
 		return ss.update("mypage.edit",vo);
 	}
+
 	
+	//성주회원탈퇴기능
 	public int del(String id) {
 		int cnt = ss.update("mypage.del", id);
 		
 		return cnt;
 	}
-	
-	
-	
 }

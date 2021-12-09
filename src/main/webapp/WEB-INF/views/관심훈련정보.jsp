@@ -5,6 +5,8 @@
 <html>
 <head>
 	<title></title>
+	<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/관심훈련.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="resources/ico/Frame.png">
@@ -91,12 +93,12 @@
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt">
+									<span class="txt">11111
 									</span>
 								</li>
 								<li>
 									<strong class="tit">과정기간</strong>
-									<span class="txt">
+									<span class="txt">11111
 									</span>
 								</li>
 								<li>
@@ -151,11 +153,11 @@
 			</ul>
 			
 		</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	</div>	
 	<!-- 오른쪽 영역 끝 -->
 	
 	<!-- 하단영역 -->
-	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->
 	
 	

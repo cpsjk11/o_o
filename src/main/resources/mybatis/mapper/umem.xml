@@ -206,4 +206,11 @@
 	WHERE u_mem_id = #{u_mem_id} AND tr_id = #{tr_id}
 </select>
 
+<!-- 성주 회원탈퇴기능 -->
+<update id="del" parameterType="String">
+		UPDATE u_member
+		SET stat = -1
+		WHERE id = #{id}
+</update>
+
 </mapper>
