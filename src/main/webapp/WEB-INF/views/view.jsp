@@ -23,7 +23,7 @@
 	}
 	div#body {
 		width: 1200px;
-		height: 2200px;
+		height: 2100px;
 		margin-left: 150px;
 	}
 	div#footer {
@@ -183,7 +183,10 @@
 				<span>훈련기관 전화번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_TEL}</span><br/>
 				<span>이메일(e-mail)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.TRPR_CHAP_EMAIL}</span><br/>
 				<span>홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${vo.HP_ADDR}</span><br/><br/>
-				<span>취업률&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${rate6}%</span><br/><br/>
+				<span>취업률&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				<c:if test="${rate3 >= rate6}"> ${rate3}% </c:if>
+				<c:if test="${rate3 < rate6}"> ${rate6}% </c:if>			
+				</span><br/><br/>
 				<a href="https://www.hrd.go.kr/hrdp/co/pcoco/PCOCO0100P.do?tracseId=${vo.TRPR_ID}&tracseTme=${vo.TRPR_DEGR}&trainstCstmrId=${TRAINST_CST_ID}&crseTracseSe={vo.TRPR_GBN}&pageId=" style="color:#ff0000;">자세한 정보는 여기를 누르세요</a>
 			</div>
 			
