@@ -16,10 +16,10 @@
 
 	</style>
 </head>
+<body>
 	<!-- 상단영역 -->
 	<jsp:include page="header.jsp"></jsp:include>
 	<!-- 상단영역끝 -->
-<body>
 	<!-- 왼쪽 메뉴 영역 -->
 		<jsp:include page="menubar.jsp"></jsp:include>
 	<!-- 왼쪽 메뉴 영역 끝-->
@@ -36,17 +36,18 @@
 			</div>
 		<br/>
 		<c:forEach var="vo" items="${vo }">
+		<input type="hidden" id="mail" name="mail" value="${vo.email }"> 
 		<table class="table_type01" 
 		style="width: 900px">
 			<colgroup>
 				<col width="130px">
-				<col width="*">
+				<col width="*">  
 			</colgroup>
 			<tbody>
 				<tr>
 					<th>아이디</th>
-					<td>${vo.id }</td>
-					 <input type="hidden" id="id" value="${vo.id}">
+					<td>${vo.id }<input type="hidden" id="id" value="${vo.id}"></td>
+					 
 				</tr>
 				<tr>
 					<th>
@@ -56,8 +57,8 @@
 					<td>
 					   <label for="s_pw" class="hidden">비밀번호</label>
 					   <input type="password" name="pw" id="pw" class="join"/>
-					  <font name="check" size="2" color="red"></font>
-					  <font name="check2" size="2" color="blue"></font>
+					  <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+    				<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
 					</td>
 				</tr>
 				<tr>
@@ -112,7 +113,7 @@
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>	
 <script>
-
+ 
 $(function() {
 	$("#u_btn1").click(function() {
 		$('.m-unit-body1').toggle(); 
@@ -149,8 +150,16 @@ $("#pw").bind("keyup", function() {
 		}).done(function (data) {
 			console.log(data);
 			
-		})
+			if(data.data == 1){
+				  $("#alert-success").css('display', 'inline-block');
+	              $("#alert-danger").css('display', 'none');
+			}else{
+	               $("#alert-success").css('display', 'none');
+	               $("#alert-danger").css('display', 'inline-block');
+			}
+		
 	});		
+});
 
 
 $(function () {
@@ -159,6 +168,7 @@ $(function () {
 		var new_pw = $("#new_pw").val();
 		var s_pw2 = $("#pw2").val();
 		var id = $("#id").val();
+		var mail = $("#mail").val();
 		var num = new_pw.search(/[0-9]/g);
 		var eng = new_pw.search(/[a-z]/ig);
 		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi);
@@ -195,6 +205,17 @@ $(function () {
 		 
 		if (result) {
 			
+			$.ajax({
+				url:"pwch",
+				data:{"mail":mail,"id":id},
+				type:"post",
+				dataType:"json"
+			}).done(function(data){
+				if(data.result == 1){
+					alert("비밀번호 변경완료");
+				}
+			}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
+		}
 			
 			if(new_pw == s_pw2){
    	      		alert("변경이 완료되었습니다.");
@@ -208,12 +229,12 @@ $(function () {
    	      		return
    	      	}
 			
-			location.href="http://localhost:9090/";
+			location.href="/";
 			 
- 	    }
+ 	    });
     	return
 	})
-})
+
 
 
 

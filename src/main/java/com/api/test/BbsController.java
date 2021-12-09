@@ -253,7 +253,8 @@ public class BbsController {
 		@RequestMapping(value="/edit", method=RequestMethod.POST)
 		public ModelAndView edit(BbsVO vo, String bname ,RedirectAttributes rt) {
 			ModelAndView mv = new ModelAndView();
-
+			String sb = null;
+			sb = checkBname(vo.getBname());
 			String ctx = request.getContentType();
 
 			String fname = null;
@@ -282,6 +283,7 @@ public class BbsController {
 				b_dao.editBbs(vo);
 				rt.addAttribute("bname", bname);
 				mv.setViewName("redirect:/helpSc?b_idx=" + vo.getB_idx());
+				mv.addObject("categoryStyle", sb);
 			}
 
 			return mv;

@@ -17,6 +17,7 @@ import api.action.secure.SecureUtil;
 import api.dao.InDAO;
 import api.dao.MemDAO;
 import api.dao.UmemDAO;
+import api.gmail.send.GoogleMail;
 import api.u_member.vo.UmemVO;
 
 @Controller
@@ -65,6 +66,27 @@ public class pwdController {
 		}else {
 			map.put("data", "2");
 		}
+		
+		return map;
+	}
+	@RequestMapping("/pwch")
+	@ResponseBody
+	public Map<String, String> findPW(String id, String pw){
+		Map<String, String> map = new HashMap<String, String>();
+		
+		// 여기는 우리 회원인 경우이다. 사용자의 아이디와 일치한 비밀번호를 임시 로 발급해 수정후 고객한테 반환해 주자.
+		// 여기에 오기 전에 미리 이메일 인증까지 맞쳐둔 상태이다. 바로 임시 비밀번호를 지급하여 업데이트 해주자
+		String newFat = SecureUtil.generateSalt();
+		String newPw = SecureUtil.getEncrypt(pw, newFat);
+		
+		int cnt = u_dao.findPW(id, newPw);
+		int cnt2 = i_dao.updateFat(id, newFat);
+		
+		// 이제 임시비밀번호를 사용자에게 이메일로 전달하자
+		if(cnt > 0)
+			map.put("result", "1");
+		else
+			map.put("result", "2");
 		
 		return map;
 	}
