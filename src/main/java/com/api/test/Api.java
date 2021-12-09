@@ -643,16 +643,9 @@ public class Api { //
 			Element root = document.getRootElement();
 			//Element srchList = root.getChild("srchList");
 			Element srchList = (search_bar == null) ? root.getChild("srchList") : root.getChild("srchList");
-			System.out.println(search_bar);
 			s_list.addAll(srchList.getChildren("scn_list"));
 			List<String> ss = new ArrayList<String>();
 			ss.add(srchList.getChildren("scn_list").toString());
-			System.out.println(s_list);
-			System.out.println(ss);
-			System.out.println(document.toString());
-			System.out.println(root.toString());
-			System.out.println(srchList.toString());
-			System.out.println(srchList.getChildren("scn_list").toString());
 		}
 		
 		if(search_bar == null) {
@@ -880,9 +873,32 @@ public class Api { //
 			avo3 = new api_3(null, null, null, null, null, null, null, null, null, null, null, null, null);
 		}
 		
+		sb = new StringBuffer("https://www.hrd.go.kr/hrdp/api/apipo/APIPO0101T.do?"); // 접속위치
+		
+		sb.append("returnType=XML"); // 리턴 타입 XML 고정
+		sb.append("&pageSize=30");  // 볼 페이지 수 정하기
+		sb.append("&authKey=UzKsh6RpTEHTTwIPUzd8OrcRauHZI14b"); // 인증키
+		sb.append("&sort=ASC");  // 정렬 방식
+		sb.append("&sortCol=TR_STT_DT");  // 정렬 기준
+		sb.append("&outType=1"); // 1 : 보기 2 : 상세보기
+		sb.append("&srchTraStDt=20211111"); // 시작날짜
+		sb.append("&pageNum=1");            // 현재 페이지 값
+		
+		
+		sb.append("&srchTraEndDt=20220211"); // 마지막 날짜
+		sb.append("&srchTraPattern=N1");  // ??
+		sb.append("&srchPart=-99"); // ??
+		sb.append("&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp"); // 요청한 api주소
+		sb.append("&apiRequstIp="+req.getRemoteAddr()); // 서버 ip 주소
+		String ino = URLEncoder.encode(INO_NM, "UTF-8");
+		sb.append("&srchTraOrganNm="+ino);
+		sb.append("&srchTraStDt=20210101&srchTraEndDt=20211231");
+		
+		/*
 		sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp?returnType=XML&authKey=wxEoQ3ObmVu9Tq1FfgJk01ditVDxHNzu&pageNum=1&pageSize=100&srchTraStDt=20210101&srchTraEndDt=20211231&outType=1&sort=ASC&sortCol=TR_STT_DT");
 		String ino = URLEncoder.encode(INO_NM, "UTF-8");
 		sb.append("&srchTraOrganNm="+ino);
+		*/
 		
 		System.out.println("리퀘스트:"+sb.toString());
 		
@@ -901,28 +917,34 @@ public class Api { //
 		Element srchList = root.getChild("srchList");
 		List<Element> s_list = srchList.getChildren("scn_list");
 		
-		System.out.println(s_list);
-		System.out.println(s_list.size());
-		
-		int k=0;
-		int sum=0;
-		int avg=0;
+		int k3=0;
+		int k6=0;
+		int sum3=0;
+		int avg3=0;
+		int sum6=0;
+		int avg6=0;
 				
 		if(s_list != null) {
 			for(Element el : s_list) {
+				String EI_EMPL_RATE3 = el.getChildText("eiEmplRate3");
 				String EI_EMPL_RATE6 = el.getChildText("eiEmplRate6");
-				System.out.println(EI_EMPL_RATE6);
-				if(EI_EMPL_RATE6 != null && EI_EMPL_RATE6 != "" && Integer.parseInt(EI_EMPL_RATE6) > 0) {
-					sum += Integer.parseInt(EI_EMPL_RATE6);
-					k++;
+				if(EI_EMPL_RATE3 != null && EI_EMPL_RATE3 != "" && Float.parseFloat(EI_EMPL_RATE3) > 0) {
+					sum3 += Float.parseFloat(EI_EMPL_RATE3);
+					k3++;
+				}
+				if(EI_EMPL_RATE6 != null && EI_EMPL_RATE6 != "" && Float.parseFloat(EI_EMPL_RATE6) > 0) {
+					sum6 += Float.parseFloat(EI_EMPL_RATE6);
+					k6++;
 				}
 			}
-			if(k>0)
-				avg = sum/k;
+			if(k3>0)
+				avg3 = sum3/k3;
+			if(k6>0)
+				avg6 = sum6/k6;
 		}
-	
 		
-		mv.addObject("rate6", avg);
+		mv.addObject("rate3", avg3);
+		mv.addObject("rate6", avg6);
 		
 		mv.addObject("vo", avo);
 		mv.addObject("vo2", avo2);
