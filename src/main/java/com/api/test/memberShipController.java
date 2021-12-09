@@ -85,7 +85,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 		// 회원가입 기능!!
 		@RequestMapping("/userAdd")
 		public String addUser(UmemVO uvo, Model md) {
-			
+			System.out.println(uvo.getC_num());
 			String fat = SecureUtil.generateSalt();
 			if(uvo.getMember() == null) {
 				uvo.setMember("user");
