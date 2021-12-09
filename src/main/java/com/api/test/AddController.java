@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import api.action.BbsPaging;
 import api.action.CheckChart;
@@ -128,7 +129,7 @@ public class AddController {
         SimpleDateFormat sdformats = new SimpleDateFormat("yyyy-MM-dd"); 
         // Java 시간 더하기
         Calendar cals = Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
+        cal.add(Calendar.DATE,+1);
         String to_date = sdformat.format(cal.getTime()); 
 		
 		int s = to_date.indexOf("0");
@@ -170,7 +171,7 @@ public class AddController {
 			}
 			
 				
-			else if(a == 1) {
+			if(a == 1) {
 				companyX = chk.getChart(result);
 			}
 			
@@ -295,12 +296,13 @@ public class AddController {
 			bname = (bname == null) ? "문의게시판" : bname;
 			
 			String searchItem = (bname.equals("공지사항")) ? "a_QNA?bname=공지사항" : "a_QNA?";
+			searchItem = (bname.equals("제휴문의")) ? "a_QNA?bname=제휴문의" : searchItem;
 			
 			if(listnum == null)
 				listnum = "5";
-			
+			System.out.println(status);
 			String stat = (status == null) ? "0" : status;
-			
+			System.out.println(stat);
 			int rowTotal = b_dao.getQnaCount(bname,stat);
 			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,searchItem);
 			
@@ -345,5 +347,20 @@ public class AddController {
 		
 		return map;
 	}
+	// 수정하기
+	@RequestMapping("/a_edit")
+	public ModelAndView edit(BbsVO vo, String b_idx,String user,String page) {
+
+		ModelAndView mv = new ModelAndView();
+		
+		vo = b_dao.getBbs(b_idx);
 	
+		
+		mv.addObject("nowPage",page);
+		mv.addObject("ip", request.getRemoteAddr());
+		mv.addObject("vo",vo);
+		mv.setViewName("admin/a_notice");
+	
+		return mv;
+	}
 }

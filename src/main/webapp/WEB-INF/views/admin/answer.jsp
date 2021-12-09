@@ -100,31 +100,53 @@
 			<div id="bbs_area">
 				<div id="v_bbs_b_area">
 				<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">QNA댓글</h6>
+				<c:if test="${vo.status ne '6' }">
+					<h6 class="m-0 font-weight-bold text-primary">QNA댓글</h6>
+				</c:if>
+				<c:if test="${vo.status eq '6' }">
+					<h6 class="m-0 font-weight-bold text-primary">제휴문의</h6>
+				</c:if>
 				</div>
 				<div class="card-body" style="background-color: #fff;">
-					<div class="v_bbs">
-						<div id="v_bbs_title">
-							<div id="v_bbs_title_area">
-								<span>제목 :&nbsp;</span>
-								<span>${vo.subject } &nbsp;&nbsp;</span>
-								<span>작성날짜 :&nbsp;&nbsp;</span>
-								<span>
-									<c:if test="${vo.write_date ne null }">
-										${fn:substring(vo.write_date, 0, 11) }&nbsp;&nbsp;작성자 : &nbsp;&nbsp;
-									</c:if>
-								</span>
-								<span>${vo.writer }</span>
+				<c:if test="${vo.status ne '6' }">
+						<div class="v_bbs">
+							<div id="v_bbs_title">
+								<div id="v_bbs_title_area">
+									<span>제목 :&nbsp;</span>
+									<span>${vo.subject } &nbsp;&nbsp;</span>
+									<span>작성날짜 :&nbsp;&nbsp;</span>
+									<span>
+										<c:if test="${vo.write_date ne null }">
+											${fn:substring(vo.write_date, 0, 11) }&nbsp;&nbsp;작성자 : &nbsp;&nbsp;
+										</c:if>
+									</span>
+									<span>${vo.writer }</span>
+								</div>
+									
 							</div>
-								
+							<div id="v_bbs_content">
+								<span>내용 : </span><br/>
+								<span>${vo.content }</span>
+							</div>
+							<span>댓글 : ${vo.writer}</span><br/>
+							
 						</div>
-						<div id="v_bbs_content">
-							<span>내용 : </span><br/>
-							<span>${vo.content }</span>
+					</c:if>
+					
+					<c:if test="${vo.status eq '6' }">
+						<div class="v_bbs">
+							<div id="v_bbs_title">
+								<div id="v_bbs_title_area">
+								<p>회사명 : &nbsp;&nbsp; ${vo.writer }</p>
+									<p>제목 :&nbsp;${vo.subject }</p>
+									<div id="v_bbs_content">
+										<p>내용 : ${vo.content }</p>
+									</div>
+									<p>작성날짜 :&nbsp;&nbsp;<c:if test="${vo.write_date ne null }">${fn:substring(vo.write_date, 0, 11) }&nbsp;&nbsp;</c:if></p>
+								</div>
+							</div>
 						</div>
-						<span>댓글 : ${vo.writer}</span><br/>
-						
-					</div>
+					</c:if>
 				
 				
 				<c:forEach var="cvo" items="${vo.c_list }" varStatus="st">
@@ -139,9 +161,8 @@
 				</div>
 				<div id="coment_write_area" >
 					<form action="/ansWrite" method="POST" name="ff">
-						<c:if test="${vo.c_list ne null }">
+						<c:if test="${vo.status ne '6' }">
 							
-						</c:if>
 						<div style="text-align: center; id="coment_btn_area" >
 							
 							<div class = "card-body" >
@@ -155,6 +176,7 @@
 							<input class="btn btn-primary" type="submit" value="댓글달기" id="coment_btn">
 							<input class="btn btn-primary" type="button" value="답변완료" onclick="send('${vo.b_idx }')"/>
 						</div>
+						</c:if>
 						
 					</form>
 				</div>

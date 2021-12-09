@@ -68,6 +68,9 @@
                 <a class="nav-link collapsed" href="a_QNA?bname=문의게시판">
                     <span>QNA 게시판</span>
                 </a>
+                <a class="nav-link collapsed" href="a_QNA?bname=제휴문의&status=6">
+                    <span>제휴문의</span>
+                </a>
                 <a class="nav-link collapsed" href="a_notice">
                     <span>공지사항</span>
                 </a>

@@ -49,7 +49,7 @@ public class LoginController {
 		String chkpw = SecureUtil.getEncrypt(pw, fat);
 		
 		UmemVO uvo = u_dao.login(id, chkpw);
-		if(uvo.getStat().startsWith("-")) {
+		if(uvo != null && uvo.getStat().startsWith("-")) {
 			map.put("value", "2");
 			return map;
 			

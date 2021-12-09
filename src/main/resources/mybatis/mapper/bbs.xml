@@ -49,6 +49,7 @@
 		SELECT COUNT(*) FROM bbs_t
 		<if test="bname == '문의게시판'">WHERE status = #{status} AND bname = #{bname} or status = 4 ORDER BY status DESC</if>
 		<if test="bname == '공지사항'">WHERE bname = #{bname} AND status = 0 ORDER BY b_idx DESC</if>
+		<if test="bname == '제휴문의'">WHERE bname = #{bname} AND status = 6 ORDER BY b_idx DESC</if>
 	</select>
 	
 	<select id="qnaSu" resultType="int">

@@ -86,6 +86,9 @@
                     <c:if test="${status eq null }">
                     <h1 class="h3 mb-2 text-gray-800"><p class="mb-4"><a target="_blank"href="javascript:void(0)">공지사항</a></p></h1>
                     </c:if>
+                    <c:if test="${status eq '6' }">
+                    <h1 class="h3 mb-2 text-gray-800"><p class="mb-4"><a target="_blank"href="javascript:void(0)">제휴문의</a></p></h1>
+                    </c:if>
                     <c:if test="${status ne null }">
                     <p class="mb-4"><a target="_blank"
                             href="javascript:void(0)">QNA</a></p>
@@ -129,7 +132,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                    
+                                    	<c:if test="${status ne '6' }">
                                         <tr>
                                             <th>아이디</th>
                                             <th>이름</th>
@@ -138,6 +141,19 @@
                                             <!-- <th>ip</th> -->
                                             <th>상태</th>
                                         </tr>
+                                        </c:if>
+                                        <c:if test="${status eq '6' }">
+                                        <tr>
+                                            <th>b_idx</th>
+                                            <th>회사명</th>
+                                            <th>제목</th>
+                                            <th>작성한 날짜</th>
+                                            <!-- <th>ip</th> -->
+                                            <th>담당자 전화번호</th>
+                                            <th>담당자 이메일</th>
+                                            <th>상세보기</th>
+                                        </tr>
+                                        </c:if>
                                     </thead>
                                     
                                     <tbody>
@@ -161,12 +177,27 @@
 	                                            </c:if>
 	                                            <c:if test="${uvo.status eq 0}">
 	                                            	<td>
-		                                        		<a href="a_answer?b_idx=${uvo.b_idx}&page=${pa}">수정하기</a>
+		                                        		<a href="a_edit?b_idx=${uvo.b_idx}&page=${pa}">수정하기</a>
 		                                        	</td>
 	                                            </c:if>
 	                                             <c:if test="${uvo.status eq 4}">
 		                                            <td>
 		                                        		답변완료
+		                                        	</td>
+	                                            </c:if>
+	                                             <c:if test="${uvo.status eq 6}">
+		                                            <td>
+		                                        		${uvo.file_name}
+		                                        	</td>
+	                                            </c:if>
+	                                             <c:if test="${uvo.status eq 6}">
+		                                            <td>
+		                                        		${uvo.ori_name}
+		                                        	</td>
+	                                            </c:if>
+	                                            <c:if test="${uvo.status eq 6}">
+		                                            <td>
+		                                        		<a href="a_answer?b_idx=${uvo.b_idx}&page=${pa}&status=${uvo.status}">상세보기</a>
 		                                        	</td>
 	                                            </c:if>
 	                                            	

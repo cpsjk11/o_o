@@ -104,11 +104,20 @@
 			encType="multipart/form-data" id="write_panel" name="ff">
 					<div id="title_area">
 						<span>공지사항 : </span>
+						<c:if test="${vo eq null }">
 						<input type="text" class="form-control form-control-user str" id="subject" name="subject" style="width: 260px; display: inline-block; margin-bottom: 25px;" placeholder="공지사항을 적어주세요">
+						</c:if>
+						<c:if test="${vo ne null }">
+						<input type="text" class="form-control form-control-user str" id="subject" name="subject" style="width: 260px; display: inline-block; margin-bottom: 25px;" value="${vo.subject }" placeholder="공지사항을 적어주세요">
+						</c:if>
 					</div>
-					<div id="contetn_area">   
-						<textarea name="content" id="content" 
-							rows="8"></textarea>
+					<div id="contetn_area">
+					<c:if test="${vo eq null }">   
+						<textarea name="content" id="content" rows="8"></textarea>
+					</c:if>
+					<c:if test="${vo ne null }">   
+						<textarea name="content" id="content" rows="8">${vo.content }</textarea>
+					</c:if>
 					</div>
 					<input hidden="bname" name="bname" id="bname" value="공지사항">
 					<input hidden="bname" name="admin" value="admin">
