@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
+	
+	<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/회원정보관리.css" rel="stylesheet" type="text/css"/>
-	<link rel="shortcut icon" href="resources/ico/Frame.png">
+	<link rel="shortcut icon" href="../resources/ico/Frame.png">
 	<style>
 		.m-unit-body1 li:hover > a, .m-unit-body1 li.mul2 > a {
     	font-weight: 700;
@@ -17,7 +21,7 @@
 </head>
 <body>
 	<!-- 상단영역 -->
-	<%-- <jsp:include page="header.jsp"></jsp:include> --%>
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- 상단영역끝 -->
 	<!-- 왼쪽 메뉴 영역 -->
 		<jsp:include page="menubar.jsp"></jsp:include>
@@ -102,38 +106,16 @@
 			<button type="button" class="btnType1" id="b_ok">변경하기</button>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 오른쪽 영역 끝 -->
 	<!-- 하단영역 -->
-	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->
 	
 	
 	
 	
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 <script>
-
-function sendss(id , pw){
-	$.ajax({
-		url:"pwch",
-		data:{"pw":new_pw,"id":id},
-		type:"post",
-		dataType:"json"
-	}).done(function(data){
-		if(data.result == 2){
-			alert("비밀번호 변경실패");
-			return;
-		}
-		if(data.result == 1){
-			location.href = "/";
-			return;	
-		}
-			
-		
-	}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요") return;});
-	
-	
-}
  
 $(function() {
 	$("#u_btn1").click(function() {
@@ -189,11 +171,12 @@ $(function () {
 		var new_pw = $("#new_pw").val();
 		var s_pw2 = $("#pw2").val();
 		var id = $("#id").val();
-		location.href = "/";
-		/* var num = new_pw.search(/[0-9]/g);
+		var num = new_pw.search(/[0-9]/g);
 		var eng = new_pw.search(/[a-z]/ig);
-		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi); */
+		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi);
 			
+		param = "pw="+encodeURIComponent(new_pw)+"&id="+encodeURIComponent(id);
+	
 		if(!s_pw.trim()){
 			alert("비밀번호를 입력하세요");
 			$("#pw").focus();
@@ -206,26 +189,41 @@ $(function () {
 			return
 		}
 		
-		/* 
+		
 		if(new_pw.length < 10 || new_pw.length > 20){
 			alert("10자리 ~ 20자리 이내로 입력해주세요.");
 			return 
 		}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0)){
 			alert("영문,숫자,특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 			return
-		} */
+		}
 		
 		
 		if(!s_pw2.trim()){
 			alert("비밀번호 확인을 입력하세요");
 			$("#pw2").focus();
-			return;
+			return
 		}
 		
 		var result = confirm("변경하시겠습니까?");
 		 
 		if (result) {
-			sendss(id, new_pw);
+			
+			$.ajax({
+				url:"pwd",
+				data:param,
+				type:"post",
+				dataType:"json"
+			}).done(function(data){
+				if(data.result == 1){
+					alert("비밀번호 변경완료");
+					location.href="/";
+				}else{
+					alert("오류입니당/..");
+					return;
+				}
+				
+			}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
 		}
 			
 			if(new_pw == s_pw2){
@@ -237,9 +235,13 @@ $(function () {
    	      		$("#pw2").val("");
    	      		$("#pw2").focus();
    	      		
-   	      		return;
+   	      		return
    	      	}
+			
+			location.href="/";
+			 
  	    });
+    	return
 	})
 
 
