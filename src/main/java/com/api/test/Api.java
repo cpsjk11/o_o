@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import api.action.RecommendedSchool;
 import api.dao.AfterDAO;
 import api.dao.ArDAO;
+import api.dao.EnrolDAO;
 import api.dao.RdDAO;
 import api.dao.RegiDAO;
 import api.dao.TraDAO;
@@ -38,6 +39,7 @@ import api.u_member.vo.AfterVO;
 import api.u_member.vo.HelpVO;
 import api.u_member.vo.LikeVO;
 import api.u_member.vo.UmemVO;
+import api.vo.EnrolVO;
 import api.vo.Search2;
 import api.vo.SearchVO;
 import api.vo.api_1;
@@ -111,6 +113,9 @@ public class Api { //
 	
 	@Autowired
 	private TraDAO t_dao;
+	
+	@Autowired
+	private EnrolDAO e_dao;
 	
 	@RequestMapping("/ex")
 	public String view() {
@@ -1071,9 +1076,21 @@ public class Api { //
 		return mv;
 	}
 	
+	// 수강신청 테이블에 저장하는 기능
+	@RequestMapping("/enrolmentInsert")
+	public String enrolmentInsert(EnrolVO evo) {
+		
+		int cnt = e_dao.addEnrolment(evo);
+		
+		return "redirect:/";
+	}
+	
 	@RequestMapping("/registers")
 	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID,String company, String TRPR_NM, String email) {
 		ModelAndView mv = new ModelAndView();
+		
+		TRPR_NM = (TRPR_NM.contains("////") ? TRPR_NM.replace("////", "&") :TRPR_NM );
+		
 		mv.addObject("id", u_id);
 		mv.addObject("name", u_name);
 		mv.addObject("birth", u_birth);

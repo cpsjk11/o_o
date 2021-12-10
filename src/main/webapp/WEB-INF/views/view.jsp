@@ -140,7 +140,7 @@
 				<span style="width: 700px; height: 150px; float:right;"><h2>${vo.TRPR_NM}<br/></h2><h3>${vo3.TR_STA_DT} ~ ${vo3.TR_END_DT}(${vo2.TOT_TRAING_DYCT}일, ${vo2.TOT_TRAING_TIME}시간)</h3></span>
 			</div>
 			<div style="width: 700px; height: 50px; float:right;">
-				<a href="register?u_id=${userName.id}&TRPR_ID=${vo.TRPR_ID}&company=${vo.INO_NM}&TRPR_NM=${vo.TRPR_NM}&email=${vo.TRPR_CHAP_EMAIL}" target="_blank" ><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
+				<a href="register?u_id=${userName.id}&TRPR_ID=${vo.TRPR_ID}&company=${vo.INO_NM}&TRPR_NM=${fn:replace(vo.TRPR_NM,'&','////')}&email=${vo.TRPR_CHAP_EMAIL}" target="_blank" ><button type="button" class="btn2" id="register_btn">수강신청</button></a>&nbsp;&nbsp;
 				<c:if test="${like eq 'false'}">
 				<button type="button" class="btn" id="like_btn" onclick="like()" style="background-color: #EFEFEF;">관심&#x1f49b;</button>
 				</c:if>
