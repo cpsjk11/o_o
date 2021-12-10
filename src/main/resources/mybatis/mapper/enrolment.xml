@@ -20,4 +20,9 @@
 	WHERE e_trid = #{no}
 </select>
 
+<!-- 회사가 수강신청한 인원들 반환기능 -->
+<select id="getList" parameterType="String" resultType="api.vo.EnrolVO">
+	SELECT * FROM enrolment
+	WHERE e_company = #{no}
+</select>
 </mapper>
