@@ -8,4 +8,10 @@
 	INSERT INTO enrolment(e_company,e_trname,e_trid,e_email,e_uid,e_uname,e_ugen,e_uphone,e_ubday)
 	VALUES (#{e_company},#{e_trname},#{e_trid},#{e_email},#{e_uid},#{e_uname},#{e_ugen},#{e_uphone},#{e_ubday})
 </insert>
+
+<select id="check" parameterType="String" resultType="Integer">
+	SELECT COUNT(*)	FROM  enrolment
+	WHERE e_uid = #{no}
+</select>
+
 </mapper>

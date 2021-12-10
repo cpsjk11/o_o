@@ -2,6 +2,7 @@ package com.api.test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -1078,14 +1079,25 @@ public class Api { //
 	
 	// 수강신청 테이블에 저장하는 기능
 	@RequestMapping("/enrolmentInsert")
-	public String enrolmentInsert(EnrolVO evo) {
+	public String enrolmentInsert(EnrolVO evo) throws Exception {
+
+		String goHome = null;
 		
-		int cnt = e_dao.addEnrolment(evo);
+		int total = e_dao.totalNum(evo.getE_uid());
+		if(total < 5)
+			e_dao.addEnrolment(evo);
+		String content = URLEncoder.encode("수강신청은 5번까지만 가능합니다.", "UTF-8");
+		goHome = (total >= 5) ? "redirect:/nocontent?sb=alert('"+content+"');" :  "redirect:/?sb=window.close();";
 		
-		StringBuffer sb = new StringBuffer();
-		sb.append("window.close();");
-		
-		return "redirect:/?sb="+sb.toString();
+		return goHome;
+	}
+	
+	@RequestMapping("/nocontent")
+	public ModelAndView nocontent(String sb) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("sb", sb);
+		mv.setViewName("nocontent");
+		return mv;
 	}
 	
 	@RequestMapping("/registers")
