@@ -177,6 +177,7 @@ input{
 				    closeText: "Clear",
 				    currentText: "오늘",
 				});
+				$('#e_ubday').datepicker('setDate', '-21Y');
 			});
 		});
 		

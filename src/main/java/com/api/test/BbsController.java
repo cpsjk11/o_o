@@ -168,6 +168,7 @@ public class BbsController {
 		}else {
 			vo.setStatus("0");
 		}
+		System.out.println(vo.getStatus());
 		vo.setIp(request.getRemoteAddr());
 		
 		b_dao.add(vo);
