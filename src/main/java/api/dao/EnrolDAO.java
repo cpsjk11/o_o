@@ -21,4 +21,9 @@ public class EnrolDAO {
 	public int totalNum(String uid) {
 		return ss.selectOne("en.check", uid);
 	}
+	
+	// 반복 수강신청 막기 기능
+	public int check(String e_trid) {
+		return ss.selectOne("en.checkId", e_trid);
+	}
 }

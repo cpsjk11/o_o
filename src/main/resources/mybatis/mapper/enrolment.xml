@@ -14,4 +14,10 @@
 	WHERE e_uid = #{no}
 </select>
 
+<!-- 같은 수강 신청 막는기능 -->
+<select id="checkId" parameterType="String" resultType="Integer">
+	SELECT COUNT(*) FROM enrolment
+	WHERE e_trid = #{no}
+</select>
+
 </mapper>

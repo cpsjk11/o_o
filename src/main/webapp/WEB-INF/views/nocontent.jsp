@@ -9,7 +9,7 @@
 <body>
 <script>
 	${sb}
-	alert("2초후 창이 닫힙니다");
+	alert("창이 닫힙니다");
 	setTimeout(window.close(), 2000);
 </script>
 </body>
