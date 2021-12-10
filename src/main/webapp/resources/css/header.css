@@ -5,6 +5,202 @@
 	    font-weight: normal;
 	    font-style: normal;
 	}
+    @media(max-width:1700px){
+     #header_area {
+        width: 100%;
+	    height: 6.5em;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 15px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -12px;
+            height: 59px;
+        }
+    }
+     @media(max-width:1600px) {
+     #header_area {
+        width: 100%;
+	    height: 6.5em;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 14px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -17px;
+            height: 59px;
+        }
+    } 
+    @media(max-width:1480px) {
+     #header_area {
+        width: 100%;
+	    height: 6.5em;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 13px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -22px;
+            height: 59px;
+        }
+    } 
+    @media(max-width:1400px) {
+     #header_area {
+        width: 100%;
+	    height: 6.5em;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 12px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -27px;
+            height: 59px;
+        }
+    } 
+    @media(max-width:1270px) {
+     #header_area {
+        width: 100%;
+	    height: 6.5em;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 11px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -33px;
+            height: 59px;
+        }
+    } 
+    @media(max-width:1170px) {
+     #header_area {
+        width: 100%;
+	    height: 6.5em;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 10px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -39px;
+            height: 59px;
+        }
+    } 
+    @media(max-width:1070px) {
+     #header_area {
+        width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 9px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -47px;
+            height: 59px;
+        }
+        
+    } 
+    @media(max-width:970px) {
+     #header_area {
+        width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 8px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -53px;
+            height: 59px;
+        }
+        
+    } 
+    @media(max-width:875px) and (max-width:0px) {
+     #header_area {
+        width: 100%;
+	   
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    background-color: #eaeaff;
+	    border-bottom: 0.5px solid #efefef;
+	    z-index: 3;
+        font-size: 7px;
+        }
+        header{
+            height: 20px;
+        }
+        #colorss{
+            width: -100%;
+            height: 20px;
+            background-color: #fff;
+            position: relative;
+            top: -59px;
+            height: 59px;
+        }
+        
+    } 
+    
 	a{
 	text-decoration: none;
 	color: #3A2F2F;
