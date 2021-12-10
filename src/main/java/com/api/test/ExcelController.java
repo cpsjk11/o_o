@@ -35,9 +35,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import api.action.ExcelConversion;
+import api.dao.EnrolDAO;
 import api.dao.RdDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.UmemVO;
+import api.vo.EnrolVO;
 import api.vo.Search2;
 
 @Controller
@@ -50,9 +52,12 @@ public class ExcelController {
 	@Autowired
 	private UmemDAO u_dao;
 	
+	@Autowired
+	private EnrolDAO e_dao;
+	
 	@RequestMapping(value = "/poiExcel")
 	public void poiTest(Model model, HttpServletResponse response,
-			HttpServletResponse request,String Excel) throws Exception{
+			HttpServletResponse request,String Excel,String companyName) throws Exception{
 
 		ExcelConversion ex = new ExcelConversion();
 		
@@ -70,7 +75,12 @@ public class ExcelController {
 		}else if(Excel.equals("1")) {
 			UmemVO[] uvo = u_dao.getList();
 			ex.getList("회원정보", uvo,"USER",response);
+		}else if(Excel.equals("3")) {
+			// 기업회원 다운로드
+			EnrolVO[] evo = e_dao.getList(companyName);
+			ex.getEnrolment("수강신청현황", evo, "%EC%88%98%EA%B0%95%EC%8B%A0%EC%B2%AD%ED%98%84%ED%99%A9", response);
 		}
+		
 		
 		
 		

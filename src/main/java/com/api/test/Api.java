@@ -1081,13 +1081,14 @@ public class Api { //
 	@RequestMapping("/enrolmentInsert")
 	public String enrolmentInsert(EnrolVO evo) throws Exception {
 
-		String goHome = null;
-		
 		int total = e_dao.totalNum(evo.getE_uid());
+		int check = e_dao.check(evo.getE_trid());
+		String goHome = null;
+		String alert = (check > 0) ? "동일과정 수강신청은 한번만 가능합니다." : "수강신청은 5번까지만 가능합니다.";
 		if(total < 5)
 			e_dao.addEnrolment(evo);
-		String content = URLEncoder.encode("수강신청은 5번까지만 가능합니다.", "UTF-8");
-		goHome = (total >= 5) ? "redirect:/nocontent?sb=alert('"+content+"');" :  "redirect:/?sb=window.close();";
+		String content = URLEncoder.encode(alert, "UTF-8");
+		goHome = (total >= 5 || check > 0) ? "redirect:/nocontent?sb=alert('"+content+"');" :  "redirect:/?sb=window.close();";
 		
 		return goHome;
 	}
