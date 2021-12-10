@@ -129,7 +129,7 @@ public class Api { //
 //	
 	// 메인 페이지 나오자 마자 인기 학원 띄워주는 기능
 	@RequestMapping({"/","/*"})
-	public ModelAndView test() throws Exception {
+	public ModelAndView test(String sb) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		// 날짜 구하기
@@ -167,9 +167,9 @@ public class Api { //
 		rd = RecommendedSchool.getSchool(rd);
 		
 		mv.addObject("avos", rd);
-		
-		
 		mv.addObject("lengths", rd.length);
+		if(sb != null)
+			mv.addObject("sb", sb);
 		mv.setViewName("home");
 		
 		return mv;
@@ -1082,7 +1082,10 @@ public class Api { //
 		
 		int cnt = e_dao.addEnrolment(evo);
 		
-		return "redirect:/";
+		StringBuffer sb = new StringBuffer();
+		sb.append("window.close();");
+		
+		return "redirect:/?sb="+sb.toString();
 	}
 	
 	@RequestMapping("/registers")

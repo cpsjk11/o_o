@@ -118,6 +118,8 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="text/javascript">
 
+${sb}
+
 // 상단 검색창
 function enterkey() {
 	if (window.event.keyCode == 13) {

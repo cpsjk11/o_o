@@ -128,7 +128,7 @@ input{
 				</td>
 				<th><label for="e_ubday">생년월일</label></th>
 				<td >
-                    <input type="text" name="e_ubday" id="e_ubday" value="${birth}" class="no-inp-b hand center"   maxlength="8"  autocomplete="off">
+                    <input type="text" name="e_ubday" id="e_ubday" value="" class="no-inp-b hand center"   maxlength="8"  autocomplete="off">
 				</td>
 			</tr>
 			<tr>
@@ -221,8 +221,8 @@ input{
 			
 			if(confirm("수강신청 하시겠습니까?")){
 				document.forms[0].submit();
-				window.close();
 			}
+		
 		}
 	</script>
 </body>
