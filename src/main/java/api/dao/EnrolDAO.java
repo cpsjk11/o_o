@@ -16,4 +16,9 @@ public class EnrolDAO {
 	public int addEnrolment(EnrolVO evo) {
 		return ss.insert("en.add", evo);
 	}
+	
+	// 현재 사용자가 수강신청갯수 반환
+	public int totalNum(String uid) {
+		return ss.selectOne("en.check", uid);
+	}
 }
