@@ -118,6 +118,8 @@ public class Api { //
 	@Autowired
 	private EnrolDAO e_dao;
 	
+	private String nowDate;
+	
 	@RequestMapping("/ex")
 	public String view() {
 		return"login";
@@ -141,7 +143,9 @@ public class Api { //
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
         String yesterday = sdformat.format(cal.getTime());
-		
+        cal.add(Calendar.DATE, +1);
+        nowDate = sdformat.format(cal.getTime()).replace("-", "");
+        
 		String ip = req.getRemoteAddr();
 		Search2[] se = a_dao.getFamous(yesterday);
 		Search2[] rd = r_dao.getFamous(yesterday);
@@ -476,7 +480,6 @@ public class Api { //
 		else
 			end_date.append(month);
 		end_date.append(day);
-		
 		if(svo.getSrchTraProcessNm() != null && svo.getSrchTraProcessNm().equals(","))
 			svo.setSrchTraProcessNm(null);
 		if(svo.getSrchTraArea1() != null && svo.getSrchTraArea1().equals(","))
@@ -493,7 +496,6 @@ public class Api { //
 			svo.setSrchTraEndDt(end_date.toString());
 		else if(svo.getSrchTraEndDt() == null)
 			svo.setSrchTraEndDt(end_date.toString());
-		
 		/*
 		if(svo.getSrchTraArea1() != null && !svo.getSrchTraArea1().trim().equals(""))
 			sb.append("&srchTraArea1="+svo.getSrchTraArea1());
@@ -579,7 +581,7 @@ public class Api { //
 			sb.append("&authKey=UzKsh6RpTEHTTwIPUzd8OrcRauHZI14b"); // 인증키
 			sb.append("&sort=ASC");  // 정렬 방식
 			sb.append("&outType=1"); // 1 : 보기 2 : 상세보기
-			sb.append("&srchTraStDt=20211111"); // 시작날짜
+			sb.append("&srchTraStDt="+nowDate); // 시작날짜
 			sb.append("&pageNum=1");            // 현재 페이지 값
 			
 			if(sortCol != null) 
@@ -885,7 +887,7 @@ public class Api { //
 		sb.append("&sort=ASC");  // 정렬 방식
 		sb.append("&sortCol=TR_STT_DT");  // 정렬 기준
 		sb.append("&outType=1"); // 1 : 보기 2 : 상세보기
-		sb.append("&srchTraStDt=20211111"); // 시작날짜
+		sb.append("&srchTraStDt="+nowDate); // 시작날짜
 		sb.append("&pageNum=1");            // 현재 페이지 값
 		
 		
