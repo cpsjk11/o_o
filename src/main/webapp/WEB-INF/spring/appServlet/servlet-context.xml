@@ -49,8 +49,8 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/myPage/*"/>
-			<mapping path="/bbs/*"/>
+			<mapping path="/mypage*"/>
+			<!-- <mapping path="/help*"/> -->
 			<mapping path="/a_*"/>
 			<beans:ref bean="log_inter"/>
 		</interceptor>

@@ -21,15 +21,7 @@ public class bestrController {
 	@RequestMapping("/mypage/bestr")
 	public String bestr() {
 
-		hs = req.getSession(true);
 		
-		UmemVO uvo =  (UmemVO) hs.getAttribute("userName");
-				
-		String stat = uvo.getStat();
-		
-		if(stat.equals("1")) {
-			return "기업정보보기";
-		}
 		return "수강신청이력";
 	}
 }

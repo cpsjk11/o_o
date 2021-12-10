@@ -29,7 +29,12 @@
 						<c:if test="${sessionScope.rank eq '3' }">
 							<a href="naverlogout">로그아웃</a>
 						</c:if>
+						<c:if test="${sessionScope.stat eq '1' }">
+							<a href="../mypage/Cmy">마이페이지</a>
+						</c:if>
+						<c:if test="${sessionScope.stat ne '1' }">
 							<a href="../mypage/bestr">마이페이지</a>
+						</c:if>
 						<c:if test="${sessionScope.stat eq '5' }">
 							<a href="a_index">관리자페이지</a>
 						</c:if>
