@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import api.action.mypagePaging;
 import api.dao.BbsDAO;
 import api.dao.MemDAO;
+import api.u_member.vo.TrVO;
 import api.vo.BbsVO;
 
 
@@ -27,12 +28,11 @@ public class interController {
 	int rowTotal;
 	String pageCode;
 	
-	List<BbsVO> b_list;
+	List<TrVO> b_list;
 	
 	@RequestMapping("/mypage/inter")
 	public ModelAndView inter(String cPage) {
 		ModelAndView mv = new ModelAndView();
-		
 		
 		if (cPage == null)
 			nowPage = 1;
@@ -48,7 +48,7 @@ public class interController {
 		
 		pageCode = page.getSb().toString();
 		
-		BbsVO[] ar = m_dao.getList(begin, end);
+		TrVO[] ar = m_dao.getList(begin, end);
 		
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);
@@ -56,7 +56,7 @@ public class interController {
 		mv.addObject("blockList", BLOCK_LIST);
 		mv.addObject("pageCode", pageCode);
 		
-		mv.setViewName("관심훈련정보");
+		mv.setViewName("/관심훈련정보");
 		
 		return mv;
 	}

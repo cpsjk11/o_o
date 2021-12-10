@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import api.u_member.vo.LikeVO;
+import api.u_member.vo.TrVO;
 import api.u_member.vo.UmemVO;
 import api.vo.BbsVO;
 
@@ -35,42 +36,25 @@ public class MemDAO {
 		return cnt;
 	}
 	
-	//총 게시물 수 - 총페이지 값을 구할 수 있다.
-		public int getTotalCount() {
-			int cnt = ss.selectOne("mypage.totalCount");
-			return cnt;
+	//목록
+	public TrVO[] getList(int begin, int end) {
+		TrVO[] ar = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("begin", String.valueOf(begin));
+		map.put("end", String.valueOf(end));
+		
+		List<TrVO> list = ss.selectList("mypage.myList", map);
+		if(list != null && list.size() > 0 && !list.isEmpty()) {
+		ar = new TrVO[list.size()];
+		list.toArray(ar);
 		}
-
-	public 	BbsVO[] getList(int begin, int end) {
-			BbsVO[] ar = null;
-			
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("begin", String.valueOf(begin));
-			map.put("end", String.valueOf(end));
-			
-			List<BbsVO> list = ss.selectList("bbs.bbsList", map);
-			if(list != null && list.size() > 0 && !list.isEmpty()) {
-				ar = new BbsVO[list.size()];
-				list.toArray(ar);
-			}
-			
-			return ar;
-		}
-	
-	public BbsVO getBbs(String b_idx) {
-		BbsVO vo = ss.selectOne("bbs.getBbs", b_idx);
-		return vo;
+		return ar;
 	}
 	
-	public int delBbs(String b_idx) {
-		int cnt = ss.update("bbs.delBbs", b_idx);
-		
+	public int getTotalCount() {
+		int cnt = ss.selectOne("mypage.totalCount");
 		return cnt;
 	}
 	
-	public int editBbs(BbsVO vo) {
-		
-		return ss.update("bbs.edit", vo);
-		
-	}
 }

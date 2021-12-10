@@ -84,15 +84,15 @@
 				</div>
 				
 				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
+				<c:forEach var="vo" items="${ar }">
 				 	<div id="dele1" class="del">
-				 	
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<input type="checkbox" class="divTable" id="num" name="num" value="1">
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt" style="color:#4171df;">
+									<span class="txt" style="color:#4171df;">${vo.content}
 									</span>
 								</li>
 								<li>
@@ -111,32 +111,8 @@
 						</div>
 					</div>
 					</div>
-					<div id="dele2" class="del">
-					<div class="cardTgcrlistTr2" >
-						<div class="divTableArea06 ty2 tablet" id="card">
-							<input type="checkbox" class="divTable" id="num" name="num" value="1">
-							<ul class="divTable">
-								<li>
-									<strong class="tit">과정명</strong>
-									<span class="txt" style="color:#4171df;">
-									</span>
-								</li>
-								<li>
-									<strong class="tit">과정기간</strong>
-									<span class="txt"></span>
-								</li>
-								<li>
-									<strong class="tit">가격</strong>
-									<span class="txt"></span>
-								</li>
-								<li>
-									<strong class="tit">위치</strong>
-									<span class="txt"></span>
-								</li>
-							</ul>
-						</div>
-					</div>
-					</div>
+					</c:forEach> 	
+					
 				
 					<button type="button" class="divTable" id="del_btn">삭제</button>
 					<div id="bbs_bot">

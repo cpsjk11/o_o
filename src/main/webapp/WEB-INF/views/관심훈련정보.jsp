@@ -106,13 +106,13 @@
 									<span class="txt"></span>
 								</li>
 								<li>
-									<strong class="tit">위치</strong>
+									<strong class="tit">담당강사</strong>
 									<span class="txt"></span>
 								</li>
 							</ul>
 						</div>
 					</div>
-					
+				
 					</div>
 					<div id="dele2" class="del">
 					
