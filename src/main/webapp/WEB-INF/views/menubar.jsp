@@ -45,7 +45,7 @@
 						<li class="mul4">
 							<span class="m-bullet"></span>
 							<c:if test="${sessionScope.userName.id ne null}">
-							<a href="removePage?id=${sessionScope.userName.id }">회원탈퇴</a>
+							<a href="removePage">회원탈퇴</a>
 							</c:if>
 						</li>
 					</ul>

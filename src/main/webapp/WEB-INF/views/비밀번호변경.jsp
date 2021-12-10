@@ -157,6 +157,8 @@ $("#pw").bind("keyup", function() {
 			}else{
 	               $("#alert-success").css('display', 'none');
 	               $("#alert-danger").css('display', 'inline-block');
+	               return
+	               
 			}
 		
 	});		

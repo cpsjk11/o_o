@@ -84,7 +84,7 @@
 				</div>
 				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
 					  <div id="dele1" class="del">
-					
+				
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<span>
@@ -93,12 +93,12 @@
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt">11111
+									<span class="txt">
 									</span>
 								</li>
 								<li>
 									<strong class="tit">과정기간</strong>
-									<span class="txt">11111
+									<span class="txt">
 									</span>
 								</li>
 								<li>
