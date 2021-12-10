@@ -181,7 +181,7 @@ ${categoryStyle }
 				</div>
 				
 				<div id="coment_write_area">
-					<form action="/ansWrite" method="POST">
+					<form action="/ansWrite" method="POST" name="ff">
 						<c:if test="${vo.c_list ne null }">
 							<span>댓글 (${vo.c_list.size() })</span>
 						</c:if>
@@ -189,16 +189,16 @@ ${categoryStyle }
 						<c:if test="${sessionScope.userName ne null}">
 							<textarea name="content" id="content" placeholder="내용을 입력해주세요."
 								rows="8"></textarea>
-							<input type="submit" value="댓글달기" id="coment_btn">
+							<input type="button" value="댓글달기" id="coment_btn" onclick="sends()">
 						</c:if>
 						<c:if test="${sessionScope.userName eq null}">
 							<textarea name="content" id="content" placeholder="로그인 후 입력이 가능합니다."
 								rows="8" readonly="readonly" disabled="disabled"></textarea>
 						</c:if>
 						</div>
-						<input type="hidden" name="bnmae" value=${vo.bname }>
-						<input type="hidden" name="b_idx" value=${vo.b_idx }>
-						<input type="hidden" name="cPage" value=${nowPage }>
+						<input type="hidden" name="bname" id="bname" value="${vo.bname }">
+						<input type="hidden" name="b_idx" id="b_idx" value="${vo.b_idx }">
+						<input type="hidden" name="cPage" id="cPage" value="${nowPage }">
 					</form>
 				</div>
 				<c:forEach var="cvo" items="${vo.c_list }" varStatus="st">
@@ -222,6 +222,12 @@ ${categoryStyle }
 		<jsp:include page="footer.jsp"/>
 	</div>
 <script type="text/javascript">
+function sends(){
+	
+	var st = '${vo.bname}';
+	$("#bname").val(st);
+	document.ff.submit();
+}
 	$(function(){
 		$("#coment_btn").bind("click",function(){
 			if($("#content").val().trim().length < 0){
