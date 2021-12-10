@@ -82,7 +82,6 @@
 				<div class="commentBox">
 					<h3 class="content-ex">최근 조회 훈련</h3>
 				</div>
-				
 				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
 				<c:forEach var="vo" items="${ar }">
 				 	<div id="dele1" class="del">
@@ -92,20 +91,27 @@
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt" style="color:#4171df;">${vo.content}
+									<span class="txt" style="color:#4171df;">
+										${vo.traning_id }
 									</span>
 								</li>
 								<li>
 									<strong class="tit">과정기간</strong>
-									<span class="txt"></span>
+									<span class="txt">
+										${vo.content }
+									</span>
 								</li>
 								<li>
 									<strong class="tit">가격</strong>
-									<span class="txt"></span>
+									<span class="txt">
+										${vo.traning_id }
+									</span>
 								</li>
 								<li>
 									<strong class="tit">위치</strong>
-									<span class="txt"></span>
+									<span class="txt">
+										${vo.traning_id }
+									</span>
 								</li>
 							</ul>
 						</div>

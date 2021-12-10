@@ -31,7 +31,6 @@
 		SELECT * FROM(
 			SELECT rownum r_num, a.* FROM(SELECT * FROM TRANING
 						WHERE stat = 1
-						ORDER BY TRANING_id DESC
 				) a
 			) WHERE r_num BETWEEN #{begin} AND #{end} 
 	</select>
@@ -39,7 +38,7 @@
 	<!-- 총 게시물 수를 반환하는 SELECT -->
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) FROM TRANING
-		WHERE stat = 0
+		WHERE stat = 1
 	</select>
 	
 	<!-- 원글 삭제 update -->

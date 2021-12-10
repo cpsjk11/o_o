@@ -43,10 +43,11 @@ public class searchController {
 		
 		int begin = page.getBegin();
 		int end = page.getEnd();
-		
+
 		pageCode = page.getSb().toString();
 		
 		TrVO[] ar = m_dao.getList(begin, end);
+		
 		
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);
