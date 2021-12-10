@@ -168,7 +168,6 @@ public class BbsController {
 		}else {
 			vo.setStatus("0");
 		}
-		System.out.println(vo.getStatus());
 		vo.setIp(request.getRemoteAddr());
 		
 		b_dao.add(vo);
@@ -182,7 +181,7 @@ public class BbsController {
 	
 	//게시물상세보기
 	@RequestMapping("/helpScV")
-	public ModelAndView view(String b_idx, String nowPage, String bname) {
+	public ModelAndView view(String b_idx, String nowPage, String bname,String categoryStyle) {
 		ModelAndView mv = new ModelAndView();
 		String sb = null;
 		if (bname == null)
@@ -294,7 +293,8 @@ public class BbsController {
 	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx, String admin) {
 		ModelAndView mv = new ModelAndView();
 		BbsVO vo = b_dao.getBbs(b_idx);
-		
+		String sb = null;
+		String categoryStyle = checkBname(bname);
 		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : "redirect:/a_answer?b_idx="+b_idx;
 		
 		String name = (bname == null) ? "문의게시판" : bname;
@@ -306,6 +306,7 @@ public class BbsController {
 		cvo.setIp(request.getRemoteAddr());
 		b_dao.addAns(cvo);
 		mv.addObject("cvo",cvo);
+		mv.addObject("categoryStyle",categoryStyle);
 		mv.setViewName(views);
 		
 		return mv;
