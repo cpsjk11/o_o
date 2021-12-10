@@ -87,7 +87,9 @@ input{
 	<div class="j-conts-wrap">
 
 	<h2 class="hidden">국비 수강신청</h2>
-
+	${company}
+	${TRPR_NM}
+	${email}
     <table class="tbl-fix tb_regist" cellspacing="0" summary="온라인 수강신청을 위한 과정을 선택하세요.">
 		<colgroup>
 			<col width="13%">

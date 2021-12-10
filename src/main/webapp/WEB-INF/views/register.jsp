@@ -69,6 +69,9 @@
 				<h3>신청정보 확인</h3>
 				<input type="hidden" id="u_id" name="u_id" value="${uvo.id}"/>
 				<input type="hidden" id="TRPR_ID" name="TRPR_ID" value="${TRPR_ID}"/>
+				<input type="hidden" id="company" name="company" value="${company}"/>
+				<input type="hidden" id="TRPR_NM" name="TRPR_NM" value="${TRPR_NM}"/>
+				<input type="hidden" id="mail" name="email" value="${email}"/>
 				<label>이름</label><input id="name" name="u_name"readonly="readonly" value="${uvo.name}"/><br/>
 				<label>생년월일</label><input id="birht" name="u_birth" value="${uvo.birth}"/><br/>
 				<label>전화번호</label><input id="phone" name="u_phone" value="${uvo.phone}"/><br/>
@@ -91,7 +94,7 @@
 <script>
 function register() {
 	if($("#check").prop("checked")) {
-		window.open("registers?u_id=${uvo.id}&TRPR_ID=${TRPR_ID}&u_name=${uvo.name}&u_birth=${uvo.birth}&u_phone=${uvo.phone}&u_email=${uvo.email}&u_addr=${uvo.addr}"
+		window.open("registers?u_id=${uvo.id}&TRPR_ID=${TRPR_ID}&u_name=${uvo.name}&u_birth=${uvo.birth}&u_phone=${uvo.phone}&u_email=${uvo.email}&u_addr=${uvo.addr}&company=${company}&TRPR_NM=${TRPR_NM}&email=${email}"
 					,"수강신청","width=780px,height=650px;,resizable=no");
 	}else {
 			alert("위 내용을 확인하고 체크해주시기 바랍니다.")

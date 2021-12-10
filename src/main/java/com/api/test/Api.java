@@ -1072,7 +1072,7 @@ public class Api { //
 	}
 	
 	@RequestMapping("/registers")
-	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID) {
+	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID,String company, String TRPR_NM, String email) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("id", u_id);
 		mv.addObject("name", u_name);
@@ -1081,18 +1081,24 @@ public class Api { //
 		mv.addObject("phone", u_phone);
 		mv.addObject("addr", u_addr);
 		mv.addObject("tr_id", TRPR_ID);
+		mv.addObject("company", company);
+		mv.addObject("TRPR_NM", TRPR_NM);
+		mv.addObject("email", email);
 		
 		mv.setViewName("registers");
 		return mv;
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public ModelAndView register1(String u_id, String TRPR_ID) throws Exception {
+	public ModelAndView register1(String u_id, String TRPR_ID, String company, String TRPR_NM, String email) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		if(u_id != null && !u_id.trim().equals("")) {
 			UmemVO uvo = u_dao.searchUser2(u_id);
 			mv.addObject("uvo", uvo);
 			mv.addObject("TRPR_ID", TRPR_ID);
+			mv.addObject("company", company);
+			mv.addObject("TRPR_NM", TRPR_NM);
+			mv.addObject("email", email);
 			mv.setViewName("register");
 		}else {
 			mv.setViewName("redirect:/ex");
