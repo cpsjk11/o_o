@@ -334,6 +334,10 @@ public class BbsController {
 		
 		return value;
 	}
+	
+	
+	
+	
 	public String checkBname(String bname) {
 		String sb = null;
 		if(bname.equals("자주묻는질문")) {

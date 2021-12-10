@@ -91,7 +91,7 @@ button.btnType1, a.btnType1 {
 	margin: 10em auto;
 }
 #user_exit_area{
-	margin: 0 auto;
+    margin: 0 20em;
 	width: 60%;
 	height: 46em;
 }

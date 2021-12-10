@@ -65,7 +65,7 @@
 	#bbs_bot{
 		text-align: center;
 		margin: 0 auto;
-		width: 100%;
+		width: 90%;
 	}
 	#paging_area{
 		display: inline-block;
@@ -79,8 +79,8 @@
 </style>
 </head>
 <body>
-	<div id="wrap">
 		${categoryStyle}
+	<div id="wrap">
 		<jsp:include page="header.jsp"/>
 			<div id="bbs_area">
 				<jsp:include page="helpCategory.jsp"/>

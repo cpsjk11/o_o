@@ -22,6 +22,7 @@
 	    z-index: 3;
 	}
 	#header_area{
+		height: 100%;
 		display: flex;
 	}
 	#title{

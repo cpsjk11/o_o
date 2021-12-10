@@ -5,9 +5,11 @@
 <html>
 <head>
 	<title></title>
+	<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/나의훈련.css" rel="stylesheet" type="text/css"/>
-	<link rel="shortcut icon" href="resources/ico/Frame.png">
+	<link rel="shortcut icon" href="../resources/ico/Frame.png">
 	<style>
 		.m-unit-body3 li:hover > a, .m-unit-body3 li.mul3 > a {
     	font-weight: 700;
