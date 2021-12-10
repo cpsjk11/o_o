@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import api.action.PwCheck;
 import api.action.secure.SecureUtil;
@@ -84,13 +85,15 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 	
 		// 회원가입 기능!!
 		@RequestMapping("/userAdd")
-		public String addUser(UmemVO uvo, Model md) {
+		public String addUser(UmemVO uvo, Model md,String stat) {
 			System.out.println(uvo.getC_num());
 			String fat = SecureUtil.generateSalt();
 			if(uvo.getMember() == null) {
 				uvo.setMember("user");
 			}
 			//uvo.setC_num(uvo.getC_num().replace("-", ""));
+
+			uvo.setStat(stat);
 			
 			// Inbody에 저장
 			i_dao.addInbody(uvo.getId(), fat);
@@ -105,7 +108,7 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 				md.addAttribute("value", "회원가입 완료");
 				// 가입축하 이메일 보내기
 				GoogleMail.gmailSend(uvo.getEmail(), uvo.getName(), "국삐 회원가입을 환영합니다");
-				return "/home";
+				return "redirect:/";
 			}
 			// 회원가입 실패시
 			md.addAttribute("value", "다시 시도해 주세요");

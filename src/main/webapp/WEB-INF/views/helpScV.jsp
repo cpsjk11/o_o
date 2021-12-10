@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>국삐-고객센터</title>
+<title>국삐-${bname }</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <link rel="shortcut icon" href="resources/ico/Frame.png">
@@ -196,7 +196,7 @@ ${categoryStyle }
 								rows="8" readonly="readonly" disabled="disabled"></textarea>
 						</c:if>
 						</div>
-						<input type="hidden" name="bname" id="bname" value="${vo.bname }">
+						<input type="hidden" name="bname" id="bname" value="${bname }">
 						<input type="hidden" name="b_idx" id="b_idx" value="${vo.b_idx }">
 						<input type="hidden" name="cPage" id="cPage" value="${nowPage }">
 					</form>

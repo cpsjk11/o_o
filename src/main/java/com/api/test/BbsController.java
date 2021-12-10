@@ -1,6 +1,8 @@
 package com.api.test;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -181,9 +183,9 @@ public class BbsController {
 	
 	//게시물상세보기
 	@RequestMapping("/helpScV")
-	public ModelAndView view(String b_idx, String nowPage, String bname,String categoryStyle) {
+	public ModelAndView view(String b_idx, String nowPage, String bname,String sb) {
 		ModelAndView mv = new ModelAndView();
-		String sb = null;
+		sb = null;
 		if (bname == null)
 			bname = "회원자유게시판";
 
@@ -289,12 +291,14 @@ public class BbsController {
 		}
 		
 	
-	@RequestMapping("/ansWrite")
-	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx, String admin) {
+	@RequestMapping(value = "/ansWrite", method = RequestMethod.POST)
+	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx, String admin) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		BbsVO vo = b_dao.getBbs(b_idx);
+		
+		bname = URLEncoder.encode(bname, "UTF-8");
 		String sb = null;
-		String categoryStyle = checkBname(bname);
+		sb = checkBname(vo.getBname());
 		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : "redirect:/a_answer?b_idx="+b_idx;
 		
 		String name = (bname == null) ? "문의게시판" : bname;
@@ -306,7 +310,7 @@ public class BbsController {
 		cvo.setIp(request.getRemoteAddr());
 		b_dao.addAns(cvo);
 		mv.addObject("cvo",cvo);
-		mv.addObject("categoryStyle",categoryStyle);
+		mv.addObject("categoryStyle",sb);
 		mv.setViewName(views);
 		
 		return mv;

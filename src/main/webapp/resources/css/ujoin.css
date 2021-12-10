@@ -19,7 +19,6 @@
     #join_form{
 		margin-top: 190px;
 		width: 100%;
-    	height: 1300px;
     }
     
     #join_text_box{
@@ -114,9 +113,7 @@
 			
 	}
 	#btn_area{
-		margin-top: 35px;
-		width: 100%;
-		text-align: center;
+		margin: 0 auto;
 	}
 	input[type="submit"]:hover {
 		background: #34AA69;

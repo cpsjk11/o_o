@@ -14,7 +14,31 @@
 <link rel="stylesheet" href="resources/css/ujoin.css">
 
 <style type="text/css">
-	
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+	#search_addr{
+    margin-bottom: 1em;
+    margin-top: 2em;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 2em;
+    background-color: #efefef;
+    border: 0.4px solid #ccc;
+    width: 25%;
+    text-align: center;
+    font-size: 1em;
+    color: #303234;
+	}
+	#addr_area input{
+		margin-bottom: 1em;
+	}
+	#addr_area input:nth-child(1),
+	#addr_area input:nth-child(2) {
+		cursor: auto;
+	    background-color: #f3f3f3;
+	}
 </style>
 </head>
 <body>
@@ -29,12 +53,21 @@
 					</div>
 					<div id="text_area">
 						<span class="info">기업인증</span>
-						<form action="userAdd"method="POST">
+						<form action="userAdd" method="POST">
 							<input type="text" name="id" id="id" placeholder="아이디를 입력해주세요." maxlength="20"  oninput="handleOnInput(this)"><div class="checkBox"><span id="id_checkBox" class="checkBox"></span></div>
 							<input type="password" name="pw" id="pw" placeholder="비밀번호를 입력해주세요." maxlength="20"><div class="checkBox"><span id="pw_checkBox" class="checkBox"></span></div>
 							<input type="password" name="rPw" id="rPw" placeholder="비밀번호 재확인" maxlength="20"><div class="checkBox"><span id="repw_checkBox" class="checkBox"></span></div>
 							<span class="infoTo">이름</span>
 							<input type="text" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="10">
+							<span class="infoTo">회사명</span>
+							<input type="text" name="c_name" id="c_name" placeholder="회사명을 입력해주세요." maxlength="30">
+							<span class="infoTo">주소</span><!-- search_addr -->
+						    <button type="button" class="btnType" id="search_addr">우편번호 찾기</button>
+							<div id="addr_area">
+								<input type="text" name="zonecode" id="zonecode" class="join" readonly="readonly"/>
+							   <input type="text" name="addr" id="addr" readonly="readonly"/>
+							   <input type="text" name="addr2" id="addr2" class="join" placeholder="상세주소를 입력해주세요." />
+							</div>
 							<span class="infoTo">사업자등록번호</span>
 							<input type="text" name="c_num" id="c_num" placeholder="사업자 등록번호를 -기호를 제외하고 입력해주세요." maxlength="12"><div class="checkBox"><span id="c_num_checkBox" class="checkBox"></span></div>
 							<input type="button" name="c_numChk" id="c_numChk" value="사업자 등록번호 조회" onclick="numChk()"/>
@@ -77,7 +110,46 @@
 		<jsp:include page="footer.jsp"/>
 		<%-- 푸터에용~ --%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+$(function() {
+	$("#search_addr").click(function () {
+		
+ new daum.Postcode({
+        oncomplete: function(data) {
+        	var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            console.log(data.zonecode);
+            console.log(fullRoadAddr);
+            
+            
+            $("[name=zonecode]").val(data.zonecode);
+            $("[name=addr]").val(fullRoadAddr);
+        }
+    }).open();
+	})
+})
+
 
 	var hi = "%*$&#&@*@^#@$%@#)!@#&*!@^$";
 
@@ -283,6 +355,9 @@
 				hi = data.as;
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
+	
+		}else{
+			alert("이메일을 올바르게 입력해주세요.");
 	}
 	
 	 
@@ -306,6 +381,42 @@
 			$("#rPw").focus();
 			return;
 		}
+		if($("#name").val().trim().length < 1){
+			alert("이름을 입력해 주세요");
+			$("#name").val("");
+			$("#name").focus();
+			return;
+		}
+		if($("#c_name").val().trim().length < 1){
+			alert("회사명을 입력해주세요.");
+			$("#c_name").val("");
+			$("#c_name").focus();
+			return;
+		}
+		if($("#zonecode").val().trim().length < 1){
+			alert("주소를 입력해주세요.");
+			$("#zonecode").val("");
+			$("#zonecode").focus();
+			return;
+		}
+		if($("#addr").val().trim().length < 1){
+			alert("주소를 입력해주세요.");
+			$("#addr").val("");
+			$("#addr").focus();
+			return;
+		}
+		if($("#addr2").val().trim().length < 1){
+			alert("주소를 입력해주세요.");
+			$("#addr2").val("");
+			$("#addr2").focus();
+			return;
+		}
+		if($("#c_num").val().trim().length < 1){
+			alert("사업자등록번호를 입력해주세요.");
+			$("#addr2").val("");
+			$("#addr2").focus();
+			return;
+		}
 		if($("#email").val().trim().length < 1){
 			alert("이메일을 입력해주세요");
 			$("#email").val("");
@@ -318,18 +429,35 @@
 			$("#email_chkOk").focus();
 			return;
 		}
-		if($("#name").val().trim().length < 1){
-			alert("이름을 입력해 주세요");
-			$("#name").val("");
-			$("#name").focus();
+		if($("#phone").val().trim().length < 1){
+			alert("휴대폰번호를 입력해 주세요");
+			$("#phone").val("");
+			$("#phone").focus();
 			return;
 		}
+		
 		if($("#chkID").val() == 1){
 			alert("아이디 중복확인을 해주세요");
 			return;
 		}
 		if($("#CompanyNum").val() == 1){
 			alert("사업자등록번호를 확인해주세요.");
+			return;
+		}
+		if($("#chkPW").val() == 1){
+			alert("비밀번호를 확인해주세요");
+			return;
+		}
+		if($("#zonecode").val() == 1){
+			alert("주소를 입력해주세요.");
+			return;
+		}
+		if($("#addr").val() == 1){
+			alert("주소를 입력해주세요.");
+			return;
+		}
+		if($("#addr2").val() == 1){
+			alert("주소를 입력해주세요.");
 			return;
 		}
 		if($("#chkPW").val() == 1){
@@ -346,6 +474,10 @@
 		}
 		if($("#chkC_num").val() == 1){
 			alert("사업자등록번호가 올바르지 않습니다.");
+			return;
+		}
+		if($("#phone").val() == 1){
+			alert("휴대폰번호를 입력해주세요.");
 			return;
 		}
 		

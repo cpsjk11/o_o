@@ -1,7 +1,10 @@
 package api.u_member.vo;
 
 public class UmemVO {
-	private String 	id,pw,name,birth,email,phone,addr,addr2,member,u_date,stat,c_num,zonecode,start_date,end_date;
+	private String 	id,pw,name,birth,email,phone,
+					addr,addr2,member,u_date,stat,
+					zonecode,start_date,end_date,
+					c_num, c_name;
 	
 	public UmemVO() {}
 
@@ -21,6 +24,14 @@ public class UmemVO {
 
 	public String getC_num() {
 		return c_num;
+	}
+
+	public String getC_name() {
+		return c_name;
+	}
+
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
 	}
 
 	public void setC_num(String c_num) {

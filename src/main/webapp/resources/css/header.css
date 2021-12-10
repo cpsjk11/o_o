@@ -23,7 +23,7 @@
             background-color: #fff;
             position: relative;
             top: -12px;
-            height: 59px;
+            /* height: 59px; */
         }
     }
      @media(max-width:1600px) {
@@ -44,7 +44,7 @@
             background-color: #fff;
             position: relative;
             top: -17px;
-            height: 59px;
+            /* height: 59px; */
         }
     } 
     @media(max-width:1480px) {
