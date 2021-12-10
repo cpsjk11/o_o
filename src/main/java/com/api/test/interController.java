@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.action.LikePaging;
 import api.action.mypagePaging;
 import api.dao.BbsDAO;
 import api.dao.MemDAO;
+import api.u_member.vo.LikeVO;
 import api.u_member.vo.TrVO;
 import api.vo.BbsVO;
 
@@ -28,7 +30,7 @@ public class interController {
 	int rowTotal;
 	String pageCode;
 	
-	List<TrVO> b_list;
+	List<LikeVO> b_list;
 	
 	@RequestMapping("/mypage/inter")
 	public ModelAndView inter(String cPage) {
@@ -41,14 +43,14 @@ public class interController {
 		
 	
 		rowTotal = m_dao.getTotalCount();
-		mypagePaging page = new mypagePaging(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
+		LikePaging page = new LikePaging(nowPage, rowTotal, BLOCK_LIST, BLOCK_PAGE);
 		
 		int begin = page.getBegin();
 		int end = page.getEnd();
 		
 		pageCode = page.getSb().toString();
 		
-		TrVO[] ar = m_dao.getList(begin, end);
+		LikeVO[] ar = m_dao.LikeList(begin, end);
 		
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);

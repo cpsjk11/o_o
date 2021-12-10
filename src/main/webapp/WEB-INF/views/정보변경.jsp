@@ -7,7 +7,6 @@
 <head>
 	<title></title>
 	<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
-	<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/회원정보관리.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../resources/ico/Frame.png"> 
@@ -106,6 +105,7 @@
 		</div>
 	</div>
 	<!-- 오른쪽 영역 끝 -->
+	
 	<!-- 하단영역 -->
 	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->

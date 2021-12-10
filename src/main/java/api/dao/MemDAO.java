@@ -57,4 +57,24 @@ public class MemDAO {
 		return cnt;
 	}
 	
+	public LikeVO[] LikeList(int begin, int end) {
+		LikeVO[] ar = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("begin", String.valueOf(begin));
+		map.put("end", String.valueOf(end));
+		
+		List<LikeVO> list = ss.selectList("mypage.LikeList", map);
+		if(list != null && list.size() > 0 && !list.isEmpty()) {
+		ar = new LikeVO[list.size()];
+		list.toArray(ar);
+	}
+		return ar;
+	}
+	
+	public int LtotalCount() {
+		int cnt = ss.selectOne("mypage.LtotalCount");
+		return cnt;
+	}
+	
 }

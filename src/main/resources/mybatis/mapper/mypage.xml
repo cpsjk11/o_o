@@ -48,7 +48,6 @@
 		SELECT * FROM(
 			SELECT rownum r_num, a.* FROM(SELECT * FROM TRANING
 						WHERE stat = 1
-						ORDER BY TRANING_id DESC
 				) a
 			) WHERE r_num BETWEEN #{begin} AND #{end} 
 	</select>
@@ -56,15 +55,25 @@
 	<!-- 총 게시물 수를 반환하는 SELECT -->
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) FROM TRANING
-		WHERE stat = 0
+		WHERE stat = 1
 	</select>
 	
-	<!-- 원글 삭제 update -->
-	<update id="delBbs" parameterType="String">
-		UPDATE TRANING
-		SET stat = -1
-		WHERE TRANING_id = ${no}
-	</update>
+	<!-- 원글들을 가져오는 기능 (status가 1이면 삭제된 글, 
+	정렬로 가장 최근의 글을 맨 위로 올라오도록 함!) -->
+	<select id="LikeList" parameterType="Map" resultType="api.u_member.vo.LikeVO">
+		SELECT * FROM(
+			SELECT rownum r_num, a.* FROM(SELECT * FROM Like_t
+						WHERE stat = 1
+				) a
+			) WHERE r_num BETWEEN #{begin} AND #{end} 
+	</select>
+	
+	<!-- 총 게시물 수를 반환하는 SELECT -->
+	<select id="LtotalCount" resultType="int">
+		SELECT COUNT(*) FROM Like_t
+		WHERE stat = 1
+	</select>
+
 
 </mapper>
 

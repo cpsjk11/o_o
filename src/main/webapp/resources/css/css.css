@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 body{
 	margin: 0;
 }
@@ -120,9 +122,6 @@ text-decoration: none;
 
 
 .m-bullet {
-position:absolute;
-top:9px;
-left:-11px;
 width:4px;
 height:4px;
 border-radius:100%;
@@ -152,10 +151,3 @@ font-weight:700;
 color:#000;
 }
 
-#bbb_right {
-    position: relative;
-    float: left;
-    width: 738px;
-    height: 70em;
-    padding-left: 40px;
-}

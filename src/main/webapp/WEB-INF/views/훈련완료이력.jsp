@@ -6,9 +6,8 @@
 <head>
 	<title></title>
 	<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
-	<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
-	<link href="../resources/css/나의훈련.css" rel="stylesheet" type="text/css"/>
+	<link href="../resources/css/관심훈련.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../resources/ico/Frame.png">
 	<style>
 		.m-unit-body3 li:hover > a, .m-unit-body3 li.mul3 > a {
@@ -31,7 +30,7 @@
 			<ul class="card-history">
 				<li>
 				<div class="commentBox">
-					<h3 class="content-ex2">완료된 훈련목록</h3>
+					<h3 class="content-ex4">완료된 훈련목록</h3>
 				</div>
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">

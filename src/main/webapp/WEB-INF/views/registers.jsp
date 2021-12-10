@@ -141,9 +141,9 @@ input{
 				</td>
 				<th><label for="e_uphone">연락처</label></th>
 				<td>
-					<input type="text" id="e_uphone1" value="${fn:substring(phone,0,3) }" class="inp-b" style="width:25%; ime-mode:disabled;" maxlength="4" onblur="OnlyNo(this);"> -
-					<input type="text" id="e_uphone2" value="${fn:substring(phone,3,7) }" class="inp-b" style="width:25%; ime-mode:disabled;" maxlength="4" onblur="OnlyNo(this);"> -
-					<input type="text" id="e_uphone3" value="${fn:substring(phone,7,11) }" class="inp-b" style="width:25%; ime-mode:disabled;" maxlength="4" onblur="OnlyNo(this);">
+					<input type="text" id="e_uphone1" value="${fn:substring(phone,0,3) }" oninput="handleOnInput(this)" class="inp-b" style="width:25%; ime-mode:disabled;" maxlength="3" onblur="OnlyNo(this);"> -
+					<input type="text" id="e_uphone2" value="${fn:substring(phone,3,7) }" oninput="handleOnInput(this)" class="inp-b" style="width:25%; ime-mode:disabled;" maxlength="4" onblur="OnlyNo(this);"> -
+					<input type="text" id="e_uphone3" value="${fn:substring(phone,7,11) }" oninput="handleOnInput(this)" class="inp-b" style="width:25%; ime-mode:disabled;" maxlength="4" onblur="OnlyNo(this);">
 					<input type="hidden" name="e_uphone" id="realphone" value=""/>
 				</td>
 			
@@ -159,6 +159,10 @@ input{
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script>
+		function handleOnInput(e)  {
+			  e.value = e.value.replace(/[^0-9]/g , '');
+			}
+		
 		$(function(){
 
 			$("#e_ubday").bind("mousedown",function(){
