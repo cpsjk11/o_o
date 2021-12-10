@@ -129,6 +129,7 @@
 		width: 100%;
 		font-size: 1em;
 		color: #222;
+		word-wrap: break-word;
 	}
 	#c_write_date_area{	
 		width: 100%;
