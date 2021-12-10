@@ -49,7 +49,7 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/mypage*"/>
+			<mapping path="/mypage/*"/>
 			<!-- <mapping path="/help*"/> -->
 			<mapping path="/a_*"/>
 			<beans:ref bean="log_inter"/>

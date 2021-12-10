@@ -10,11 +10,28 @@
 
 	<update id="edit" parameterType="String">
 		UPDATE u_member
-		SET addr = #{addr},
-		addr2 = #{addr2},
-		zonecode = #{zonecode},
-		phone = #{phone},
-		email = #{email}
+		SET 
+		<if test="addr != null">
+			addr = #{addr},
+		</if>
+		<if test="addr2 != null">
+			addr2 = #{addr2},
+		</if>
+		<if test="zonecode != null">
+			zonecode = #{zonecode},
+		</if>
+		<if test="phone != null">
+			phone = #{phone},
+		</if>
+		<if test="c_num != null">
+			c_num = #{c_num},
+		</if>
+		<if test="name != null">
+			c_num = #{name},
+		</if>
+		<if test="email != null">
+			email = #{email}
+		</if>
 		WHERE id = #{id}
 	</update>
 	

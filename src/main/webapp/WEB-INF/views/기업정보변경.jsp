@@ -49,20 +49,19 @@
 	#content{
 		margin: 0 auto;
 		width: 50%;
-		height: 40em;
-		border: 1px solid blue;
-		padding: 1em;
+		border: 0.6px solid #eee;
+		padding: 1em; 
 	}
 	#con_name{
 		margin: 0 auto;
 		width: 90%;
-		border: 1px solid red;
 	}
 	#con_name span{
-		font-size: 1.6em;
+		font-weight: 600;
+	    font-size: 1.6em;
+	    color: #4e4e4e;
 	}
 	#c_info{
-		border: 1px solid green;
 		margin: 2em auto 0;
 		width: 70%;
 	}
@@ -73,9 +72,41 @@
 		line-height: 3.3em;
 	}
 	#c_info div span:nth-child(1){
+		color: #5e5e5e;
 		margin-left: 1em;
 		width: 30%;
 	    display: inline-block;
+	}
+	#c_info div span:nth-child(2){
+		color: #5e5e5e;
+	}
+	#c_info input{
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+	    padding: 0.4em 0.5em;
+	    width: 40%;
+	    border: 0.6px solid #efefef;
+	}
+	#btn_area input{
+		margin: 0 auto; 
+	}
+	#c_info div:nth-child(5){
+	    width: 12%;
+	    height: 3em;
+	    margin: 0 auto;
+	    border: none;
+	    background-color: #da3238;
+	    cursor: pointer;
+	    transition-property:background-color;
+		transition-duration:0.2s;
+	}
+	#c_info div:nth-child(5):hover{
+		background-color: #bf2c32;
+	}
+	#btn_area p {
+	    color: white;
+	    margin: 0 auto;
+	    text-align: center;
+	    font-size: 1.1em;
 	}
 </style>
 </head>
@@ -85,24 +116,29 @@
 		<jsp:include page="c_category.jsp"/>
 		<div id="content">
 			<div id="con_name"><span>기업정보</span></div>
-			<div id="c_info">
-				<div id="c_name">
-					<span>기업명</span>
-					<span>*******</span>
+			<form action="edit_cuser" method="POST">
+				<div id="c_info">
+					<div id="c_name">
+						<span>기업명</span>
+						<input type="text" name ="name" value="${sessionScope.userName.name }">
+					</div>
+					<div id="c_addr">
+						<span>기업주소</span>
+						<input type="text" name="addr" value="${sessionScope.userName.addr }">
+					</div>
+					<div id="c_num">
+						<span>사업자등록번호</span>
+						<input type="text" name="c_num" value="${sessionScope.userName.c_num }">
+					</div>
+					<div id="c_addr">
+						<span>담당자이메일</span>
+						<input type="text" name="email" value="${sessionScope.userName.email }">
+					</div>
+					<div id="btn_area" onclick="javascript:document.forms[0].submit()">
+						<p>변경</p>
+					</div>
 				</div>
-				<div id="c_addr">
-					<span>기업주소</span>
-					<span>*******</span>
-				</div>
-				<div id="c_num">
-					<span>사업자등록번호</span>
-					<span>*******</span>
-				</div>
-				<div id="c_addr">
-					<span>담당자이메일</span>
-					<span>*******</span>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>

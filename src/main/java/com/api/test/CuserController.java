@@ -6,6 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import api.dao.MemDAO;
+import api.dao.UmemDAO;
+import api.u_member.vo.UmemVO;
 
 @Controller
 public class CuserController {
@@ -15,6 +20,9 @@ public class CuserController {
 
 	@Autowired
 	private HttpServletRequest req;
+	
+	@Autowired
+	MemDAO m_dao;
 	
 	@RequestMapping("mypage/Cmy")
 	public String CmyPage() {
@@ -32,4 +40,19 @@ public class CuserController {
 	public String CsucPage() {
 		return "기업제휴문의";
 	}
+
+	
+	
+	
+	@RequestMapping("mypage/edit_cuser")
+	public ModelAndView CsucEdit(UmemVO vo) {
+		ModelAndView mv = new ModelAndView();
+		
+		m_dao.edit(vo);
+		
+		mv.setViewName("redirect:/기업정보변경");
+		return mv;
+	}
+	
+	
 }

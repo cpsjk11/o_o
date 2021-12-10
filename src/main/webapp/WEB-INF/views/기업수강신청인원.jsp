@@ -49,20 +49,19 @@
 	#content{
 		margin: 0 auto;
 		width: 50%;
-		height: 40em;
-		border: 1px solid blue;
-		padding: 1em;
+		border: 0.6px solid #eee;
+		padding: 1em; 
 	}
 	#con_name{
 		margin: 0 auto;
 		width: 90%;
-		border: 1px solid red;
 	}
 	#con_name span{
-		font-size: 1.6em;
+		font-weight: 600;
+	    font-size: 1.6em;
+	    color: #4e4e4e;
 	}
 	#c_info{
-		border: 1px solid green;
 		margin: 2em auto 0;
 		width: 70%;
 	}
@@ -73,9 +72,13 @@
 		line-height: 3.3em;
 	}
 	#c_info div span:nth-child(1){
+		color: #5e5e5e;
 		margin-left: 1em;
 		width: 30%;
 	    display: inline-block;
+	}
+	#c_info div span:nth-child(2){
+		color: #5e5e5e;
 	}
 </style>
 </head>
@@ -88,19 +91,19 @@
 			<div id="c_info">
 				<div id="c_name">
 					<span>기업명</span>
-					<span>*******</span>
+					<span>${sessionScope.userName.name }</span>
 				</div>
 				<div id="c_addr">
 					<span>기업주소</span>
-					<span>*******</span>
+					<span>${sessionScope.userName.addr }</span>
 				</div>
 				<div id="c_num">
 					<span>사업자등록번호</span>
-					<span>*******</span>
+					<span>${sessionScope.userName.c_num }</span>
 				</div>
 				<div id="c_addr">
 					<span>담당자이메일</span>
-					<span>*******</span>
+					<span>${sessionScope.userName.email }</span>
 				</div>
 			</div>
 		</div>

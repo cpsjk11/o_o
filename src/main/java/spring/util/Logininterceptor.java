@@ -28,7 +28,7 @@ public class Logininterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect("/ex");
 			return false;
 		}
-		if(ad == null || !ad.getStat().equals("5")) {
+		if(ad == null || ad.getStat().equals("5")) {
 			response.sendRedirect("/");
 			return false;
 		}
