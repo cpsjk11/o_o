@@ -76,76 +76,49 @@
 	<!-- 왼쪽 메뉴 영역 끝-->
 	<!-- 오른쪽 영역 -->
 	<div id="bbb_right">
-		<div class="tableArea03 ty3 myCardArea">
+		<div class="tableArea03">
 			<ul class="card-history">
 				<li>
 				<div class="commentBox">
 					<h3 class="content-ex1">관심 훈련</h3>
 				</div>
-				<button type="button" class="btnType1" id="b_btn">상세 보기</button>
+				<c:forEach var="vo" items="${ar }">
 					  <div id="dele1" class="del">
-				
 					<div class="cardTgcrlistTr2" >
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<span>
-							<input type="checkbox" class="divTable" id="num" name="num" value="1">
 							</span>
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
+									<span class="txt" style="color:#4171df;">
+										${vo.tr_name }
+									</span>
+								</li>
+								<li>
+									<strong class="tit">과정코드</strong>
 									<span class="txt">
+										${vo.tr_id}
 									</span>
 								</li>
 								<li>
 									<strong class="tit">과정기간</strong>
 									<span class="txt">
+										${vo.tr_term }
 									</span>
 								</li>
 								<li>
-									<strong class="tit">가격</strong>
-									<span class="txt"></span>
-								</li>
-								<li>
-									<strong class="tit">담당강사</strong>
-									<span class="txt"></span>
+									<strong class="tit">관심선택한 날짜</strong>
+									<span class="txt">
+										${vo.like_date }
+									</span>
 								</li>
 							</ul>
 						</div>
 					</div>
-				
 					</div>
-					<div id="dele2" class="del">
+					</c:forEach>
 					
-					<div class="cardTgcrlistTr2" >
-						<div class="divTableArea06 ty2 tablet" id="card">
-							<span>
-							<input type="checkbox" class="divTable" id="num" name="num" value="1">
-							</span>
-							<ul class="divTable">
-								<li>
-									<strong class="tit">과정명</strong>
-									<span class="txt">
-									</span>
-								</li>
-								<li>
-									<strong class="tit">과정기간</strong>
-									<span class="txt">
-									</span>
-								</li>
-								<li>
-									<strong class="tit">가격</strong>
-									<span class="txt"></span>
-								</li>
-								<li>
-									<strong class="tit">위치</strong>
-									<span class="txt"></span>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-					</div>
-					<button type="button" class="divTable" id="del_btn">삭제</button>
 				<div id="bbs_bot">
 					<div id="paging_area">${pageCode }</div>
 				</div>
@@ -153,11 +126,12 @@
 			</ul>
 			
 		</div>
-	<jsp:include page="footer.jsp"></jsp:include>
+
 	</div>	
 	<!-- 오른쪽 영역 끝 -->
 	
 	<!-- 하단영역 -->
+		<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->
 	
 	

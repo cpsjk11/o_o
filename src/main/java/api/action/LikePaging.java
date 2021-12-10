@@ -1,6 +1,6 @@
 package api.action;
 
-public class mypagePaging {
+public class LikePaging {
 	
 	private int nowPage, //현재 페이지 값
 	rowTotal, //총 게시물 수
@@ -18,7 +18,7 @@ private boolean isNextPage; // 다음 기능 가능여부(true일 때 다음기�
 //JSP에서 표현할 페이징 HTML코드를 저장할 곳!
 private StringBuffer sb;
 
-public mypagePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
+public LikePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 	
 	this.nowPage = nowPage;
 	this.rowTotal = rowTotal;
@@ -64,7 +64,7 @@ public mypagePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 	sb = new StringBuffer("<ol class='paging'>");
 	
 	if(isPrePage) {
-		sb.append("<li><a href='search?cPage=");
+		sb.append("<li><a href='inter?cPage=");
 		sb.append(nowPage-blockPage);
 		sb.append("'> &lt; </a></li>"); // <a href='list.inc?cPage=1'> < </a></li>
 	}else
@@ -79,7 +79,7 @@ public mypagePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 			sb.append(i);
 			sb.append("</li>");
 		} else {
-			sb.append("<li><a href='search?cPage=");
+			sb.append("<li><a href='inter?cPage=");
 			sb.append(i); //파라미터 값
 			sb.append("'>"); // <a href='list.inc?cPage=1>
 			sb.append(i);// 화면에 표현되는 페이지 값
@@ -89,7 +89,7 @@ public mypagePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 	
 	//다음기능 가능여부를 확인
 	if(isNextPage) {
-		sb.append("<li><a href='search?cPage=");
+		sb.append("<li><a href='inter?cPage=");
 		sb.append(nowPage+blockPage);
 		sb.append("'> &gt; </a></li>");
 	} else 

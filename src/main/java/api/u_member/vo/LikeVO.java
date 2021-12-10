@@ -3,6 +3,8 @@ package api.u_member.vo;
 public class LikeVO {
 	private String l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat;
 	
+
+
 	public LikeVO(String l_idx, String u_mem_id, String tr_id, String tr_name, String tr_term, String like_date,
 			String stat) {
 		super();

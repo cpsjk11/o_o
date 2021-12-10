@@ -7,7 +7,6 @@
 	<title></title>
 	
 	<link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
-	<link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/css.css" rel="stylesheet" type="text/css"/>
 	<link href="../resources/css/회원정보관리.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="../resources/ico/Frame.png">
@@ -101,7 +100,7 @@
 			</tbody>
 		</table>
 		<div>
-			<button type="button" class="btnType1" id="b_ok">변경하기</button>
+			<button type="button" class="btnType1" id="b_ok2">변경하기</button>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
