@@ -175,7 +175,7 @@
 		                                        		<a href="a_answer?b_idx=${uvo.b_idx}&page=${pa}">답변대기</a>
 		                                        	</td>
 	                                            </c:if>
-	                                            <c:if test="${uvo.status eq 0}">
+	                                            <c:if test="${uvo.status eq 0 && bname eq '공지사항'}">
 	                                            	<td>
 		                                        		<a href="a_edit?b_idx=${uvo.b_idx}&page=${pa}">수정하기</a>
 		                                        	</td>

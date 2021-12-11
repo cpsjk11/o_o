@@ -2,6 +2,7 @@ package com.api.test;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RequestWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,10 @@ import api.u_member.vo.UmemVO;
 public class CuserController {
 
 	@Autowired
-	private HttpSession hs;
-
-	@Autowired
 	private HttpServletRequest req;
+	
+	@Autowired
+	private HttpSession session;
 	
 	@Autowired
 	MemDAO m_dao;
@@ -48,18 +49,10 @@ public class CuserController {
 	public ModelAndView CsucEdit(UmemVO vo) {
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println("-----------------------");
-		System.out.println(vo.getC_name());
-		System.out.println(vo.getAddr());
-		System.out.println(vo.getC_num());
-		System.out.println(vo.getEmail());
-		System.out.println(vo.getId());
-		System.out.println("-----------------------");
 		m_dao.edit(vo);
 		
 		mv.setViewName("redirect:/기업정보변경");
 		return mv;
 	}
-	
 	
 }

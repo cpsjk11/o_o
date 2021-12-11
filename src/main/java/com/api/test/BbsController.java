@@ -158,15 +158,25 @@ public class BbsController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public ModelAndView write(BbsVO vo, String bname, String status, String admin )throws Exception{
 		ModelAndView mv = new ModelAndView();
+		String views = null;
 		
-		 String views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
-
+		if(!status.equals("6")) {
+			views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
+		}
+		if(status.equals("6")) {
+			views = "redirect:/";
+		}
+		 
 		 String sb = null;
 		 sb = checkBname(bname);
 		
 		if(bname.equals("문의게시판")) {
 			vo.setStatus("5");
-		}else {
+		}
+		if(bname.equals("제휴문의")) {
+			vo.setStatus("6");
+		}
+		else{
 			vo.setStatus("0");
 		}
 		vo.setIp(request.getRemoteAddr());

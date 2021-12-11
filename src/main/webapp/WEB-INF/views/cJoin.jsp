@@ -355,9 +355,6 @@ $(function() {
 				hi = data.as;
 			}
 		}).fail(function(err){alert("서버 오류입니다. 관리자한테 문의해주세요")});
-	
-		}else{
-			alert("이메일을 올바르게 입력해주세요.");
 	}
 	
 	 
