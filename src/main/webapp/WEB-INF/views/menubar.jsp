@@ -31,14 +31,17 @@
 				</div>
 				<div class="m-unit-body1">
 					<ul>
-						<li class="mul1">
-							<span class="m-bullet"></span>
-							<a href="change">정보변경</a>
-						</li>
-						<li class="mul2">
-							<span class="m-bullet"></span>
-							<a href="pwd">비밀번호변경</a>
-						</li>
+						<c:if test="${sessionScope.rank ne 2 && sessionScope.rank ne 3 }">
+							<li class="mul1">
+								<span class="m-bullet"></span>
+								<a href="change">정보변경</a>
+							
+							</li>
+							<li class="mul2">
+								<span class="m-bullet"></span>
+								<a href="pwd">비밀번호변경</a>
+							</li>
+						</c:if>
 						<li class="mul4">
 							<span class="m-bullet"></span>
 							<a href="removePage">회원탈퇴</a>

@@ -3,10 +3,10 @@
 <div id="lookCategory">
 	<div id="Caetgory">
 		<div id="ct1" class="ct">
-			<span>구직자</span>
+			<a href="/ss">재직자</a>
 		</div>
 		<div id="ct2" class="ct">
-			<span>실업자</span>
+			<a href="">실업자</a>
 		</div>
 		<div id="ct3" class="ct">
 			<span>학생</span>

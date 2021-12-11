@@ -42,4 +42,20 @@ public class EnrolDAO {
 		
 		return evo;
 	}
+	
+	// 기업회원의 수강신청 흔련생 현황 가져오기
+		public EnrolVO[] getuserList(String e_uid) {
+			EnrolVO[] evo = null;
+			
+			List<EnrolVO> e_list = ss.selectList("en.getuserList", e_uid);
+
+			if(e_list != null && !e_list.isEmpty()) {
+				evo = new EnrolVO[e_list.size()];
+				e_list.toArray(evo);
+			}
+			
+			return evo;
+		}
+	
+	
 }

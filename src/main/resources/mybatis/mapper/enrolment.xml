@@ -25,4 +25,11 @@
 	SELECT * FROM enrolment
 	WHERE e_company = #{no}
 </select>
+
+<select id="getuserList" parameterType="String" resultType="api.vo.EnrolVO">
+	SELECT * FROM enrolment
+	WHERE e_uid = #{no}
+</select>
+
 </mapper>
+
