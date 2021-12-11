@@ -91,7 +91,7 @@
 			<div id="c_info">
 				<div id="c_name">
 					<span>기업명</span>
-					<span>${sessionScope.userName.name }</span>
+					<span>${sessionScope.userName.c_name }</span>
 				</div>
 				<div id="c_addr">
 					<span>기업주소</span>

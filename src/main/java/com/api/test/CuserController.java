@@ -48,6 +48,13 @@ public class CuserController {
 	public ModelAndView CsucEdit(UmemVO vo) {
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println("-----------------------");
+		System.out.println(vo.getC_name());
+		System.out.println(vo.getAddr());
+		System.out.println(vo.getC_num());
+		System.out.println(vo.getEmail());
+		System.out.println(vo.getId());
+		System.out.println("-----------------------");
 		m_dao.edit(vo);
 		
 		mv.setViewName("redirect:/기업정보변경");

@@ -156,8 +156,7 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public ModelAndView write(BbsVO vo, String bname, String status, String admin,
-			RedirectAttributes rt)throws Exception{
+	public ModelAndView write(BbsVO vo, String bname, String status, String admin )throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		 String views = (admin == null) ? "redirect:helpSc" : "redirect:a_QNA";
@@ -173,7 +172,6 @@ public class BbsController {
 		vo.setIp(request.getRemoteAddr());
 		
 		b_dao.add(vo);
-		rt.addAttribute("bname", bname);
 		mv.addObject("categoryStyle",sb);
 		mv.addObject("bname",bname);
 		 mv.setViewName(views);
@@ -295,8 +293,9 @@ public class BbsController {
 	public ModelAndView ans_write(CommVO cvo, String cPage,String bname, String b_idx, String admin) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		BbsVO vo = b_dao.getBbs(b_idx);
-		
-		bname = URLEncoder.encode(bname, "UTF-8");
+		if(bname != null) {
+			bname = URLEncoder.encode(bname, "UTF-8");
+		}
 		String sb = null;
 		sb = checkBname(vo.getBname());
 		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : "redirect:/a_answer?b_idx="+b_idx;

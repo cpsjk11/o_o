@@ -103,10 +103,12 @@
 		background-color: #bf2c32;
 	}
 	#btn_area p {
-	    color: white;
-	    margin: 0 auto;
+        background-color: #b0daff;
+	    color: #525252;
+	    margin: 3em auto;
 	    text-align: center;
 	    font-size: 1.1em;
+	    cursor: pointer;
 	}
 </style>
 </head>
@@ -120,7 +122,7 @@
 				<div id="c_info">
 					<div id="c_name">
 						<span>기업명</span>
-						<input type="text" name ="name" value="${sessionScope.userName.name }">
+						<input type="text" name ="c_name" value="${sessionScope.userName.c_name }">
 					</div>
 					<div id="c_addr">
 						<span>기업주소</span>
@@ -134,7 +136,8 @@
 						<span>담당자이메일</span>
 						<input type="text" name="email" value="${sessionScope.userName.email }">
 					</div>
-					<div id="btn_area" onclick="javascript:document.forms[0].submit()">
+					<input type="hidden" name="id" id="id" value="${sessionScope.userName.id }">
+					<div id="btn_area">
 						<p>변경</p>
 					</div>
 				</div>
@@ -144,6 +147,16 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 <script>
+$(function(){
+
+	$("#btn_area").bind("click", function(){
+		var val = confirm("변경하시겠습니까?");
+		if(val){
+			document.forms[0].submit(); 
+		}
+	});
+});
+
 </script>
 </body>
 </html>
