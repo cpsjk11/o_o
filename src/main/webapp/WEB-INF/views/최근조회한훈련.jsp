@@ -107,7 +107,7 @@
 								</li>
 								<li>
 								<strong class="tit">담당강사</strong>
-								<span class="txt">${vo.manager }</span>
+										<span class="txt">${vo.manager }</span>
 								</li>
 							</ul>
 						</div>

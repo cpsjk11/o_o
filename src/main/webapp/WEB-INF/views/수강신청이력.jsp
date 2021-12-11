@@ -33,30 +33,34 @@
 					<h3 class="content-ex3">수강 신청 이력</h3>
 				</div>
 					<div class="cardTgcrlistTr2" >
+					<c:forEach var="vo" items="${vo }">
 						<div class="divTableArea06 ty2 tablet" id="card">
 							<span>
 							</span>
+						
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt">
+									<span class="txt" style="color:#4171df;">${vo.e_company }
 									</span>
 								</li>
 								<li>
-									<strong class="tit">과정기간</strong>
-									<span class="txt">
+									<strong class="tit">과정코드</strong>
+									<span class="txt">${vo.e_trid }
 									</span>
 								</li>
 								<li>
-									<strong class="tit">가격</strong>
-									<span class="txt"></span>
+									<strong class="tit">과정설명</strong>
+									<span class="txt">${vo.e_trname }</span>
 								</li>
 								<li>
-									<strong class="tit">담당강사</strong>
-									<span class="txt"></span>
+									<strong class="tit">담당자 e-mail</strong>
+									<span class="txt">${vo.e_email }</span>
 								</li>
 							</ul>
+						
 						</div>
+						</c:forEach>
 					</div>
 					</li>
 					</ul>
