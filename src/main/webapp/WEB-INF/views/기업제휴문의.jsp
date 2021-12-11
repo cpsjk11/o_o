@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>기업정보보기</title>
+<title>제휴문의</title>
 <link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 <link rel="shortcut icon" href="../resources/ico/Frame.png">
@@ -87,24 +87,9 @@
 	<div id="wrap">
 		<jsp:include page="c_category.jsp"/>
 		<div id="content">
-			<div id="con_name"><span>기업정보</span></div>
+			<div id="con_name"><span>제휴문의</span></div>
 			<div id="c_info">
-				<div id="c_name">
-					<span>기업명</span>
-					<span>${sessionScope.userName.c_name }</span>
-				</div>
-				<div id="c_addr">
-					<span>기업주소</span>
-					<span>${sessionScope.userName.addr }</span>
-				</div>
-				<div id="c_num">
-					<span>사업자등록번호</span>
-					<span>${sessionScope.userName.c_num }</span>
-				</div>
-				<div id="c_addr">
-					<span>담당자이메일</span>
-					<span>${sessionScope.userName.email }</span>
-				</div>
+				
 			</div>
 		</div>
 	</div>

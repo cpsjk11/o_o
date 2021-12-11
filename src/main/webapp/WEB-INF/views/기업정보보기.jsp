@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>기업정보보기</title>
+<title>정보보기</title>
 <link href="../resources/css/header.css" rel="stylesheet" type="text/css"/>
 <link href="../resources/css/foot.css" rel="stylesheet" type="text/css"/>
 <link rel="shortcut icon" href="../resources/ico/Frame.png">
