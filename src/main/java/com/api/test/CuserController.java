@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.dao.EnrolDAO;
 import api.dao.MemDAO;
 import api.dao.UmemDAO;
 import api.u_member.vo.UmemVO;
+import api.vo.EnrolVO;
 
 @Controller
 public class CuserController {
@@ -23,7 +25,10 @@ public class CuserController {
 	private HttpSession session;
 	
 	@Autowired
-	MemDAO m_dao;
+	private MemDAO m_dao;
+	
+	@Autowired
+	private EnrolDAO e_dao;
 	
 	@RequestMapping("mypage/Cmy")
 	public String CmyPage() {
@@ -33,9 +38,26 @@ public class CuserController {
 	public String CinfoPage() {
 		return "기업정보변경";
 	}
+	
+	
 	@RequestMapping("mypage/Capi")
-	public String CapuPage() {
-		return "기업수강신청인원";
+	public ModelAndView CapuPage() {
+		ModelAndView mv = new ModelAndView();
+		
+		req.getSession(true);
+		
+		UmemVO vo = (UmemVO) session.getAttribute("userName");
+		
+		EnrolVO[] evo = e_dao.getList(vo.getC_name());
+		
+		
+		
+		
+		System.out.println(evo+"///////////////");
+		
+		mv.addObject("evo", evo);
+		mv.setViewName("기업수강신청인원");
+		return mv;
 	}
 	@RequestMapping("mypage/Csuc")
 	public String CsucPage() {
