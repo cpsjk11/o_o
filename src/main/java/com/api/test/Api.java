@@ -249,6 +249,28 @@ public class Api { //
 	   public String country4() {
 	      return "과정제도";
 	   }
+	   
+	   @RequestMapping("/ss")
+	   public ModelAndView incumbent() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("재직자개요");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent2")
+	   public ModelAndView incumbent2() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("재직자개발훈련");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent3")
+	   public ModelAndView incumbent3() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("재직자신청자격");
+		   return mv;
+	   }
 	
 	
 	@RequestMapping("/api")
@@ -1085,12 +1107,17 @@ public class Api { //
 
 		int total = e_dao.totalNum(evo.getE_uid());
 		int check = e_dao.check(evo.getE_trid());
+		String alerts = "";
+		String contents = "";
 		String goHome = null;
 		String alert = (check > 0) ? "동일과정 수강신청은 한번만 가능합니다." : "수강신청은 5번까지만 가능합니다.";
-		if(total < 5)
+		if(total < 5 && check < 0) {
 			e_dao.addEnrolment(evo);
+			alerts = "수강신청이 완료되었습니다.";
+		}
 		String content = URLEncoder.encode(alert, "UTF-8");
-		goHome = (total >= 5 || check > 0) ? "redirect:/nocontent?sb=alert('"+content+"');" :  "redirect:/?sb=window.close();";
+		contents = URLEncoder.encode(alerts, "UTF-8");
+		goHome = (total >= 5 || check > 0) ? "redirect:/nocontent?sb=alert('"+content+"');" :  "redirect:/nocontent?sb=alert('"+contents+"');";
 		
 		return goHome;
 	}
