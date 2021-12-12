@@ -49,11 +49,6 @@ public class CuserController {
 		
 		EnrolVO[] evo = e_dao.getList(vo.getC_name());
 		
-		
-		
-		
-		System.out.println(evo+"///////////////");
-		
 		mv.addObject("evo", evo);
 		mv.setViewName("기업수강신청인원");
 		return mv;
@@ -62,9 +57,6 @@ public class CuserController {
 	public String CsucPage() {
 		return "기업제휴문의";
 	}
-
-	
-	
 	
 	@RequestMapping("mypage/edit_cuser")
 	public ModelAndView CsucEdit(UmemVO vo) {
@@ -72,7 +64,7 @@ public class CuserController {
 		
 		m_dao.edit(vo);
 		
-		mv.setViewName("redirect:/기업정보변경");
+		mv.setViewName("redirect:/logout");
 		return mv;
 	}
 	
