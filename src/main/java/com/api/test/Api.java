@@ -172,7 +172,7 @@ public class Api { //
 		rd = RecommendedSchool.getSchool(rd);
 		
 		mv.addObject("avos", rd);
-		mv.addObject("lengths", rd.length);
+		mv.addObject("lengths", (rd == null) ? 1 : rd.length);
 		if(sb != null)
 			mv.addObject("sb", sb);
 		mv.setViewName("home");
@@ -269,6 +269,34 @@ public class Api { //
 		   ModelAndView mv = new ModelAndView();
 		   mv.addObject("menu", 1);
 		   mv.setViewName("재직자신청자격");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent4")
+	   public ModelAndView incumbent4() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("재직자능력개발훈련신청");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent5")
+	   public ModelAndView incumbent5() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("사업주직업능력개발훈련개요");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent6")
+	   public ModelAndView incumbent6() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("재직자사업주직업능력개발훈련대상");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent7")
+	   public ModelAndView incumbent7() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("사업주직업능력개발훈련종류");
 		   return mv;
 	   }
 	
