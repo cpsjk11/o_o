@@ -306,6 +306,41 @@ public class Api { //
 		   mv.setViewName("사업자직업능력개발훈련지원혜택");
 		   return mv;
 	   }
+	   @RequestMapping("/incumbent9")
+	   public ModelAndView incumbent9() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("사업자직업능력개발훈련진행절차");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent10")
+	   public ModelAndView incumbent10() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("핵심직무능력향상훈련개요");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent11")
+	   public ModelAndView incumbent11() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("핵심직무능력향상지원대상");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent12")
+	   public ModelAndView incumbent12() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("핵심직무능력향상훈련지원혜택");
+		   return mv;
+	   }
+	   @RequestMapping("/incumbent13")
+	   public ModelAndView incumbent13() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("핵심직무능력향상훈련신청방법");
+		   return mv;
+	   }
 	
 	
 	@RequestMapping("/api")
