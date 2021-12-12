@@ -55,7 +55,7 @@ public class ExcelController {
 	@Autowired
 	private EnrolDAO e_dao;
 	
-	@RequestMapping(value = "/poiExcel")
+	@RequestMapping(value = {"/poiExcel","/mypage/poiExcel"})
 	public void poiTest(Model model, HttpServletResponse response,
 			HttpServletResponse request,String Excel,String companyName) throws Exception{
 

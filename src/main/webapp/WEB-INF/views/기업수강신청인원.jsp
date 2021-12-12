@@ -49,7 +49,7 @@
 	}
 	#content{
 		margin: 0 auto;
-		width: 50%;
+		width: 70%;
 		border: 0.6px solid #eee;
 		padding: 1em; 
 	}
@@ -74,6 +74,13 @@
 		font-weight: 400;
 	    font-size: 0.9em; 
 	}
+	#con_name button{
+	    width: 15%; 
+	    height: 2em;
+	    border: 1px solid #818181;
+	    background-color: #fff8f8;
+	    margin-left: 2em;
+	}
 </style>
 </head>
 <body>
@@ -81,7 +88,10 @@
 	<div id="wrap">
 		<jsp:include page="c_category.jsp"/>
 		<div id="content">
-			<div id="con_name"><span>신청인원현황</span></div>
+			<div id="con_name">
+				<span>신청인원현황</span>
+				<button onclick="javascript:poiExcel('3')">신청현황엑셀다운</button>
+			</div>
 			<form action="poiExcel" id="ExcelForm" name="ExcelForm">
 			<c:forEach var="vo" items="${evo}" varStatus="st">
 				<div id="api_user">
@@ -92,10 +102,10 @@
 					<div id="user_name">${vo.e_trname }</div>
 				</div>
 			</c:forEach>
+			<input type="hidden" name="Excel" id="resultType" value="" /> 
 			<input type="hidden" name="companyName" value="${sessionScope.userName.c_name }">
 			</form>
 		</div>
-		<button onclick="javascript:poiExcel('3')">신청현황엑셀다운</button>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
@@ -108,7 +118,7 @@ function poiExcel(num) {
 		$("#resultType").val(num);
 	
 	var formObj = $('#ExcelForm');
-	formObj.attr('action', '/poiExcel');
+	formObj.attr('action', '/mypage/poiExcel');
 	formObj.attr('method', 'post');
 	formObj.submit();
 	
