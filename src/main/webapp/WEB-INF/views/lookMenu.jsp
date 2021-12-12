@@ -128,10 +128,10 @@
 		                <div class="m-unit-title to4">청년취업아카데미&nbsp;&nbsp;👇</div>
 		                <div class="m-unit-body4 up">
 		                    <ul class="left">
-		                        <li class="mul1 "><a href="#">개요</a></li>
-		                        <li class="mul3 "><a href="#">운영절차</a></li>
-		                        <li class="mul4 "><a href="#">교육과정</a></li>
-		                        <li class="mul5 "><a href="#">교육생 선발기준</a></li>
+		                        <li class="mul1 "><a href="youth">개요</a></li>
+		                        <li class="mul3 "><a href="youth2">운영절차</a></li>
+		                        <li class="mul4 "><a href="youth3">교육과정</a></li>
+		                        <li class="mul5 "><a href="youth4">교육생 선발기준</a></li>
 		                    </ul>
 		                </div><!-- m-unit-body -->
 		            </div>

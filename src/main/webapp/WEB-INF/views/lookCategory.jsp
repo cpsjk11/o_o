@@ -6,10 +6,10 @@
 			<a href="/ss">재직자</a>
 		</div>
 		<div id="ct2" class="ct">
-			<a href="">실업자</a>
+			<a href="look">실업자</a>
 		</div>
 		<div id="ct3" class="ct">
-			<span>학생</span>
+			<a href="youth">학생</a>
 		</div>
 	</div>
 </div>

@@ -181,6 +181,8 @@ public class Api { //
 				
 }
 	
+	
+	// 교육생 지원제도 여기서 부터 ---->
 	@RequestMapping("/look")
 	   public String look() {
 	      return "과정제도";
@@ -341,7 +343,36 @@ public class Api { //
 		   mv.setViewName("핵심직무능력향상훈련신청방법");
 		   return mv;
 	   }
-	
+	   @RequestMapping("/youth")
+	   public ModelAndView youth() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 3);
+		   mv.setViewName("청년취업아카데미개요");
+		   return mv;
+	   }
+	   @RequestMapping("/youth2")
+	   public ModelAndView youth2() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 3);
+		   mv.setViewName("청년취업아카데미운영절차");
+		   return mv;
+	   }
+	   @RequestMapping("/youth3")
+	   public ModelAndView youth3() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 3);
+		   mv.setViewName("청년아카데미교육과정");
+		   return mv;
+	   }
+	   @RequestMapping("/youth4")
+	   public ModelAndView youth4() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 3);
+		   mv.setViewName("청년아카데미교육생선발기준");
+		   return mv;
+	   }
+		
+		// <--- 여기까지 입니당 나중에 컨트롤러 하나 만들까유???
 	
 	@RequestMapping("/api")
 	public ModelAndView getData(SearchVO svo, String page) throws Exception  {
