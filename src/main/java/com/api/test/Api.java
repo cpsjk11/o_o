@@ -299,6 +299,13 @@ public class Api { //
 		   mv.setViewName("사업주직업능력개발훈련종류");
 		   return mv;
 	   }
+	   @RequestMapping("/incumbent8")
+	   public ModelAndView incumbent8() {
+		   ModelAndView mv = new ModelAndView();
+		   mv.addObject("menu", 1);
+		   mv.setViewName("사업자직업능력개발훈련지원혜택");
+		   return mv;
+	   }
 	
 	
 	@RequestMapping("/api")
@@ -1139,7 +1146,8 @@ public class Api { //
 		String contents = "";
 		String goHome = null;
 		String alert = (check > 0) ? "동일과정 수강신청은 한번만 가능합니다." : "수강신청은 5번까지만 가능합니다.";
-		if(total < 5 && check < 0) {
+		if(total < 5 && check < 1) {
+			System.out.println("HI");
 			e_dao.addEnrolment(evo);
 			alerts = "수강신청이 완료되었습니다.";
 		}
