@@ -864,7 +864,6 @@ public class Api { //
 			}else if(end == null && ar.length >= 6) {
 				end = "6";
 			}
-			System.out.println(ar.length);
 			//System.out.println(search_bar);
 			//System.out.println(end);
 			mv.addObject("ar_size", ar.length);
@@ -1160,8 +1159,6 @@ public class Api { //
 				like = "true";
 			}
 		}
-		System.out.println(u_id);
-		System.out.println(like);
 		
 		mv.addObject("like", like);
 
