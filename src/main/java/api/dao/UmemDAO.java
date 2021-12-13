@@ -30,6 +30,11 @@ public class UmemDAO {
 		return ss.selectOne("umem.searchUser", id);
 	}
 	
+	
+	public String companyName(String c_name) {
+		return ss.selectOne("umem.companyName", c_name);
+	}
+	
 	// 아이디가 있다면 로그인으로! AND 아이디 중복 확인
 		public UmemVO user(String id) {
 			return ss.selectOne("umem.user", id);

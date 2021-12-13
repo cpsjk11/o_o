@@ -121,6 +121,7 @@
 					</div>
 					<input hidden="bname" name="bname" id="bname" value="공지사항">
 					<input hidden="bname" name="admin" value="admin">
+					<input hidden="bname" name="status" value="0">
 					<input hidden="writer" name="writer" id="writer" value="${sessionScope.userName.name }">
 					<input hidden="id" name="id" id="id" value="${sessionScope.userName.id }">
 				</form>

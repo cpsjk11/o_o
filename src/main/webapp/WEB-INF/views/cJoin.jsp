@@ -59,7 +59,7 @@
 							<span class="infoTo">이름</span>
 							<input type="text" name="name" id="name" placeholder="이름을 입력해주세요." maxlength="10">
 							<span class="infoTo">회사명</span>
-							<input type="text" name="c_name" id="c_name" placeholder="회사명을 입력해주세요." maxlength="30">
+							<input type="text" name="c_name" id="c_name" placeholder="회사명을 입력해주세요." maxlength="30"><div class="checkBox"><span id="cname_checkBox" class="checkBox"></span></div>
 							<span class="infoTo">주소</span><!-- search_addr -->
 						    <button type="button" class="btnType" id="search_addr">우편번호 찾기</button>
 							<div id="addr_area">
@@ -82,6 +82,7 @@
 							<input type="hidden" id="chkRPW"/>
 							<input type="hidden" id="chkEMAIL"/>
 							<input type="hidden" id="chkEMAIL1"/>
+							<input type="hidden" id="chkNAME"/>
 							<input type="hidden" id="CompanyNum" value="1"/>
 							<input type="hidden" name="stat" value="1"/>
 						</form>
@@ -202,6 +203,35 @@ $(function() {
 				$("#id_checkBox").html("");
 			}
 		});
+	 
+		 	$("#c_name").bind("input", function(){
+				// 사용자의 아이디를 중복확인!!!
+				var name = $("#c_name").val();
+				// 이제 여기서 2글자 이상 누를시 서버로 비동기식 통신시작 아이디 값 비교
+				if(name.trim().length > 1){
+					$.ajax({
+						url:"checkName",
+						data:"c_name="+encodeURIComponent(name),
+						type:"post",
+						dataType:"json",
+					}).done(function(data){
+						if(data.overlap == 1){
+							$("#cname_checkBox").html("사용가능").css("color","#12b886");
+							$("#chkNAME").val("");
+						}
+						else{
+							$("#cname_checkBox").html("중복").css("color","red");
+							$("#chkNAME").val("1");
+						}
+					}).fail(function(err){
+						
+					});
+				}else if(name.trim().length < 1){
+					// 사용자가 입력한 id값의 길이가 1자 미만이면 아이디가
+					// box인 요소의 내용을 없앤다.
+					$("#cname_checkBox").html("");
+				}
+			});
 	 
 		$("#pw").bind("keyup",function(){
 			// 사용자의 비밀번호 확인하는 기능!!

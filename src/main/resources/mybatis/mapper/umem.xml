@@ -39,6 +39,11 @@
 	WHERE id = #{no}
 </select>
 
+<select id="companyName" parameterType="String" resultType="String">
+	SELECT * FROM u_member
+	WHERE c_name = #{no}
+</select>
+
 <select id="user" parameterType="String" resultType="api.u_member.vo.UmemVO">
 	SELECT * FROM u_member
 	WHERE id = #{no}
