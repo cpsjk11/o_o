@@ -23,12 +23,7 @@
 	}
 	div#body {
 		width: 1200px;
-		height: 2100px;
 		margin-left: 150px;
-	}
-	div#footer {
-		width: 1500px;
-		height: 200px;
 	}
 	div#top_div {
 		width: 1200px;
@@ -48,7 +43,6 @@
 	}
 	div#bottom_div {
 		width: 1200px;
-		height: 400px;
 	}
 	div#bottom2_div {
 		width: 1200px;
@@ -87,6 +81,10 @@
 	table#com_table tr, th{
 		padding: 15px 0;
 	    border-bottom: 1px solid #ddd;
+	}
+	table#com_table th:nth-child(2){
+		padding-left: 1em;
+		text-align: left;
 	}
 	table#com_table tr th:first-child{
 		background-color: #ddd;
@@ -177,7 +175,7 @@
 			</table>
 		</div>
 		
-		<div id="map" style="width:100%;height:400px;"></div>
+		<div id="map" style="width:100%;height:400px; z-index: -1"></div>
 		
 		<div id="center_div">
 			<h2>훈련과정 개요(훈련목표)</h2>
@@ -239,21 +237,7 @@
 		
 		<div id="bottom_div">
 			<h2 style="margin-bottom:0;">훈련문의</h2>
-			<input type="button" id="add2_btn" class="add_bt" value="문의 등록" onclick="add2()"/>
-			<table id="help_bbs_table">
-				<tbody>
-				<c:if test="${hvo eq null}">
-					<tr style="border: none;">
-						<th style="border: none;">문의가 없습니다.</th>
-					</tr>
-				</c:if>
-				<c:forEach var="hvo" items="${hvo}" varStatus="st">
-					<tr>
-						<th>&#187; ${hvo.content}</th>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
+			<input type="button" id="add2_btn" class="add_bt" value="문의 등록" onclick="javascript:location.href='helpSc?bname=문의게시판'"/>
 		</div>  
 		
 		<div id="bottom2_div">
