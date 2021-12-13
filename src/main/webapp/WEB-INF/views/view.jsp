@@ -131,7 +131,7 @@
 	<div id="body" name="body">
 		<div id="top_div">
 			<div id="top_img">
-				<span style="width: 400px; height: 200px; display: block; background:url('resources/img/img${fn:substring(vo.NCS_CD, 0, 2)}.png'); background-size:400px 200px; float:left;" class="edu_img"></span>
+				<span style="width: 400px; height: 200px; display: block; background:url('resources/img/${imageCode}.jpg'); background-size:400px 200px; float:left;" class="edu_img"></span>
 			</div>
 			<div id="top_title">
 				<span style="width: 700px; height: 150px; float:right;"><h2>${vo.TRPR_NM}<br/></h2><h3>${vo3.TR_STA_DT} ~ ${vo3.TR_END_DT}(${vo2.TOT_TRAING_DYCT}일, ${vo2.TOT_TRAING_TIME}시간)</h3></span>

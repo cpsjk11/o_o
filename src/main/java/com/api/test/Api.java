@@ -893,7 +893,7 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id) throws Exception {
+	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id, String imageCode) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		/*
@@ -902,6 +902,7 @@ public class Api { //
 		*/
 		
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
+		mv.addObject("imageCode", imageCode);
 		
 		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=qWqEb8rhoMy5PH165fAA0bQIXsuy9OvZ&returnType=XML&outType=2");
 		sb.append("&srchTorgId="+TRAINST_CST_ID);
