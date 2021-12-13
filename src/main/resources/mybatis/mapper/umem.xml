@@ -6,7 +6,8 @@
 
 <insert id="joing" parameterType="api.u_member.vo.UmemVO">
 	INSERT INTO u_member 
-	(id,pw,name
+	(
+	id,pw,name
 		<if test="birth != null">,birth</if>
 		<if test="email != null">,email</if>
 		<if test="phone != null">,phone</if>
@@ -14,12 +15,12 @@
 		<if test="addr2 != null">,addr2</if>
 		<if test="c_name != null">,c_name</if>
 		,member,u_date
-		<if test="stat != null">
-		,stat</if>
-		<if test="c_num != null">
-		,c_num</if>)
+		<if test="stat != null">,stat</if>
+		<if test="c_num != null">,c_num</if>
+		)
 	VALUES 
-		(#{id},#{pw},#{name}
+		(
+		#{id},#{pw},#{name}
 		<if test="birth != null">,#{birth}</if>
 		<if test="email != null">,#{email}</if>
 		<if test="phone != null">,#{phone}</if>
@@ -28,7 +29,8 @@
 		<if test="c_name != null">,#{c_name}</if>
 		,#{member},sysdate
 		<if test="stat != null">,#{stat}</if>
-		<if test="c_num != null">,#{c_num}</if>)
+		<if test="c_num != null">,#{c_num}</if>
+		)
 </insert>
 
 <!-- 유저가 회원가입이 되 있는지 안 됬는지 확인 하는 문장 -->
