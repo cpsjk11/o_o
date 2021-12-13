@@ -300,9 +300,7 @@ public class AddController {
 			
 			if(listnum == null)
 				listnum = "5";
-			System.out.println(status);
 			String stat = (status == null) ? "0" : status;
-			System.out.println(stat);
 			int rowTotal = b_dao.getQnaCount(bname,stat);
 			Paging pa = new Paging(nowPage, rowTotal, Integer.parseInt(listnum),5,searchItem);
 			
