@@ -54,7 +54,7 @@
 	
 	<select id="qnaSu" resultType="int">
 		SELECT COUNT(*) FROM bbs_t
-		WHERE status = 5
+		WHERE status = 5 AND bname = '문의게시판'
 		
 	</select>
 	
