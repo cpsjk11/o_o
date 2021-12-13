@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import api.u_member.vo.UmemVO;
 
-public class Logininterceptor extends HandlerInterceptorAdapter {
+public class admininterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, 
@@ -28,6 +28,12 @@ public class Logininterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect("/ex");
 			return false;
 		}
+		if(ad == null || !ad.getStat().equals("5")) {
+			response.sendRedirect("/");
+			return false;
+		}
+		//로그인이 된상태 이 때 해야할 일이있으면 여기쯤에서
+		//구현하면된다.
 		return true;
 	}
 	

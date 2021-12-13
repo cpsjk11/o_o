@@ -281,6 +281,7 @@ public class BbsController {
 	//
 //					try {
 //						f.transferTo(new File(realPath, fname));
+				
 //					} catch (Exception e) {
 //						e.printStackTrace();
 //					}
@@ -305,16 +306,14 @@ public class BbsController {
 		BbsVO vo = b_dao.getBbs(b_idx);
 		if(bname != null) {
 			bname = URLEncoder.encode(bname, "UTF-8");
-		}
+		}	
 		String sb = null;
 		sb = checkBname(vo.getBname());
 		String views = (admin == null) ? "redirect:/helpScV?b_idx="+cvo.getB_idx()+"&cPage="+cPage+"&bname="+bname : "redirect:/a_answer?b_idx="+b_idx;
 		
 		String name = (bname == null) ? "문의게시판" : bname;
-		
-		if (name.equals("문의게시판")) 
+		if (name.equals("%EB%AC%B8%EC%9D%98%EA%B2%8C%EC%8B%9C%ED%8C%90")) 
 			b_dao.qnaSuccess(b_idx, "5");
-		
 		cvo.setWriter(vo.getWriter());
 		cvo.setIp(request.getRemoteAddr());
 		b_dao.addAns(cvo);

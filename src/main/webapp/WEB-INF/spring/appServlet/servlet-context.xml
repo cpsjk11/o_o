@@ -45,13 +45,16 @@
 	<context:component-scan base-package="login.action" />
 	
 	<!-- 인터셉터등록 -->
+	<beans:bean id="admin_inter" class="spring.util.admininterceptor"/>
 	<beans:bean id="log_inter" class="spring.util.Logininterceptor"/>
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/mypage/*"/>
-			<!-- <mapping path="/help*"/> -->
 			<mapping path="/a_*"/>
+			<beans:ref bean="admin_inter"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/mypage/*"/>
 			<beans:ref bean="log_inter"/>
 		</interceptor>
 	</interceptors>
