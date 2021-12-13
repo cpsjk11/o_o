@@ -38,7 +38,6 @@
    		<!-- 맵퍼(emp.xml)들의 위치 지정 -->
    		<property name="mapperLocations" 
    			value="classpath:mybatis/mapper/*.xml"/>
-   		
    	</bean>
    	
    	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

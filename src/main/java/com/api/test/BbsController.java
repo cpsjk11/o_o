@@ -176,7 +176,7 @@ public class BbsController {
 		if(bname.equals("제휴문의")) {
 			vo.setStatus("6");
 		}
-		else{
+		if(!bname.equals("제휴문의") && !bname.equals("문의게시판")) {
 			vo.setStatus("0");
 		}
 		vo.setIp(request.getRemoteAddr());
