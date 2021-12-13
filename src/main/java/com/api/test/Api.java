@@ -700,7 +700,7 @@ public class Api { //
 				sortCol = "&sortCol="+svo.getSortCol();
 			
 			sb.append("returnType=XML"); // 리턴 타입 XML 고정
-			sb.append("&pageSize=30");  // 볼 페이지 수 정하기
+			sb.append("&pageSize=96");  // 볼 페이지 수 정하기
 			sb.append("&authKey=UzKsh6RpTEHTTwIPUzd8OrcRauHZI14b"); // 인증키
 			sb.append("&sort=ASC");  // 정렬 방식
 			sb.append("&outType=1"); // 1 : 보기 2 : 상세보기
@@ -834,10 +834,28 @@ public class Api { //
 						REAL_MAN = formatter.format(Integer.parseInt(REAL_MAN));
 						real_price = formatter.format(Integer.parseInt(real_price));
 					}
+					String imageCode = null;
+					
+					if(NCS_CD != null) {
+						String img_code = NCS_CD.substring(0, 4);
+						String img_code2 = NCS_CD.substring(0, 6);
+						int random = (int) ((Math.random()*2)+1);
+						int random2 = (int) ((Math.random()*2)+11);
+						if(img_code2.equals("120202")) {
+							imageCode = img_code2+String.valueOf(random);
+						}else if(TITLE.contains("바리스타") || TITLE.contains("커피")) {
+							imageCode = img_code+String.valueOf(random2);
+						}else {
+							imageCode = img_code+String.valueOf(random);
+						}
+					}
+					
 					if(YARD_MAN != null && !YARD_MAN.equals("0")) {
-						api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN, real_price);			
+						//api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN, real_price);
+						api_1 avo1 = new api_1(ADDRESS, CONTENTS, COURSE_MAN, EI_EMPL_CNT3, EI_EMPL_CNT3_GT10, EI_EMPL_RATE3, EI_EMPL_RATE6, GRADE, IMG_GUBUN, INST_CD, NCS_CD, REAL_MAN, REG_COURSE_MAN, SUB_TITLE, SUB_TITLE_LINK, SUPER_VISER, TEL_NO, TITLE, TITLE_ICON, TITLE_LINK, TRA_END_DATE, TRA_START_DATE, TRAIN_TARGET, TRAIN_TARGET_CD, TRAINST_CST_ID, TRPR_DEGR, TRPR_ID, YARD_MAN, real_price, imageCode);
 						ar[i++] = avo1;
 					}
+					
 				}
 			}
 			
@@ -846,6 +864,7 @@ public class Api { //
 			}else if(end == null && ar.length >= 6) {
 				end = "6";
 			}
+			System.out.println(ar.length);
 			//System.out.println(search_bar);
 			//System.out.println(end);
 			mv.addObject("ar_size", ar.length);

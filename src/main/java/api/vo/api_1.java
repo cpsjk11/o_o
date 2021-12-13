@@ -29,7 +29,49 @@ public class api_1 { // 전체 목록 객체
 					TRPR_DEGR,
 					TRPR_ID,
 					YARD_MAN,
-					real_price;
+					real_price,
+					imageCode;
+	
+	
+
+	public api_1(String aDDRESS, String cONTENTS, String cOURSE_MAN, String eI_EMPL_CNT3, String eI_EMPL_CNT3_GT10,
+			String eI_EMPL_RATE3, String eI_EMPL_RATE6, String gRADE, String iMG_GUBUN, String iNST_CD, String nCS_CD,
+			String rEAL_MAN, String rEG_COURSE_MAN, String sUB_TITLE, String sUB_TITLE_LINK, String sUPER_VISER,
+			String tEL_NO, String tITLE, String tITLE_ICON, String tITLE_LINK, String tRA_END_DATE,
+			String tRA_START_DATE, String tRAIN_TARGET, String tRAIN_TARGET_CD, String tRAINST_CST_ID, String tRPR_DEGR,
+			String tRPR_ID, String yARD_MAN, String real_price, String ImageCode) {
+		ADDRESS = aDDRESS;
+		CONTENTS = cONTENTS;
+		COURSE_MAN = cOURSE_MAN;
+		EI_EMPL_CNT3 = eI_EMPL_CNT3;
+		EI_EMPL_CNT3_GT10 = eI_EMPL_CNT3_GT10;
+		EI_EMPL_RATE3 = eI_EMPL_RATE3;
+		EI_EMPL_RATE6 = eI_EMPL_RATE6;
+		GRADE = gRADE;
+		IMG_GUBUN = iMG_GUBUN;
+		INST_CD = iNST_CD;
+		NCS_CD = nCS_CD;
+		REAL_MAN = rEAL_MAN;
+		REG_COURSE_MAN = rEG_COURSE_MAN;
+		SUB_TITLE = sUB_TITLE;
+		SUB_TITLE_LINK = sUB_TITLE_LINK;
+		SUPER_VISER = sUPER_VISER;
+		TEL_NO = tEL_NO;
+		TITLE = tITLE;
+		TITLE_ICON = tITLE_ICON;
+		TITLE_LINK = tITLE_LINK;
+		TRA_END_DATE = tRA_END_DATE;
+		TRA_START_DATE = tRA_START_DATE;
+		TRAIN_TARGET = tRAIN_TARGET;
+		TRAIN_TARGET_CD = tRAIN_TARGET_CD;
+		TRAINST_CST_ID = tRAINST_CST_ID;
+		TRPR_DEGR = tRPR_DEGR;
+		TRPR_ID = tRPR_ID;
+		YARD_MAN = yARD_MAN;
+		this.real_price = real_price;
+		this.imageCode = ImageCode;
+	}
+
 
 	public api_1(String aDDRESS, String cONTENTS, String cOURSE_MAN, String eI_EMPL_CNT3, String eI_EMPL_CNT3_GT10,
 			String eI_EMPL_RATE3, String eI_EMPL_RATE6, String gRADE, String iMG_GUBUN, String iNST_CD, String nCS_CD,
@@ -105,6 +147,17 @@ public class api_1 { // 전체 목록 객체
 		real_price = Real_price;
 	}
 	
+	
+	public String getImageCode() {
+		return imageCode;
+	}
+
+
+	public void setImageCode(String ImageCode) {
+		imageCode = ImageCode;
+	}
+
+
 	public String getReal_price() {
 		return real_price;
 	}
