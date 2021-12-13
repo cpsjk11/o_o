@@ -83,7 +83,16 @@
 		display: none;
 	}
 	#search_bar{
-		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+		padding-left: 10px;
+		margin: 50px 0 0;
+		width: 560px;
+		height: 60px;
+		font-size: 20px;
+		font-weight: 300;
+		font-family: 'Noto Sans KR','Roboto', sans-serif;
+		color: #3A2F2F;
+		
+		<%-- filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 		width: 560px;
 		height: 70px;
 		border-radius: 20px;
@@ -92,18 +101,18 @@
 		font-size: 16px;
 		font-weight: 300;
 		text-align: center;
-		font: #888888;
+		font: #888888; --%>
 	}
 	.btn{
 		width: 120px; 
-		height: 70px;
+		height: 68px;
 		background: #EFEFEF;
 		border-radius: 6px;
 		text-align: center;
 		font-weight: 600;
 		font-size: 20px;
 		font: #3A2F2F;
-		line-height: 60px;
+		line-height: 68px;
 	}
 	.btn2 {
 		width: 60px; 

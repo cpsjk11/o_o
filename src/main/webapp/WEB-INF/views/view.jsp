@@ -99,7 +99,7 @@
 		border-bottom: 1px solid #ddd;
 		text-align: left;
 	}
-	#add_btn, #add2_btn{
+	.add_bt{
 		float: right;
 		width: 75px;
 		height: 30px;
@@ -121,7 +121,6 @@
 	#iw_inner>h6{
 		margin-top: 5px;
 	}
-	
 	
 </style>
 </head>
@@ -240,9 +239,14 @@
 		
 		<div id="bottom_div">
 			<h2 style="margin-bottom:0;">훈련문의</h2>
-			<input type="button" id="add2_btn" value="문의 등록" onclick="add2()"/>
+			<input type="button" id="add2_btn" class="add_bt" value="문의 등록" onclick="add2()"/>
 			<table id="help_bbs_table">
 				<tbody>
+				<c:if test="${hvo eq null}">
+					<tr style="border: none;">
+						<th style="border: none;">문의가 없습니다.</th>
+					</tr>
+				</c:if>
 				<c:forEach var="hvo" items="${hvo}" varStatus="st">
 					<tr>
 						<th>&#187; ${hvo.content}</th>
@@ -255,9 +259,14 @@
 		<div id="bottom2_div">
 			<h2 style="margin-bottom:0;">수강후기</h2>
 			<h6 style="margin-top:0; margin-bottom:0; color:gray">수강후기는 한번만 등록이 가능하며 수정이 불가합니다. 수정이 필요할 시 고객센터에 문의하시기 바랍니다.</h6>
-			<input type="button" id="add_btn" value="후기 등록" onclick="add1()"/>
+			<input type="button" id="add_btn" class="add_bt" value="후기 등록" onclick="add1()"/>
 			<table id="after_table">
 				<tbody>
+				<c:if test="${afvo eq null}">
+					<tr style="border: none;">
+						<th style="border: none;">후기가 없습니다.</th>
+					</tr>
+				</c:if>
 				<c:forEach var="afvo" items="${afvo}" varStatus="st">
 					<tr>
 						<th>&#187; ${afvo.content}</th>
@@ -266,7 +275,7 @@
 				</tbody>
 			</table>
 		</div>
-		
+
 		<div id="add_div" class="hidden">
 			<form action="view" name="add_after" method="post">
 				<input type="hidden" id="u_id" name="u_id" value="${u_id}"/>
@@ -274,9 +283,9 @@
 				<input type="hidden" id="TRPR_DEGR" name="TRPR_DEGR" value="${vo.TRPR_DEGR}"/>
 				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
 				<input type="hidden" id="add1" name="add" value="1"/>
-				<textarea id="content" name="content" rows="5" cols="30"></textarea>
-				<input type="button" id="ok_btn" value="확인" onclick="ok1()"/>
-				<input type="button" id="cancel_btn" value="취소" onclick="cancel1()"/>
+				<textarea id="content" name="content" rows="5" cols="30" placeholder="40자 내로 작성해주세요" style="width: 580px; height: 30px;"></textarea>
+				<input type="button" id="cancel_btn" class="add_bt" value="취소" onclick="cancel1()"/>
+				<input type="button" id="ok_btn" class="add_bt" value="확인" onclick="ok1()"/>
 			</form>
 		</div>
 				
@@ -288,9 +297,9 @@
 				<input type="hidden" id="TRAINST_CST_ID" name="TRAINST_CST_ID" value="${TRAINST_CST_ID}"/>
 				<input type="hidden" id="add2" name="add" value="2"/>
 				<input type="hidden" id="help" name="help" value="true"/>
-				<textarea id="content" name="content" rows="5" cols="30"></textarea>
-				<input type="button" id="ok_btn2" value="확인" onclick="ok2()"/>
-				<input type="button" id="cancel_btn2" value="취소" onclick="cancel2()"/>
+				<textarea id="content" name="content" rows="5" cols="30" placeholder="40자 내로 작성해주세요" style="width: 580px; height: 30px;"></textarea>
+				<input type="button" id="cancel_btn2" class="add_bt" value="취소" onclick="cancel2()"/>
+				<input type="button" id="ok_btn2" class="add_bt" value="확인" onclick="ok2()"/>
 			</form>
 		</div>
 		
@@ -369,8 +378,13 @@
 	function add1() {
 		if($("#u_id").val() != null && $("#u_id").val().length > 1) {
 			$("#add_div").dialog({
-				title:"후기등록"
+				modal:true,
+				width: 800,
+				height: 50,
+				title:"후기등록",
+				resizable: false,
 			});
+			$("#add_div").dialog("option", "height", 110);
 		}else{
 			alert("수강완료한 인원만 등록이 가능합니다.");
 		}
@@ -378,8 +392,13 @@
 	function add2() {
 		if($("#u_id").val() != null && $("#u_id").val().length > 1) {
 			$("#add_help").dialog({
-				title:"문의등록"
+				modal:true,
+				width: 800,
+				height: 50,
+				title:"문의등록",
+				resizable: false,
 			});
+			$("#add_help").dialog("option", "height", 110);
 		}else{
 			alert("로그인 후 이용가능합니다.");
 		}
