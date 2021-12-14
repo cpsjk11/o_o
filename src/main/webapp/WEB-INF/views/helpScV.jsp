@@ -95,6 +95,7 @@
 		justify-content: space-between;
 	}
 	#coment_btn{
+		cursor: pointer;
 		height: 107%;
 	}
 	#coment_write_area textarea{
@@ -189,7 +190,7 @@ ${categoryStyle }
 						<c:if test="${sessionScope.userName ne null}">
 							<textarea name="content" id="content" placeholder="내용을 입력해주세요."
 								rows="8"></textarea>
-							<input type="button" value="댓글달기" id="coment_btn" onclick="sends()">
+							<input type="button" value="댓글달기" id="coment_btn">
 						</c:if>
 						<c:if test="${sessionScope.userName eq null}">
 							<textarea name="content" id="content" placeholder="로그인 후 입력이 가능합니다."
@@ -222,16 +223,11 @@ ${categoryStyle }
 		<jsp:include page="footer.jsp"/>
 	</div>
 <script type="text/javascript">
-function sends(){
-	
-	var st = '${vo.bname}';
-	$("#bname").val(st);
-	document.ff.submit();
-}
+
+
 	$(function(){
 		$("#coment_btn").bind("click",function(){
-			if($("#content").val().trim().length < 0){
-				$("#content").text("");
+			if($("#content").val().trim().length < 1){
 				$("#content").focus();
 				alert("내용을 입력해주세요.");
 				return;
