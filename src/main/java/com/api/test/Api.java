@@ -1178,12 +1178,13 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.POST)
-	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String INO_NM, String TR_STA_DT, String TR_END_DT, String u_id, String content, String help, String like, String add) throws Exception {
+	public ModelAndView view2(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String INO_NM, String TR_STA_DT, String TR_END_DT, String u_id, String content, String help, String like, String add, String imageCode) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
 		mv.addObject("TRPR_DEGR", TRPR_DEGR);
 		mv.addObject("TRPR_ID", TRPR_ID);
 		mv.addObject("u_id", u_id);
+		mv.addObject("imageCode", imageCode);
 		
 		Calendar cal = Calendar.getInstance();
 		StringBuffer now_date = new StringBuffer();

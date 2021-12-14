@@ -297,6 +297,7 @@
 				<input type="hidden" id="TR_STA_DT" name="TR_STA_DT" value="${vo3.TR_STA_DT}"/>
 				<input type="hidden" id="TR_END_DT" name="TR_END_DT" value="${vo3.TR_END_DT}"/>
 				<input type="hidden" id="like" name="like" value="${like}"/>
+				<input type="hidden" id="imageCode" name="imageCode" value="${imageCode}"/>
 				<input type="hidden" id="add3" name="add" value="3"/>
 			</form>
 		</div>
