@@ -39,6 +39,7 @@ import api.dao.UmemDAO;
 import api.u_member.vo.AfterVO;
 import api.u_member.vo.HelpVO;
 import api.u_member.vo.LikeVO;
+import api.u_member.vo.TrVO;
 import api.u_member.vo.UmemVO;
 import api.vo.EnrolVO;
 import api.vo.Search2;
@@ -147,12 +148,13 @@ public class Api { //
         nowDate = sdformat.format(cal.getTime()).replace("-", "");
         
 		String ip = req.getRemoteAddr();
-		Search2[] se = a_dao.getFamous(yesterday);
+		TrVO[] se = a_dao.getFamous2(yesterday);
 		Search2[] rd = r_dao.getFamous(yesterday);
 		
 		
 		if(se != null) {
 			for(int i=0;  i< se.length; i++) {
+				/*
 				String srchTrprId = se[i].getSrchTrprId();
 				String srchTrprDegr = se[i].getSrchTrprDegr();
 				String srchTraProcessNm = se[i].getSrchTraProcessNm();
@@ -160,46 +162,21 @@ public class Api { //
 				String subject = se[i].getSubject();
 				String title = se[i].getTitle();
 				
-				/*
-				
-				StringBuffer sb2 = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=qWqEb8rhoMy5PH165fAA0bQIXsuy9OvZ&returnType=XML&outType=2");
-				sb2.append("&srchTrprDegr="+srchTrprDegr);
-				sb2.append("&srchTrprId="+srchTrprId);
-				
-				URL url = new URL(sb2.toString());
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				
-				conn.setRequestProperty("Content-Type", "application/xml");
-				conn.connect();
-				
-				SAXBuilder builder = new SAXBuilder();
-				
-				Document document = builder.build(conn.getInputStream());
-				
-				Element root = document.getRootElement();
-				Element base_info = root.getChild("inst_base_info");
-	
-				String NCS_CD = base_info.getChildText("ncsCd");
-				String imageCode = null;
-				
-				if(NCS_CD != null) {
-					String img_code = NCS_CD.substring(0, 4);
-					String img_code2 = NCS_CD.substring(0, 6);
-					int random = (int) ((Math.random()*2)+1);
-					int random2 = (int) ((Math.random()*2)+11);
-					if(img_code2.equals("120202")) {
-						imageCode = img_code2+String.valueOf(random);
-					}else if(srchTraProcessNm.contains("바리스타") || srchTraProcessNm.contains("커피")) {
-						imageCode = img_code+String.valueOf(random2);
-					}else {
-						imageCode = img_code+String.valueOf(random);
-					}
-				}
-				
-				Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title, imageCode); */
-				
 				Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
 				se[i++] = svo;
+				*/
+				String traning_id = se[i].getTraning_id();
+				String tr_degr = se[i].getTr_degr();
+				String content = se[i].getContent();
+				String price = se[i].getPrice();
+				String personnel = se[i].getPersonnel();
+				String term = se[i].getTerm();
+				String hit = se[i].getHit();
+				String imageCode = se[i].getImageCode();
+				String addr = se[i].getAddr();
+				
+				TrVO tvo = new TrVO(traning_id, content, price, personnel, term, null, null, hit, tr_degr, imageCode, addr);
+				se[i++] = tvo;
 				
 			}// for end
 			mv.addObject("avo", se);
@@ -1203,7 +1180,7 @@ public class Api { //
 		mv.addObject("u_id", u_id);
 		
 		if(t_dao.search(TRPR_ID))
-			t_dao.add(TRPR_ID, TRPR_NM, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP);
+			t_dao.add(TRPR_ID, TRPR_NM, TRPR_DEGR, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP, imageCode, ADDR1);
 		else
 			t_dao.hitUp(TRPR_ID);
 		

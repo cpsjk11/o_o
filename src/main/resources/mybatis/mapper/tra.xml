@@ -6,8 +6,8 @@
 
 <!-- 훈련 등록 기능 -->
 <insert id="add" parameterType="Map">
-	INSERT INTO traning(traning_id, content, price, personnel, term, manager, stat)
-	VALUES (#{traning_id}, #{content}, #{price}, #{personnel}, #{term}, #{manager}, #{stat})
+	INSERT INTO traning(traning_id, tr_degr, content, price, personnel, term, manager, stat, imageCode, addr)
+	VALUES (#{traning_id}, #{tr_degr}, #{content}, #{price}, #{personnel}, #{term}, #{manager}, #{stat}, #{imageCode}, #{addr})
 </insert>
 
 <!-- 훈련 검색 기능 -->
@@ -46,5 +46,14 @@
 	SET hit = hit+1
 	WHERE traning_id = #{no}
 </update>
+
+<!-- 히트수에 따른 훈련 반환 -->
+<select id="ar" parameterType="String" resultType="api.u_member.vo.TrVO">
+	<![CDATA[
+	SELECT * FROM traning
+	WHERE ROWNUM <= 10 AND term >= #{s_date}
+	ORDER BY hit DESC
+	]]>
+</select>
 
 </mapper>

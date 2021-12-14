@@ -17,18 +17,21 @@ public class TraDAO {
 	private SqlSessionTemplate ss;
 	
 	// 훈련 등록 기능
-	public int add(String tr_id, String tr_name, String price, String person, String start, String manager) {
+	public int add(String tr_id, String tr_name, String tr_degr, String price, String person, String start, String manager, String imageCode, String addr) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String price1 = price.replace(",", ""); 
 		
 		map.put("traning_id", tr_id);
+		map.put("tr_degr", tr_degr);
 		map.put("content", tr_name);
 		map.put("price", price1);
 		map.put("personnel", person);
 		map.put("term", start);
 		map.put("manager", manager);
 		map.put("stat", 1);
+		map.put("imageCode", imageCode);
+		map.put("addr", addr);
 		
 		return ss.insert("tra.add", map);
 	}

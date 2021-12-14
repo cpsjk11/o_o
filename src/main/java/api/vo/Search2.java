@@ -1,7 +1,7 @@
 package api.vo;
 
 public class Search2 {
- private String srchTrprId,srchTrprDegr,subject,srchTraProcessNm,addr,title,r_rank,start_date,end_date;
+ private String srchTrprId,srchTrprDegr,subject,srchTraProcessNm,addr,title,r_rank,start_date,end_date,imageCode;
  
  
  
@@ -17,6 +17,24 @@ public Search2(String srchTrprId, String srchTrprDegr, String subject, String sr
 	this.title = title;
 }
 
+public Search2(String srchTrprId, String srchTrprDegr, String subject, String srchTraProcessNm, String addr,
+		String title, String imageCode) {
+	this.srchTrprId = srchTrprId;
+	this.srchTrprDegr = srchTrprDegr;
+	this.subject = subject;
+	this.srchTraProcessNm = srchTraProcessNm;
+	this.addr = addr;
+	this.title = title;
+	this.imageCode = imageCode;
+}
+
+public String getImageCode() {
+	return imageCode;
+}
+
+public void setImageCode(String imageCode) {
+	this.imageCode = imageCode;
+}
 
 public String getR_rank() {
 	return r_rank;

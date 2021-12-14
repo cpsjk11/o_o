@@ -47,14 +47,14 @@
 							<span>실시간 인기 훈련과정</span>
 						</div>
 	           			<c:forEach var="vo" items="${avo}" varStatus="st">				
-						<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}">
+						<a class="tr" href="view?TRPR_ID=${vo.traning_id}&TRPR_DEGR=${vo.tr_degr}&imageCode=${vo.imageCode}">
 							<div class="tr_img_box">
 								<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
 							</div>
 							<div id="tr_text_box">
-								<div class="tr_name"><p>${vo.subject}</p></div>
+								<div class="tr_name"><p>${vo.content}</p></div>
 								<div class="tr_addr"><p>${vo.addr}</p></div>
-								<div class="tr_title"><p>${vo.title}</p></div>
+								<%-- <div class="tr_title"><p>${vo.title}</p></div> --%>
 							</div>
 						</a> 
 						</c:forEach>
@@ -72,7 +72,7 @@
 					</div>		
 					<c:if test="${avos ne null }">
 		      			<c:forEach var="vo" items="${avos}" varStatus="st">				
-						<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}">
+						<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}&imageCode=${vo.imageCode}">
 							<div class="tr_img_box">
 								<img alt="" src="resources/img/img0${st.index+1}.png" style="width: 100%; height: 100%;">
 							</div>

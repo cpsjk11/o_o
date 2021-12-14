@@ -1,8 +1,10 @@
 package api.u_member.vo;
 
+import java.sql.Date;
+
 public class TrVO {
 
-	private String traning_id, content, price, personnel, term, manager, stat;
+	private String traning_id, content, price, personnel, term, manager, stat, hit, tr_degr, imageCode, addr;
 
 	public TrVO(String traning_id, String content, String price, String personnel, String term, String manager,
 			String stat) {
@@ -13,6 +15,54 @@ public class TrVO {
 		this.term = term;
 		this.manager = manager;
 		this.stat = stat;
+	}
+	
+	public TrVO(String traning_id, String content, String price, String personnel, String term, String manager,
+			String stat, String hit, String tr_degr, String imageCode, String addr) {
+		super();
+		this.traning_id = traning_id;
+		this.content = content;
+		this.price = price;
+		this.personnel = personnel;
+		this.term = term;
+		this.manager = manager;
+		this.stat = stat;
+		this.hit = hit;
+		this.tr_degr = tr_degr;
+		this.imageCode = imageCode;
+		this.addr = addr;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getImageCode() {
+		return imageCode;
+	}
+
+	public void setImageCode(String imageCode) {
+		this.imageCode = imageCode;
+	}
+
+	public String getTr_degr() {
+		return tr_degr;
+	}
+
+	public void setTr_degr(String tr_degr) {
+		this.tr_degr = tr_degr;
+	}
+
+	public String getHit() {
+		return hit;
+	}
+
+	public void setHit(String hit) {
+		this.hit = hit;
 	}
 
 	public String getTraning_id() {

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import api.u_member.vo.TrVO;
 import api.vo.Search2;
 import api.vo.api_1;
 
@@ -30,6 +31,23 @@ public class ArDAO {
 		
 		if(a_list != null && !a_list.isEmpty()) {
 			vo = new Search2[a_list.size()];
+			a_list.toArray(vo);
+		}
+		return vo;
+	}
+	
+	// 히트수에 따른 학원 반환
+	public TrVO[] getFamous2(String sysdate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("s_date", sysdate);
+		map.put("sysdate", sysdate);
+		
+		TrVO[] vo = null;
+		
+		List<TrVO> a_list = ss.selectList("tra.ar", map);
+		
+		if(a_list != null && !a_list.isEmpty()) {
+			vo = new TrVO[a_list.size()];
 			a_list.toArray(vo);
 		}
 		return vo;
