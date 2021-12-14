@@ -40,4 +40,11 @@
 	WHERE u_mem_id = #{u_mem_id} and tr_id = #{tr_id}
 </delete>
 
+<!-- 훈련 히트수 증가 -->
+<update id="hit" parameterType="String">
+	UPDATE traning
+	SET hit = hit+1
+	WHERE traning_id = #{no}
+</update>
+
 </mapper>

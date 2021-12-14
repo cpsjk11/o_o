@@ -160,9 +160,45 @@ public class Api { //
 				String subject = se[i].getSubject();
 				String title = se[i].getTitle();
 				
+				/*
+				
+				StringBuffer sb2 = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=qWqEb8rhoMy5PH165fAA0bQIXsuy9OvZ&returnType=XML&outType=2");
+				sb2.append("&srchTrprDegr="+srchTrprDegr);
+				sb2.append("&srchTrprId="+srchTrprId);
+				
+				URL url = new URL(sb2.toString());
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				
+				conn.setRequestProperty("Content-Type", "application/xml");
+				conn.connect();
+				
+				SAXBuilder builder = new SAXBuilder();
+				
+				Document document = builder.build(conn.getInputStream());
+				
+				Element root = document.getRootElement();
+				Element base_info = root.getChild("inst_base_info");
+	
+				String NCS_CD = base_info.getChildText("ncsCd");
+				String imageCode = null;
+				
+				if(NCS_CD != null) {
+					String img_code = NCS_CD.substring(0, 4);
+					String img_code2 = NCS_CD.substring(0, 6);
+					int random = (int) ((Math.random()*2)+1);
+					int random2 = (int) ((Math.random()*2)+11);
+					if(img_code2.equals("120202")) {
+						imageCode = img_code2+String.valueOf(random);
+					}else if(srchTraProcessNm.contains("바리스타") || srchTraProcessNm.contains("커피")) {
+						imageCode = img_code+String.valueOf(random2);
+					}else {
+						imageCode = img_code+String.valueOf(random);
+					}
+				}
+				
+				Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title, imageCode); */
 				
 				Search2 svo = new Search2(srchTrprId, srchTrprDegr, subject, srchTraProcessNm, addr, title);
-				
 				se[i++] = svo;
 				
 			}// for end
@@ -901,7 +937,6 @@ public class Api { //
 		*/
 		
 		mv.addObject("TRAINST_CST_ID", TRAINST_CST_ID);
-		mv.addObject("imageCode", imageCode);
 		
 		StringBuffer sb = new StringBuffer("https://www.hrd.go.kr/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_2.jsp?authKey=qWqEb8rhoMy5PH165fAA0bQIXsuy9OvZ&returnType=XML&outType=2");
 		sb.append("&srchTorgId="+TRAINST_CST_ID);
@@ -1098,6 +1133,25 @@ public class Api { //
 		mv.addObject("vo2", avo2);
 		mv.addObject("vo3", avo3);
 		
+		if(imageCode == null) {
+			String img_code = NCS_CD.substring(0, 4);
+			String img_code2 = NCS_CD.substring(0, 6);
+			int random = (int) ((Math.random()*2)+1);
+			int random2 = (int) ((Math.random()*2)+11);
+			if(img_code2.equals("120202")) {
+				imageCode = img_code2+String.valueOf(random);
+			}else if(TRPR_NM.contains("바리스타") || TRPR_NM.contains("커피")) {
+				imageCode = img_code+String.valueOf(random2);
+			}else {
+				imageCode = img_code+String.valueOf(random);
+			}
+		}
+		
+		mv.addObject("imageCode", imageCode);
+		
+		
+		
+		
 		String address = URLEncoder.encode(ADDR1,"utf-8");
 		String api = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+address;
 		sb = new StringBuffer();
@@ -1150,6 +1204,8 @@ public class Api { //
 		
 		if(t_dao.search(TRPR_ID))
 			t_dao.add(TRPR_ID, TRPR_NM, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP);
+		else
+			t_dao.hitUp(TRPR_ID);
 		
 		if(like == null)
 			like = "false";
@@ -1161,9 +1217,11 @@ public class Api { //
 		}
 		
 		mv.addObject("like", like);
-
-		LikeVO[] lvo = t_dao.list2(u_id);
-		mv.addObject("lvo", lvo);
+		
+		if(u_id != null) {
+			LikeVO[] lvo = t_dao.list2(u_id);
+			mv.addObject("lvo", lvo);
+		}
 		
 		AfterVO[] afvo = af_dao.list(TRPR_ID);
 		mv.addObject("afvo", afvo);

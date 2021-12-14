@@ -45,6 +45,11 @@ public class TraDAO {
 		return chk;
 	}
 	
+	//히트수 증가 기능
+	public int hitUp(String tr_id) {
+		return ss.update("tra.hit", tr_id);
+	}
+	
 	//관심훈련 등록 기능
 	public int add2(String u_id, String tr_id, String tr_name, String tr_start, String tr_end, String like_date) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -57,6 +62,7 @@ public class TraDAO {
 		map.put("tr_term", tr_term);
 		map.put("like_date", like_date);
 		map.put("stat", 1);
+		map.put("hit", 0);
 		
 		return ss.insert("tra.add2", map);
 	}
