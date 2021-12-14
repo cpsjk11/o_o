@@ -119,9 +119,6 @@ public class AddController {
 		String Y = "";
 		String companyX = "";
 		
-		//rd = RecommendedSchool.getSchool(rd);
-		
-		//u_dao.searchDate();
 		
 		// 현재 날짜를 비교해 최근 3~6개월 정도에 결과값을 가져오는 기능
 		Date dates = new Date();
@@ -178,8 +175,8 @@ public class AddController {
 				
 		}
 		int searchNum =  b_dao.qnaSu();
-			
-		
+		int totalNum = 1000;	
+		String total = (double) usernum / (double) totalNum * 100.0 + "%"; 
 		
 		/*String resultX = chk.getChart(result);
 		String resultY = chk.getChart(count);*/
@@ -190,6 +187,7 @@ public class AddController {
 		mv.addObject("cx", companyX);
 		mv.addObject("userNum", usernum);
 		mv.addObject("company", rd);
+		mv.addObject("total", total);
 		mv.addObject("companyNum", companyNum);
 		mv.setViewName("admin/a_index");
 		return mv;

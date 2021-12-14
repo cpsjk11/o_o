@@ -82,11 +82,6 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">관리자 페이지</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> 다른 관리자 호출</a>
-                    </div>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -100,9 +95,6 @@
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 총 회원수</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">${userNum}명</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -119,9 +111,6 @@
                                                 기업 회원수</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">${companyNum }명</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -133,23 +122,20 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">수강신청률
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">목표회원까지
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${total }</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: ${total }" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -165,9 +151,6 @@
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 최근 추가된 질문</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="a_QNA?bname=문의게시판">${searchNum }개</a></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -259,7 +242,7 @@
                                     			<th>제목</th>
                                     			<th>훈련시작날짜</th>
                                     			<th>훈련마감날짜</th>
-                                    			<th>버튼</th>
+                                    			<th>삭제</th>
                                     		</tr>
                                     	</thead>
                                     	<tbody id="ta">
@@ -280,7 +263,7 @@
 	                                    			<td>
 	                                    					<input type="hidden" id="id${vo.srchTrprId}" value="${vo.srchTrprId}"/>
 	                                    					<a href="javascript:delSend('${vo.srchTrprId}')" class="btn btn-danger btn-circle">
-                                        						<i class="fas fa-trash"></i>
+                                        						
                                     						</a>
 	                                    			</td>
 	                                    		<tr/>
