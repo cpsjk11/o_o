@@ -664,8 +664,8 @@ public class Api { //
 					if(NCS_CD != null) {
 						String img_code = NCS_CD.substring(0, 4);
 						String img_code2 = NCS_CD.substring(0, 6);
-						int random = (int) ((Math.random()*2)+1);
-						int random2 = (int) ((Math.random()*2)+11);
+						int random = (int) ((Math.random()*4)+1);
+						int random2 = (int) ((Math.random()*4)+11);
 						if(img_code2.equals("120202")) {
 							imageCode = img_code2+String.valueOf(random);
 						}else if(TITLE.contains("바리스타") || TITLE.contains("커피")) {
@@ -925,8 +925,8 @@ public class Api { //
 		if(imageCode == null) {
 			String img_code = NCS_CD.substring(0, 4);
 			String img_code2 = NCS_CD.substring(0, 6);
-			int random = (int) ((Math.random()*2)+1);
-			int random2 = (int) ((Math.random()*2)+11);
+			int random = (int) ((Math.random()*4)+1);
+			int random2 = (int) ((Math.random()*4)+11);
 			if(img_code2.equals("120202")) {
 				imageCode = img_code2+String.valueOf(random);
 			}else if(TRPR_NM.contains("바리스타") || TRPR_NM.contains("커피")) {
