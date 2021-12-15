@@ -175,7 +175,7 @@
 			</table>
 		</div>
 		
-		<div id="map" style="width:100%;height:400px; z-index: -1"></div>
+		<div id="map" style="width:100%;height:400px; z-index: 1"></div>
 		
 		<div id="center_div">
 			<h2>훈련과정 개요(훈련목표)</h2>
