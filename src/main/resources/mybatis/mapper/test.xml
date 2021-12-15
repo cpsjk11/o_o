@@ -6,9 +6,17 @@
 
 <!-- 인기 많은 학원을 반환하는 기능 -->
 <select id="famous" parameterType="Map" resultType="api.vo.Search2">
-	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,start_date,end_date,
-	RANK() OVER (ORDER BY hit DESC) AS rank
-	FROM at_tr
-    WHERE start_date >= TO_DATE(#{sysdate})					
+	SELECT * FROM(
+              SELECT rownum r_num,a.* FROM(
+                                           SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,start_date,end_date,
+	                                   RANK() OVER (ORDER BY hit DESC) AS rank
+	                                   FROM at_tr
+                                           WHERE start_date >= TO_DATE('#{sysdate}')
+                                           ) a
+              ) WHERE r_num BETWEEN 1 AND 10					
 </select>
 </mapper>
+
+
+
+

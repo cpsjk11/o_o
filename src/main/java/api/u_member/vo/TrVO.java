@@ -5,6 +5,8 @@ import java.sql.Date;
 public class TrVO {
 
 	private String traning_id, content, price, personnel, term, manager, stat, hit, tr_degr, imageCode, addr;
+	
+	public TrVO(){}
 
 	public TrVO(String traning_id, String content, String price, String personnel, String term, String manager,
 			String stat) {
