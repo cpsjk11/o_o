@@ -43,6 +43,7 @@
 	
 	<context:component-scan base-package="com.api.test" />
 	<context:component-scan base-package="login.action" />
+	<context:component-scan base-package="spring.util" />
 	
 	<!-- 인터셉터등록 -->
 	<beans:bean id="admin_inter" class="spring.util.admininterceptor"/>

@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <div id="lookCategory">
 	<div id="Caetgory">
-		<div id="ct1" class="ct">
-			<a href="/ss">재직자</a>
-		</div>
 		<div id="ct2" class="ct">
-			<a href="look">실업자</a>
+			<a href="look?menu=2">실업자</a>
+		</div>
+		<div id="ct1" class="ct">
+			<a href="/ss?menu=1">재직자</a>
 		</div>
 		<div id="ct3" class="ct">
-			<a href="youth">학생</a>
+			<a href="youth?menu=3">학생</a>
 		</div>
 	</div>
 </div>
