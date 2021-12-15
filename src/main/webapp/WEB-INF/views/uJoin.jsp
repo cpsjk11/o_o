@@ -262,7 +262,7 @@
 			type:"post",
 			dataType:"json",
 		}).done(function(data){
-			
+			hi = data.as;
 			if(data.value == 2){
 				alert("메일이 존재하지 않습니다");
 			}
