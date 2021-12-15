@@ -191,6 +191,7 @@
 				}).done(function(data){
 					if(reg.test(email) == false){
 						$("#email_checkBox").text("올바른 이메일 형식이 아닙니다.").css("color","red");
+						$("#chkEMAIL1").val("1");
 					}
 					if(data.overlap == 1 && reg.test(email)){
 						$("#email_checkBox").html("사용가능").css("color","#12b886");
@@ -252,6 +253,7 @@
 			return;
 		}
 		// 사용자가 입력한 이메일에 메일 전송 기능!
+		alert("인증코드를 메일로 보냈습니다");
 		var mail = $("#email").val();
 		$("#email_chkOk").slideDown(500);
 		$.ajax({
@@ -260,7 +262,7 @@
 			type:"post",
 			dataType:"json",
 		}).done(function(data){
-			alert("인증코드를 메일로 보냈습니다");
+			
 			if(data.value == 2){
 				alert("메일이 존재하지 않습니다");
 			}
