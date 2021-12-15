@@ -49,7 +49,7 @@
 	           			<c:forEach var="vo" items="${avo}" varStatus="st">				
 						<a class="tr" href="view?TRPR_ID=${vo.traning_id}&TRPR_DEGR=${vo.tr_degr}&imageCode=${vo.imageCode}">
 							<div class="tr_img_box">
-								<img alt="" src="resources/img/${st.index+1}.jfif" style="width: 100%; height: 100%;">
+								<img alt="" src="resources/img/${vo.imageCode}.jpg" style="width: 100%; height: 100%;">
 							</div>
 							<div id="tr_text_box">
 								<div class="tr_name"><p>${vo.content}</p></div>
