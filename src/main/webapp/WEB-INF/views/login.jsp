@@ -310,7 +310,7 @@
 				location.href="/";
 			}
 				if(data.value == 2){
-				alert(data.fail);
+				alert("아아디 혹은 비밀번호가 틀렸습니다.");
 				$("#id").val(id);
 				$("#pw").val("");
 				

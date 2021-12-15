@@ -14,10 +14,10 @@ public class SupportSystemController {
 	private GoPolicy go;
 	
 	// 교육생 지원제도 여기서 부터 ---->
-		@RequestMapping("/look")
+		   @RequestMapping("/look")
 		   public ModelAndView look(String menu) {
 			 return go.goView("과정제도", menu);
-		}
+			}
 		   @RequestMapping("/look2")
 		   public ModelAndView look2(String menu) {
 	    	 return go.goView("취업성공패키지개요", menu);

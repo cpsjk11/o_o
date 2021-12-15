@@ -360,6 +360,7 @@ $(function() {
 			return;
 		}
 		// 사용자가 입력한 이메일에 메일 전송 기능!
+		alert("인증코드를 메일로 보냈습니다");
 		var mail = $("#email").val();
 		$("#email_chkOk").slideDown(500);
 		$.ajax({
@@ -368,7 +369,7 @@ $(function() {
 			type:"post",
 			dataType:"json",
 		}).done(function(data){
-			alert("인증코드를 메일로 보냈습니다");
+			
 			if(data.value == 2){
 				alert("메일이 존재하지 않습니다");
 			}

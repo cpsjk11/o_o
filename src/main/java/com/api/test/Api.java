@@ -36,6 +36,7 @@ import api.dao.RdDAO;
 import api.dao.RegiDAO;
 import api.dao.TraDAO;
 import api.dao.UmemDAO;
+import api.gmail.send.GoogleMail;
 import api.u_member.vo.AfterVO;
 import api.u_member.vo.HelpVO;
 import api.u_member.vo.LikeVO;
@@ -1077,9 +1078,10 @@ public class Api { //
 		String goHome = null;
 		String alert = (check > 0) ? "동일과정 수강신청은 한번만 가능합니다." : "수강신청은 5번까지만 가능합니다.";
 		if(total < 5 && check < 1) {
-			System.out.println("HI");
 			e_dao.addEnrolment(evo);
 			alerts = "수강신청이 완료되었습니다.";
+			// 수강신청시 당담자 이메일로 수강신청인원 발생했다 메일 보내주기
+			GoogleMail.gmailSend("cpsjk11@gamil.com", "수강신청 발생!!", evo.getE_uname()+"님이 "+evo.getE_trname()+" 수강신청을 원합니다 자세히보기 : <a href='localhost9090:/'>국삐 사이트로 이동.</a>");
 		}
 		String content = URLEncoder.encode(alert, "UTF-8");
 		contents = URLEncoder.encode(alerts, "UTF-8");
