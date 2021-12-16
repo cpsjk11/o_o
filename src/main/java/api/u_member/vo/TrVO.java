@@ -7,10 +7,12 @@ public class TrVO {
 	private String traning_id, content, price, personnel, term, manager, stat, hit, tr_degr, imageCode, addr, u_id;
 	
 
+	
+
 	public TrVO(){}
 
 	public TrVO(String traning_id, String content, String price, String personnel, String term, String manager,
-			String stat) {
+			String stat, String u_id) {
 		this.traning_id = traning_id;
 		this.content = content;
 		this.price = price;
@@ -18,6 +20,7 @@ public class TrVO {
 		this.term = term;
 		this.manager = manager;
 		this.stat = stat;
+		this.u_id = u_id;
 
 	}
 	
@@ -125,7 +128,7 @@ public class TrVO {
 	public void setStat(String stat) {
 		this.stat = stat;
 	}
-	
+
 	public String getU_id() {
 		return u_id;
 	}
@@ -133,4 +136,8 @@ public class TrVO {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
+	
+	
+	
+
 }
