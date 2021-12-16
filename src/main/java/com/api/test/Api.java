@@ -11,9 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jdom2.Document;
@@ -27,6 +32,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonParser;
 
 import api.action.RecommendedSchool;
 import api.dao.AfterDAO;
@@ -42,6 +50,7 @@ import api.u_member.vo.HelpVO;
 import api.u_member.vo.LikeVO;
 import api.u_member.vo.TrVO;
 import api.u_member.vo.UmemVO;
+import api.vo.Cokie;
 import api.vo.EnrolVO;
 import api.vo.Search2;
 import api.vo.SearchVO;
@@ -122,6 +131,8 @@ public class Api { //
 	private EnrolDAO e_dao;
 	
 	private String nowDate;
+	
+	private List<Cokie> list = new ArrayList<Cokie>();
 	
 	@RequestMapping("/ex")
 	public String view() {
@@ -717,8 +728,23 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id, String imageCode) throws Exception {
+	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id, String imageCode, HttpServletResponse res) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		/*
+		 * Cokie cok = new Cokie();
+		 * 
+		 * cok.setTrid(TRPR_ID); cok.setTrdegr(TRPR_DEGR); cok.setU_id(u_id);
+		 * list.add(cok);
+		 * 
+		 * Cokie[] ck = new Cokie[list.size()]; list.toArray(ck);
+		 * 
+		 * ObjectMapper mapper = new ObjectMapper(); JSONObject job = new JSONObject();
+		 * job = ck.toString(); Cookie cookie = new Cookie("total",URLEncoder.encode());
+		 * 
+		 * cookie.setMaxAge(60*60*24); // 기간을 하루로 지정(60초 * 60분 * 24시간)
+		 * res.addCookie(cookie);
+		 * 
+		 */
 		
 		/*
 		String userName = (String) session.getAttribute("userName");

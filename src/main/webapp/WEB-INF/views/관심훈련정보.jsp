@@ -81,6 +81,7 @@
 				<li>
 				<div class="commentBox">
 					<h3 class="content-ex1">관심 훈련</h3>
+					${cookie.trid}
 				</div>
 				<c:forEach var="vo" items="${ar }">
 					  <div id="dele1" class="del">
