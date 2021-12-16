@@ -139,6 +139,13 @@ public class Api { //
 	public ModelAndView test(String sb) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		if(session.getAttribute("userName") != null) {
+			mv.addObject("user_id", session.getAttribute("u_id"));
+		}else {
+			session.removeAttribute("u_id");
+			mv.addObject("user_id", null);
+		}
+		
 		// 날짜 구하기
 		Date date = new Date();
         // 포맷변경 ( 년월일 시분초)
@@ -186,7 +193,6 @@ public class Api { //
 			}// for end
 			mv.addObject("avo", se);
 			mv.addObject("length", se.length);
-			mv.addObject("user_id", session.getAttribute("u_id"));
 		}
 		rd = RecommendedSchool.getSchool(rd);
 		
