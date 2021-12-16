@@ -163,6 +163,7 @@ public class KakaoController {
 					
 				}
 				session.setAttribute("userName", uvos);	
+				session.setAttribute("u_id", uvos.getId());
 				session.setAttribute("stat", uvos.getStat());
 				session.setAttribute("rank", "2");
 				mv.setViewName("redirect:/");

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.util.SystemOutLogger;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -148,7 +149,14 @@ public class Api { //
 	@RequestMapping({"/","/*"})
 	public ModelAndView test(String sb) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
+		if(session.getAttribute("userName") != null) {
+			mv.addObject("user_id", session.getAttribute("u_id"));
+		}else {
+			session.removeAttribute("u_id");
+			mv.addObject("user_id", null);
+		}
+		
 		// 날짜 구하기
 		Date date = new Date();
         // 포맷변경 ( 년월일 시분초)
@@ -188,8 +196,10 @@ public class Api { //
 				String imageCode = se[i].getImageCode();
 				String addr = se[i].getAddr();
 				
+				
 				TrVO tvo = new TrVO(traning_id, content, price, personnel, term, null, null, hit, tr_degr, imageCode, addr);
 				se[i++] = tvo;
+				
 				
 			}// for end
 			mv.addObject("avo", se);
@@ -1018,7 +1028,7 @@ public class Api { //
 		mv.addObject("u_id", u_id);
 		
 		if(t_dao.search(TRPR_ID))
-			t_dao.add(TRPR_ID, TRPR_NM, TRPR_DEGR, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP, imageCode, ADDR1);
+			t_dao.add(TRPR_ID, TRPR_NM, TRPR_DEGR, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP, imageCode, ADDR1, u_id);
 		else
 			t_dao.hitUp(TRPR_ID);
 		

@@ -1,3 +1,4 @@
+
 package api.dao;
 
 import java.util.HashMap;
@@ -37,12 +38,13 @@ public class MemDAO {
 	}
 	
 	//목록
-	public TrVO[] getList(int begin, int end) {
+	public TrVO[] getList(int begin, int end, String tr_u_id) {
 		TrVO[] ar = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("begin", String.valueOf(begin));
 		map.put("end", String.valueOf(end));
+		map.put("tr_u_id", tr_u_id);
 		
 		List<TrVO> list = ss.selectList("mypage.myList", map);
 		if(list != null && list.size() > 0 && !list.isEmpty()) {
@@ -57,12 +59,13 @@ public class MemDAO {
 		return cnt;
 	}
 	
-	public LikeVO[] LikeList(int begin, int end) {
+	public LikeVO[] LikeList(int begin, int end, String u_mem_id) {
 		LikeVO[] ar = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("begin", String.valueOf(begin));
 		map.put("end", String.valueOf(end));
+		map.put("u_mem_id", u_mem_id);
 		
 		List<LikeVO> list = ss.selectList("mypage.LikeList", map);
 		if(list != null && list.size() > 0 && !list.isEmpty()) {

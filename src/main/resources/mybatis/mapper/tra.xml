@@ -6,20 +6,20 @@
 
 <!-- 훈련 등록 기능 -->
 <insert id="add" parameterType="Map">
-	INSERT INTO traning(traning_id, tr_degr, content, price, personnel, term, manager, stat, imageCode, addr)
-	VALUES (#{traning_id}, #{tr_degr}, #{content}, #{price}, #{personnel}, #{term}, #{manager}, #{stat}, #{imageCode}, #{addr})
+	INSERT INTO traning(traning_id, tr_degr, content, price, personnel, term, manager, stat, imageCode, addr, tr_u_id)
+	VALUES (#{traning_id}, #{tr_degr}, #{content}, #{price}, #{personnel}, #{term}, #{manager}, #{stat}, #{imageCode}, #{addr}, #{tr_u_id})
 </insert>
 
 <!-- 훈련 검색 기능 -->
 <select id="search" parameterType="String" resultType="String">
 	SELECT traning_id FROM traning
-	WHERE traning_id = #{no}
+	WHERE traning_id = #{traning_id}
 </select>
 
 <!-- 관심 훈련 등록 기능 -->
 <insert id="add2" parameterType="Map">
 	INSERT INTO like_t(l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat)
-	VALUES (like_seq.NEXTVAL, #{u_mem_id}, #{tr_id}, #{tr_name}, #{tr_term}, #{like_date}, #{stat})
+	VALUES (like_seq.NEXTVAL, #{u_mem_id}, #{tr_id}, #{tr_name}, #{tr_term}, #{like_date}, #{stat} )
 </insert>
 
 <!-- 관심 훈련 검색 기능 -->
@@ -51,7 +51,7 @@
 <select id="ar" parameterType="String" resultType="api.u_member.vo.TrVO">
 	<![CDATA[
 	SELECT * FROM traning
-	WHERE ROWNUM <= 10 AND term >= #{s_date}
+	WHERE ROWNUM <= 10 AND term > #{s_date}
 	ORDER BY hit DESC
 	]]>
 </select>
