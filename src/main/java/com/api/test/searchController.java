@@ -1,5 +1,8 @@
 package com.api.test;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,7 @@ import api.action.mypagePaging;
 import api.dao.BbsDAO;
 import api.dao.MemDAO;
 import api.u_member.vo.TrVO;
+import api.u_member.vo.UmemVO;
 import api.vo.BbsVO;
 
 @Controller
@@ -27,6 +31,12 @@ public class searchController {
 	int nowPage;
 	int rowTotal;
 	String pageCode;
+	
+	@Autowired
+	private HttpServletRequest req;
+	
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping("/mypage/search")
 	public ModelAndView inter(String cPage) {
@@ -46,7 +56,11 @@ public class searchController {
 		
 		pageCode = page.getSb().toString();
 		
-		TrVO[] ar = m_dao.getList(begin, end);
+		session = req.getSession(true);
+		
+		UmemVO uvo =  (UmemVO) session.getAttribute("userName");
+		
+		TrVO[] ar = m_dao.getList(begin, end, uvo.getId());
 		
 		mv.addObject("ar", ar);
 		mv.addObject("nowPage", nowPage);

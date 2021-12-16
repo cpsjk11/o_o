@@ -47,7 +47,7 @@
 	<select id="myList" parameterType="Map" resultType="api.u_member.vo.TrVO">
 		SELECT * FROM(
 			SELECT rownum r_num, a.* FROM(SELECT * FROM TRANING
-						WHERE stat = 1
+						WHERE u_id = #{u_id}
 				) a
 			) WHERE r_num BETWEEN #{begin} AND #{end} 
 	</select>
@@ -63,7 +63,7 @@
 	<select id="LikeList" parameterType="Map" resultType="api.u_member.vo.LikeVO">
 		SELECT * FROM(
 			SELECT rownum r_num, a.* FROM(SELECT * FROM Like_t
-						WHERE stat = 1
+						WHERE u_mem_id = #{u_mem_id}
 				) a
 			) WHERE r_num BETWEEN #{begin} AND #{end} 
 	</select>

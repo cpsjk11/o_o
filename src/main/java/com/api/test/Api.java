@@ -16,6 +16,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.util.SystemOutLogger;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -177,8 +178,10 @@ public class Api { //
 				String imageCode = se[i].getImageCode();
 				String addr = se[i].getAddr();
 				
+				
 				TrVO tvo = new TrVO(traning_id, content, price, personnel, term, null, null, hit, tr_degr, imageCode, addr);
 				se[i++] = tvo;
+				
 				
 			}// for end
 			mv.addObject("avo", se);
@@ -992,7 +995,7 @@ public class Api { //
 		mv.addObject("u_id", u_id);
 		
 		if(t_dao.search(TRPR_ID))
-			t_dao.add(TRPR_ID, TRPR_NM, TRPR_DEGR, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP, imageCode, ADDR1);
+			t_dao.add(TRPR_ID, TRPR_NM, TRPR_DEGR, real_price, TOT_FXNUM, TR_STA_DT, TRPR_CHAP, imageCode, ADDR1, u_id);
 		else
 			t_dao.hitUp(TRPR_ID);
 		

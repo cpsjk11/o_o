@@ -4,8 +4,9 @@ import java.sql.Date;
 
 public class TrVO {
 
-	private String traning_id, content, price, personnel, term, manager, stat, hit, tr_degr, imageCode, addr;
+	private String traning_id, content, price, personnel, term, manager, stat, hit, tr_degr, imageCode, addr, u_id;
 	
+
 	public TrVO(){}
 
 	public TrVO(String traning_id, String content, String price, String personnel, String term, String manager,
@@ -17,6 +18,7 @@ public class TrVO {
 		this.term = term;
 		this.manager = manager;
 		this.stat = stat;
+
 	}
 	
 	public TrVO(String traning_id, String content, String price, String personnel, String term, String manager,
@@ -33,6 +35,7 @@ public class TrVO {
 		this.tr_degr = tr_degr;
 		this.imageCode = imageCode;
 		this.addr = addr;
+	
 	}
 
 	public String getAddr() {
@@ -121,5 +124,13 @@ public class TrVO {
 
 	public void setStat(String stat) {
 		this.stat = stat;
+	}
+	
+	public String getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
 }
