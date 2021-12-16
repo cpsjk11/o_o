@@ -13,7 +13,7 @@
 <!-- 훈련 검색 기능 -->
 <select id="search" parameterType="String" resultType="String">
 	SELECT traning_id FROM traning
-	WHERE u_id = #{u_id}
+	WHERE traning_id = #{traning_id}
 </select>
 
 <!-- 관심 훈련 등록 기능 -->
