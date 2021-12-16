@@ -35,15 +35,16 @@
 		width: 1500px;
 		height: ${hei*5/100};
 		text-align: center; 
-		position: fixed;
-		top:120px;
+		<%--position: fixed;
+		top:120px;--%>
 	}
 	div#body #top2_div {
 		width: 1000px;
 		height: ${hei*15/100};
 		text-align: right;
 		margin-left: 250px;
-		margin-top: 200px;
+		margin-top: 50px;
+		<%--margin-top: 200px;--%>
 	}
 	div#body #center_div {
 		width: 1200px;
