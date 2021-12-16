@@ -60,6 +60,7 @@ public class LoginController {
 			System.out.println(uvo.getAddr());
 			
 			session.setAttribute("userName", uvo);
+			session.setAttribute("u_id", uvo.getId());
 			session.setAttribute("stat", uvo.getStat());
 			session.setAttribute("rank", "1");
 			map.put("name", uvo.getName());

@@ -47,7 +47,7 @@
 							<span>실시간 인기 훈련과정</span>
 						</div>
 	           			<c:forEach var="vo" items="${avo}" varStatus="st">				
-						<a class="tr" href="view?TRPR_ID=${vo.traning_id}&TRPR_DEGR=${vo.tr_degr}&imageCode=${vo.imageCode}">
+						<a class="tr" href="view?TRPR_ID=${vo.traning_id}&TRPR_DEGR=${vo.tr_degr}&imageCode=${vo.imageCode}&u_id=${u_id}">
 							<div class="tr_img_box">
 								<img alt="" src="resources/img/${vo.imageCode}.jpg" style="width: 100%; height: 100%;">
 							</div>

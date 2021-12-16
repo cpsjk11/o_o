@@ -51,7 +51,7 @@
 <select id="ar" parameterType="String" resultType="api.u_member.vo.TrVO">
 	<![CDATA[
 	SELECT * FROM traning
-	WHERE ROWNUM <= 10 AND term >= #{s_date}
+	WHERE ROWNUM <= 10 AND term > #{s_date}
 	ORDER BY hit DESC
 	]]>
 </select>
