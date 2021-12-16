@@ -6,8 +6,8 @@
 
 <!-- 훈련 등록 기능 -->
 <insert id="add" parameterType="Map">
-	INSERT INTO traning(traning_id, tr_degr, content, price, personnel, term, manager, stat, imageCode, addr, u_id)
-	VALUES (#{traning_id}, #{tr_degr}, #{content}, #{price}, #{personnel}, #{term}, #{manager}, #{stat}, #{imageCode}, #{addr}, #{u_id})
+	INSERT INTO traning(traning_id, tr_degr, content, price, personnel, term, manager, stat, imageCode, addr, tr_u_id)
+	VALUES (#{traning_id}, #{tr_degr}, #{content}, #{price}, #{personnel}, #{term}, #{manager}, #{stat}, #{imageCode}, #{addr}, #{tr_u_id})
 </insert>
 
 <!-- 훈련 검색 기능 -->
