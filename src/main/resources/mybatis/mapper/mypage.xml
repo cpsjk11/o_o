@@ -49,7 +49,8 @@
 			SELECT rownum r_num, a.* FROM(SELECT * FROM TRANING
 						WHERE tr_u_id = #{tr_u_id}
 				) a
-			) WHERE r_num BETWEEN #{begin} AND #{end} 
+			) WHERE r_num BETWEEN #{begin} AND #{end} order by r_num DESC
+			
 	</select>
 	
 	<!-- 총 게시물 수를 반환하는 SELECT -->
@@ -65,7 +66,7 @@
 			SELECT rownum r_num, a.* FROM(SELECT * FROM Like_t
 						WHERE u_mem_id = #{u_mem_id}
 				) a
-			) WHERE r_num BETWEEN #{begin} AND #{end} 
+			) WHERE r_num BETWEEN #{begin} AND #{end} order by r_num DESC
 	</select>
 	
 	<!-- 총 게시물 수를 반환하는 SELECT -->

@@ -64,10 +64,10 @@
 					</li>
 					</ul>
 					</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 					</div>
 <!-- 오른쪽 영역 끝 -->
 <!-- 하단영역 -->
-	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>	
 <script>

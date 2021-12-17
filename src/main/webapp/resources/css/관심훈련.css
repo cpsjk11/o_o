@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 	#footer{
-		position: relative;
-		top: 1500px;
+	/* 	position: relative;
+		top: 1500px; */
 		left: 0;
 		bottom: 0;
 		border-top: 0.7px solid #efefef;
@@ -120,6 +120,7 @@ ol, ul {
 }
 
 .divTableArea06.ty2 {
+	margin-bottom: 3em;
     padding: 30px;
     background: #fbfbfb;
 }
@@ -131,6 +132,7 @@ ol, ul {
 
 .divTableArea06 .divTable > li {
     border-bottom: 1px #e2e2e4 solid;
+    display: flex;
     
 }
 

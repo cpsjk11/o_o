@@ -62,7 +62,7 @@
 		width: 65%;
 	}
 	#bot_category{
-	    width: 100%;
+	    width: 70%;
 	    margin: 0 auto;
 	}
 	#pop_area{
@@ -164,7 +164,7 @@
 		justify-content: space-between; 
 	}
 	#ct_top_category ol li{
-		width: 10em;
+		width: 23%;
     	height: 4em;
 		background: #EFEFEF;
 		border-radius: 6px;
