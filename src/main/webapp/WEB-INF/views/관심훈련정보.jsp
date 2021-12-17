@@ -91,7 +91,7 @@
 							</span>
 							<ul class="divTable">
 								<li>
-									<strong class="tit">과정명</strong>
+									<strong class="tit">기관명</strong>
 									<a href="javaScript:click('http://localhost:9090/view?TRPR_ID=${vo.tr_id}&TRPR_DEGR=${vo.tr_degr}&u_id=${sessionScope.userName.id}&imageCode=${vo.imageCode }')" onclick="sendre" id="getClick" class="txt" style="color:#4171df;">
 										${vo.tr_name }
 									</a>
