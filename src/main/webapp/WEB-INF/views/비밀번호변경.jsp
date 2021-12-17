@@ -135,7 +135,7 @@ $(function() {
 	})
 })
 	
-$("#pw").bind("keyup", function() {
+$("#pw").bind("focusout", function() {
 
 	 	// 비밀번호 확인
 		var pw = $("#pw").val();
@@ -148,15 +148,14 @@ $("#pw").bind("keyup", function() {
 			type:"post",
 			dataType:"json"
 		}).done(function (data) {
-			console.log(data);
-			
 			if(data.data == 1){
 				  $("#alert-success").css('display', 'inline-block');
 	              $("#alert-danger").css('display', 'none');
 			}else{
 	               $("#alert-success").css('display', 'none');
 	               $("#alert-danger").css('display', 'inline-block');
-	               return
+	               $("#pw").val("");
+	               $("#pw").focus();
 	               
 			}
 		
@@ -165,7 +164,7 @@ $("#pw").bind("keyup", function() {
 
 
 $(function () {
-	$("#b_ok").click(function() {
+	$("#b_ok2").click(function() {
 		var s_pw = $("#pw").val();
 		var new_pw = $("#new_pw").val();
 		var s_pw2 = $("#pw2").val();
@@ -173,7 +172,7 @@ $(function () {
 		var num = new_pw.search(/[0-9]/g);
 		var eng = new_pw.search(/[a-z]/ig);
 		var spe = new_pw.search(/[`~!@#$%^&*|\\\;:/?)]/gi);
-			
+		
 		param = "pw="+encodeURIComponent(new_pw)+"&id="+encodeURIComponent(id);
 	
 		if(!s_pw.trim()){
@@ -203,6 +202,7 @@ $(function () {
 			$("#pw2").focus();
 			return
 		}
+		
 		
 		var result = confirm("변경하시겠습니까?");
 		 
