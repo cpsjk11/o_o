@@ -60,11 +60,11 @@
 						
 						</div>
 						</c:forEach>
+					<jsp:include page="footer.jsp"/>
 					</div>
 					</li>
 					</ul>
 					</div>
-	<jsp:include page="footer.jsp"></jsp:include>
 					</div>
 <!-- 오른쪽 영역 끝 -->
 <!-- 하단영역 -->
