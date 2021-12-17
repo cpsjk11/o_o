@@ -11,9 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.poi.util.SystemOutLogger;
@@ -29,6 +34,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonParser;
+
 import api.action.RecommendedSchool;
 import api.dao.AfterDAO;
 import api.dao.ArDAO;
@@ -43,6 +50,7 @@ import api.u_member.vo.HelpVO;
 import api.u_member.vo.LikeVO;
 import api.u_member.vo.TrVO;
 import api.u_member.vo.UmemVO;
+import api.vo.Cokie;
 import api.vo.EnrolVO;
 import api.vo.Search2;
 import api.vo.SearchVO;
@@ -124,6 +132,8 @@ public class Api { //
 	
 	private String nowDate;
 	
+	private List<Cokie> list = new ArrayList<Cokie>();
+	
 	@RequestMapping("/ex")
 	public String view() {
 		return"login";
@@ -138,7 +148,14 @@ public class Api { //
 	@RequestMapping({"/","/*"})
 	public ModelAndView test(String sb) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
+		if(session.getAttribute("userName") != null) {
+			mv.addObject("user_id", session.getAttribute("u_id"));
+		}else {
+			session.removeAttribute("u_id");
+			mv.addObject("user_id", null);
+		}
+		
 		// 날짜 구하기
 		Date date = new Date();
         // 포맷변경 ( 년월일 시분초)
@@ -720,8 +737,23 @@ public class Api { //
 	}
 	
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id, String imageCode) throws Exception {
+	public ModelAndView view(String TRAINST_CST_ID, String TRPR_DEGR, String TRPR_ID, String like, String u_id, String imageCode, HttpServletResponse res) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		/*
+		 * Cokie cok = new Cokie();
+		 * 
+		 * cok.setTrid(TRPR_ID); cok.setTrdegr(TRPR_DEGR); cok.setU_id(u_id);
+		 * list.add(cok);
+		 * 
+		 * Cokie[] ck = new Cokie[list.size()]; list.toArray(ck);
+		 * 
+		 * ObjectMapper mapper = new ObjectMapper(); JSONObject job = new JSONObject();
+		 * job = ck.toString(); Cookie cookie = new Cookie("total",URLEncoder.encode());
+		 * 
+		 * cookie.setMaxAge(60*60*24); // 기간을 하루로 지정(60초 * 60분 * 24시간)
+		 * res.addCookie(cookie);
+		 * 
+		 */
 		
 		/*
 		String userName = (String) session.getAttribute("userName");
@@ -1054,7 +1086,7 @@ public class Api { //
 			}
 			
 			if(like != null && like.equals("false") && add.equals("3")) {
-				t_dao.add2(u_id, TRPR_ID, INO_NM, TR_STA_DT, TR_END_DT, now_date.toString());
+				t_dao.add2(u_id, TRPR_ID, INO_NM, TR_STA_DT, TR_END_DT, now_date.toString(), TRPR_DEGR, imageCode);
 				mv.addObject("like", "true");
 			}
 			if(like != null && like.equals("true") && add.equals("3")) {
@@ -1102,7 +1134,7 @@ public class Api { //
 	}
 	
 	@RequestMapping("/registers")
-	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID,String company, String TRPR_NM, String email) {
+	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID,String company, String TRPR_NM, String email,String TRPR_DEGR, String imageCode) {
 		ModelAndView mv = new ModelAndView();
 		
 		TRPR_NM = (TRPR_NM.contains("////") ? TRPR_NM.replace("////", "&") :TRPR_NM );
@@ -1117,13 +1149,16 @@ public class Api { //
 		mv.addObject("company", company);
 		mv.addObject("TRPR_NM", TRPR_NM);
 		mv.addObject("email", email);
+		mv.addObject("TRPR_DEGR", TRPR_DEGR);
+		mv.addObject("imageCode", imageCode);
+	
 		
 		mv.setViewName("registers");
 		return mv;
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public ModelAndView register1(String u_id, String TRPR_ID, String company, String TRPR_NM, String email) throws Exception {
+	public ModelAndView register1(String u_id, String TRPR_ID, String company, String TRPR_NM, String email, String TRPR_DEGR, String imageCode) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		if(u_id != null && !u_id.trim().equals("")) {
 			UmemVO uvo = u_dao.searchUser2(u_id);
@@ -1132,6 +1167,10 @@ public class Api { //
 			mv.addObject("company", company);
 			mv.addObject("TRPR_NM", TRPR_NM);
 			mv.addObject("email", email);
+			mv.addObject("TRPR_DEGR", TRPR_DEGR);
+			mv.addObject("imageCode", imageCode);
+			
+
 			mv.setViewName("register");
 		}else {
 			mv.setViewName("redirect:/ex");

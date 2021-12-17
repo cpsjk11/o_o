@@ -5,15 +5,15 @@
 <mapper namespace="rd">
 <!-- 추천 학원을 반환하는 기능 -->
 <select id="rd" resultType="api.vo.Search2" parameterType="String">
-	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,start_date,end_date,
+	SELECT SRCHTRPRID,SRCHTRPRDEGR,addr,title,subject,start_date,end_date,imageCode,
 	RANK() OVER (ORDER BY r_rank ASC) AS rank
 	FROM rd WHERE state = 1 AND start_date >= TO_DATE(#{yesterday})
 </select>
 
 <!-- 추천 학원을 저장하는 기능! -->
 <insert id="appendRd" parameterType="api.vo.Search2">
-	INSERT INTO rd (r_rank,srchtrprid,srchtrprdegr,addr,title,subject,state,start_date,end_date)
-	VALUES (#{r_rank},#{srchTrprId},#{srchTrprDegr},#{addr},#{title},#{subject},1,#{start_date},#{end_date})
+	INSERT INTO rd (r_rank,srchtrprid,srchtrprdegr,addr,title,subject,state,start_date,end_date,imageCode)
+	VALUES (#{r_rank},#{srchTrprId},#{srchTrprDegr},#{addr},#{title},#{subject},1,#{start_date},#{end_date},#{imageCode})
 </insert>
 
 <!-- 추천 학원의 정보를 변경하는 기능! -->

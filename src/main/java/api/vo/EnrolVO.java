@@ -9,7 +9,9 @@ public class EnrolVO {
 					e_uname,
 					e_ugen,
 					e_uphone,
-					e_ubday;
+					e_ubday,
+					e_trdegr,
+					imageCode;
 
 	public String getE_company() {
 		return e_company;
@@ -82,6 +84,24 @@ public class EnrolVO {
 	public void setE_ubday(String e_ubday) {
 		this.e_ubday = e_ubday;
 	}
+
+	public String getE_trdegr() {
+		return e_trdegr;
+	}
+
+	public void setE_trdegr(String e_trdegr) {
+		this.e_trdegr = e_trdegr;
+	}
+
+	public String getImageCode() {
+		return imageCode;
+	}
+
+	public void setImageCode(String imageCode) {
+		this.imageCode = imageCode;
+	}
+	
+	
 	
 	
 }

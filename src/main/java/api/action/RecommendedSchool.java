@@ -18,8 +18,9 @@ public class RecommendedSchool {
 			String addr = s2[j].getAddr();
 			String subject = s2[j].getSubject();
 			String title = s2[j].getTitle();
+			String imageCode = s2[j].getImageCode();
 			
-			Search2 svo = new Search2(srchTrprId, srchTrps2egr, subject, srchTraProcessNm, addr, title);
+			Search2 svo = new Search2(srchTrprId, srchTrps2egr, subject, srchTraProcessNm, addr, title, imageCode);
 			
 			s2[j] = svo; 
 			

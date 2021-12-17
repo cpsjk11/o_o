@@ -15,6 +15,7 @@ public class LogoutController {
 	@RequestMapping(value={"/logout","/mypage/logout"})
 	public String logout() {
 		session.removeAttribute("userName");
+		session.removeAttribute("u_id");
 		return "redirect:/";
 	}
 		

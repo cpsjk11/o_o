@@ -62,17 +62,18 @@ public class pwdController {
 	
 	@RequestMapping(value = "/mypage/pwdss", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> pwdss(UmemVO vo, String id) {
+	public Map<String, String> pwdss(String id, String pw) {
 		Map<String, String> map = new HashMap<String, String>();
 		
-		String fat = i_dao.searchFat(vo.getId());
+		String fat = i_dao.searchFat(id);
 		
-		String chkpw = SecureUtil.getEncrypt(vo.getPw(), fat);
+		String chkpw = SecureUtil.getEncrypt(pw, fat);
 		
 		UmemVO uvo = u_dao.login(id, chkpw);
 		
-		if(uvo != null) {
+		if(uvo != null) { 
 			map.put("data", "1");
+		
 		}else {
 			map.put("data", "2");
 		}

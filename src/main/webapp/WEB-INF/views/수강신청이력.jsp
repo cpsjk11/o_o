@@ -41,8 +41,7 @@
 							<ul class="divTable">
 								<li>
 									<strong class="tit">과정명</strong>
-									<span class="txt" style="color:#4171df;">${vo.e_company }
-									</span>
+									<a href="javaScript:click('http://localhost:9090/view?TRPR_ID=${vo.e_trid}&TRPR_DEGR=${vo.e_trdegr}&u_id=${sessionScope.userName.id}&imageCode=${vo.imageCode }')" onclick="sendre" id="getClick" class="txt" style="color:#4171df;">${vo.e_company }</a>
 								</li>
 								<li>
 									<strong class="tit">과정코드</strong>
@@ -93,6 +92,10 @@ $(function() {
 		$('.m-unit-body4').toggle(); 
 	})
 })
+
+function click(as){
+	location.href = ""+as+"";
+}
 </script>
 </body>
 </html>

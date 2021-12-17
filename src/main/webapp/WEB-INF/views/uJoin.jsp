@@ -216,7 +216,7 @@
 		 	var value = $("#email_chkOk").val();
 				$.ajax({
 					url:"check",
-					data:{"value":value},
+					data:{"value":value,"str":hi},
 					type:"post",
 					dataType:"json",
 				}).done(function(data){

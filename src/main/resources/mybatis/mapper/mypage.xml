@@ -47,7 +47,7 @@
 	<select id="myList" parameterType="Map" resultType="api.u_member.vo.TrVO">
 		SELECT * FROM(
 			SELECT rownum r_num, a.* FROM(SELECT * FROM TRANING
-						WHERE u_id = #{u_id}
+						WHERE tr_u_id = #{tr_u_id}
 				) a
 			) WHERE r_num BETWEEN #{begin} AND #{end} 
 	</select>

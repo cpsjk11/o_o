@@ -38,13 +38,13 @@ public class MemDAO {
 	}
 	
 	//목록
-	public TrVO[] getList(int begin, int end, String u_id) {
+	public TrVO[] getList(int begin, int end, String tr_u_id) {
 		TrVO[] ar = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("begin", String.valueOf(begin));
 		map.put("end", String.valueOf(end));
-		map.put("u_id", u_id);
+		map.put("tr_u_id", tr_u_id);
 		
 		List<TrVO> list = ss.selectList("mypage.myList", map);
 		if(list != null && list.size() > 0 && !list.isEmpty()) {

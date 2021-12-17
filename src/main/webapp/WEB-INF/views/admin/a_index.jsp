@@ -210,6 +210,7 @@
 		                        	<input type="text" class="form-control form-control-user str" id="rank" name="r_rank" style="width: 260px;" placeholder="등급">
 									<input type="text" class="form-control form-control-user str" id="Id" name="srchTrprId" style="width: 260px;" placeholder="과정 아이디">
 									<input type="text" class="form-control form-control-user str" id="Degr" name="srchTrprDegr" style="width: 260px;" placeholder="과정 회차">
+									<input type="text" class="form-control form-control-user str" id="img" name="imageCode" style="width: 260px;" placeholder="이미지코드">
 									<input type="text" class="form-control form-control-user str" id="addr" name="addr" style="width: 260px;" placeholder="주소">
 									<input type="text" class="form-control form-control-user str" id="title" name="title" style="width: 260px;" placeholder="제목">
 									<input type="text" class="form-control form-control-user str" id="sub" name="subject" style="width: 260px;" placeholder="회사명">
@@ -459,6 +460,12 @@
 				alert("안쓰면 안되죠 그쵸?? 잘해요..");
 				$("#sub").val("");
 				$("#sub").focus();
+				return;
+			}
+			if($("#img").val().trim().length < 1){
+				alert("안쓰면 안되죠 그쵸?? 잘해요..");
+				$("#img").val("");
+				$("#img").focus();
 				return;
 			}
 			

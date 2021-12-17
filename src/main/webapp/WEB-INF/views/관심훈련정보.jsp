@@ -81,6 +81,7 @@
 				<li>
 				<div class="commentBox">
 					<h3 class="content-ex1">관심 훈련</h3>
+					${cookie.trid}
 				</div>
 				<c:forEach var="vo" items="${ar }">
 					  <div id="dele1" class="del">
@@ -90,10 +91,10 @@
 							</span>
 							<ul class="divTable">
 								<li>
-									<strong class="tit">과정명</strong>
-									<span class="txt" style="color:#4171df;">
+									<strong class="tit">기관명</strong>
+									<a href="javaScript:click('http://localhost:9090/view?TRPR_ID=${vo.tr_id}&TRPR_DEGR=${vo.tr_degr}&u_id=${sessionScope.userName.id}&imageCode=${vo.imageCode }')" onclick="sendre" id="getClick" class="txt" style="color:#4171df;">
 										${vo.tr_name }
-									</span>
+									</a>
 								</li>
 								<li>
 									<strong class="tit">과정코드</strong>
@@ -196,6 +197,10 @@ $(function () {
 			
 		};
 	});
+	
+function click(as){
+	location.href = ""+as+"";
+}
 </script>
 </body>
 </html>
