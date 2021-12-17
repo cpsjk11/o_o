@@ -1086,7 +1086,7 @@ public class Api { //
 			}
 			
 			if(like != null && like.equals("false") && add.equals("3")) {
-				t_dao.add2(u_id, TRPR_ID, INO_NM, TR_STA_DT, TR_END_DT, now_date.toString());
+				t_dao.add2(u_id, TRPR_ID, INO_NM, TR_STA_DT, TR_END_DT, now_date.toString(), TRPR_DEGR, imageCode);
 				mv.addObject("like", "true");
 			}
 			if(like != null && like.equals("true") && add.equals("3")) {
@@ -1134,7 +1134,7 @@ public class Api { //
 	}
 	
 	@RequestMapping("/registers")
-	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID,String company, String TRPR_NM, String email) {
+	public ModelAndView registers(String u_id, String u_name, String u_birth, String u_email, String u_phone, String u_addr, String TRPR_ID,String company, String TRPR_NM, String email,String TRPR_DEGR, String imageCode) {
 		ModelAndView mv = new ModelAndView();
 		
 		TRPR_NM = (TRPR_NM.contains("////") ? TRPR_NM.replace("////", "&") :TRPR_NM );
@@ -1149,13 +1149,16 @@ public class Api { //
 		mv.addObject("company", company);
 		mv.addObject("TRPR_NM", TRPR_NM);
 		mv.addObject("email", email);
+		mv.addObject("TRPR_DEGR", TRPR_DEGR);
+		mv.addObject("imageCode", imageCode);
+	
 		
 		mv.setViewName("registers");
 		return mv;
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public ModelAndView register1(String u_id, String TRPR_ID, String company, String TRPR_NM, String email) throws Exception {
+	public ModelAndView register1(String u_id, String TRPR_ID, String company, String TRPR_NM, String email, String TRPR_DEGR, String imageCode) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		if(u_id != null && !u_id.trim().equals("")) {
 			UmemVO uvo = u_dao.searchUser2(u_id);
@@ -1164,6 +1167,10 @@ public class Api { //
 			mv.addObject("company", company);
 			mv.addObject("TRPR_NM", TRPR_NM);
 			mv.addObject("email", email);
+			mv.addObject("TRPR_DEGR", TRPR_DEGR);
+			mv.addObject("imageCode", imageCode);
+			
+
 			mv.setViewName("register");
 		}else {
 			mv.setViewName("redirect:/ex");

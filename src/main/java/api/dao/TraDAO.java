@@ -55,7 +55,7 @@ public class TraDAO {
 	}
 	
 	//관심훈련 등록 기능
-	public int add2(String u_id, String tr_id, String tr_name, String tr_start, String tr_end, String like_date) {
+	public int add2(String u_id, String tr_id, String tr_name, String tr_start, String tr_end, String like_date, String tr_degr, String imageCode) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String tr_term = tr_start+" ~ "+tr_end;
@@ -67,6 +67,8 @@ public class TraDAO {
 		map.put("like_date", like_date);
 		map.put("stat", 1);
 		map.put("hit", 0);
+		map.put("tr_degr", tr_degr);
+		map.put("imageCode", imageCode);
 		
 		return ss.insert("tra.add2", map);
 	}

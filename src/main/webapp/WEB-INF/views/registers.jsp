@@ -97,6 +97,8 @@ input{
 	<form action="enrolmentInsert" method="post">
 	<input type="hidden" name="e_email" value="${email}">
 	<input type="hidden" name="e_uid" value="${id}">
+	<input type="hidden" name="e_trdegr" value="${TRPR_DEGR}">
+	<input type="hidden" name="imageCode" value="  ${imageCode}">
     <table class="tbl-fix tb_regist" cellspacing="0" summary="온라인 수강신청을 위한 과정을 선택하세요.">
 		<colgroup>
 			<col width="15%">

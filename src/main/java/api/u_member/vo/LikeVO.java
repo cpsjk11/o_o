@@ -1,12 +1,12 @@
 package api.u_member.vo;
 
 public class LikeVO {
-	private String l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat;
+	private String l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat, tr_degr, imageCode;
 	
 
 
 	public LikeVO(String l_idx, String u_mem_id, String tr_id, String tr_name, String tr_term, String like_date,
-			String stat) {
+			String stat, String tr_degr , String imageCode) {
 		super();
 		this.l_idx = l_idx;
 		this.u_mem_id = u_mem_id;
@@ -15,6 +15,8 @@ public class LikeVO {
 		this.tr_term = tr_term;
 		this.like_date = like_date;
 		this.stat = stat;
+		this.tr_degr = tr_degr;
+		this.imageCode = imageCode;
 	}
 
 	public String getL_idx() {
@@ -72,6 +74,26 @@ public class LikeVO {
 	public void setStat(String stat) {
 		this.stat = stat;
 	}
+
+	public String getTr_degr() {
+		return tr_degr;
+	}
+
+	public void setTr_degr(String tr_degr) {
+		this.tr_degr = tr_degr;
+	}
+
+	public String getImageCode() {
+		return imageCode;
+	}
+
+	public void setImageCode(String imageCode) {
+		this.imageCode = imageCode;
+	}
+
+
+
+	
 	
 	
 }
