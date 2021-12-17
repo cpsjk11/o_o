@@ -125,7 +125,6 @@ function enterkey() {
 	if (window.event.keyCode == 13) {
 		// 엔터키가 눌렸을 때
 		var value = $("#search").val();
-			alert(value);
 		if(value.trim().length < 1){
 			alert("검색어를 입력해주세요!");
 			return;
