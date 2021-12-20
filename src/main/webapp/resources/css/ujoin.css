@@ -111,7 +111,7 @@
 		border: 0.7px solid #ccc;
 		border-radius: 10px;
 		font-size: 15px;
-			
+	    margin-bottom: 1.5em;
 	}
 	#btn_area{
 		margin: 0 auto;

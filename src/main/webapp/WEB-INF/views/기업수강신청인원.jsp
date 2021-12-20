@@ -17,7 +17,7 @@
 		font-family: 'Noto Sans KR','Roboto', sans-serif;
 	}
 	#wrap{
-		margin: 0 auto 5em;
+	    margin: 0 auto 24em;
 		padding: 0;
 		width: 100%;
 	 }

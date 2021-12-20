@@ -103,13 +103,12 @@ public class memberShipController { // 회원가입 기능을 모여둔 컨트�
 		// 회원가입 기능!!
 		@RequestMapping("/userAdd")
 		public String addUser(UmemVO uvo, Model md,String stat) {
-			System.out.println(uvo.getC_num());
 			String fat = SecureUtil.generateSalt();
+
 			if(uvo.getMember() == null) {
 				uvo.setMember("user");
 			}
-			//uvo.setC_num(uvo.getC_num().replace("-", ""));
-
+			// 사용자가 stat으로 일반회원이지 기업회원인지 구분!
 			uvo.setStat(stat);
 			
 			// Inbody에 저장

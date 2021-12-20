@@ -39,7 +39,7 @@
 							<input type="email" name="email" id="email" placeholder="이메일을 입력해주세요." maxlength="40"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
 							<input type="button" name="email_chk" id="email_chk" value="인증코드 보내기" onclick="sends()"/>
 							<input type="text" name="email_chkOk" id="email_chkOk" style="display: none;" placeholder="인증코드를 입력해주세요.">
-							<span id="test"></span>
+							<p id="test"></p>
 							<span class="infoTo">전화번호</span>
 							<input type="number" name="phone" id="phone" placeholder="휴대폰번호를 입력해주세요." >
 							<input type="hidden" id="chkID"/>
@@ -52,7 +52,7 @@
 						<form action="email" method="post" name="ff">
 							
 						</form>
-						<span class="info">간단로그인</span>
+						<!-- <span class="info">간단로그인</span>
 						<div id="elogin_box">
 							<a id="eL_a" href="/">
 								<div id="k_login" class="el_login">
@@ -64,7 +64,7 @@
 									<span>구글 로그인</span>
 								</div>
 							</a>
-						</div>
+						</div> -->
 						<!-- <div class="chk_area">
 							<span  class="info">약관동의</span>
 							<div id="consent_box" class="el_login">

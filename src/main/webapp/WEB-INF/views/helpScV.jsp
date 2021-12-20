@@ -208,7 +208,7 @@ ${categoryStyle }
 						<span>${cvo.writer}</span>
 					</div>
 					<div id="c_content_area">
-						<span>${cvo.content }</span>
+						<span>${cvo.content}</span>
 					</div>
 					<div id="c_write_date_area">
 						<span>
@@ -226,6 +226,20 @@ ${categoryStyle }
 
 
 	$(function(){
+		$("input, textarea").bind("input",function(){
+
+		var msg = $(this).val();
+			
+		msg = msg.replace("<","");
+		msg = msg.replace(">","");
+		msg = msg.replace("\'","") ;
+		
+		console.log(msg);
+		$("#content").val(msg);
+		
+		
+		});
+
 		$("#coment_btn").bind("click",function(){
 			if($("#content").val().trim().length < 1){
 				$("#content").focus();

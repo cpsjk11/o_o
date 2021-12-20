@@ -74,7 +74,7 @@
 							<input type="email" name="email" id="email" placeholder="담당자 이메일을 입력해주세요." maxlength="40"><div class="checkBox"><span id="email_checkBox" class="checkBox"></span></div>
 							<input type="button" name="email_chk" id="email_chk" value="인증코드 보내기" onclick="sends()"/>
 							<input type="text" name="email_chkOk" id="email_chkOk" style="display: none;" placeholder="인증코드를 입력해주세요.">
-							<span id="test"></span>
+							<p id="test"></p>
 							<span class="infoTo">전화번호</span>
 							<input type="tel" name="phone" id="phone" placeholder="휴대폰번호를 -기호를 빼고 입력해주세요." maxlength="11" >
 							<input type="hidden" id="chkID"/>

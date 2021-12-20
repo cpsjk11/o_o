@@ -68,11 +68,11 @@
 	#pop_area{
 		margin: 8em auto;
 		width: 65%;
-		height: 50%;
+		height: 45%;
 		flex-direction: row;
 		justify-content: space-between;
 		background: #FFFFFF;
-		border: 1px solid #efefef;
+		border: 1px solid #ccc; 
 		
 	}
 	#pop_area .tr{

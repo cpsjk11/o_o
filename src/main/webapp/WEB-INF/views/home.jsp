@@ -74,7 +74,7 @@
 		      			<c:forEach var="vo" items="${avos}" varStatus="st">				
 						<a class="tr" href="view?TRPR_ID=${vo.srchTrprId }&TRPR_DEGR=${vo.srchTrprDegr}&imageCode=${vo.imageCode}&u_id=${user_id}">
 							<div class="tr_img_box">
-								<img alt="" src="resources/img/${vo.imageCode}.jpg" style="width: 100%; height: 100%;">
+								<img alt="" src="resources/img/${st.index}.jfif" style="width: 100%; height: 100%;">
 							</div>
 							<div id="tr_text_box">
 								<div class="tr_name"><p>${vo.subject}</p></div>

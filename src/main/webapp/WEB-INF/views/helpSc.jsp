@@ -65,7 +65,6 @@
 	#bbs_bot{
 		text-align: center;
 		margin: 0 auto;
-		width: 90%;
 	}
 	#paging_area{
 		display: inline-block;

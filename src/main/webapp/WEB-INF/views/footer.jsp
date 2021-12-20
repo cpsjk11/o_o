@@ -8,10 +8,10 @@
 					<li><a href="/helpSc?bname=공지사항">공지사항</a></li>
 					<li><a href="/helpSc?bname=문의게시판">질문답변</a></li>
 					<c:if test="${userName eq null }">
-					<li><a href="/ex">제휴문의</a></li>
+						<li><a href="/ex">제휴문의</a></li>
 					</c:if>
-					<c:if test="${userName.stat eq '1' }">
-					<li><a href="/mypage/Csuc">제휴문의</a></li>
+					<c:if test="${sessionScope.userName.stat eq '1' }">
+						<li><a href="/mypage/Csuc">제휴문의</a></li> 
 					</c:if>
 
 				</ol>
