@@ -38,8 +38,8 @@ public LikePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 		nowPage = totalPage;
 	
 	//현재 블럭의 시작페이지 값과 마지막페이지 값을 구하자!
-	startPage = (int)((nowPage-1)/blockPage)*blockPage+1;
-	endPage = startPage + blockPage -1;
+	startPage = (int)((nowPage - 1) / blockPage) * blockPage + 1;
+	endPage = startPage + blockPage - 1;
 	
 	//마지막페이지의 값이 전체페이지의 값보다 크다면
 	// 마지막페이지 값을 전체페이지 값으로 지정
@@ -48,8 +48,8 @@ public LikePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 	
 	//현재 페이지 값에 의해 시작게시물의 행번호와 마지막 게시물의 행번호를
 	//지정하여 현재 페이지에 보여질 게시물 목록을 얻을 준비를 하자!
-	begin = (nowPage-1)*blockList+1;
-	end = nowPage*blockList;
+	begin = (nowPage - 1) * blockList + 1;
+	end = nowPage * blockList;
 	
 	//이전기능 가능여부 확인
 	if(startPage > 1)
@@ -65,7 +65,7 @@ public LikePaging(int nowPage, int rowTotal, int blockList, int blockPage) {
 	
 	if(isPrePage) {
 		sb.append("<li><a href='inter?cPage=");
-		sb.append(nowPage-blockPage);
+		sb.append(nowPage - blockPage);
 		sb.append("'> &lt; </a></li>"); // <a href='list.inc?cPage=1'> < </a></li>
 	}else
 		sb.append("<li class='disable'> &lt; </li>");

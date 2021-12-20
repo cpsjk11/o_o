@@ -57,6 +57,7 @@
 		text-align: center;
 		margin: 0 auto;
 		width: 100%;
+		height: 8em;
 	}
 	#paging_area{
 		display: inline-block;
@@ -116,19 +117,19 @@
 					</c:forEach> 	
 					
 				
+				</li>
 					<div id="bbs_bot">
 						<div id="paging_area">${pageCode }</div>
 					</div>
-				</li>
 			</ul>
 		</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	</div>	
 	
 	
 	
 	<!-- 오른쪽 영역 끝 -->
 	<!-- 하단영역 -->
-	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->
 	
 	

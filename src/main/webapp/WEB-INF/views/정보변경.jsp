@@ -107,7 +107,7 @@
 	<!-- 오른쪽 영역 끝 -->
 	
 	<!-- 하단영역 -->
-	<jsp:include page="footer.jsp"></jsp:include>
+		<jsp:include page="footer.jsp"></jsp:include>
 	<!-- 하단영역끝 -->
 	
 	
