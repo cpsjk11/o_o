@@ -18,7 +18,7 @@
 
 <!-- 관심 훈련 등록 기능 -->
 <insert id="add2" parameterType="Map">
-	INSERT INTO like_t(l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat, tr_degr, imageCode)
+	INSERT INTO like_t(l_idx, u_mem_id, tr_id, tr_name, tr_term, like_date, stat, e_tr_degr, imageCode)
 	VALUES (like_seq.NEXTVAL, #{u_mem_id}, #{tr_id}, #{tr_name}, #{tr_term}, #{like_date}, #{stat}, #{tr_degr}, #{imageCode} )
 </insert>
 
